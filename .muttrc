@@ -1,0 +1,132 @@
+### SERVER/USERNAME SETTINGS
+source ~/.mutt/muttrc-server
+
+
+
+### SETTINGS
+alternative_order text/enriched text/plain text/html
+set beep=no
+set certificate_file=~/.mutt/certificates
+set confirmappend=no
+set delete=yes
+set edit_headers=yes
+set editor=vim
+set fast_reply=yes
+set header_cache="~/.mutt/cache/headers"
+set include=yes
+set message_cachedir="~/.mutt/cache/bodies"
+set move=no
+set pgp_verify_sig=no
+set print_command="enscript -Email -pretty-print -G -p - | ps2pdf - mailprint.pdf"
+set reply_self=no
+set save_name=no
+set sort = 'threads'
+set sort_aux = 'last-date-received'
+set to_chars=" +TCF"
+set query_command="/usr/local/bin/lbdbq '%s'"
+
+
+
+### FOLDER HOOK
+folder-hook . "set record=^"
+
+
+
+### LOOK AND FEEL
+ignore *
+unignore  Date From To CC Subject X-Mailer X-Bogosity
+hdr_order Date From To CC Subject X-Bogosity
+set date_format="!%d%b %H:%M"
+set folder_format="%2C %t %8s %d %N %f"
+set index_format="%3C %2M%Z  %D  %-25.25F %s"
+set markers=no
+set menu_scroll
+set pager_context=1
+set pager_index_lines=15
+set status_format=" @%h:%f <%?n?N%n/?%?M?%M/?%m%?d?/D%d? %?L?%L/?%l>   %?b?NewBox: %b  ?%?F?Flag: %F  ?%?t?Tag: %t  ?%?V?Limit: %V?%> %r(%P)"
+set status_on_top
+
+
+
+### HTML MESSAGES
+auto_view text/html application/x_pgp_message
+set implicit_autoview=yes
+set mailcap_path="~/.mailcap"
+
+
+
+### KEY BINDINGS
+bind pager h display-toggle-weed
+bind pager [ half-up
+bind pager ] half-down
+bind editor <space> noop
+
+
+
+### MACROS
+macro pager                 \cb         |urlview\n "call urlview to extract URLs out of a message"
+macro generic,index,pager   <F1>        "!less /usr/doc/mutt/manual.txt\n" "Show Mutt documentation"
+macro index,pager           Gf          "<change-folder>=feeds<enter>" "Go to feeds"
+macro index,pager           Gi          "<change-folder>=INBOX<enter>" "Go to INBOX"
+macro index,pager           Gs          "<change-folder>=Sent<enter>" "Go to Sent"
+macro index,pager           Gt          "<change-folder>=Trash<enter>" "Go to Trash"
+macro index,pager           d           "<save-message>=Trash<enter>" "trash message"
+macro index,pager           <Esc>\cD    "<delete-message>" "delete the current entry"
+macro index,pager           S           "<save-message>=Spam<enter>" "Spam"
+
+
+
+### SIDEBAR
+set sidebar_width=12
+set sidebar_visible=no
+set sidebar_delim='|'
+#set sidebar_sort=yes
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
+#bind index,pager sidebar-scroll-up
+#bind index,pager sidebar-scroll-down
+color sidebar_new yellow default
+macro index,pager b '<enter-command>toggle sidebar_visible<enter>'
+bind index B bounce-message
+
+
+
+### COLORS
+color error      red             default
+color indicator  white           default
+color markers    yellow          default
+color message    red             default
+color normal     default         default
+color search     red             default
+color status     black           green
+color tilde      red             default
+color tree       blue            default
+color index      yellow          default  ~F
+color index      green           default  ~N
+color index      cyan            default  ~T
+color index      red             default  ~D
+
+color hdrdefault default         default
+color header     green           default "^x-bogosity: ham"
+color header     red             default "^x-bogosity: spam"
+color header     magenta         default "^x-bogosity: unsure"
+color header     default         default "^from:"
+color header     default         default "^subject:"
+color body       green           default "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+color body       blue            default "(finger|ftp|hg|http[s]*|news|tel)://[^ ]*"
+color body       green           default "^Good signature"
+color body       red             default "^Bad signature from.*"
+color quoted     blue            default
+color quoted1    cyan            default
+color quoted2    blue            default
+color quoted3    cyan            default
+color bold       green           default
+color underline  green           default
+color attachment yellow          default
+color signature  red             default
+
+color body       yellow          default "(^| )\\*[-a-z0-9*]+\\*[,.?]?[ \n]"
+color body       yellow          default "(^| )_[-a-z0-9_]+_[,.?]?[\n]"
+color body       yellow          default "(^| )\\*[-a-z0-9*]+\\*[,.?]?[ \n]"
+color body       yellow          default "(^| )_[-a-z0-9_]+_[,.?]?[ \n]"

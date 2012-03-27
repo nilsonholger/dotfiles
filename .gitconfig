@@ -1,0 +1,50 @@
+[alias]
+	a = add
+	b = branch
+	ci = commit
+	co = checkout
+	d = diff
+	l = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	ll = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -n 1
+	merge = merge --no-ff
+	s = status -s -b
+
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	pager = true
+	status = auto
+	ui = auto
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+
+[color "status"]
+	added = green bold
+	changed = yellow bold
+
+[core]
+	pager = less -FRSX
+
+[help]
+	autocorrect = 10
+
+[merge]
+	summary = true
+
+[mergetool "vimdiff"]
+	cmd = vimdiff
+
+[push]
+	default = tracking
+
+[rebase]
+	stat = true
+
+[user]
+	name = nilsonholger
+	email = nilsonholger@hyve.org

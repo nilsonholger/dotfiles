@@ -1,0 +1,9 @@
+# zstyle
+zstyle :compinstall filename '~/.zshrc'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' format "%U%F{green}[%d]%u%b%f"
+zstyle ':completion:*:descriptions' format $'%{\e[0;31m%}completing %B%d%b%{\e[0m%}'
+zstyle ':completion:*:messages' format "%B%U%F{red}%d%u%b%f"
+zstyle ':completion:*:warnings' format "%F{red}[%d]%f"

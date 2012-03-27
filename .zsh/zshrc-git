@@ -1,0 +1,29 @@
+# git status notification
+_GIT_DIR=''
+_GIT_STATUS=''
+_GIT_TMP=''
+
+function _git_dir {
+    _GIT_TMP=$(git status -s -b 2>&1) && _GIT_DIR=`git rev-parse --show-toplevel` || _GIT_DIR='' && _GIT_STATUS=''
+}
+
+function _git_status {
+    [ -z $_GIT_DIR ] && return
+    [[ $_GIT_TMP =~ [MADRCU].\   ]] && _GIT_STATUS+="%F{green}±"
+    [[ $_GIT_TMP =~ .[MADU]\ [^\ ] ]] && _GIT_STATUS+="%F{yellow}±"
+    [[ $_GIT_TMP =~ \\?\\? ]] && _GIT_STATUS+="%F{red}±"
+    [[ $_GIT_TMP =~ ahead ]] && _GIT_STATUS+="%F{green}#${${_GIT_TMP/*ahead }/[,\]]*}"
+    [[ $_GIT_TMP =~ behind ]] && _GIT_STATUS+="%F{red}#${${_GIT_TMP/*behind }/\]*}"
+    [ ! -z $_GIT_STATUS ] && _GIT_STATUS="%F{blue}[%F{green}${(R)${(fR)_GIT_TMP/\#\# }/[ .]*}$_GIT_STATUS%F{blue}]%f"
+}
+
+function _git_update {
+    _git_dir
+    _git_status
+}
+
+chpwd_functions+=(_git_dir)
+
+function precmd {
+    [ -n $_GIT_DIR ] && _git_update
+}

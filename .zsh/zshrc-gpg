@@ -1,0 +1,6 @@
+# gpg repair
+function gpg-repair {
+    [ -z $1 ] && echo 'usage: gpg-repair $FILE' && return
+    mv "$1" "${1/.old}.old"
+    gpg -d $1.old | gpg -r DATA -e -o ${1/.old}
+}

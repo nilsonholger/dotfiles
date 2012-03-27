@@ -1,0 +1,17 @@
+# basics
+HISTFILE=~/.histfile
+SAVEHIST=1000
+setopt appendhistory histignorealldups histsavenodups histreduceblanks histnostore histverify
+setopt autocd extendedglob
+setopt notify correct_all nobgnice
+setopt prompt_subst
+unsetopt beep
+bindkey -v
+bindkey "^r" history-incremental-search-backward
+umask 077
+PERIOD=300
+autoload -U colors
+colors
+$MBP && fpath=($fpath ~/.zsh/fpath)
+autoload -Uz compinit
+compinit

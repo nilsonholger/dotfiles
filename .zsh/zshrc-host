@@ -1,0 +1,3 @@
+# per host activation macros
+HYVE=`[ ${HOST/.*} = hyve ] && echo true || echo false`
+MBP=`[ ${HOST/.*} = mbp ] && echo true || echo false`
