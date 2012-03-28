@@ -10,6 +10,12 @@ function disk {
 # turn of sudden motion sensor
 sudo pmset -a sms 0
 # set up login hook for noatime remount
+sudo cat << EOF > /usr/local/bin/remount_noatime
+#!/bin/bash
+/sbin/mount -uwo noatime,nodev,nosuid,nobrowse /Users/$1
+EOF
+sudo chown root:staff /usr/local/bin/remount_noatime
+sudo chmod a+rx /usr/local/bin/remount_noatime
 sudo defaults write com.apple.loginwindow LoginHook /usr/local/bin/remount_noatime
 # disable ram to disk backup in sleep mode (to enable set to 3)
 sudo pmset -a hibernatemode 0
