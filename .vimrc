@@ -1,5 +1,9 @@
 " .vimrc
 
+" pathogen
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
 " basic
 colorscheme solarized
 syntax on
@@ -63,10 +67,6 @@ set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
 set wildignore+=*.spl                            " compiled spelling word lists
 set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
-
-" pathogen
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
 
 " autocommand
 if has("autocmd")
