@@ -1,7 +1,10 @@
 # exports
-$MBP && export PATH="/usr/local/bin:$PATH:/usr/local/sbin:/usr/local/Cellar/python/2.7.2/bin:/usr/texbin:$HOME/.bin"
 $HYVE && export PATH="$PATH:$HOME/.bin"
+$MBP && export PATH="/usr/local/bin:$PATH:/usr/local/sbin:/usr/local/Cellar/python/2.7.2/bin:/usr/texbin:$HOME/.bin"
+$I14 && export PATH="$HOME/bin:$PATH:/sbin:/usr/sbin:/usr/local/sbin"
+
 $MBP && export PERL5LIB="/usr/local/lib/perl5/site_perl/:/usr/local/lib/perl5/site_perl/darwin-thread-multi-2level/"
+
 export EDITOR="vim"
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
