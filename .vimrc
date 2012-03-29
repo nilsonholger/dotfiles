@@ -23,8 +23,8 @@ set fileformats+=mac
 set foldmethod=syntax
 set linebreak
 set list
-set listchars=tab:▸\ ,trail:◊,extends:❯,precedes:❮ ",eol:¬
-set showbreak=↪\
+set listchars=trail:~,extends:>,precedes:<
+set showbreak=_
 set splitbelow
 set splitright
 
