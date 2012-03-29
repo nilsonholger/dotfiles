@@ -17,3 +17,6 @@ source .zsh/zshrc-scp
 
 # load prompt
 source .zsh/zshrc-prompt
+
+# execute command
+source .zsh/zshrc-command

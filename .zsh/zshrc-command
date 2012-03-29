@@ -1,0 +1,1 @@
+$HYVE && [ -z $TMUX ] && tmux a && exit
