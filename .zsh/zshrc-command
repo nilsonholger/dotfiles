@@ -1,1 +1,2 @@
 $HYVE && [ -z $TMUX ] && tmux a && exit
+$I14 && setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch
