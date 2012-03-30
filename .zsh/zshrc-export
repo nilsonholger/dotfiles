@@ -5,6 +5,12 @@ $I14 && export PATH="$HOME/bin:$PATH:/sbin:/usr/sbin:/usr/local/sbin"
 
 $MBP && export PERL5LIB="/usr/local/lib/perl5/site_perl/:/usr/local/lib/perl5/site_perl/darwin-thread-multi-2level/"
 
+$I14 && export LIBRARY_PATH="$HOME/lib64"
+$I14 && export LD_LIBRARY_PATH="$HOME/lib64"
+$I14 && export LD_RUN_PATH="$HOME/lib64"
+$I14 && export C_INCLUDE_PATH="$HOME/include"
+$I14 && export CPLUS_INCLUDE_PATH="$HOME/include"
+
 export EDITOR="vim"
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
