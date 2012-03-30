@@ -1,22 +1,22 @@
 # .zshrc
 
 # load per host activation macros
-source .zsh/zshrc-host
+source $HOME/.zsh/zshrc-host
 
 # load zsh settings
-source .zsh/zshrc-settings
-source .zsh/zshrc-alias
-source .zsh/zshrc-export
-source .zsh/zshrc-style
+source $HOME/.zsh/zshrc-settings
+source $HOME/.zsh/zshrc-alias
+source $HOME/.zsh/zshrc-export
+source $HOME/.zsh/zshrc-style
 
 # load additional shell functions
-source .zsh/zshrc-battery
-source .zsh/zshrc-git
-source .zsh/zshrc-gpg
-source .zsh/zshrc-scp
+source $HOME/.zsh/zshrc-battery
+source $HOME/.zsh/zshrc-git
+source $HOME/.zsh/zshrc-gpg
+source $HOME/.zsh/zshrc-scp
 
 # load prompt
-source .zsh/zshrc-prompt
+source $HOME/.zsh/zshrc-prompt
 
 # execute command
-source .zsh/zshrc-command
+source $HOME/.zsh/zshrc-command
