@@ -20,6 +20,14 @@
 !.vim/bundle
 !.vimrc
 
+!.Xdefaults
 !.xmodmap
+!.Xmodmap
+
+!.xmonad
+.xmonad/*
+!.xmonad/xmonad.hs
+
+!.xsession
 !.zshrc
 !.zsh/
