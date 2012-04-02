@@ -14,7 +14,7 @@ function _git_status {
     [[ $_GIT_TMP =~ \\?\\? ]] && _GIT_STATUS+="%F{red}±"
     [[ $_GIT_TMP =~ ahead ]] && _GIT_STATUS+="%F{green}#${${_GIT_TMP/*ahead }/[,\]]*}"
     [[ $_GIT_TMP =~ behind ]] && _GIT_STATUS+="%F{red}#${${_GIT_TMP/*behind }/\]*}"
-    [ ! -z $_GIT_STATUS ] && _GIT_STATUS="%F{blue}[%F{green}${(R)${(fR)_GIT_TMP/\#\# }/[ .]*}$_GIT_STATUS%F{blue}]%f"
+    [ ! -z $_GIT_STATUS ] && _GIT_STATUS="%F{cyan}[%F{green}${(R)${(fR)_GIT_TMP/\#\# }/[ .]*}$_GIT_STATUS%F{cyan}]%f"
 }
 
 function _git_update {
