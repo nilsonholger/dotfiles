@@ -5,7 +5,7 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 " basic
-colorscheme solarized
+colorscheme desert
 syntax on
 set background=dark
 set backspace=eol,start,indent
