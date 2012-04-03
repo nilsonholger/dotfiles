@@ -17,6 +17,8 @@ set modelines=0
 set scrolloff=3
 set showcmd
 set ruler
+set visualbell
+set whichwrap=<,>,[,],h,l
 
 " display
 set fileformats+=mac
