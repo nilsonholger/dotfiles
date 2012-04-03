@@ -1,8 +1,8 @@
 urxvt*termName:rxvt
 urxvt*depth:32
 urxvt*background:black
-urxvt*foreground:white
+urxvt*foreground:rgb:aaaa/aaaa/aaaa
 urxvt*transparent:true
 urxvt*shading:20
-urxvt*fading:20%
+urxvt*fading:20
 urxvt*scrollBar:false

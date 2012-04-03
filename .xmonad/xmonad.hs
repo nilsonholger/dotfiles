@@ -28,6 +28,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. shiftMask, xK_k     ), windows W.swapUp    )
     , ((modMask,               xK_h     ), sendMessage Shrink)
     , ((modMask,               xK_l     ), sendMessage Expand)
+    , ((modMask .|. shiftMask, xK_l     ), spawn "gnome-screensaver-command -l")
     , ((modMask,               xK_t     ), withFocused $ windows . W.sink)
     , ((modMask              , xK_comma ), sendMessage (IncMasterN 1))
     , ((modMask              , xK_period), sendMessage (IncMasterN (-1)))

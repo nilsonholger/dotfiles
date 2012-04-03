@@ -1,1 +1,2 @@
+gnome-screensaver
 exec xmonad
