@@ -94,7 +94,7 @@ bind index B bounce-message
 
 ### COLORS
 color error      red             default
-color indicator  green           default
+color indicator  white           default
 color markers    yellow          default
 color message    red             default
 color normal     default         default
