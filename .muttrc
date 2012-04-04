@@ -42,7 +42,7 @@ set index_format="%3C %2M%Z  %D  %-25.25F %s"
 set markers=no
 set menu_scroll
 set pager_context=1
-set pager_index_lines=15
+set pager_index_lines=5
 set status_format=" @%h:%f <%?n?N%n/?%?M?%M/?%m%?d?/D%d? %?L?%L/?%l>   %?b?NewBox: %b  ?%?F?Flag: %F  ?%?t?Tag: %t  ?%?V?Limit: %V?%> %r(%P)"
 set status_on_top
 
