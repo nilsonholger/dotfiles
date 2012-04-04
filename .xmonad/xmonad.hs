@@ -8,8 +8,8 @@ myTerminal      = "urxvt"
 myModMask       = mod1Mask
 myWorkspaces    = ["main","ext","tmp","tmp2"]
 myBorderWidth   = 1
-myNormalBorderColor  = "#000000"
-myFocusedBorderColor = "#00aa00"
+myNormalBorderColor  = "#002200"
+myFocusedBorderColor = "#005500"
 
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
