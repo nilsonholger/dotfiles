@@ -8,7 +8,7 @@ _UPDATE=''
 
 function update_git {
 _SCM='       GIT'
-_STATUS=`git pull`
+_STATUS=`git pull 2>&1`
 [ $_STATUS = "Already up-to-date." ] && _UPDATE='' || _UPDATE=true
 }
 
