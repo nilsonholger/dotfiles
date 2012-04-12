@@ -9,6 +9,9 @@
 	merge = merge --no-ff
 	s = status -s -b
 
+[branch]
+	autosetuprebase = always
+
 [color]
 	branch = auto
 	diff = auto
