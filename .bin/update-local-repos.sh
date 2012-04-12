@@ -54,8 +54,7 @@ do
     [ ! $_SCM ] && add_buffer "[   SKIPPED]--- $_DIR" && continue
     [ ! $_UPDATE ] && add_buffer "[$_SCM]=== $_DIR" && continue
     add_buffer "[$_SCM]+++ $_DIR"
-    make | add_out $_DIR
-    make install | add_out $_DIR
+    [ -r Makefile ] && make install | add_out $_DIR
     echo >> $_LOG
 done
 
