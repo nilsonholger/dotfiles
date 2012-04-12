@@ -13,11 +13,12 @@ set hidden
 set laststatus=2
 set nobackup
 set nocompatible
+set noerrorbells
 set modelines=0
 set scrolloff=3
 set showcmd
 set ruler
-set visualbell
+set novisualbell
 set whichwrap=<,>,[,],h,l
 
 " display
