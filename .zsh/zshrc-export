@@ -13,6 +13,7 @@ $I14 && export C_INCLUDE_PATH="$HOME/include"
 $I14 && export CPLUS_INCLUDE_PATH="$HOME/include"
 $I14 && export PKG_CONFIG_PATH="$HOME/lib64/pkgconfig"
 $I14 && export LC_ALL=C
+$I14 && export MAKEFLAGS=" -j`grep -c '^processor' /proc/cpuinfo`"
 
 export EDITOR="vim"
 export LESS_TERMCAP_mb=$'\E[01;31m'
