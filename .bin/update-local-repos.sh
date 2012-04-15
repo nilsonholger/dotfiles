@@ -43,6 +43,15 @@ svn update | tee $_TEST | add_prefix $1
 grep -q "At revision" $_TEST && _UPDATE='' || _UPDATE=true
 }
 
+function update_cvs {
+_SCM='CVS'
+echo "CVS STATUS" | add_prefix $1
+cvs update 2>/dev/null | tee $_TEST | add_prefix $1
+grep -q -E "^P " $_TEST && _UPDATE=true || _UPDATE=''
+}
+
+
+
 echo "`date`" > $_LOG
 for _DIR in `cat $_UPDATE_ORDER`
 do
@@ -59,7 +68,8 @@ do
     out_buffer "+++ $_DIR [$_SCM]"
     [ -r Makefile ] && make install | add_prefix $_DIR
 done
-
+echo
+echo
 echo
 for i in {1..$_INDEX}
 do
