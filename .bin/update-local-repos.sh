@@ -8,13 +8,13 @@ _INDEX=0
 _SCM=''
 _UPDATE=''
 
-function add_buffer {
+function out_buffer {
 ((_INDEX++))
 _BUFFER[$_INDEX]="$1"
 echo $1 >> $_LOG
 }
 
-function add_out {
+function add_prefix {
 while read line
 do
     echo $1: $line | tee -a $_LOG
@@ -50,11 +50,10 @@ do
     [ -d .git ] && update_git
     [ -d .hg ] && update_mercurial
     [ -d .svn ] && update_subversion
-    [ ! $_SCM ] && add_buffer "[   SKIPPED]--- $_DIR" && continue
-    [ ! $_UPDATE ] && add_buffer "[$_SCM]=== $_DIR" && continue
-    add_buffer "[$_SCM]+++ $_DIR"
-    [ -r Makefile ] && make install | add_out $_DIR
-    echo >> $_LOG
+    [ ! $_SCM ] && out_buffer "--- $_DIR [NO_SCM]" && continue
+    [ ! $_UPDATE ] && out_buffer "=== $_DIR [$_SCM]" && continue
+    out_buffer "+++ $_DIR [$_SCM]"
+    [ -r Makefile ] && make install | add_prefix $_DIR
 done
 
 echo
