@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /usr/bin/env zsh
 #
 # efib (efi backup) saves gpt output for manual reconstruction and binary
 # backup of guid mbr/header/table and EFI partition

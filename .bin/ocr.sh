@@ -1,4 +1,4 @@
-#! /bin/zsh
+#! /usr/bin/env zsh
 #
 # ocr circumvents pdf ocr x free version one page restriction (sorry) by
 # separating a pdf into single pages, running them through ocr x and

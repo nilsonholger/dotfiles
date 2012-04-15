@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env zsh
 #
 # settings for os x, taken from various sources:
 #

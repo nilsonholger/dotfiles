@@ -1,4 +1,4 @@
-#! /usr/local/bin/zsh
+#! /usr/bin/env zsh
 #
 # to be used with mutts mail attachments, sends them back to portable by using
 # reverse ssh tunnel

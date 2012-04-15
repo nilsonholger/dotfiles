@@ -1,4 +1,4 @@
-#! /usr/bin/zsh
+#! /usr/bin/env zsh
 
 _SRCDIR="$HOME/local"
 _LOG="$_SRCDIR/update.log"
