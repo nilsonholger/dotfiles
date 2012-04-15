@@ -2,6 +2,7 @@
 
 _SRCDIR="$HOME/local"
 _LOG="$_SRCDIR/update.log"
+_UPDATE_ORDER="$_SRCDIR/.update-order"
 
 _INDEX=0
 _SCM=''
@@ -39,13 +40,11 @@ _STATUS=`svn update`
 }
 
 echo "`date`" > $_LOG
-echo "[ DIRECTORY]>>> $_SRCDIR"
-echo -n "[  CHECKING]>>>"
-for _DIR in $_SRCDIR/*
+for _DIR in `cat $_UPDATE_ORDER`
 do
+    cd $_SRCDIR
     [ -d $_DIR ] || continue
     cd $_DIR
-    _DIR=`basename $_DIR`
     _SCM=''
     echo -n " $_DIR"
     [ -d .git ] && update_git
