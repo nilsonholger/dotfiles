@@ -67,6 +67,7 @@ do
     [ ! $_UPDATE ] && out_buffer "=== $_DIR [$_SCM]" && continue
     out_buffer "+++ $_DIR [$_SCM]"
     [ -r Makefile ] && make install | add_prefix $_DIR
+    [ -r build/Makefile ] && ( cd build && make install | add_prefix $_DIR )
 done
 echo
 echo
