@@ -102,7 +102,7 @@ map <silent> <leader>mc :call Make("clean")<CR>
 map <silent> <leader>mm :call Make(" ")<CR>
 map <silent> <leader>mr :call Make("run")<CR>
 map <silent> <leader>mv :call Make("VERBOSE=1")<CR>
-map <silent> <leader>T :!/usr/local/bin/ctags -R -I --languages=c++ --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+map <silent> <leader>T :!ctags -R -I --languages=c++ --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 nmap <leader>l :set list!<CR>
 nmap <leader>s :set spell!<CR>
 imap <leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
