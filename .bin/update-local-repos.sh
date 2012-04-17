@@ -70,7 +70,7 @@ do
     out_buffer "+++ $_DIR [$_SCM]"
     [ -r Makefile ] && (make install || _BUILD_FAILED=true) | add_prefix $_DIR
     [ -r build/Makefile ] && (cd build && (make install || _BUILD_FAILED=true) | add_prefix $_DIR )
-    [ ! $_BUILD_FAILED ] && out_buffer "!!! $_DIR [$_SCM] BUILD FAILED"
+    [ $_BUILD_FAILED ] && out_buffer "!!! $_DIR [$_SCM] BUILD FAILED"
 done
 echo
 echo
