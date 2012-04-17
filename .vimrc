@@ -153,7 +153,7 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
 " ctags
-let Tlist_Ctags_Cmd="/usr/local/bin/ctags"
+let Tlist_Ctags_Cmd="ctags"
 let Tlist_Close_On_Select=1
 let Tlist_Use_Right_Window=1
 
