@@ -7,6 +7,7 @@ _UPDATE_ORDER="$_SRCDIR/.update-order"
 _INDEX=0
 _SCM=''
 _UPDATE=''
+_BUILD_FAILED=''
 _TEST="$_SRCDIR/.test-output"
 
 function out_buffer {
@@ -59,6 +60,7 @@ do
     [ -d $_DIR ] || continue
     cd $_DIR
     _SCM=''
+    _BUILD_FAILED=''
     [ -d .git ] && update_git $_DIR
     [ -d .hg ] && update_mercurial $_DIR
     [ -d .svn ] && update_subversion $_DIR
@@ -66,7 +68,9 @@ do
     [ ! $_SCM ] && out_buffer "--- $_DIR [NO_SCM]" && continue
     [ ! $_UPDATE ] && out_buffer "=== $_DIR [$_SCM]" && continue
     out_buffer "+++ $_DIR [$_SCM]"
-    [ -r Makefile ] && make install | add_prefix $_DIR
+    [ -r Makefile ] && (make install || _BUILD_FAILED=true) | add_prefix $_DIR
+    [ -r build/Makefile ] && (cd build && (make install || _BUILD_FAILED=true) | add_prefix $_DIR )
+    [ $_BUILD_FAILED ] && out_buffer "!!! $_DIR [$_SCM] BUILD FAILED"
 done
 echo
 echo

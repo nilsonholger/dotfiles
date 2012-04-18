@@ -94,14 +94,16 @@ endif
 " maps
 "let mapleader = ";"
 map <silent> <Leader>p <Plug>ToggleProject
-map <silent> <leader>t :NERDTreeToggle<CR>
+map <silent> <leader>N :NERDTreeToggle<CR>
 map <silent> <leader>t :TlistToggle<CR>
 map <silent> <leader>q :QFix<CR>
 map <silent> <leader>ma :call Make("all")<CR>
 map <silent> <leader>mc :call Make("clean")<CR>
 map <silent> <leader>mm :call Make(" ")<CR>
 map <silent> <leader>mr :call Make("run")<CR>
-map <silent> <leader>T :!/usr/local/bin/ctags -R -I --languages=c++ --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+map <silent> <leader>mt :call Make("todo")<CR>
+map <silent> <leader>mv :call Make("VERBOSE=1")<CR>
+map <silent> <leader>T :!ctags -R -I --languages=c++ --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 nmap <leader>l :set list!<CR>
 nmap <leader>s :set spell!<CR>
 imap <leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
@@ -152,7 +154,7 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
 " ctags
-let Tlist_Ctags_Cmd="/usr/local/bin/ctags"
+let Tlist_Ctags_Cmd="ctags"
 let Tlist_Close_On_Select=1
 let Tlist_Use_Right_Window=1
 
