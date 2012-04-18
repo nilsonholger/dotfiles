@@ -10,6 +10,7 @@
 	ll = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -n 1
 	merge = merge --no-ff
 	s = status -s -b
+	ss = submodule foreach git status -s -b
 
 [branch]
 	autosetuprebase = always
