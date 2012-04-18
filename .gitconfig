@@ -36,6 +36,12 @@
 [core]
 	pager = less -FRSX
 
+[diff]
+	ignoreSubmodules = all
+
+[fetch]
+	recurseSubmodules = true
+
 [help]
 	autocorrect = 10
 
@@ -50,6 +56,9 @@
 
 [rebase]
 	stat = true
+
+[status]
+	submodulesummary = true
 
 [user]
 	name = nilsonholger
