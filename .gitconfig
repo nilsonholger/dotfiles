@@ -1,65 +1,67 @@
 [alias]
-	a = add
-	b = branch
-	ci = commit
-	co = checkout
-	d = diff
-	di = diff --cached
-	l = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-	la = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
-	ll = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -n 1
-	merge = merge --no-ff
-	s = status -s -b
-	ss = submodule foreach git status -s -b
+    a = add
+    b = branch
+    ci = commit
+    co = checkout
+    d = diff
+    di = diff --cached
+    l = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    la = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
+    ll = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -n 1
+    merge = merge --no-ff
+    pullsub = submodule foreach git pull
+    pushsub = submodule foreach git push
+    s = status -s -b
+    ss = submodule foreach git status -s -b
 
 [branch]
-	autosetuprebase = always
+    autosetuprebase = always
 
 [color]
-	branch = auto
-	diff = auto
-	interactive = auto
-	pager = true
-	status = auto
-	ui = auto
+    branch = auto
+    diff = auto
+    interactive = auto
+    pager = true
+    status = auto
+    ui = auto
 
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
 
 [color "status"]
-	added = green bold
-	changed = yellow bold
+    added = green bold
+    changed = yellow bold
 
 [core]
-	pager = less -FRSX
+    pager = less -FRSX
 
 [diff]
-	ignoreSubmodules = all
+    ignoreSubmodules = all
 
 [fetch]
-	recurseSubmodules = true
+    recurseSubmodules = true
 
 [help]
-	autocorrect = 10
+    autocorrect = 10
 
 [merge]
-	summary = true
+    summary = true
 
 [mergetool "vimdiff"]
-	cmd = vimdiff
+    cmd = vimdiff
 
 [push]
-	default = tracking
+    default = tracking
 
 [rebase]
-	stat = true
+    stat = true
 
 [status]
-	submodulesummary = true
+    submodulesummary = true
 
 [user]
-	name = nilsonholger
-	email = nilsonholger@hyve.org
+    name = nilsonholger
+    email = nilsonholger@hyve.org
