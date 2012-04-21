@@ -93,7 +93,6 @@ endif
 
 " maps
 "let mapleader = ";"
-map <silent> <Leader>p <Plug>ToggleProject
 map <silent> <leader>N :NERDTreeToggle<CR>
 map <silent> <leader>t :TlistToggle<CR>
 map <silent> <leader>q :QFix<CR>

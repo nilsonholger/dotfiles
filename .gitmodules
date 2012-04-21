@@ -22,6 +22,6 @@
 [submodule ".vim/bundle/vimroom"]
 	path = .vim/bundle/vimroom
 	url = https://github.com/mikewest/vimroom.git
-[submodule ".vim/bundle/project"]
-	path = .vim/bundle/project
-	url = https://github.com/shemerey/vim-project.git
+[submodule ".vim/bundle/bufexplorer"]
+	path = .vim/bundle/bufexplorer
+	url = https://github.com/vim-scripts/bufexplorer.zip.git
