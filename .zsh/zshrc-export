@@ -5,6 +5,7 @@ $I14 && export PATH="$HOME/bin:$PATH:/sbin:/usr/sbin:/usr/local/sbin"
 
 $MBP && export PERL5LIB="/usr/local/lib/perl5/site_perl/:/usr/local/lib/perl5/site_perl/darwin-thread-multi-2level/"
 $MBP && export XLIB_SKIP_ARGB_VISUALS=1
+$MBP && export MAKEFLAGS=" -j`sysctl -n hw.ncpu`"
 
 $I14 && export LIBRARY_PATH="$HOME/lib64"
 $I14 && export LD_LIBRARY_PATH="$HOME/lib64"
