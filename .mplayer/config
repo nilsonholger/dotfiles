@@ -3,10 +3,10 @@ monitoraspect=16:10
 fs=true
 #xineramascreen=1
 
-af=volume=5:0
+af=volume=-10:0
 ao=alsa
-af=volnorm=1:0.35
-softvol=true
+af=volnorm=2:0.25
+#softvol=true
 
 slang=en
 fontconfig=true
