@@ -4,7 +4,7 @@ fs=true
 #xineramascreen=1
 
 af=volume=5:0
-ao=oss
+ao=alsa
 af=volnorm=1:0.35
 softvol=true
 
