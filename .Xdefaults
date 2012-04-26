@@ -1,3 +1,4 @@
+urxvt*termName:rxvt-256color
 urxvt*depth:32
 urxvt*background:black
 urxvt*foreground:rgb:aaaa/aaaa/aaaa
