@@ -25,6 +25,7 @@ settings = {
     awaylog_level = "hilight";
     settings_autosave = "no";
     log_day_changed = "";
+    awaylog_file = "";
   };
   "fe-text" = { scrollback_time = "48h"; actlist_sort = "refnum"; };
   "fe-common/core" = {
@@ -127,7 +128,8 @@ aliases = {
   EXEMPTLIST = "mode $C +e";
   UNSET = "set -clear";
   RESET = "set -default";
-  away_wind = "away waiting for wind is OK, most people wait for NOTHING!";
+  wind = "away Waiting for wind is OK, most people wait for NOTHING!";
+  rip = "away let rip";
 };
 
 statusbar = {
