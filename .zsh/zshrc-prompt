@@ -1,5 +1,6 @@
 # prompts
-PROMPT='%F{red}%n@%m:%F{green}%.%F{yellow}%#%(2L.+.) %f'
+PROMPT='%F{red}%n@%m:%F{green}%.%F{yellow}%#%(3L.+.) %f'
+$MBP && PROMPT='%F{red}%n@%m:%F{green}%.%F{yellow}%#%(2L.+.) %f'
 RPROMPT='$_GIT_STATUS%F{red}%(?..[%?])%F{yellow}%(1j.[%j].)$_BATTERY_STATUS%F{cyan}[%T]%f'
 LISTPROMPT=''
 SPROMPT="%F{yellow}%R %F{white}%b-> %F{green}%r %F{white}%b? [nyae]%f"
