@@ -88,8 +88,8 @@ do
     [ ! $_SCM ] && out_buffer "--- $_DIR [NO_SCM]" && continue
     [ ! $_UPDATE ] && out_buffer "=== $_DIR [$_SCM]" && continue
     out_buffer "+++ $_DIR [$_SCM]"
-    [ -r Makefile ] && (make install || _BUILD_FAILED=true) | add_prefix $_DIR
-    [ -r build/Makefile ] && (cd build && (make install || _BUILD_FAILED=true) | add_prefix $_DIR )
+    [ -r Makefile ] && (make && make install || _BUILD_FAILED=true) | add_prefix $_DIR
+    [ -r build/Makefile ] && (cd build && (make && make install || _BUILD_FAILED=true) | add_prefix $_DIR )
     [ $_BUILD_FAILED ] && out_buffer "!!! $_DIR [$_SCM] BUILD FAILED"
 done
 echo
