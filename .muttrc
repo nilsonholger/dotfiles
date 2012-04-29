@@ -99,7 +99,7 @@ color markers    yellow          default
 color message    red             default
 color normal     default         default
 color search     red             default
-color status     black           green
+color status     green           default
 color tilde      red             default
 color tree       blue            default
 color index      yellow          default  ~F
