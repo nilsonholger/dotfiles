@@ -4,7 +4,7 @@ import System.Exit
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-myTerminal      = "urxvt"
+myTerminal      = "urxvtc"
 myModMask       = mod1Mask
 myWorkspaces    = ["main","ext","tmp","tmp2"]
 myBorderWidth   = 1
@@ -14,7 +14,6 @@ myFocusedBorderColor = "#005500"
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
     , ((modMask,               xK_p     ), spawn "dmenu_run")
---    , ((modMask .|. shiftMask, xK_p     ), spawn "gmrun")
     , ((modMask .|. shiftMask, xK_c     ), kill)
     , ((modMask,               xK_space ), sendMessage NextLayout)
     , ((modMask .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
@@ -28,7 +27,6 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. shiftMask, xK_k     ), windows W.swapUp    )
     , ((modMask,               xK_h     ), sendMessage Shrink)
     , ((modMask,               xK_l     ), sendMessage Expand)
-    , ((modMask .|. shiftMask, xK_l     ), spawn "gnome-screensaver-command -l")
     , ((modMask,               xK_t     ), withFocused $ windows . W.sink)
     , ((modMask              , xK_comma ), sendMessage (IncMasterN 1))
     , ((modMask              , xK_period), sendMessage (IncMasterN (-1)))
@@ -36,22 +34,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask              , xK_q     ), spawn "xmonad --recompile; xmonad --restart&")
     ]
     ++
-    [ ((modMask             , xK_Escape), spawn "qiv -p ~/.xmonad/Xmbindings.png &")
-    , ((modMask             , xK_i     ), spawn "zsh -c chrome &")
+    [ ((modMask              , xK_Escape), spawn "~/bin/qiv -p ~/.xmonad/Xmbindings.png &")
+    , ((modMask              , xK_i     ), spawn "zsh -c chrome &")
+    , ((modMask .|. shiftMask, xK_l     ), spawn "gnome-screensaver-command -l")
     , ((mod4Mask .|. shiftMask, xK_k), spawn "if [ \"`setxkbmap -print | grep -o pc+de`\" != \"pc+de\" ]; then setxkbmap -layout de; xmodmap ~/.Xmodmap.de; else setxkbmap -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; xmodmap ~/.Xmodmap; fi &")
---    , ((modMask             , xK_c     ), spawn "rxvt -title cmus -e screen -x -R cmus cmus &")
---    , ((modMask             , xK_f     ), spawn "rxvt -title finch -e screen -x -R finch finch &")
---    , ((modMask             , xK_s     ), spawn "rxvt -title shell-fm -e screen -x -R shell-fm shell-fm &")
---    , ((0                    , 0x1008FF92), spawn "sudo /sbin/ctl music open > /dev/null &")
---    , ((modMask             , xK_F1    ), spawn "nvclock -S 15 > /dev/null &")
---    , ((modMask             , xK_F2    ), spawn "nvclock -S 100 > /dev/null &")
---    , ((modMask             , xK_F3    ), spawn "pgrep finch && screen -d -S finch || ( screen -ls | grep finch && rxvt -geometry 182x61+1680+0 -title finch -e screen -r finch finch ) > /dev/null &")
---    , ((modMask             , xK_F7    ), spawn "sudo /sbin/ctl music prev > /dev/null &")
---    , ((modMask             , xK_F8    ), spawn "sudo /sbin/ctl music toggle > /dev/null &")
---    , ((modMask             , xK_F9    ), spawn "sudo /sbin/ctl music next > /dev/null &")
---    , ((modMask             , xK_F10   ), spawn "sudo /sbin/ctl vol toggle > /dev/null &")
---    , ((modMask             , xK_F11   ), spawn "sudo /sbin/ctl vol 3%- > /dev/null &")
---    , ((modMask             , xK_F12   ), spawn "sudo /sbin/ctl vol 3%+ > /dev/null &")
     ]
     ++
     [((m .|. modMask, k), windows $ f i)
@@ -78,14 +64,14 @@ myLayout = Full ||| tiled ||| Mirror tiled
 myManageHook = composeAll
     [ className =? "MPlayer"            --> doFloat
     , className =? "Gimp"               --> doFloat
---    , className =? "Operapluginwrapper" --> doFloat
---    , className =? "Skype"              --> doFloat
     , resource  =? "desktop_window"     --> doIgnore ]
 
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
 myLogHook = return ()
-myStartupHook = spawn "qiv -z .xmonad/background.xpm"
+myStartupHook = do
+    spawn "~/bin/qiv -z ~/.xmonad/background.xpm"
+    spawn "~/bin/urxvtd -q -f -o"
 
 main = xmonad defaults
 
