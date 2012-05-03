@@ -4,7 +4,7 @@ import System.Exit
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-myTerminal      = "urxvtc"
+myTerminal      = "~/bin/urxvtc"
 myModMask       = mod1Mask
 myWorkspaces    = ["main","ext","tmp","tmp2"]
 myBorderWidth   = 1
@@ -13,7 +13,7 @@ myFocusedBorderColor = "#005500"
 
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-    , ((modMask,               xK_p     ), spawn "dmenu_run")
+    , ((modMask,               xK_p     ), spawn "~/bin/dmenu_run")
     , ((modMask .|. shiftMask, xK_c     ), kill)
     , ((modMask,               xK_space ), sendMessage NextLayout)
     , ((modMask .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
@@ -34,8 +34,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask              , xK_q     ), spawn "xmonad --recompile; xmonad --restart&")
     ]
     ++
-    [ ((modMask              , xK_Escape), spawn "~/bin/qiv -p ~/.xmonad/Xmbindings.png &")
-    , ((modMask              , xK_i     ), spawn "zsh -c chrome &")
+    [ ((modMask              , xK_Escape), spawn "display ~/.xmonad/Xmbindings.png &")
+    , ((modMask              , xK_i     ), spawn "zsh -c chromium-browser &")
     , ((modMask .|. shiftMask, xK_l     ), spawn "gnome-screensaver-command -l")
     , ((mod4Mask .|. shiftMask, xK_k), spawn "if [ \"`setxkbmap -print | grep -o pc+de`\" != \"pc+de\" ]; then setxkbmap -layout de; xmodmap ~/.Xmodmap.de; else setxkbmap -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; xmodmap ~/.Xmodmap; fi &")
     ]
@@ -70,7 +70,7 @@ myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
 myLogHook = return ()
 myStartupHook = do
-    spawn "~/bin/qiv -z ~/.xmonad/background.xpm"
+    spawn "display -window root ~/.xmonad/background.xpm"
     spawn "~/bin/urxvtd -q -f -o"
 
 main = xmonad defaults
