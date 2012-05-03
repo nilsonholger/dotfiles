@@ -17,7 +17,6 @@ setopt histverify
 setopt incappendhistory
 setopt sharehistory
 
-setopt autocd
 setopt autopushd
 setopt extendedglob
 setopt pushdignoredups
@@ -31,5 +30,8 @@ unsetopt beep
 bindkey -v
 bindkey "^r" history-incremental-search-backward
 PERIOD=300
+
+bindkey -M viins "$terminfo[kcuu1]" up-line-or-history
+bindkey -M viins "$terminfo[kcud1]" down-line-or-history
 
 umask 077
