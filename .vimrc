@@ -95,7 +95,9 @@ endif
 "let mapleader = ";"
 map <silent> <leader>N :NERDTreeToggle<CR>
 map <silent> <leader>t :TlistToggle<CR>
-map <silent> <leader>q :QFix<CR>
+map <silent> <leader>qq :QFix<CR>
+map <silent> <leader>qn :cnext<CR>
+map <silent> <leader>qp :cprev<CR>
 map <silent> <leader>ma :call Make("all")<CR>
 map <silent> <leader>mc :call Make("clean")<CR>
 map <silent> <leader>mm :call Make(" ")<CR>
@@ -164,7 +166,7 @@ function! QFixToggle(forced)
         cclose
         unlet g:qfix_win
     else
-        copen 15
+        botright copen 15
       let g:qfix_win = bufnr("$")
     endif
 endfunction
