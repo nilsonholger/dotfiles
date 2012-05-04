@@ -3,6 +3,15 @@ source ~/.mutt/muttrc-server
 
 
 
+### GMANE
+set news_server=news.gmane.org
+set group_index_format="%5C %M%N %6s %-45.45f %d"
+set post_moderated=yes
+set nntp_context=1000
+set followup_to_poster=yes
+
+
+
 ### SETTINGS
 alternative_order text/enriched text/plain text/html
 set beep=no
@@ -27,16 +36,14 @@ set query_command="/usr/local/bin/lbdbq '%s'"
 
 
 
-### FOLDER HOOK
+### HOOKS
 folder-hook . "set record=^"
-
-
-
-### SAVE HOOKS
+folder-hook news://news.gmane.org.* "set record=+gmane"
 save-hook '~f @amazon.' +amazon
 save-hook '~h cvhci | ~h iramx2 | ~t @kit | ~t @ira.uka' +cvhci
 save-hook '~h ebay' +ebay
 save-hook '~L freebsd' +freebsd
+save-hook '~h gmane' +gmane
 save-hook '~f steampowered' +steam
 
 
@@ -47,7 +54,7 @@ unignore  Date From To CC Subject X-Mailer X-Bogosity
 hdr_order Date From To CC Subject X-Bogosity
 set date_format="!%d%b %H:%M"
 set folder_format="%2C %t %8s %d %N %f"
-set index_format="%3C %2M%Z  %D  %-25.25F %s"
+set index_format="%4C %3M%Z  %D  %-25.25F %s"
 set markers=no
 set menu_scroll
 set pager_context=1
