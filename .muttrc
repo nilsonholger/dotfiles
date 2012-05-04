@@ -32,6 +32,15 @@ folder-hook . "set record=^"
 
 
 
+### SAVE HOOKS
+save-hook '~f @amazon.' +amazon
+save-hook '~h cvhci | ~h iramx2 | ~t @kit | ~t @ira.uka' +cvhci
+save-hook '~h ebay' +ebay
+save-hook '~L freebsd' +freebsd
+save-hook '~f steampowered' +steam
+
+
+
 ### LOOK AND FEEL
 ignore *
 unignore  Date From To CC Subject X-Mailer X-Bogosity
