@@ -42,7 +42,7 @@
     ignoreSubmodules = all
 
 [fetch]
-    recurseSubmodules = true
+    recurseSubmodules = on-demand
 
 [help]
     autocorrect = 10
