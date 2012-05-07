@@ -4,11 +4,12 @@ source ~/.mutt/muttrc-server
 
 
 ### GMANE
-set news_server=news.gmane.org
 set group_index_format="%5C %M%N %6s %-45.45f %d"
-set post_moderated=yes
-set nntp_context=1000
+set catchup_newsgroup=yes
 set followup_to_poster=yes
+set news_server=news.gmane.org
+set nntp_context=1000
+set post_moderated=yes
 
 
 
