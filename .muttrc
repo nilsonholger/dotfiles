@@ -95,7 +95,7 @@ macro index,pager           S           "<save-message>=Spam<enter>" "Spam"
 
 ### SIDEBAR
 set sidebar_width=12
-set sidebar_visible=no
+set sidebar_visible=yes
 set sidebar_delim='|'
 #set sidebar_sort=yes
 bind index,pager \CP sidebar-prev
