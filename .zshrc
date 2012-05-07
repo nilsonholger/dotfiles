@@ -10,6 +10,7 @@ source $HOME/.zsh/zshrc-export
 source $HOME/.zsh/zshrc-style
 
 # load additional shell functions
+source $HOME/.zsh/zshrc-cafe
 source $HOME/.zsh/zshrc-battery
 source $HOME/.zsh/zshrc-git
 source $HOME/.zsh/zshrc-gpg
