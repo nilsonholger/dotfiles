@@ -20,29 +20,53 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+
+
+# settings
 _SRCDIR="$HOME/local"
-_LOG="$_SRCDIR/update.log"
+_LOGFILE="$_SRCDIR/update.log"
 _UPDATE_ORDER="$_SRCDIR/.update-order"
 
+
+
+# internal
+_BUILD_FAILED=''
 _INDEX=0
 _SCM=''
-_UPDATE=''
-_BUILD_FAILED=''
+_ORDER=''
 _TEST="$_SRCDIR/.test-output"
+_UPDATE=''
 
+
+
+# append to buffer
 function out_buffer {
 ((_INDEX++))
 _BUFFER[$_INDEX]="$1"
-echo $1 >> $_LOG
+echo $1 >> $_LOGFILE
 }
 
+
+
+# prepend something to output
 function add_prefix {
 while read line
 do
-    echo $1: $line | tee -a $_LOG
+    echo $1: $line | tee -a $_LOGFILE
 done
 }
 
+
+
+# list of directories to check for updates
+function update_list {
+[ -r $_UPDATE_ORDER ] && _ORDER=`cat $_UPDATE_ORDER` || _ORDER=`ls $_SRCDIR`
+eval "_ORDER=($_ORDER)"
+}
+
+
+
+# git (o how i adore thee)
 function update_git {
 _SCM='GIT'
 echo "GIT STATUS" | add_prefix $1
@@ -50,6 +74,9 @@ git pull 2>&1 | tee $_TEST | add_prefix $1
 grep -q -E "(Already up-to-date|Current branch .* is up to date)" $_TEST && _UPDATE='' || _UPDATE=true
 }
 
+
+
+# mercurial (o how i despise thee)
 function update_mercurial {
 _SCM='MERCURIAL'
 echo "MERCURIAL STATUS" | add_prefix $1
@@ -57,6 +84,9 @@ hg pull | tee $_TEST | add_prefix $1
 grep -q "no changes found" $_TEST && _UPDATE='' || _UPDATE=true
 }
 
+
+
+# subversion (o how i hate thee)
 function update_subversion {
 _SCM='SUBVERSION'
 echo "SUBVERSION STATUS" | add_prefix $1
@@ -64,6 +94,9 @@ svn update | tee $_TEST | add_prefix $1
 grep -q "At revision" $_TEST && _UPDATE='' || _UPDATE=true
 }
 
+
+
+# cvs (o how i neglect thee)
 function update_cvs {
 _SCM='CVS'
 echo "CVS STATUS" | add_prefix $1
@@ -73,8 +106,10 @@ grep -q -E "^P " $_TEST && _UPDATE=true || _UPDATE=''
 
 
 
-echo "`date`" > $_LOG
-for _DIR in `cat $_UPDATE_ORDER`
+# upgrade all from _ORDER
+function upgrade_list {
+echo "`date`" > $_LOGFILE
+for _DIR in $*
 do
     cd $_SRCDIR
     [ -d $_DIR ] || continue
@@ -99,3 +134,27 @@ for i in {1..$_INDEX}
 do
     echo ${_BUFFER[$i]}
 done
+}
+
+case $1 in
+    list-repos)
+        update_list
+        echo $_ORDER
+        ;;
+    upgrade)
+        upgrade_list $*
+        ;;
+    upgrade-all)
+        update_list
+        upgrade_list $_ORDER
+        ;;
+    help|*)
+        cat << EOF
+usage: $0 <command>
+
+    list-repos                      list update order of repositories
+    upgrade <repo1> [<repo...>]     upgrade given repositories
+    upgrade-all                     sync and upgrade all
+    help                            guess what you're looking at...
+EOF
+esac
