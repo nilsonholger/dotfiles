@@ -13,7 +13,7 @@ myFocusedBorderColor = "#005500"
 
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-    , ((modMask,               xK_p     ), spawn "~/bin/dmenu_run")
+    , ((modMask,               xK_p     ), spawn "zsh -i -c dmenu_run")
     , ((modMask .|. shiftMask, xK_c     ), kill)
     , ((modMask,               xK_space ), sendMessage NextLayout)
     , ((modMask .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
