@@ -9,7 +9,7 @@ $HYVE && alias logtty='tail -f /var/log/messages /var/log/maillog /usr/jails/*.h
 $MBP && alias logtty='tail -f /var/log/system.log > $TTY &'
 alias gpg-enc='gpg --multifile -r DATA -e'
 alias gpg-dec='gpg --multifile -d'
-alias org='(cd ~/.org && git pull && vim todo && git ci -a -m "`date`" && git push)'
+alias org='(cd ~/.org && git pull && vim todo && git ci -a -m "`hostname`" && git push)'
 alias ps='ps aux'
 alias psg='ps | grep -i'
 alias scpr='rsync --partial --progress --rsh=ssh'
