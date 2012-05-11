@@ -3,6 +3,6 @@ urxvt*depth:32
 urxvt*background:black
 urxvt*foreground:rgb:aaaa/aaaa/aaaa
 urxvt*transparent:true
-urxvt*shading:20
-urxvt*fading:20
+urxvt*shading:10
+urxvt*fading:30
 urxvt*scrollBar:false
