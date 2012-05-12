@@ -77,6 +77,7 @@ if has("autocmd")
     au BufNew * set foldlevel=20
     au BufRead *.c set cindent
     au BufRead *.py set nocindent nosmartindent autoindent
+    au BufRead todo setfiletype config
     au BufReadPost fugitive://* set bufhidden=delete
     au BufWinEnter *.* silent loadview
     au BufWinLeave *.* mkview
