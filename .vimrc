@@ -34,7 +34,7 @@ set splitright
 " format
 set autoindent
 set encoding=utf-8
-set expandtab
+set noexpandtab
 set shiftwidth=4
 set smartindent
 set smarttab
