@@ -167,7 +167,7 @@ function! QFixToggle(forced)
         cclose
         unlet g:qfix_win
     else
-        botright copen 15
+        botright copen 10
       let g:qfix_win = bufnr("$")
     endif
 endfunction
