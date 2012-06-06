@@ -137,7 +137,7 @@ done
 }
 
 case $1 in
-    list-repos)
+    list)
         update_list
         echo $_ORDER
         ;;
@@ -152,7 +152,7 @@ case $1 in
         cat << EOF
 usage: $0 <command>
 
-    list-repos                      list update order of repositories
+    list                            list update order of repositories
     upgrade <repo1> [<repo...>]     upgrade given repositories
     upgrade-all                     sync and upgrade all
     help                            guess what you're looking at...
