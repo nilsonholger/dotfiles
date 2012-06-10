@@ -1,0 +1,33 @@
+# .caffrc -- vim:ft=perl:
+# This file is in perl(1) format - see caff(1) for details.
+
+$CONFIG{'owner'} = 'dk';
+$CONFIG{'email'} = 'dk@hyve.org';
+#$CONFIG{'reply-to'} = 'foo@bla.org';
+$CONFIG{'keyid'} = [ qw{2783AC1C3AFB7CCD} ];
+#$CONFIG{'local-user'} = [ qw{2783AC1C3AFB7CCD} ];
+#$CONFIG{'also-encrypt-to'} = [ qw{2783AC1C3AFB7CCD} ];
+
+# Mail template to use for the encrypted part
+#$CONFIG{'mail-template'} = << 'EOM';
+#Hi,
+#
+#please find attached the user id{(scalar @uids >= 2 ? 's' : '')}
+#{foreach $uid (@uids) {
+#    $OUT .= "\t".$uid."\n";
+#};}of your key {$key} signed by me.
+#
+#If you have multiple user ids, I sent the signature for each user id
+#separately to that user id's associated email address. You can import
+#the signatures by running each through `gpg --import`.
+#
+#Note that I did not upload your key to any keyservers. If you want this
+#new signature to be available to others, please upload it yourself.
+#With GnuPG this can be done using
+#	gpg --keyserver pool.sks-keyservers.net --send-key {$key}
+#
+#If you have any questions, don't hesitate to ask.
+#
+#Regards,
+#{$owner}
+#EOM

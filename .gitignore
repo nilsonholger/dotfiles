@@ -3,18 +3,21 @@
 *.DS_Store
 
 !.bin/
+!.caffrc
 
 !.gitconfig
 !.gitignore
 !.gitmodules
 
+!.gnupg/
+.gnupg/*
+!.gnupg/gpg.conf
+
 !.irssi/
 !.lbdbrc
 !.mailcap
 !.mplayer/
-
 !.muttrc
-
 !.tmux.conf
 
 !.vim/
@@ -25,7 +28,7 @@
 !.Xdefaults
 !.Xmodmap
 
-!.xmonad
+!.xmonad/
 .xmonad/*
 !.xmonad/xmonad.hs
 
