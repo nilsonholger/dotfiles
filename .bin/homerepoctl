@@ -52,7 +52,7 @@ echo $1 >> $_LOGFILE
 function add_prefix {
 while read line
 do
-    echo $1: $line | tee -a $_LOGFILE
+	echo $1: $line | tee -a $_LOGFILE
 done
 }
 
@@ -111,46 +111,46 @@ function upgrade_list {
 echo "`date`" > $_LOGFILE
 for _DIR in $*
 do
-    cd $_SRCDIR
-    [ -d $_DIR ] || continue
-    cd $_DIR
-    _SCM=''
-    _BUILD_FAILED=''
-    [ -d .git ] && update_git $_DIR
-    [ -d .hg ] && update_mercurial $_DIR
-    [ -d .svn ] && update_subversion $_DIR
-    [ -d CVS ] && update_cvs $_DIR
-    [ ! $_SCM ] && out_buffer "--- $_DIR [NO_SCM]" && continue
-    [ ! $_UPDATE ] && out_buffer "=== $_DIR [$_SCM]" && continue
-    out_buffer "+++ $_DIR [$_SCM]"
-    [ -r Makefile ] && (make && make install || _BUILD_FAILED=true) | add_prefix $_DIR
-    [ -r build/Makefile ] && (cd build && (make && make install || _BUILD_FAILED=true) | add_prefix $_DIR )
-    [ $_BUILD_FAILED ] && out_buffer "!!! $_DIR [$_SCM] BUILD FAILED"
+	cd $_SRCDIR
+	[ -d $_DIR ] || continue
+	cd $_DIR
+	_SCM=''
+	_BUILD_FAILED=''
+	[ -d .git ] && update_git $_DIR
+	[ -d .hg ] && update_mercurial $_DIR
+	[ -d .svn ] && update_subversion $_DIR
+	[ -d CVS ] && update_cvs $_DIR
+	[ ! $_SCM ] && out_buffer "--- $_DIR [NO_SCM]" && continue
+	[ ! $_UPDATE ] && out_buffer "=== $_DIR [$_SCM]" && continue
+	out_buffer "+++ $_DIR [$_SCM]"
+	[ -r Makefile ] && (make && make install || _BUILD_FAILED=true) | add_prefix $_DIR
+	[ -r build/Makefile ] && (cd build && (make && make install || _BUILD_FAILED=true) | add_prefix $_DIR )
+	[ $_BUILD_FAILED ] && out_buffer "!!! $_DIR [$_SCM] BUILD FAILED"
 done
 echo
 echo
 echo
 for i in {1..$_INDEX}
 do
-    echo ${_BUFFER[$i]}
+	echo ${_BUFFER[$i]}
 done
 }
 
 case $1 in
-    list)
-        update_list
-        echo $_ORDER
-        ;;
-    upgrade)
-        update_list
-        [ -z $2 ] && upgrade_list $_ORDER || upgrade_list $*
-        ;;
-    help|*)
-        cat << EOF
-        usage: $0 <command>
+	list)
+		update_list
+		echo $_ORDER
+		;;
+	upgrade)
+		update_list
+		[ -z $2 ] && upgrade_list $_ORDER || upgrade_list $*
+		;;
+	help|*)
+		cat << EOF
+usage: $0 <command>
 
-        list                            list update order of repositories
-        upgrade [<repo1> [<repo...>]]   upgrade given repositories, or all if none given
-        help                            guess what you're looking at...
-        EOF
+	list                            list update order of repositories
+	upgrade [<repo1> [<repo...>]]   upgrade given repositories, or all if none given
+	help                            guess what you're looking at...
+EOF
 esac
