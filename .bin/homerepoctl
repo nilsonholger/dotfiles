@@ -142,19 +142,15 @@ case $1 in
         echo $_ORDER
         ;;
     upgrade)
-        upgrade_list $*
-        ;;
-    upgrade-all)
         update_list
-        upgrade_list $_ORDER
+        [ -z $2 ] && upgrade_list $_ORDER || upgrade_list $*
         ;;
     help|*)
         cat << EOF
-usage: $0 <command>
+        usage: $0 <command>
 
-    list                            list update order of repositories
-    upgrade <repo1> [<repo...>]     upgrade given repositories
-    upgrade-all                     sync and upgrade all
-    help                            guess what you're looking at...
-EOF
+        list                            list update order of repositories
+        upgrade [<repo1> [<repo...>]]   upgrade given repositories, or all if none given
+        help                            guess what you're looking at...
+        EOF
 esac
