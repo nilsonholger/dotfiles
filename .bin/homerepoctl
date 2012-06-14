@@ -112,6 +112,7 @@ echo "`date`" > $_LOGFILE
 for _DIR in $*
 do
 	cd $_SRCDIR
+	[ -d $_DIR ] || out_buffer "!!! $_DIR [NOT FOUND]"
 	[ -d $_DIR ] || continue
 	cd $_DIR
 	_SCM=''
@@ -128,8 +129,6 @@ do
 	[ $_BUILD_FAILED ] && out_buffer "!!! $_DIR [$_SCM] BUILD FAILED"
 done
 echo
-echo
-echo
 for i in {1..$_INDEX}
 do
 	echo ${_BUFFER[$i]}
@@ -143,7 +142,7 @@ case $1 in
 		;;
 	upgrade)
 		update_list
-		[ -z $2 ] && upgrade_list $_ORDER || upgrade_list $*
+		[ -z $2 ] && upgrade_list $_ORDER || (shift && upgrade_list $*)
 		;;
 	help|*)
 		cat << EOF
