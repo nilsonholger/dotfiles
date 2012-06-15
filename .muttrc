@@ -111,7 +111,7 @@ bind editor <space> noop
 macro pager                 \cb         |urlview\n "call urlview to extract URLs out of a message"
 macro generic,index,pager   <F1>        "!less /usr/doc/mutt/manual.txt\n" "Show Mutt documentation"
 macro index,pager           Gc          "<change-folder>=cvhci<enter>" "Go to cvhci"
-macro index,pager           Gf          "<change-folder>=feeds<enter>" "Go to feeds"
+macro index,pager           Gf          "<change-folder>=feeds<enter>" "Go to friends"
 macro index,pager           Gi          "<change-folder>=INBOX<enter>" "Go to INBOX"
 macro index,pager           Gs          "<change-folder>=Sent<enter>" "Go to Sent"
 macro index,pager           Gt          "<change-folder>=Trash<enter>" "Go to Trash"
