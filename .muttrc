@@ -70,7 +70,7 @@ set pgp_good_sign="^gpg: Good signature from"
 set pgp_sign_as=0x3AFB7CCD
 set pgp_timeout=60
 
-set crypt_autoencrypt=yes
+#set crypt_autoencrypt=yes
 set crypt_autosign
 set crypt_replyencrypt=yes
 set crypt_replysign
