@@ -73,23 +73,23 @@ set wildignore+=*.DS_Store                       " OSX bullshit
 
 " autocommand
 if has("autocmd")
-    filetype plugin indent on
-    au BufNew * set foldlevel=20
-    au BufRead *.c set cindent
-    au BufRead *.py set nocindent nosmartindent autoindent
-    au BufRead todo setfiletype config
-    au BufReadPost fugitive://* set bufhidden=delete
-    au BufWinEnter *.* silent loadview
-    au BufWinLeave *.* mkview
-    au BufWritePost .vimrc source $MYVIMRC
-    au FocusLost * :wa
-    "au VimEnter * silent if filereadable("session.vim") | source session.vim | endif
-    au VimResized * exe "normal! \<c-w>="
+	filetype plugin indent on
+	au BufNew * set foldlevel=20
+	au BufRead *.c set cindent
+	au BufRead *.py set nocindent nosmartindent autoindent
+	au BufRead todo setfiletype config
+	au BufReadPost fugitive://* set bufhidden=delete
+	au BufWinEnter *.* silent loadview
+	au BufWinLeave *.* mkview
+	au BufWritePost .vimrc source $MYVIMRC
+	au FocusLost * :wa
+	"au VimEnter * silent if filereadable("session.vim") | source session.vim | endif
+	au VimResized * exe "normal! \<c-w>="
 
-    augroup ft_c
-        au!
-        au FileType c setlocal foldmethod=syntax
-    augroup END
+	augroup ft_c
+		au!
+		au FileType c setlocal foldmethod=syntax
+	augroup END
 endif
 
 " maps
@@ -163,30 +163,30 @@ let Tlist_Use_Right_Window=1
 " toggle quickfix window
 command! -bang -nargs=? QFix call QFixToggle(<bang>0)
 function! QFixToggle(forced)
-    if exists("g:qfix_win") && a:forced == 0
-        cclose
-        unlet g:qfix_win
-    else
-        botright copen 10
-      let g:qfix_win = bufnr("$")
-    endif
+	if exists("g:qfix_win") && a:forced == 0
+		cclose
+		unlet g:qfix_win
+	else
+		botright copen 10
+		let g:qfix_win = bufnr("$")
+	endif
 endfunction
 
 " make
 function! Make(target)
-    if filereadable('Makefile')
-        let &makeprg="make " . a:target
-    elseif filereadable('build/Makefile')
-        let &makeprg="(cd build && make " . a:target . ")"
-    elseif filereadable('SConstruct')
-        set makeprg=scons
-    elseif expand('%:e') == 'csd'
-        set makeprg=csound\ %
-    elseif expand('%:e') == 'orc' || expand('%:e') == 'sco'
-        set makeprg=csound\ '%:r.'orc\ '%:r.'sco
-    endif
-    :silent w
-    :silent make
-    :redraw!
-    :cc!
+	if filereadable('Makefile')
+		let &makeprg="make " . a:target
+	elseif filereadable('build/Makefile')
+		let &makeprg="(cd build && make " . a:target . ")"
+	elseif filereadable('SConstruct')
+		set makeprg=scons
+	elseif expand('%:e') == 'csd'
+		set makeprg=csound\ %
+	elseif expand('%:e') == 'orc' || expand('%:e') == 'sco'
+		set makeprg=csound\ '%:r.'orc\ '%:r.'sco
+	endif
+	:silent w
+	:silent make
+	:redraw!
+	:cc!
 endfunction
