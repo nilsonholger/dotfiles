@@ -26,7 +26,7 @@ set fileformats+=mac
 set foldmethod=syntax
 set linebreak
 set list
-set listchars=tab:\|\ ,trail:_,extends:>,precedes:<
+set listchars=tab:\.\ ,trail:_,extends:>,precedes:<
 set showbreak=_
 set splitbelow
 set splitright
