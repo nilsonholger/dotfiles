@@ -124,7 +124,7 @@ do
 	[ ! $_SCM ] && out_buffer "--- $_DIR [NO_SCM]" && continue
 	[ ! $_UPDATE ] && out_buffer "=== $_DIR [$_SCM]" && continue
 	out_buffer "+++ $_DIR [$_SCM]"
-	[ -r build/MakeFile ] && cd build
+	[ -r build/Makefile ] && cd build
 	[ -r Makefile ] && make | add_prefix $_DIR
 	[ -r Makefile ] && make > /dev/null || _BUILD_FAILED=true
 	[ ! $_BUILD_FAILED ] && make install | add_prefix $_DIR
