@@ -83,7 +83,7 @@ if has("autocmd")
 	au BufWinLeave *.* mkview
 	au BufWritePost .vimrc source $MYVIMRC
 	au FocusLost * :wa
-	"au VimEnter * silent if filereadable("session.vim") | source session.vim | endif
+	au VimEnter * silent if filereadable("Session.vim") | source Session.vim | endif
 	au VimResized * exe "normal! \<c-w>="
 
 	augroup ft_c
