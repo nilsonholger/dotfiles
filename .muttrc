@@ -146,7 +146,7 @@ color normal     default         default
 color search     red             default
 color status     green           default
 color tilde      red             default
-color tree       blue            default
+color tree       cyan            default
 color index      yellow          default  ~F
 color index      green           default  ~N
 color index      cyan            default  ~T
@@ -159,19 +159,17 @@ color header     magenta         default "^x-bogosity: unsure"
 color header     default         default "^from:"
 color header     default         default "^subject:"
 color body       green           default "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
-color body       blue            default "(finger|ftp|hg|http[s]*|news|tel)://[^ ]*"
+color body       yellow          default "(finger|ftp|hg|http[s]*|news|tel)://[^ ]*"
 color body       green           default "gpg: Good signature from.*"
 color body       red             default "gpg: Bad signature from.*"
-color quoted     blue            default
-color quoted1    cyan            default
-color quoted2    blue            default
-color quoted3    cyan            default
-color bold       green           default
-color underline  green           default
+color quoted     cyan            default
+color quoted1    magenta         default
+color quoted2    brightcyan      default
+color quoted3    brightmagenta   default
+color bold       yellow          default
+color underline  yellow          default
 color attachment yellow          default
 color signature  red             default
 
-color body       yellow          default "(^| )\\*[-a-z0-9*]+\\*[,.?]?[ \n]"
-color body       yellow          default "(^| )_[-a-z0-9_]+_[,.?]?[\n]"
-color body       yellow          default "(^| )\\*[-a-z0-9*]+\\*[,.?]?[ \n]"
-color body       yellow          default "(^| )_[-a-z0-9_]+_[,.?]?[ \n]"
+color body       yellow          default "(^| )\\*[-a-z0-9*]+\\*[,.?]?( |$)"
+color body       yellow          default "(^| )_[-a-z0-9_]+_[,.?]?( |$)"
