@@ -51,14 +51,12 @@ set showmatch
 set smartcase
 
 " statusline
-set statusline=%f%h%m%r%w
+set statusline=%<%f\ %h%m%r%w
+set statusline+=\ 
 set statusline+=%{fugitive#statusline()}
-set statusline+=%=
-set statusline+=(%{&ff},%{strlen(&fenc)?&fenc:&enc},%{&ft})
+set statusline+=%=(%{&ft},%{strlen(&fenc)?&fenc:&enc},%{&ff})
 set statusline+=\ 
-set statusline+=%03b\:0x%02B
-set statusline+=\ 
-set statusline+=%l\/%L:%03c
+set statusline+=%-14.(%L,%l-%c%V%)\ %P
 
 " wildmenu
 set wildmenu
