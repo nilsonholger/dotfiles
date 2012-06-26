@@ -37,7 +37,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     [ ((modMask              , xK_Escape), spawn "display ~/.xmonad/Xmbindings.png &")
     , ((modMask              , xK_i     ), spawn "zsh -c chromium-browser &")
     , ((modMask .|. shiftMask, xK_l     ), spawn "gnome-screensaver-command -l")
-    , ((mod4Mask .|. shiftMask, xK_k), spawn "if [ \"`setxkbmap -print | grep -o pc+de`\" != \"pc+de\" ]; then setxkbmap -layout de; xmodmap ~/.Xmodmap.de; else setxkbmap -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; xmodmap ~/.Xmodmap; fi &")
+    , ((mod4Mask .|. shiftMask, xK_k), spawn "if [ \"`setxkbmap -print | grep -o dvp`\" = \"dvp\" ]; then setxkbmap -layout us_intl -option 'grp:shifts_toggle'; xmodmap ~/.Xmodmap.de; else setxkbmap -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; xmodmap ~/.Xmodmap; fi &")
     ]
     ++
     [((m .|. modMask, k), windows $ f i)
