@@ -14,7 +14,7 @@ set laststatus=2
 set nobackup
 set nocompatible
 set noerrorbells
-set modelines=0
+set modelines=1
 set scrolloff=3
 set showcmd
 set ruler
