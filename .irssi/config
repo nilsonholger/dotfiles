@@ -1,5 +1,11 @@
 servers = (
   {
+    address = "irc.freenode.net";
+    chatnet = "freenode";
+    port = "6667";
+    autoconnect = "Yes";
+  },
+  {
     address = "localhost";
     chatnet = "bitlbee";
     port = "6667";
@@ -8,6 +14,10 @@ servers = (
 );
 
 chatnets = {
+  freenode = {
+    type = "IRC";
+    #autosendcmd = "/^msg nickserv nilsonholger $password; wait -freenode 2000";
+  };
   bitlbee = {
     type = "IRC";
     #autosendcmd = "/^msg -bitlbee &bitlbee identify $password; wait -bitlbee 2000";
@@ -18,8 +28,8 @@ chatnets = {
 settings = {
   core = {
     real_name = "dk";
-    user_name = "linhat";
-    nick = "linhat";
+    user_name = "nilsonholger";
+    nick = "nilsonholger";
     timestamp_format = "%F|%H:%M";
     quit_message = "slack on";
     awaylog_level = "hilight";
