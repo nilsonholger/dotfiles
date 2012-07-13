@@ -73,6 +73,7 @@ set wildignore+=*.DS_Store                       " OSX bullshit
 if has("autocmd")
 	filetype plugin indent on
 	au BufNew * set foldlevel=20
+	au BufNewFile,BufRead,BufEnter *.cc,*.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
 	au BufRead *.c set cindent
 	au BufRead *.py set nocindent nosmartindent autoindent
 	au BufRead todo setfiletype config
