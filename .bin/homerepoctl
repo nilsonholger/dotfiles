@@ -71,7 +71,8 @@ function update_git {
 _SCM='GIT'
 echo "GIT STATUS" | add_prefix $1
 git pull 2>&1 | tee $_TEST | add_prefix $1
-grep -q -E "(Already up-to-date|Current branch .* is up to date)" $_TEST && _UPDATE='' || _UPDATE=true
+grep -q -E "(Already up-to-date|Current branch .* is up to date)" $_TEST \
+	&& _UPDATE='' || _UPDATE=true
 }
 
 
@@ -130,13 +131,20 @@ do
 	[ ! $_BUILD_FAILED ] && make install | add_prefix $_DIR
 	[ $_BUILD_FAILED ] && out_buffer "!!! $_DIR [$_SCM] BUILD FAILED"
 done
+
 echo
+echo >> $_LOGFILE
+
 for i in {1..$_INDEX}
 do
 	echo ${_BUFFER[$i]}
+	echo ${_BUFFER[$i]} >> $_LOGFILE
 done
 }
 
+
+
+# main switch
 case $1 in
 	list)
 		update_list
@@ -151,7 +159,7 @@ case $1 in
 usage: $0 <command>
 
 	list                            list update order of repositories
-	upgrade [<repo1> [<repo...>]]   upgrade given repositories, or all if none given
+	upgrade [<repo1> [<repo...>]]   upgrade given (or all) repositories
 	help                            guess what you're looking at...
 EOF
 esac
