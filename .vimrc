@@ -22,7 +22,6 @@ set novisualbell
 set whichwrap=<,>,[,],h,l
 
 " display
-set colorcolumn=80
 set fileformats+=mac
 set foldmethod=syntax
 set linebreak
