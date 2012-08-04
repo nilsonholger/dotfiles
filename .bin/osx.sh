@@ -26,6 +26,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+function debug {
+# Enable the debug menu in Address Book
+defaults write com.apple.addressbook ABShowDebugMenu -bool true
+# Enable the debug menu in iCal
+defaults write com.apple.iCal IncludeDebugMenu -bool true
+# Enable the debug menu in Disk Utility
+defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
+}
+
 function disk {
 # turn of sudden motion sensor
 sudo pmset -a sms 0
@@ -43,6 +52,8 @@ sudo pmset -a hibernatemode 0
 sudo rm /var/vm/sleepimage
 # disable swap/paging daemon
 sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
+# disable prompt for new time machine volumes
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 # disable mobile backups
 # sudo tmutil disablelocal
 }
@@ -59,11 +70,6 @@ chflags nohidden ~/Library
 # defaults write com.apple.Finder AppleShowAllFiles YES
 }
 
-function fix {
-# Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
-echo "0x08000100:0" > ~/.CFUserTextEncoding
-}
-
 function keyboard {
 # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
@@ -73,7 +79,7 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 
 function reset {
 # Reset Launchpad
-rm ~/Library/Application\ Support/Dock/*.db
+find ~/Library/Application\ Support/Dock -name "*.db" -maxdepth 1 -delete
 }
 
 function safari {
@@ -83,11 +89,6 @@ defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
 defaults write com.apple.Safari IncludeDebugMenu -bool true
 # Remove useless icons from Safari’s bookmarks bar
 defaults write com.apple.Safari ProxiesInBookmarksBar "()"
-}
-
-function setup {
-# os x trash
-sudo gem install osx-trash
 }
 
 function security {
@@ -160,15 +161,14 @@ defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 }
 
 case $1 in
-	all) disk; finder; fix; keyboard; reset; safari; security; setup; symlinks; visuals;;
+	all) debug; disk; finder; keyboard; reset; safari; security; symlinks; visuals;;
+	debug) debug;;
 	disk) disk;;
 	finder) finder;;
-	fix) fix;;
 	keyboard) keyboard;;
 	reset) reset;;
 	safari) safari;;
 	security) security;;
-	setup) setup;;
 	symlinks) symlinks;;
 	visuals) visuals;;
 esac
