@@ -76,7 +76,6 @@ if has("autocmd")
 	au BufNewFile,BufRead,BufEnter *.cc,*.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
 	au BufRead *.c set cindent
 	au BufRead *.py set nocindent nosmartindent autoindent
-	au BufRead todo setfiletype config
 	au BufReadPost fugitive://* set bufhidden=delete
 	au BufWinEnter *.* silent loadview
 	au BufWinLeave *.* mkview
