@@ -25,6 +25,11 @@
 !.vim/bundle
 !.vimrc
 
+!.weechat/
+.weechat/*
+!.weechat/*.conf
+
+
 !.Xdefaults
 !.Xmodmap
 
