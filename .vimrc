@@ -1,21 +1,27 @@
 " .vimrc
 
-" pathogen
+"
+" PATHOGEN
+"
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+"
+" SETTINGS
+"
 " basic
-colorscheme desert				" so our eyes won't hurt
-syntax on						" psychedelic rainbow
-set background=dark				" so our eyes won't explode
-set backspace=indent,eol,start	" allow backspacing over #args
-set hidden						" if (hidden) do not unload abandoned buffer
-set laststatus=2				" always display status line
-set modeline					" allow vim modelines
-set modelines=1					" process #lines of modeline commands
-set scrolloff=3					" always display #lines context
-set showcmd						" display partial commands
-set whichwrap=<,>,[,],h,l		" can move to next/previous line
+colorscheme desert								" so our eyes won't hurt
+syntax on										" psychedelic rainbow
+set background=dark								" so our eyes won't explode
+set backspace=indent,eol,start					" allow backspacing over #args
+set completeopt=menuone,menu,longest,preview	" completion menu settings
+set hidden										" if (hidden) do not unload abandoned buffer
+set laststatus=2								" always display status line
+set modeline									" allow vim modelines
+set modelines=1									" process #lines of modeline commands
+set scrolloff=3									" always display #lines context
+set showcmd										" display partial commands
+set whichwrap=<,>,[,],h,l						" can move to next/previous line
 
 " display
 set fileformats+=mac	" cause we workin' on the fruity stuff
@@ -63,7 +69,9 @@ set wildignore+=*.spl                            " compiled spelling word lists
 set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
 
-" autocommand
+"
+" AUTOCOMMAND
+"
 if has("autocmd")
 	filetype plugin indent on
 	au BufNew * set foldlevel=20
@@ -72,6 +80,7 @@ if has("autocmd")
 	au BufWinEnter *.* silent loadview
 	au BufWinLeave *.* mkview
 	au BufWritePost .vimrc source $MYVIMRC
+	au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 	au FocusLost * :wa
 	au VimEnter * silent if filereadable("Session.vim") | source Session.vim | endif
 	au VimResized * exe "normal! \<c-w>="
@@ -82,7 +91,9 @@ if has("autocmd")
 	"augroup END
 endif
 
-" maps
+"
+" MAPS
+"
 " plugins
 "map <silent> <leader>T :!ctags -R -I --languages=c++ --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 
@@ -145,15 +156,9 @@ noremap <C-j>  <C-w>j
 noremap <C-k>  <C-w>k
 noremap <C-l>  <C-w>l
 
-" automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menuone,menu,longest,preview
-
-" ctags
-"let Tlist_Ctags_Cmd="ctags"
-"let Tlist_Close_On_Select=1
-"let Tlist_Use_Right_Window=1
-
+"
+" FUNCTIONS
+"
 " toggle quickfix window
 command! -bang -nargs=? QFix call QFixToggle(<bang>0)
 function! QFixToggle(forced)
