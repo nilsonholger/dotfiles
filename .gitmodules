@@ -4,24 +4,12 @@
 [submodule ".vim/bundle/fugitive"]
 	path = .vim/bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule ".vim/bundle/nerdtree"]
-	path = .vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-[submodule ".vim/bundle/taglist"]
-	path = .vim/bundle/taglist
-	url = https://github.com/vim-scripts/taglist.vim.git
-[submodule ".vim/bundle/c"]
-	path = .vim/bundle/c
-	url = https://github.com/vim-scripts/c.vim.git
 [submodule ".vim/bundle/supertab"]
 	path = .vim/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
 [submodule ".vim/bundle/gnupg"]
 	path = .vim/bundle/gnupg
 	url = https://github.com/vim-scripts/gnupg.git
-[submodule ".vim/bundle/vimroom"]
-	path = .vim/bundle/vimroom
-	url = https://github.com/mikewest/vimroom.git
 [submodule ".vim/bundle/bufexplorer"]
 	path = .vim/bundle/bufexplorer
 	url = https://github.com/vim-scripts/bufexplorer.zip.git

@@ -67,7 +67,7 @@ set wildignore+=*.DS_Store                       " OSX bullshit
 if has("autocmd")
 	filetype plugin indent on
 	au BufNew * set foldlevel=20
-	au BufNewFile,BufRead,BufEnter *.cc,*.cpp,*.hpp,*.hh set omnifunc=omni#cpp#complete#Main
+	"au BufNewFile,BufRead,BufEnter *.cc,*.cpp,*.hpp,*.hh set omnifunc=omni#cpp#complete#Main
 	au BufReadPost fugitive://* set bufhidden=delete
 	au BufWinEnter *.* silent loadview
 	au BufWinLeave *.* mkview
@@ -84,9 +84,7 @@ endif
 
 " maps
 " plugins
-map <silent> <leader>N :NERDTreeToggle<CR>
-map <silent> <leader>t :TlistToggle<CR>
-map <silent> <leader>T :!ctags -R -I --languages=c++ --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+"map <silent> <leader>T :!ctags -R -I --languages=c++ --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 
 " quickfix
 map <silent> <leader>qq :QFix<CR>
@@ -152,9 +150,9 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
 " ctags
-let Tlist_Ctags_Cmd="ctags"
-let Tlist_Close_On_Select=1
-let Tlist_Use_Right_Window=1
+"let Tlist_Ctags_Cmd="ctags"
+"let Tlist_Close_On_Select=1
+"let Tlist_Use_Right_Window=1
 
 " toggle quickfix window
 command! -bang -nargs=? QFix call QFixToggle(<bang>0)
