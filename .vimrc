@@ -75,13 +75,12 @@ set wildignore+=*.DS_Store                       " OSX bullshit
 if has("autocmd")
 	filetype plugin indent on
 	au BufNew * set foldlevel=20
-	"au BufNewFile,BufRead,BufEnter *.cc,*.cpp,*.hpp,*.hh set omnifunc=omni#cpp#complete#Main
+	au BufNewFile,BufRead,BufEnter *.c,*.cc,*.cpp,*.c++,*.h,*.hh,*.hpp set omnifunc=ClangComplete
 	au BufReadPost fugitive://* set bufhidden=delete
 	au BufWinEnter *.* silent loadview
 	au BufWinLeave *.* mkview
-	au BufWritePost .vimrc source $MYVIMRC
+	au BufWritePost $MYVIMRC source $MYVIMRC
 	au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-	au FocusLost * :wa
 	au VimEnter * silent if filereadable("Session.vim") | source Session.vim | endif
 	au VimResized * exe "normal! \<c-w>="
 
@@ -94,31 +93,6 @@ endif
 "
 " MAPS
 "
-" plugins
-"map <silent> <leader>T :!ctags -R -I --languages=c++ --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
-
-" quickfix
-map <silent> <leader>qq :QFix<CR>
-map <silent> <leader>qn :cnext<CR>
-map <silent> <leader>qp :cprev<CR>
-
-" make
-map <silent> <leader>ma :call Make("all")<CR>
-map <silent> <leader>mc :call Make("clean")<CR>
-map <silent> <leader>mm :call Make(" ")<CR>
-map <silent> <leader>mr :call Make("run")<CR>
-map <silent> <leader>mt :call Make("todo")<CR>
-map <silent> <leader>mv :call Make("VERBOSE=1")<CR>
-
-" fugitive
-map <leader>gc :Gcommit<CR>
-map <leader>gd :Gdiff<CR>
-map <leader>ge :Gedit HEAD<CR>
-map <leader>gl :Glog<CR>
-map <leader>gr :Gread<CR>
-map <leader>gs :Gstatus<CR>
-map <leader>gw :Gwrite<CR>
-
 " general
 nnoremap <leader><space> :noh<CR>
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
@@ -155,6 +129,38 @@ noremap <C-h>  <C-w>h
 noremap <C-j>  <C-w>j
 noremap <C-k>  <C-w>k
 noremap <C-l>  <C-w>l
+
+" quickfix
+map <silent> <leader>qq :QFix<CR>
+map <silent> <leader>qn :cnext<CR>
+map <silent> <leader>qp :cprev<CR>
+
+" make
+map <silent> <leader>ma :call Make("all")<CR>
+map <silent> <leader>mc :call Make("clean")<CR>
+map <silent> <leader>mm :call Make(" ")<CR>
+map <silent> <leader>mr :call Make("run")<CR>
+map <silent> <leader>mt :call Make("todo")<CR>
+map <silent> <leader>mv :call Make("VERBOSE=1")<CR>
+
+" fugitive
+map <leader>gc :Gcommit<CR>
+map <leader>gd :Gdiff<CR>
+map <leader>ge :Gedit HEAD<CR>
+map <leader>gl :Glog<CR>
+map <leader>gr :Gread<CR>
+map <leader>gs :Gstatus<CR>
+map <leader>gw :Gwrite<CR>
+
+"
+" PLUGINS
+"
+" clang_complete
+let g:clang_complete_auto = 0
+let g:clang_complete_copen = 1
+
+" supertab
+let g:SuperTabDefaultCompletionType = "context"
 
 "
 " FUNCTIONS
