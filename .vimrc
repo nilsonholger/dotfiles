@@ -74,15 +74,15 @@ set wildignore+=*.DS_Store                       " OSX bullshit
 "
 if has("autocmd")
 	filetype plugin indent on
-	au BufNew * set foldlevel=20
-	au BufNewFile,BufRead,BufEnter *.c,*.cc,*.cpp,*.c++,*.h,*.hh,*.hpp set omnifunc=ClangComplete
-	au BufReadPost fugitive://* set bufhidden=delete
-	au BufWinEnter *.* silent loadview
-	au BufWinLeave *.* mkview
-	au BufWritePost $MYVIMRC source $MYVIMRC
-	au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-	au VimEnter * silent if filereadable("Session.vim") | source Session.vim | endif
-	au VimResized * exe "normal! \<c-w>="
+	au! BufNew * set foldlevel=20
+	au! BufNewFile,BufRead,BufEnter *.c,*.cc,*.cpp,*.c++,*.h,*.hh,*.hpp set omnifunc=ClangComplete
+	au! BufReadPost fugitive://* set bufhidden=delete
+	au! BufWinEnter *.* silent loadview
+	au! BufWinLeave *.* mkview
+	au! BufWritePost $MYVIMRC source $MYVIMRC
+	au! CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+	au! VimEnter * silent if filereadable("Session.vim") | source Session.vim | endif
+	au! VimResized * exe "normal! \<c-w>="
 
 	"augroup ft_c
 	"	au!
