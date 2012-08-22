@@ -153,6 +153,14 @@ map <leader>gs :Gstatus<CR>
 map <leader>gw :Gwrite<CR>
 
 "
+" COLOR
+"
+hi Pmenu		ctermbg=black		ctermfg=brown	cterm=none
+hi PmenuSel		ctermbg=red			ctermfg=black	cterm=none
+hi PmenuSbar	ctermbg=darkgrey					cterm=none
+hi PmenuThumb	ctermbg=yellow						cterm=none
+
+"
 " PLUGINS
 "
 " clang_complete
