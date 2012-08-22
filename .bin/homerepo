@@ -23,9 +23,10 @@
 
 
 # settings
-_SRCDIR="$HOME/local"
-_LOGFILE="$_SRCDIR/update.log"
-_UPDATE_ORDER="$_SRCDIR/.update-order"
+_CONFDIR="$HOME/.config/homerepo"
+_SRCDIR=`cat $_CONFDIR/srcdir`
+_LOGFILE="$HOME/.cache/homerepo.log"
+_UPDATE_ORDER="$_CONFDIR/order"
 
 
 
@@ -34,7 +35,7 @@ _BUILD_FAILED=''
 _INDEX=0
 _SCM=''
 _ORDER=''
-_TEST="$_SRCDIR/.test-output"
+_TEST="/tmp/homerepo"
 _UPDATE=''
 
 
@@ -163,3 +164,8 @@ usage: $0 <command>
 	help                            guess what you're looking at...
 EOF
 esac
+
+
+
+# cleanup
+[ -r $_TEST ] && rm $_TEST
