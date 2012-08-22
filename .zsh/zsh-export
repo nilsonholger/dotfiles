@@ -6,9 +6,9 @@ $I14 && export PATH="$HOME/bin:$PATH:/sbin:/usr/sbin:/usr/local/sbin:$HOME/local
 $MBP && export XLIB_SKIP_ARGB_VISUALS=1
 $MBP && export MAKEFLAGS=" -j`sysctl -n hw.ncpu`"
 
-$I14 && export LIBRARY_PATH="$HOME/lib:$HOME/lib32:$HOME/lib64:/usr/lib/x86_64-linux-gnu/:$HOME/local/cuda/lib64:$HOME/local/cuda/lib"
-$I14 && export LD_LIBRARY_PATH="$HOME/lib:$HOME/lib32:$HOME/lib64:/usr/lib/x86_64-linux-gnu/:$HOME/local/cuda/lib64:$HOME/local/cuda/lib"
-$I14 && export LD_RUN_PATH="$HOME/lib:$HOME/lib32:$HOME/lib64:/usr/lib/x86_64-linux-gnu/"
+$I14 && export LIBRARY_PATH="$HOME/lib64:$HOME/lib32:$HOME/lib:/usr/lib/x86_64-linux-gnu/:$HOME/local/cuda/lib64:$HOME/local/cuda/lib"
+$I14 && export LD_LIBRARY_PATH="$HOME/lib64:$HOME/lib32:$HOME/lib:/usr/lib/x86_64-linux-gnu/:$HOME/local/cuda/lib64:$HOME/local/cuda/lib"
+$I14 && export LD_RUN_PATH="$HOME/lib64:$HOME/lib32:$HOME/lib:/usr/lib/x86_64-linux-gnu/"
 $I14 && export C_INCLUDE_PATH="$HOME/include:/usr/include/x86_64-linux-gnu"
 $I14 && export CPLUS_INCLUDE_PATH="$HOME/include:/usr/include/x86_64-linux-gnu"
 $I14 && export PKG_CONFIG_PATH="$HOME/lib/pkgconfig"
