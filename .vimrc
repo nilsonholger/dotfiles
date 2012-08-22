@@ -158,6 +158,7 @@ map <leader>gw :Gwrite<CR>
 " clang_complete
 let g:clang_complete_auto = 0
 let g:clang_complete_copen = 1
+let g:clang_user_options = '-std=c++11 -stdlib=libc++ -I/home/dkoester/include/c++/v1'
 
 " supertab
 let g:SuperTabDefaultCompletionType = "context"
