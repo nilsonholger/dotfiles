@@ -14,7 +14,7 @@ colorscheme desert								" so our eyes won't hurt
 syntax on										" psychedelic rainbow
 set background=dark								" so our eyes won't explode
 set backspace=indent,eol,start					" allow backspacing over #args
-set completeopt=menuone,menu,longest,preview	" completion menu settings
+set completeopt=menuone,menu,longest			" completion menu settings
 set hidden										" if (hidden) do not unload abandoned buffer
 set laststatus=2								" always display status line
 set modeline									" allow vim modelines
@@ -157,7 +157,7 @@ map <leader>gw :Gwrite<CR>
 "
 " clang_complete
 let g:clang_complete_auto = 0
-let g:clang_complete_copen = 1
+let g:clang_complete_copen = 0
 let g:clang_user_options = '-std=c++11 -stdlib=libc++ -I/home/dkoester/include/c++/v1'
 
 " supertab
