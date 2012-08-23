@@ -1,6 +1,5 @@
 /*
-*.swp
-*.DS_Store
+*.*
 
 !.bin/
 !.caffrc
@@ -9,10 +8,7 @@
 !.gitignore
 !.gitmodules
 
-!.gnupg/
-.gnupg/*
 !.gnupg/gpg.conf
-
 !.irssi/
 !.lbdbrc
 !.mailcap
@@ -20,23 +16,14 @@
 !.muttrc
 !.tmux.conf
 
-!.vim/
-.vim/*
 !.vim/bundle
 !.vimrc
 
-!.weechat/
-.weechat/*
 !.weechat/*.conf
-
-
 !.Xdefaults
 !.Xmodmap
-
-!.xmonad/
-.xmonad/*
 !.xmonad/xmonad.hs
-
 !.xsession
+
 !.zshrc
 !.zsh/
