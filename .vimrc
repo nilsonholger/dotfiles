@@ -19,7 +19,7 @@ set hidden										" if (hidden) do not unload abandoned buffer
 set laststatus=2								" always display status line
 set modeline									" allow vim modelines
 set modelines=1									" process #lines of modeline commands
-set scrolloff=3									" always display #lines context
+"set scrolloff=3									" always display #lines context
 set showcmd										" display partial commands
 set whichwrap=<,>,[,],h,l						" can move to next/previous line
 
