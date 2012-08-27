@@ -1,4 +1,4 @@
 # per host activation macros
-HYVE=`[ ${HOST/.*} = hyve ] && echo true || echo false`
-MBP=`[ ${HOST/.*} = mbp ] && echo true || echo false`
-I14=`[ ${HOST/i14*/i14} = i14 ] && echo true || echo false`
+_HYVE=`[ ${HOST/.*} = hyve ] && echo true || echo false`
+_MBP=`[ ${HOST/.*} = mbp ] && echo true || echo false`
+_I14=`[ ${HOST/i14*/i14} = i14 ] && echo true || echo false`

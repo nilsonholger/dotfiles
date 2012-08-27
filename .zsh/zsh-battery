@@ -5,7 +5,7 @@ function _battery_status {
 	# setup
 	_BATTERY_TMP=''
 	_BATTERY_STATUS=''
-	$MBP && _BATTERY_TMP=`pmset -g batt`
+	$_MBP && _BATTERY_TMP=`pmset -g batt` || return
 
 	# check state
 	[[ $_BATTERY_TMP =~ .*charging.* ]] || return

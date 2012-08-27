@@ -4,7 +4,7 @@ compinit
 autoload -U colors
 colors
 
-$MBP && fpath=($fpath ~/.zsh/fpath)
+$_MBP && fpath=($fpath ~/.zsh/fpath)
 
 HISTFILE=~/.histfile
 SAVEHIST=32676
