@@ -4,7 +4,7 @@ import System.Exit
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-myTerminal      = "~/bin/urxvtc"
+myTerminal      = "~/local/bin/urxvtc"
 myModMask       = mod1Mask
 myWorkspaces    = ["main","ext","tmp","tmp2"]
 myBorderWidth   = 1
@@ -71,7 +71,7 @@ myFocusFollowsMouse = True
 myLogHook = return ()
 myStartupHook = do
     spawn "display -window root ~/.xmonad/background.xpm"
-    spawn "~/bin/urxvtd -q -f -o"
+    spawn "~/local/bin/urxvtd -q -f -o"
 
 main = xmonad defaults
 
