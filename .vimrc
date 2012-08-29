@@ -202,7 +202,6 @@ function! Make(target)
 	:silent w
 	:silent make
 	:redraw!
-	:cc!
 endfunction
 
 " ack
