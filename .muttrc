@@ -115,9 +115,9 @@ macro index,pager           Gf          "<change-folder>=feeds<enter>" "Go to fr
 macro index,pager           Gi          "<change-folder>=INBOX<enter>" "Go to INBOX"
 macro index,pager           Gs          "<change-folder>=Sent<enter>" "Go to Sent"
 macro index,pager           Gt          "<change-folder>=Trash<enter>" "Go to Trash"
-macro index,pager           d           "<save-message>=Trash<enter>" "trash message"
+macro index,pager           d           "<tag-prefix-cond><clear-flag>N<tag-prefix><save-message>=Trash<enter><end-cond><clear-flag>N<save-message>=Trash<enter>" "trash message"
 macro index,pager           <Esc>\cD    "<delete-message>" "delete the current entry"
-macro index,pager           S           "<save-message>=Spam<enter>" "Spam"
+macro index,pager           S           "<tag-prefix-cond><clear-flag>N<tag-prefix><save-message>=Spam<enter><end-cond><clear-flag>N<save-message>=Spam<enter>" "Spam"
 
 
 
