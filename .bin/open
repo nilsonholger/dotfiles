@@ -7,4 +7,4 @@
 FILE=`basename $1`
 FILE=${FILE/mutt-}
 echo "$FILE -> ssh_client:Downloads/"
-scp -P 18981 $1 localhost:Downloads/$FILE
+scp -P 18981 $1 localhost:Downloads/$FILE || scp -P 19891 $1 dkoester@localhost:$FILE
