@@ -149,6 +149,7 @@ color tilde      red             default
 color tree       cyan            default
 color index      yellow          default  ~F
 color index      green           default  ~N
+color index      green           default  ~O
 color index      cyan            default  ~T
 color index      red             default  ~D
 
