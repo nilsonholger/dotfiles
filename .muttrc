@@ -3,81 +3,69 @@ source ~/.mutt/muttrc-server
 
 
 
-### GMANE
-set group_index_format="%5C %M%N %6s %-45.45f %d"
-set catchup_newsgroup=yes
-set followup_to_poster=yes
-set news_server=news.gmane.org
-set nntp_context=1000
-set post_moderated=yes
-
-
-
 ### SETTINGS
-alternative_order text/enriched text/plain text/html
-set beep=no
-set certificate_file=~/.mutt/certificates
-set confirmappend=no
-set delete=yes
-set edit_headers=yes
-set editor=vim
-set fast_reply=yes
-set header_cache="~/.mutt/cache/headers"
-set include=yes
-set mark_old=no # do NOT make new unread messages with 'O'
-set message_cachedir="~/.mutt/cache/bodies"
-set move=no
-set pgp_verify_sig=no
-set print_command="enscript -Email -pretty-print -G -p - | ps2pdf - mailprint.pdf"
-set reply_self=no
-set save_name=no
-set sort = 'threads'
-set sort_aux = 'last-date-received'
-set to_chars=" +TCF"
-set query_command="/usr/local/bin/lbdbq '%s'"
+alternative_order text/enriched text/plain text/html	# prefer tetx to html
+set beep=no												# SILENCIUM
+set certificate_file=~/.mutt/certificates				# my trusted ones
+set confirmappend=no									# do NOT ask, just append to another mailbox
+set delete												# again, do NOT ask, just delete when leaving a mailbox
+set edit_headers										# full control when creating a message
+set editor=vim											# need i say more?
+set fast_reply											# do not ask about to: and subject:
+set header_cache="~/.mutt/cache/headers"				# speed improvements
+set include													# add original to reply
+set mark_old=no											# do NOT make new unread messages with 'O'
+set message_cachedir="~/.mutt/cache/bodies"				# more speed improvements
+set sort = 'threads'									# show threads
+set sort_aux = 'last-date-received'						# sort threads by last message date
+set query_command="/usr/local/bin/lbdbq '%s'"			# on os x, get list of contacts
 
 
 
 ### HOOKS
-folder-hook . "set record=^"
-folder-hook news://news.gmane.org.* "set record=+gmane"
-save-hook '~f @amazon.' +amazon
-save-hook '~h cvhci | ~h iramx2 | ~t @kit | ~t @ira.uka' +cvhci
-save-hook '~h ebay' +ebay
-save-hook '~L freebsd' +freebsd
-save-hook '~h gmane' +gmane
-save-hook '~f steampowered' +steam
+folder-hook . "set record=^"									# send message -> current folder
+folder-hook news://news.gmane.org.* "set record=+gmane"			# send message -> gmane
+save-hook '~f @amazon.' +amazon									# match amazon -> amazon
+save-hook '~h cvhci | ~h iramx2 | ~t @kit | ~t @ira.uka' +cvhci	# match cvhci -> cvhci
+save-hook '~h ebay' +ebay										# match ebay -> ebay
+save-hook '~L freebsd' +freebsd									# match freebsd -> freebsd
+save-hook '~h gmane' +gmane										# match gmane -> gmane
+save-hook '~f steampowered' +steam								# match steam -> steam
 
 
 
 ### LOOK AND FEEL
-ignore *
-unignore  Date From To CC Subject X-Mailer X-Bogosity
-hdr_order Date From To CC Subject X-Bogosity
-set date_format="!%d%b %H:%M"
-set folder_format="%2C %t %8s %d %N %f"
-set index_format="%4C %4c%Z %D %-25.25F %?M?(%M) &?%s"
-set markers=no
-set menu_scroll
-set pager_context=1
-set pager_index_lines=5
-set status_format=" @%h:%f <%?n?N%n/?%?M?%M/?%m%?d?/D%d? %?L?%L/?%l>   %?b?NewBox: %b  ?%?F?Flag: %F  ?%?t?Tag: %t  ?%?V?Limit: %V?%> %r(%P)"
-set status_on_top
+ignore *														# ignore all header lines
+unignore  Date From To CC Subject X-Mailer X-Bogosity			# but show these
+hdr_order Date From To CC Subject X-Bogosity					# in this order
+set date_format="!%d%b %H:%M"									# shorten date
+set folder_format="%2C %t %8s %d %N %f"							# more info
+set index_format="%4C %4c%Z %D %-25.25F %?M?(%M) &?%s"			# more info
+set pager_context=1												# show 1 common line when paging
+set pager_index_lines=5											# show some index lines when in pager
+set status_format=" @%h:%f <%?n?N%n/?%?M?%M/?%m%?d?/D%d? %?L?%L/?%l>   %?b?NewBox: %b  ?%?F?Flag: %F  ?%?t?Tag: %t  ?%?V?Limit: %V?%> %r(%P)" # nicefy
+set status_on_top												# show status where it belongs
+
+
+
+### GMANE
+set group_index_format="%5C %M%N %6s %-45.45f %d"				# more info
+set catchup_newsgroup=yes										# quit -> mark all as read
+set followup_to_poster=yes										# include submitter
+set news_server=news.gmane.org									# use this
+set post_moderated=yes											# try posting anyway
 
 
 
 ### GPG
 set pgp_good_sign="^gpg: Good signature from"
 set pgp_sign_as=0x3AFB7CCD
-set pgp_timeout=60
-
-#set crypt_autoencrypt=yes
+#set crypt_autoencrypt
 #set crypt_autosign
-set crypt_replyencrypt=yes
+set crypt_replyencrypt
 set crypt_replysign
-set crypt_replysignencrypted=yes
-set crypt_verify_sig=yes
-
+set crypt_replysignencrypted
+set crypt_verify_sig
 set pgp_decode_command="gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
 set pgp_verify_command="gpg --status-fd=2 --no-verbose --quiet --batch --output - --verify %s %f"
 set pgp_decrypt_command="gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
@@ -95,7 +83,7 @@ set pgp_list_secring_command="gpg --no-verbose --batch --quiet --with-colons --l
 
 ### HTML MESSAGES
 auto_view text/html application/x_pgp_message
-set implicit_autoview=yes
+set implicit_autoview
 set mailcap_path="~/.mailcap"
 
 
@@ -104,7 +92,6 @@ set mailcap_path="~/.mailcap"
 bind pager h display-toggle-weed
 bind pager [ half-up
 bind pager ] half-down
-bind editor <space> noop
 
 
 
