@@ -24,6 +24,7 @@ set editor=vim
 set fast_reply=yes
 set header_cache="~/.mutt/cache/headers"
 set include=yes
+set mark_old=no # do NOT make new unread messages with 'O'
 set message_cachedir="~/.mutt/cache/bodies"
 set move=no
 set pgp_verify_sig=no
@@ -115,11 +116,9 @@ macro index,pager           Gf          "<change-folder>=feeds<enter>" "Go to fr
 macro index,pager           Gi          "<change-folder>=INBOX<enter>" "Go to INBOX"
 macro index,pager           Gs          "<change-folder>=Sent<enter>" "Go to Sent"
 macro index,pager           Gt          "<change-folder>=Trash<enter>" "Go to Trash"
-macro index                 d           "<tag-prefix-cond><clear-flag>N<tag-prefix><save-message>=Trash<enter><end-cond><clear-flag>N<save-message>=Trash<enter>" "trash message"
-macro pager                 d           "<save-message>=Trash<enter>" "trash message"
+macro index,pager           d           "<save-message>=Trash<enter>" "trash message"
 macro index,pager           <Esc>\cD    "<delete-message>" "delete the current entry"
-macro index                 S           "<tag-prefix-cond><clear-flag>N<tag-prefix><save-message>=Spam<enter><end-cond><clear-flag>N<save-message>=Spam<enter>" "Spam"
-macro pager                 S           "<save-message>=Spam<enter>" "Spam"
+macro index,pager           S           "<save-message>=Spam<enter>" "Spam"
 
 
 
@@ -151,7 +150,6 @@ color tilde      red             default
 color tree       cyan            default
 color index      yellow          default  ~F
 color index      green           default  ~N
-color index      green           default  ~O
 color index      cyan            default  ~T
 color index      red             default  ~D
 
