@@ -1,10 +1,21 @@
 " .vimrc
+"
+" VUNDLE
+"
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-"
-" PATHOGEN
-"
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+" manage self
+Bundle 'gmarik/vundle'
+
+" bundles
+Bundle 'bufexplorer.zip'
+Bundle 'Rip-Rip/clang_complete'
+Bundle 'gnupg'
+Bundle 'ervandew/supertab'
+Bundle 'tpope/vim-fugitive'
 
 "
 " SETTINGS

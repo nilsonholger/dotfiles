@@ -28,9 +28,11 @@
 !.muttrc
 !.tmux.conf
 
-!.vim/
+!.vim
 .vim/*
 !.vim/bundle
+.vim/bundle/*
+!.vim/bundle/vundle
 !.vimrc
 
 !.weechat/
