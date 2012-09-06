@@ -88,8 +88,8 @@ if has("autocmd")
 	au BufNew * set foldlevel=20
 	au BufNewFile,BufRead,BufEnter *.c,*.cc,*.cpp,*.c++,*.h,*.hh,*.hpp set omnifunc=ClangComplete
 	au BufReadPost fugitive://* set bufhidden=delete
-	au BufWinEnter *.* silent loadview
-	au BufWinLeave *.* mkview
+	"au BufEnter *.* silent! loadview
+	"au BufLeave *.* mkview
 	au! BufWritePost $MYVIMRC source $MYVIMRC
 	au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 	au VimEnter * silent if filereadable("Session.vim") | source Session.vim | endif
@@ -109,6 +109,7 @@ nnoremap <leader><space> :noh<CR>
 nnoremap <leader>c :<c-u>call ToggleComment('false')<cr>
 vnoremap <leader>c :<c-u>call ToggleComment('true')<cr>
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
+nnoremap <leader>h :call SwitchHS()<cr>
 nnoremap <leader>l :set list!<CR>
 nnoremap <leader>n :set number!<CR>
 nnoremap <leader>s :set spell!<CR>
@@ -265,4 +266,18 @@ function! ToggleComment(visual)
 			call setline(l:line, substitute(getline(l:line), '\(^\s*\)\([^$]\)', '\1'.l:c_sign.'\2', "g"))
 		endif
 	endfor
+endfunction
+
+" Switch between source/header
+function! SwitchHS()
+	let l:e=expand('%:e')
+	try
+	if l:e=~'^c'
+		edit **/%:t:r.h*
+	elseif l:e=~'^h'
+		edit **/%:t:r.c*
+	endif
+	catch /.*/
+		echo v:exception
+	endtry
 endfunction
