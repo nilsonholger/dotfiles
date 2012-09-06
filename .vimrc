@@ -106,6 +106,8 @@ endif
 "
 " general
 nnoremap <leader><space> :noh<CR>
+nnoremap <leader>c :<c-u>call ToggleComment('false')<cr>
+vnoremap <leader>c :<c-u>call ToggleComment('true')<cr>
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 nnoremap <leader>l :set list!<CR>
 nnoremap <leader>n :set number!<CR>
@@ -229,4 +231,38 @@ function! Ack(string)
 	silent grep
 	redraw!
 	copen
+endfunction
+
+" ToggleComment
+function! ToggleComment(visual)
+	if (&ft=='c'||&ft=='cpp')
+		let l:c_sign='//'
+	elseif (&ft=='sh'||&ft=='conf'||&ft=='config')
+		let l:c_sign='#'
+	elseif (&ft=='tex')
+		let l:c_sign='%'
+	elseif (&ft=='vim')
+		let l:c_sign='"'
+	endif
+	if !exists("l:c_sign")
+		echo "Filetype not supported!"
+		return
+	endif
+
+	if a:visual=='true'
+		exe 'normal! gv'
+		let l:lines=[line('v'), line('.')]
+		exe 'normal! "_y'
+		let lines = sort(lines)
+	else
+		let l:lines=[line('.'), line('.')]
+	endif
+
+	for l:line in reverse(range(l:lines[0], l:lines[1]))
+		if getline(l:lines[0])=~ '^\s*'.l:c_sign
+			call setline(l:line, substitute(getline(l:line), '\(^\s*\)'.l:c_sign, '\1', "g"))
+		else
+			call setline(l:line, substitute(getline(l:line), '\(^\s*\)\([^$]\)', '\1'.l:c_sign.'\2', "g"))
+		endif
+	endfor
 endfunction
