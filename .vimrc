@@ -151,7 +151,8 @@ map <silent> <leader>ma :call Make("all")<CR>
 map <silent> <leader>mc :call Make("clean")<CR>
 map <silent> <leader>mm :call Make(" ")<CR>
 map <silent> <leader>mr :call Make("run")<CR>
-map <silent> <leader>mt :call Ack("TODO")<CR>
+map <silent> <leader>at :call Ack("TODO")<CR>
+map <silent> <leader>aa :call Ack("ask")<CR>
 map <silent> <leader>mv :call Make("VERBOSE=1")<CR>
 
 " fugitive
@@ -221,8 +222,11 @@ endfunction
 
 " ack
 function! Ack(string)
-	:let &grepprg="ack " . a:string
-	:silent grep
-	:redraw!
-	:copen
+	if a:string=="ask"
+		let a:string = input("Ack: ")<bar>
+	endif
+	let &grepprg="ack " . a:string
+	silent grep
+	redraw!
+	copen
 endfunction
