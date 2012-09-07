@@ -273,9 +273,9 @@ function! SwitchHS()
 	let l:e=expand('%:e')
 	try
 	if l:e=~'^c'
-		edit **/%:t:r.h*
+		find **/%:t:r.h*
 	elseif l:e=~'^h'
-		edit **/%:t:r.c*
+		find **/%:t:r.c*
 	endif
 	catch /.*/
 		echo v:exception
