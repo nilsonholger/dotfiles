@@ -226,9 +226,11 @@ endfunction
 " ack
 function! Ack(string)
 	if a:string=="ask"
-		let a:string = input("Ack: ")<bar>
+		let l:string = input("Ack: ")
+	else
+		let l:string = a:string
 	endif
-	let &grepprg="ack " . a:string
+	let &grepprg="ack " . l:string
 	silent grep
 	redraw!
 	copen
