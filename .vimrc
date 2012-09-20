@@ -108,6 +108,7 @@ endif
 nnoremap <leader><space> :noh<CR>
 nnoremap <leader>c :<c-u>call ToggleComment('false')<cr>
 vnoremap <leader>c :<c-u>call ToggleComment('true')<cr>
+nnoremap <leader>C :call ToggleColorColumn()<cr>
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 nnoremap <leader>h :call SwitchHS()<cr>
 nnoremap <leader>l :set list!<CR>
@@ -282,4 +283,13 @@ function! SwitchHS()
 	catch /.*/
 		echo v:exception
 	endtry
+endfunction
+
+" Toggle colorcolumn
+function! ToggleColorColumn()
+	if &colorcolumn>0
+		set colorcolumn=0
+	else
+		set colorcolumn=80
+	endif
 endfunction
