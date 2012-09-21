@@ -257,7 +257,10 @@ function! ToggleComment(visual)
 		exe 'normal! gv'
 		let l:lines=[line('v'), line('.')]
 		exe 'normal! "_y'
-		let lines = sort(lines)
+		function! NumSort(i1, i2)
+			return a:i1==a:i2?0: a:i1>a:i2?1:-1
+		endfunc
+		let lines = sort(lines, "NumSort")
 	else
 		let l:lines=[line('.'), line('.')]
 	endif
