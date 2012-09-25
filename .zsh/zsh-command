@@ -1,3 +1,4 @@
 # login commands
 $_HYVE && [ -z $TMUX ] && tmux a && exit
 $_I14 && [ ! -z $DISPLAY ] && setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch
+$_I14 && [ ! -z $DISPLAY ] && xmodmap -e 'pointer = 3 2 1 5 4' 2> /dev/null
