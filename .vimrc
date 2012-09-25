@@ -249,7 +249,7 @@ function! ToggleComment(visual)
 		let l:c_sign='"'
 	endif
 	if !exists("l:c_sign")
-		echo "Filetype not supported!"
+		echo "ToggleComment(): Filetype not supported!"
 		return
 	endif
 
