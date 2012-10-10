@@ -5,6 +5,8 @@ source ~/.mutt/muttrc-server
 
 ### SETTINGS
 alternative_order text/enriched text/plain text/html	# prefer tetx to html
+set alias_file=~/.mutt/aliases							# alias file
+source ~/.mutt/aliases									# source it
 set beep=no												# SILENCIUM
 set certificate_file=~/.mutt/certificates				# my trusted ones
 set confirmappend=no									# do NOT ask, just append to another mailbox
