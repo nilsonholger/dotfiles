@@ -113,7 +113,7 @@ macro index,pager           S           "<save-message>=Spam<enter>" "Spam"
 
 ### COLORS
 color error      red             default
-color indicator  white           default
+color indicator  brightwhite     default
 color markers    yellow          default
 color message    red             default
 color normal     default         default
