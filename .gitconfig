@@ -37,7 +37,7 @@
 	pager = less -FRSX
 
 [diff]
-	ignoreSubmodules = dirty
+	ignoreSubmodules = all
 
 [fetch]
 	recurseSubmodules = false
