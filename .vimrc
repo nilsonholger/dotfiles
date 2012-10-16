@@ -88,17 +88,10 @@ if has("autocmd")
 	au BufNew * set foldlevel=20
 	au BufNewFile,BufRead,BufEnter *.c,*.cc,*.cpp,*.c++,*.h,*.hh,*.hpp set omnifunc=ClangComplete
 	au BufReadPost fugitive://* set bufhidden=delete
-	"au BufEnter *.* silent! loadview
-	"au BufLeave *.* mkview
 	au! BufWritePost $MYVIMRC source $MYVIMRC
 	au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 	au VimEnter * silent if filereadable("Session.vim") | source Session.vim | endif
 	au VimResized * exe "normal! \<c-w>="
-
-	"augroup ft_c
-	"	au!
-	"	au FileType c setlocal foldmethod=syntax
-	"augroup END
 endif
 
 "
