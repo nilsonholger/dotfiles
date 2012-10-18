@@ -242,7 +242,7 @@ sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Curre
 }
 
 function osx_timemachine {
-#TODO not yet dane, after backing up to external hard-drive, tmutil machinedirectory is empty, does NOT backup to airport extreme disk, only after pressing button on time machine icon to "Backup Now"
+#TODO after using external disk, rotation fails, use tmutil setdestination (requires root) to set ID (from tmutil destinationinfo)
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 sudo tmutil disable
 sudo tmutil enablelocal
