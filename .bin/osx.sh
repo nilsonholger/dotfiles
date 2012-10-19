@@ -66,7 +66,7 @@ defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool false
 }
 
 function osx_general {
-defaults write -g AppleScrollerPagingBehavior -int 0 # scroll bar: jump to clicked spot
+defaults write -g AppleScrollerPagingBehavior -int 1 # scroll bar: jump to clicked spot
 defaults write -g NSTableViewDefaultSizeMode -int 1 # sidebar icon size: small
 defaults write -g NSQuitAlwaysKeepsWindows -bool true # resume windows
 #defaults write -g NSDisableAutomaticTermination -bool true # sudden termination
