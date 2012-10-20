@@ -56,7 +56,7 @@ function osx_finder {
 chflags nohidden ~/Library
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true # no .DS_Store on network volumes
 defaults write com.apple.finder AppleShowAllExtensions -bool true
-defaults write com.apple.finder AppleShowAllFiles -bool true
+#defaults write com.apple.finder AppleShowAllFiles -bool true
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 defaults write com.apple.finder NewWindowTargetPath -string "file://localhost/Users/dk/"
 defaults write com.apple.finder QLEnableTextSelection -bool true
