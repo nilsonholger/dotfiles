@@ -1,10 +1,9 @@
 # basics
+$_MBP && fpath=($fpath ~/.zsh/fpath)
 autoload -Uz compinit
 compinit
 autoload -U colors
 colors
-
-$_MBP && fpath=($fpath ~/.zsh/fpath)
 
 HISTFILE=~/.histfile
 SAVEHIST=32676
