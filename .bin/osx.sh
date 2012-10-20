@@ -76,7 +76,7 @@ defaults write -g ShowStatusBar -bool true # finder: show status bar
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -int 1 # tap to click
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -int 1
 defaults write com.apple.dock showAppExposeGestureEnabled -bool true # trackpad: enable app expose
-defaults write com.apple.menuextra.clock IsAnalog -bool false # analog clack
+defaults write com.apple.menuextra.clock IsAnalog -bool true # analog clock
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName # more verbose clock icon
 sudo scutil --set ComputerName "mbp"
 sudo scutil --set HostName "mbp"
