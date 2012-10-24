@@ -80,6 +80,8 @@ set wildignore+=*.spl                            " compiled spelling word lists
 set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
 
+" various
+let g:changelog_username = "NilsonHolger <nilsonholger@hyve.org>"
 "
 " AUTOCOMMAND
 "
