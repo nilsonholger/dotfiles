@@ -296,6 +296,10 @@ function! ToggleColorColumn()
 	if &colorcolumn>0
 		set colorcolumn=0
 	else
-		set colorcolumn=80
+		if !(&textwidth==0)
+			let &colorcolumn=&textwidth
+		else
+			set colorcolumn=80
+		endif
 	endif
 endfunction
