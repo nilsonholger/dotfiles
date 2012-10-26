@@ -82,6 +82,7 @@ set wildignore+=*.DS_Store                       " OSX bullshit
 
 " various
 let g:changelog_username = "NilsonHolger <nilsonholger@hyve.org>"
+
 "
 " AUTOCOMMAND
 "
@@ -223,7 +224,7 @@ function! Make(target)
 		set makeprg=csound\ '%:r.'orc\ '%:r.'sco
 	endif
 	:silent w
-	:silent make
+	:silent make!
 	:redraw!
 endfunction
 
