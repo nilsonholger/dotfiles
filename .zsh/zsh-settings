@@ -6,7 +6,9 @@ autoload -U colors
 colors
 
 HISTFILE=~/.histfile
+HISTSIZE=32676
 SAVEHIST=32676
+setopt extendedhistory
 setopt histignorealldups
 setopt histignorespace
 setopt histnostore
