@@ -57,6 +57,9 @@
 [rebase]
 	stat = true
 
+[rerere]
+	enabled = 1
+
 [status]
 	submodulesummary = true
 
