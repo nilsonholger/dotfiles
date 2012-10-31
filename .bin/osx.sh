@@ -43,6 +43,8 @@ sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.p
 
 function osx_dock {
 defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock autohide-time-modifier -float 0.25
 defaults write com.apple.dock dashboard-in-overlay -bool true
 defaults write com.apple.dock expose-animation-duration -float 0.1
 defaults write com.apple.dock minimize-to-application -bool true
