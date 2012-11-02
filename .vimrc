@@ -245,7 +245,7 @@ endfunction
 function! ToggleComment(visual)
 	if (&ft=='c'||&ft=='cpp')
 		let l:c_sign='//'
-	elseif (&ft=='sh'||&ft=='conf'||&ft=='config'||&ft=='cmake')
+	elseif (&ft=='sh'||&ft=='conf'||&ft=='config'||&ft=='cmake'||&ft=='zsh')
 		let l:c_sign='#'
 	elseif (&ft=='tex')
 		let l:c_sign='%'
