@@ -64,7 +64,7 @@ function precmd {
 
 
 # prompts
-PROMPT='%F{yellow}%(1j.[%j].)$_GIT_STATUS%F{red}%(?..[%?])%F{green}%.%F{yellow}%#%(2L.+.) %f'
+PROMPT='%F{yellow}%(1j.[%j].)$_GIT_STATUS%F{red}%(?..[%?]) %F{green}%.%F{yellow}%#%(2L.+.) %f'
 RPROMPT='$_BATTERY_STATUS%F{red}[%n@%m]%F{cyan}[%T]%f'
 LISTPROMPT=''
 SPROMPT="%F{yellow}%R %F{white}%b-> %F{green}%r %F{white}%b? [aeNy]%f "
