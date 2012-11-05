@@ -1,6 +1,7 @@
 [alias]
 	a = add
 	b = branch
+	bs = branch -vv
 	ci = commit
 	co = checkout
 	d = diff
