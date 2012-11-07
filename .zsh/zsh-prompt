@@ -29,7 +29,7 @@ function _battery_status {
 	[ "$_BATTERY_STATUS" = "CHARGING" ] && _BATTERY_COLOR="%F{cyan}"
 
 	# build output
-	_BATTERY_STATUS="${_BATTERY_COLOR}$_BATTERY_TIME@$_BATTERY_CHARGE%%%f"
+	_BATTERY_STATUS="${_BATTERY_COLOR}$_BATTERY_TIME@$_BATTERY_CHARGE%%f"
 }
 _battery_status
 periodic_functions+=(_battery_status)
