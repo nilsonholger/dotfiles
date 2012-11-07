@@ -50,7 +50,7 @@ function _git_status {
 	[[ $_GIT_TMP =~ \\?\\? ]] && _GIT_STATUS+="%F{red}#"
 	[[ $_GIT_TMP =~ ahead ]] && _GIT_STATUS+="%F{green}@${${_GIT_TMP/*ahead }/[,\]]*}"
 	[[ $_GIT_TMP =~ behind ]] && _GIT_STATUS+="%F{red}@${${_GIT_TMP/*behind }/\]*}"
-	[ ! -z $_GIT_STATUS ] && _GIT_STATUS="%F{cyan}$_GIT_DIR:${(R)${(fR)_GIT_TMP/\#\# }/[ .]*}$_GIT_STATUS%f"
+	[ ! -z $_GIT_STATUS ] && _GIT_STATUS=" %F{cyan}$_GIT_DIR:${(R)${(fR)_GIT_TMP/\#\# }/[ .]*}$_GIT_STATUS%f"
 }
 function _git_update {
 	_git_dir
@@ -64,7 +64,7 @@ function precmd {
 
 
 # prompts
-PROMPT='$_GIT_STATUS%(1j.%F{yellow}%%%j.)%(?..%F{red}%B!%?%b) %F{green}%.%F{yellow}%#%(2L.%B+%b.) %f'
-RPROMPT='$_BATTERY_STATUS %F{red}%n@%m %F{cyan}%T%f'
+PROMPT='%F{red}%m%(1j.%F{yellow}[%j].)$_GIT_STATUS %F{green}%.%(?..%F{red}%B[%?]%b)%F{yellow}%#%(2L.%B+%b.) %f'
+RPROMPT='$_BATTERY_STATUS %F{cyan}%T%f'
 LISTPROMPT=''
 SPROMPT="%F{yellow}%R %F{white}%b-> %F{green}%r %F{white}%b? [aeNy]%f "
