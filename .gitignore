@@ -17,6 +17,8 @@
 !.gitignore
 !.gitmodules
 
+!.gdbinit
+
 !.gnupg/
 .gnupg/*
 !.gnupg/gpg.conf
