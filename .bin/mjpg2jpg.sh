@@ -56,12 +56,12 @@ hash ffmpeg 2>/dev/null || abort "NO FFMPEG FOUND!"
 
 # set options
 QUIET='&> /dev/null'
-IGNORE=true
+IGNORE=''
 for i in $@
 do
 	case $i in
 		'-v'|'--verbose') QUIET=''; shift;;
-		'-i'|'--ignore') IGNORE=false; shift;;
+		'-i'|'--ignore') IGNORE="TRUE"; shift;;
 	esac
 done
 
@@ -77,7 +77,8 @@ done
 DIR_NAME="`stat --printf='%y' $1`"
 DIR_NAME="${DIR_NAME/\.*}"
 DIR_NAME="${DIR_NAME/ /_}"
-(mkdir "$DIR_NAME" 2>/dev/null || $IGNORE) && abort "DIRECTORY ALREADY EXISTS: $DIR_NAME"
+[ -d $DIR_NAME -a -z "$IGNORE" ] && abort "DIRECTORY ALREADY EXISTS: $DIR_NAME"
+mkdir "$DIR_NAME" 2>/dev/null
 
 
 
