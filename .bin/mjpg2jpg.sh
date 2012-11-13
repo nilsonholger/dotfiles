@@ -29,15 +29,16 @@ message() {
 	case $1 in
 		'ABORT') echo -e "\e[1;31m>>> $2\e[0m"; exit;;
 		'HELP')
-		echo "usage: `basename $0` [-v] <video_1> ...
+		echo "usage: `basename $0` [options] <video_1> ...
 
+options:
    -c|--count  <arg> output file \${COUNT} starts with <arg> (see *output name*)
    -h|--help         this help message
    -i|--ignore       ignore existing directory (overwrite files inside)
    -n|--name   <arg> output file name scheme (see *output name*)
    -v|--verbose      verbose output
 
-   output name (default: 'frame_\${FRAME}_\${COUNT}.jpg'):
+output name (default 'frame_\${FRAME}_\${COUNT}.jpg'):
       a string that indicates the output file names, the following sequences
       are supported (please surround the string with \"\")
       \${FRAME}    the frame number
