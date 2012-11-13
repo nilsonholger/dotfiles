@@ -46,7 +46,7 @@ hash ffmpeg 2>/dev/null || abort "NO FFMPEG FOUND!"
 
 
 # check input
-[ -z "$1" -o -z "$2" ] && echo "usage: $0 [-v] <video_1> <video_2>
+[ -z "$1" -o -z "$2" ] && echo "usage: `basename $0` [-v] <video_1> <video_2>
 
    -v|--verbose      verbose output
    -i|--ignore       ignore existing files (overwrite)
