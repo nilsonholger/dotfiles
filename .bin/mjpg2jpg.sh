@@ -24,67 +24,85 @@
 
 
 
-# abort with message
-abort() {
-	echo -e "\e[1;31m>>> $1\e[0m"
-	exit
-}
-
-
-
-# normal message
+# message system
 message() {
-	echo -e "\e[1;32m>>> $1\e[0m"
+	case $1 in
+		'ABORT') echo -e "\e[1;31m>>> $2\e[0m"; exit;;
+		'HELP')
+		echo "usage: `basename $0` [-v] <video_1> ...
+
+   -h|--help         this help message
+   -i|--ignore       ignore existing files (overwrite)
+   -n|--name         output file name scheme, see *output name*
+   -v|--verbose      verbose output
+
+   output name (default: 'frame_\${FRAME}_\${COUNT}.jpg'):
+      a string that indicates the output file names, the following sequences
+      are supported (please surround the string with \"\")
+      \${FRAME}    the frame number
+      \${COUNT}    the input file number
+" && exit
+			;;
+		*) echo -e "\e[0;33m>>> $1\e[0m";;
+	esac
 }
 
 
 
 # check dependencies
-hash ffmpeg 2>/dev/null || abort "NO FFMPEG FOUND!"
+hash ffmpeg 2>/dev/null || message "ABORT" "NO FFMPEG FOUND!"
 # todo: include usage of 'avconv'
 
 
 
-# check input
-[ -z "$1" -o -z "$2" ] && echo "usage: `basename $0` [-v] <video_1> <video_2>
-
-   -v|--verbose      verbose output
-   -i|--ignore       ignore existing files (overwrite)
-" && exit
-
-
-
 # set options
-QUIET='&> /dev/null'
-IGNORE=''
+_QUIET='&> /dev/null'
+_IGNORE=''
+_FILE_NAME_FORMAT='frame_${FRAME}_${COUNT}.jpg'
+FRAME='%d'
+COUNT=1
 for i in $@
 do
 	case $i in
-		'-v'|'--verbose') QUIET=''; shift;;
-		'-i'|'--ignore') IGNORE="TRUE"; shift;;
+		'-h'|'--help') message "HELP";;
+		'-i'|'--ignore') _IGNORE="TRUE"; shift;;
+		'-n'|'--name')
+			shift
+			_FILE_NAME_FORMAT="$1"
+			message "USING FILE NAME FORMAT: $_FILE_NAME_FORMAT"
+			shift
+			;;
+		'-v'|'--verbose') _QUIET=''; shift;;
 	esac
 done
 
 
 
-# check file existence
-[ ! -f "$1" ] && abort "FILE NOT FOUND: $1"
-[ ! -f "$2" ] && abort "FILE NOT FOUND: $2"
+# check file arguments
+[ $# -eq 0 ] && message "ABORT" "NO FILES GIVEN!"
+for i in $@
+do
+	[ ! -f "$i" ] && message "ABORT" "FILE NOT FOUND: $i"
+done
 
 
 
 # create target directory
-DIR_NAME="`stat --printf='%y' $1`"
-DIR_NAME="${DIR_NAME/\.*}"
-DIR_NAME="${DIR_NAME/ /_}"
-[ -d $DIR_NAME -a -z "$IGNORE" ] && abort "DIRECTORY ALREADY EXISTS: $DIR_NAME"
-mkdir "$DIR_NAME" 2>/dev/null
+_DIR_NAME="`stat --printf='%y' $1`"
+_DIR_NAME="${_DIR_NAME/\.*}"
+_DIR_NAME="${_DIR_NAME/ /_}"
+[ -d $_DIR_NAME -a -z "$_IGNORE" ] && message "ABORT" "DIRECTORY ALREADY EXISTS: $_DIR_NAME"
+message "CREATING OUTPUT DIRECTORY: $_DIR_NAME"
+eval mkdir "$_DIR_NAME" $_QUIET
 
 
 
 # converting
-message "CONVERTING $1"
-eval ffmpeg -i $1 -vcodec copy -vbsf mjpeg2jpeg $DIR_NAME/frame_%d_1.jpg $QUIET
-message "CONVERTING $2"
-eval ffmpeg -i $2 -vcodec copy -vbsf mjpeg2jpeg $DIR_NAME/frame_%d_2.jpg $QUIET
+for i in $@
+do
+	_FILE=`eval echo $_FILE_NAME_FORMAT`
+	message "CONVERTING $i -> $_DIR_NAME/${_FILE_NAME_FORMAT/\$\{COUNT\}/$COUNT}"
+	eval ffmpeg -i $i -vcodec copy -vbsf mjpeg2jpeg $_DIR_NAME/$_FILE $_QUIET
+	((COUNT++))
+done
 message "DONE"
