@@ -32,7 +32,7 @@ message() {
 		echo "usage: `basename $0` [-v] <video_1> ...
 
    -h|--help         this help message
-   -i|--ignore       ignore existing files (overwrite)
+   -i|--ignore       ignore existing directory (overwrite files inside)
    -n|--name         output file name scheme, see *output name*
    -v|--verbose      verbose output
 
@@ -101,7 +101,7 @@ eval mkdir "$_DIR_NAME" $_QUIET
 for i in $@
 do
 	_FILE=`eval echo $_FILE_NAME_FORMAT`
-	message "CONVERTING $i -> $_DIR_NAME/${_FILE_NAME_FORMAT/\$\{COUNT\}/$COUNT}"
+	message "CONVERTING $i -> $_DIR_NAME/$_FILE}"
 	eval ffmpeg -i $i -vcodec copy -vbsf mjpeg2jpeg $_DIR_NAME/$_FILE $_QUIET
 	((COUNT++))
 done
