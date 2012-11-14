@@ -226,6 +226,11 @@ function! Make(target)
 	:silent w
 	:silent make!
 	:redraw!
+	:redir => l:message
+	:silent clast
+	:redir END
+	:silent cfirst
+	:echo strpart(l:message, 1)
 endfunction
 
 " ack
