@@ -49,8 +49,9 @@
 	autocorrect = 10
 
 [merge]
-	stat = true
 	ff = false
+	log = true
+	stat = true
 	tool = vimdiff
 
 [push]
