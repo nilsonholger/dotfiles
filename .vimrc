@@ -95,6 +95,7 @@ if has("autocmd")
 	au! BufWritePost $MYVIMRC source $MYVIMRC
 	au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 	au VimEnter * silent if filereadable("Session.vim") | source Session.vim | endif
+	au VimLeave * silent if filereadable("Session.vim") | mksession!  Session.vim | endif
 	au VimResized * exe "normal! \<c-w>="
 endif
 
