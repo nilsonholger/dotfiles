@@ -7,6 +7,7 @@ $_HYVE && alias logtty='tail -F /var/log/messages /var/log/maillog /usr/jails/*.
 $_MBP && alias logtty='tail -F /var/log/system.log > $TTY &'
 alias gpg-enc='gpg --multifile -r hyve -e'
 alias gpg-dec='gpg --multifile -d'
+$_I14 && alias ktmux='krenew -biL -- /usr/bin/zsh -c "tmux new -d && while tmux ls &>/dev/null; do sleep 60; done"; sleep 1; tmux a'
 alias org='(cd ~/.org && git pull; vim todo; orgci)'
 alias orgci='(cd ~/.org && git ci -a -m "[`hostname`] `git diff --unified=0 | tail -n+6 | grep -m1 -o \"... \w[^:\W]*" | head -n1` [`git diff --stat | head -n1 | grep -o -E \"[0-9].*\"`] " && git push)'
 alias ps='ps faux'
