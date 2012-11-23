@@ -224,14 +224,14 @@ function! Make(target)
 	elseif expand('%:e') == 'orc' || expand('%:e') == 'sco'
 		set makeprg=csound\ '%:r.'orc\ '%:r.'sco
 	endif
-	:silent w
-	:silent make!
-	:redraw!
-	:redir => l:message
-	:silent clast
-	:redir END
-	:silent cfirst
-	:echo strpart(l:message, 1)
+	silent w
+	silent make!
+	redraw!
+	redir => l:message
+	silent! clast
+	redir END
+	silent! cfirst
+	echo strpart(l:message, 1)
 endfunction
 
 " ack
