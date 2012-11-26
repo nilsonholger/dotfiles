@@ -16,6 +16,7 @@ Bundle 'Rip-Rip/clang_complete'
 Bundle 'gnupg'
 Bundle 'ervandew/supertab'
 Bundle 'tpope/vim-fugitive'
+Bundle 'vimwiki'
 
 "
 " SETTINGS
@@ -195,6 +196,9 @@ endif
 
 " supertab
 let g:SuperTabDefaultCompletionType = "context"
+
+" vimwiki
+let g:vimwiki_list = [{'path': '~/.org/'}]
 
 "
 " FUNCTIONS
