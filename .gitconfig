@@ -8,9 +8,10 @@
 	di = diff --cached
 	dis = diff --cached --stat
 	ds = diff --stat
-	l = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-	la = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
-	ll = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -n 1
+	l = log --graph
+	la = log --graph --all
+	lr = log --walk-reflogs
+	ll = log --graph -n 1
 	s = status -s -b
 	sub = submodule foreach git
 
@@ -44,8 +45,15 @@
 [fetch]
 	recurseSubmodules = false
 
+[format]
+	pretty = format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+
 [help]
 	autocorrect = 10
+
+[log]
+	abbrevCommit = true
+	date = relative
 
 [merge]
 	ff = false
