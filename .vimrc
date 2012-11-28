@@ -255,16 +255,12 @@ endfunction
 function! ToggleComment(visual)
 	if (&ft=='c'||&ft=='cpp')
 		let l:c_sign='//'
-	elseif (&ft=='sh'||&ft=='conf'||&ft=='config'||&ft=='cmake'||&ft=='zsh')
-		let l:c_sign='#'
 	elseif (&ft=='tex')
 		let l:c_sign='%'
 	elseif (&ft=='vim')
 		let l:c_sign='"'
-	endif
-	if !exists("l:c_sign")
-		echo "ToggleComment(): Filetype not supported!"
-		return
+	else
+		let l:c_sign='#'
 	endif
 
 	if a:visual=='true'
