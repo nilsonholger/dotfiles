@@ -70,7 +70,7 @@ myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
 myLogHook = return ()
 myStartupHook = do
-    spawn "display -window root ~/.xmonad/background.xpm"
+    spawn "display -window root ~/.xmonad/background.jpg"
     spawn "~/local/bin/urxvtd -q -f -o"
 
 main = xmonad defaults
