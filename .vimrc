@@ -145,7 +145,8 @@ noremap <C-k>  <C-w>k
 noremap <C-l>  <C-w>l
 
 " quickfix
-map <silent> <leader>qq :QFix<CR>
+map <silent> <leader>\ :QFix<CR>
+map <silent> <leader>qc :cc<CR>
 map <silent> <leader>qn :cnext<CR>
 map <silent> <leader>qp :cprev<CR>
 
@@ -232,9 +233,8 @@ function! Make(target)
 	silent make!
 	redraw!
 	redir => l:message
-	silent! clast
+	silent! clist! -1
 	redir END
-	silent! cfirst
 	echo strpart(l:message, 1)
 endfunction
 
