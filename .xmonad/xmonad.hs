@@ -1,4 +1,5 @@
 import XMonad
+import XMonad.Hooks.SetWMName
 import System.Exit
 
 import qualified XMonad.StackSet as W
@@ -70,6 +71,7 @@ myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
 myLogHook = return ()
 myStartupHook = do
+    setWMName "LG3D"
     spawn "display -window root ~/.xmonad/background.jpg"
     spawn "~/local/bin/urxvtd -q -f -o"
 
