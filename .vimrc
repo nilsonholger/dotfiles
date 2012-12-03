@@ -93,7 +93,6 @@ if has("autocmd")
 	au BufNewFile,BufRead,BufEnter *.c,*.cc,*.cpp,*.c++,*.h,*.hh,*.hpp set omnifunc=ClangComplete
 	au BufReadPost fugitive://* set bufhidden=delete
 	au BufReadPost * silent! normal g;zz
-	au BufReadPost * :silent if &ft=~ '\( \|text\)' | set ft=config | endif
 	au! BufWritePost $MYVIMRC windo source $MYVIMRC
 	au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 	au VimEnter * silent if filereadable("Session.vim") | source Session.vim | endif
