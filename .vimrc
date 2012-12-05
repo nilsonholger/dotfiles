@@ -284,15 +284,18 @@ function! ToggleComment(visual)
 	endfor
 endfunction
 
-" Switch between source/header
+" Switch between source/header (*.(h|hh|c|cc) or *.(h|c)(pp|xx|++|..))
 function! SwitchHS()
-	let l:e=expand('%:e')
+	let l:ext=expand('%:e')
+	let l:next=""
 	try
-	if l:e=~'^c'
-		find **/%:t:r.h*
-	elseif l:e=~'^h'
-		find **/%:t:r.c*
-	endif
+		if l:ext=~'^c' | let l:next="h" | elseif l:ext=~'^h' | let l:next="c" | endif
+		if strlen(l:ext)<3
+			let v:errmsg = "" | silent! execute 'find **/%:t:r.'.l:next
+			if !empty(v:errmsg) | execute 'find **/%:t:r.'.l:next.l:next | endif
+		else
+			execute 'find **/%:t:r.'.l:next.strpart(l:ext, 1, 2)
+		endif
 	catch /.*/
 		echo v:exception
 	endtry
