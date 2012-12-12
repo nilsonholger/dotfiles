@@ -31,7 +31,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask,               xK_t     ), withFocused $ windows . W.sink)
     , ((modMask              , xK_comma ), sendMessage (IncMasterN 1))
     , ((modMask              , xK_period), sendMessage (IncMasterN (-1)))
-    , ((modMask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
+    , ((modMask .|. shiftMask, xK_q     ), shutdown)
     , ((modMask              , xK_q     ), spawn "xmonad --recompile; xmonad --restart&")
     ]
     ++
@@ -74,10 +74,14 @@ myStartupHook = do
     setWMName "LG3D"
     spawn "display -window root ~/.xmonad/background.jpg"
     spawn "~/local/bin/urxvtd -q -f -o"
+    spawn "hash cpu_governor && /usr/sbin/cpu_governor performance"
 
-main = xmonad defaults
+shutdown = do
+    spawn "hash cpu_governor && /usr/sbin/cpu_governor ondemand"
+    io (exitWith ExitSuccess)
 
-defaults = defaultConfig {
+main = xmonad defaultConfig
+    {
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
         borderWidth        = myBorderWidth,
