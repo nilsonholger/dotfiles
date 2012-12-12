@@ -111,7 +111,7 @@ done
 
 
 # create target directory
-_DIR_NAME="`stat --printf='%y' $1 &>/dev/null`"
+_DIR_NAME="`stat --printf='%y' $1 2>/dev/null`"
 [ -z "$_DIR_NAME" ] && _DIR_NAME="`date -j -f "%s" \`stat -f %c $1\` "+%Y-%m-%d_%T"`"
 _DIR_NAME="${_DIR_NAME/\.*}"
 _DIR_NAME="${_DIR_NAME/ /_}"
