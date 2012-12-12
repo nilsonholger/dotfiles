@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env zsh
 #
 # convert a video to individual images
 #
@@ -66,7 +66,7 @@ hash ffmpeg 2>/dev/null || message "ABORT" "NO FFMPEG FOUND!"
 _QUIET='&> /dev/null'
 _IGNORE=''
 _FILE_NAME_FORMAT='frame_${FRAME}_${COUNT}.png'
-_TYPE=''
+_TYPE='AUTO'
 FRAME='%d'
 COUNT=1
 for i in $@
@@ -111,10 +111,11 @@ done
 
 
 # create target directory
-_DIR_NAME="`stat --printf='%y' $1`"
+_DIR_NAME="`stat --printf='%y' $1 &>/dev/null`"
+[ -z "$_DIR_NAME" ] && _DIR_NAME="`date -j -f "%s" \`stat -f %c $1\` "+%Y-%m-%d_%T"`"
 _DIR_NAME="${_DIR_NAME/\.*}"
 _DIR_NAME="${_DIR_NAME/ /_}"
-[ -d $_DIR_NAME -a -z "$_IGNORE" ] && message "ABORT" "DIRECTORY ALREADY EXISTS: $_DIR_NAME"
+[ -d "$_DIR_NAME" -a -z "$_IGNORE" ] && message "ABORT" "DIRECTORY ALREADY EXISTS: $_DIR_NAME"
 message "CREATING OUTPUT DIRECTORY: $_DIR_NAME"
 eval mkdir "$_DIR_NAME" $_QUIET
 
