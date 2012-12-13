@@ -38,6 +38,7 @@ options:
    -n|--name   <arg> output file name scheme (see *output name*)
    -t|--type   <arg> use type conversion (see *types*)
    -v|--verbose      verbose output
+   -z|--zero   <arg> number of padding zeros (default: 5)
 
 types (default 'auto'):
       auto         let ffmpeg decide (might not always work)
@@ -67,7 +68,8 @@ _QUIET='&> /dev/null'
 _IGNORE=''
 _FILE_NAME_FORMAT='frame_${FRAME}_${COUNT}.png'
 _TYPE='AUTO'
-FRAME='%d'
+_PADDING='5'
+FRAME="%0${_PADDING}d"
 COUNT=1
 for i in $@
 do
@@ -96,6 +98,12 @@ do
 			shift
 			;;
 		'-v'|'--verbose') _QUIET=''; shift;;
+		'-z'|'--zero')
+			shift
+			_PADDING=$1
+			FRAME="%0${_PADDING}d"
+			shift
+			;;
 	esac
 done
 
