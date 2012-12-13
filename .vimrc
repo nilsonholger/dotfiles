@@ -104,7 +104,8 @@ endif
 " MAPS
 "
 " general
-nnoremap <leader><space> :noh<CR>
+let mapleader=' ' " normally mapped to <Right>, not really useful
+nnoremap <leader>N :noh<CR>
 nnoremap <leader>c :<c-u>call ToggleComment('false')<cr>
 vnoremap <leader>c :<c-u>call ToggleComment('true')<cr>
 nnoremap <leader>C :call ToggleColorColumn()<cr>
@@ -120,8 +121,6 @@ inoremap jj <ESC>
 nnoremap / /\v
 vnoremap / /\v
 nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
-nnoremap <Space> za
-vnoremap <Space> za
 nnoremap zO zCzO
 vnoremap < <gv
 vnoremap > >gv
@@ -145,7 +144,7 @@ noremap <C-k>  <C-w>k
 noremap <C-l>  <C-w>l
 
 " quickfix
-map <silent> <leader>\ :QFix<CR>
+map <silent> <leader><space> :QFix<CR>
 map <silent> <leader>qc :cc<CR>
 map <silent> <leader>qn :cnext<CR>
 map <silent> <leader>qp :cprev<CR>
