@@ -105,7 +105,6 @@ endif
 "
 " general
 let mapleader=' ' " normally mapped to <Right>, not really useful
-nnoremap <leader>N :noh<CR>
 nnoremap <leader>c :<c-u>call ToggleComment('false')<cr>
 vnoremap <leader>c :<c-u>call ToggleComment('true')<cr>
 nnoremap <leader>C :call ToggleColorColumn()<cr>
@@ -113,11 +112,10 @@ nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 nnoremap <leader>h :call SwitchHS()<cr>
 nnoremap <leader>l :set list!<CR>
 nnoremap <leader>n :set number!<CR>
+nnoremap <leader>N :noh<CR>
 nnoremap <leader>s :set spell!<CR>
-inoremap <leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
-nnoremap <leader>v <C-w>v
+nnoremap <leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
-inoremap jj <ESC>
 nnoremap / /\v
 vnoremap / /\v
 nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
