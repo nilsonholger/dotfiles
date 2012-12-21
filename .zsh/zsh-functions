@@ -20,6 +20,22 @@ gpg -d $1.old | gpg -r hyve -e -o ${1/.old}
 
 
 
+# org stuff
+function org {
+cd ~/.org
+git stash &> /dev/null
+git pull
+git stash pop &> /dev/null
+vim index.wiki
+_STAT=(`git diff --numstat | awk '{print $3" +"$1"-"$2; }'`)
+git add .
+git ci -m "$HOST: ${_STAT/\.wiki}"
+git push
+cd -
+}
+
+
+
 # scp two hop
 function scp2h {
 [[ ( -z $1 || -z $2 || -z $3 ) ]] && echo 'usage: scp2h $JUMP_HOST $PATH $(USER@TARGET:PATH)' && return
