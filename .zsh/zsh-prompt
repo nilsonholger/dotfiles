@@ -1,36 +1,34 @@
 # prompt
 
-# battery status
+### battery status
 _BATTERY_STATUS=''
+
 function _battery_status {
-	# setup
-	_BATTERY_TMP=''
-	_BATTERY_STATUS=''
-	$_MBP && _BATTERY_TMP=`pmset -g batt` || return
-
-	# check state
-	[[ $_BATTERY_TMP =~ .*charging.* ]] || return
-	[[ $_BATTERY_TMP =~ .*discharging.* ]] || _BATTERY_STATUS="CHARGING"
-
-	# act on state
-	if [ "$_BATTERY_STATUS" = "CHARGING" ]
-	then
-		_BATTERY_CHARGE=${${_BATTERY_TMP:54}/;*/}
-		_BATTERY_TIME=${${${_BATTERY_TMP:69}/ remaining*/}/ }
-	else
-		_BATTERY_CHARGE=${${_BATTERY_TMP:59}/;*/}
-		_BATTERY_TIME=${${${_BATTERY_TMP:76}/ remaining*/}/ }
-	fi
-
-	# set colors
-	[[ ${_BATTERY_CHARGE/\%} -gt 0 ]] && _BATTERY_COLOR="%F{red}"
-	[[ ${_BATTERY_CHARGE/\%} -gt 20 ]] && _BATTERY_COLOR="%F{yellow}"
-	[[ ${_BATTERY_CHARGE/\%} -gt 40 ]] && _BATTERY_COLOR="%F{green}"
-	[ "$_BATTERY_STATUS" = "CHARGING" ] && _BATTERY_COLOR="%F{cyan}"
-
-	# build output
-	_BATTERY_STATUS="${_BATTERY_COLOR}$_BATTERY_TIME@$_BATTERY_CHARGE%%f"
+# setup
+_BATTERY_TMP=''
+_BATTERY_STATUS=''
+$_MBP && _BATTERY_TMP=`pmset -g batt` || return
+# check state
+[[ $_BATTERY_TMP =~ .*charging.* ]] || return
+[[ $_BATTERY_TMP =~ .*discharging.* ]] || _BATTERY_STATUS="CHARGING"
+# act on state
+if [ "$_BATTERY_STATUS" = "CHARGING" ]
+then
+	_BATTERY_CHARGE=${${_BATTERY_TMP:54}/;*/}
+	_BATTERY_TIME=${${${_BATTERY_TMP:69}/ remaining*/}/ }
+else
+	_BATTERY_CHARGE=${${_BATTERY_TMP:59}/;*/}
+	_BATTERY_TIME=${${${_BATTERY_TMP:76}/ remaining*/}/ }
+fi
+# set colors
+[[ ${_BATTERY_CHARGE/\%} -gt 0 ]] && _BATTERY_COLOR="%F{red}"
+[[ ${_BATTERY_CHARGE/\%} -gt 20 ]] && _BATTERY_COLOR="%F{yellow}"
+[[ ${_BATTERY_CHARGE/\%} -gt 40 ]] && _BATTERY_COLOR="%F{green}"
+[ "$_BATTERY_STATUS" = "CHARGING" ] && _BATTERY_COLOR="%F{cyan}"
+# build output
+_BATTERY_STATUS="${_BATTERY_COLOR}$_BATTERY_TIME@$_BATTERY_CHARGE%%f"
 }
+
 _battery_status
 periodic_functions+=(_battery_status)
 
@@ -40,27 +38,31 @@ periodic_functions+=(_battery_status)
 _GIT_DIR=''
 _GIT_STATUS=''
 _GIT_TMP=''
+
 function _git_dir {
-	_GIT_TMP=$(git status -s -b 2>&1) && _GIT_DIR=$(basename `git rev-parse --show-toplevel`) || _GIT_DIR='' && _GIT_STATUS=''
+_GIT_TMP=$(git status -s -b 2>&1) && _GIT_DIR=$(basename `git rev-parse --show-toplevel`) || _GIT_DIR='' && _GIT_STATUS=''
 }
+
 function _git_status {
-	[ -z $_GIT_DIR ] && return
-	_STASH=`git stash list | wc -l | tr -d ' '`
-	[[ $_GIT_TMP =~ [MADRCU].\   ]] && _GIT_STATUS+="%F{green}#" # staged
-	[[ $_GIT_TMP =~ .[MADU]\ [^\ ] ]] && _GIT_STATUS+="%F{yellow}#" # unstaged
-	[[ $_GIT_TMP =~ \\?\\? ]] && _GIT_STATUS+="%F{red}#" # untracked
-	[[ $_GIT_TMP =~ ahead ]] && _GIT_STATUS+="%F{green}@${${_GIT_TMP/*ahead }/[,\]]*}" # ahead of remote
-	[ $_STASH -ne 0 ] && _GIT_STATUS+="%F{yellow}@$_STASH" # stashed
-	[[ $_GIT_TMP =~ behind ]] && _GIT_STATUS+="%F{red}@${${_GIT_TMP/*behind }/\]*}" # behind remote
-	[ ! -z $_GIT_STATUS ] && _GIT_STATUS=" %F{cyan}$_GIT_DIR:${(R)${(fR)_GIT_TMP/\#\# }/( *|...*)}$_GIT_STATUS%f" # repo and branch
+[ -z $_GIT_DIR ] && return
+_STASH=`git stash list | wc -l | tr -d ' '`
+[[ $_GIT_TMP =~ [MADRCU].\   ]] && _GIT_STATUS+="%F{green}#" # staged
+[[ $_GIT_TMP =~ .[MADU]\ [^\ ] ]] && _GIT_STATUS+="%F{yellow}#" # unstaged
+[[ $_GIT_TMP =~ \\?\\? ]] && _GIT_STATUS+="%F{red}#" # untracked
+[[ $_GIT_TMP =~ ahead ]] && _GIT_STATUS+="%F{green}@${${_GIT_TMP/*ahead }/[,\]]*}" # ahead of remote
+[ $_STASH -ne 0 ] && _GIT_STATUS+="%F{yellow}@$_STASH" # stashed
+[[ $_GIT_TMP =~ behind ]] && _GIT_STATUS+="%F{red}@${${_GIT_TMP/*behind }/\]*}" # behind remote
+[ ! -z $_GIT_STATUS ] && _GIT_STATUS=" %F{cyan}$_GIT_DIR:${(R)${(fR)_GIT_TMP/\#\# }/( *|...*)}$_GIT_STATUS%f" # repo and branch
 }
+
 function _git_update {
-	_git_dir
-	_git_status
+_git_dir
+_git_status
 }
+
 chpwd_functions+=(_git_dir)
 function precmd {
-	[ -n $_GIT_DIR ] && _git_update
+[ -n $_GIT_DIR ] && _git_update
 }
 
 
