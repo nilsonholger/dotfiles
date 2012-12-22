@@ -8,8 +8,8 @@
 	di = diff --cached
 	dis = diff --cached --stat
 	ds = diff --stat
-	l = log --graph
-	la = log --graph --all
+	l = log --graph --date-order
+	la = log --graph --all --date-order
 	lr = log --walk-reflogs
 	ll = log --graph -n 1
 	s = status -s -b
