@@ -45,7 +45,7 @@ _GIT_TMP=$(git status -s -b 2>&1) && _GIT_DIR=$(basename `git rev-parse --show-t
 
 function _git_status {
 [ -z $_GIT_DIR ] && return
-_STASH=`git stash list | wc -l | tr -d ' '`
+local _STASH=`git stash list | wc -l | tr -d ' '`
 [[ $_GIT_TMP =~ [MADRCU].\   ]] && _GIT_STATUS+="%F{green}#" # staged
 [[ $_GIT_TMP =~ .[MADU]\ [^\ ] ]] && _GIT_STATUS+="%F{yellow}#" # unstaged
 [[ $_GIT_TMP =~ \\?\\? ]] && _GIT_STATUS+="%F{red}#" # untracked
