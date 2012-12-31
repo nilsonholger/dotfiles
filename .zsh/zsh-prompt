@@ -4,6 +4,7 @@
 _BATTERY_STATUS=''
 
 function _battery_status {
+_BATTERY_STATUS=''
 local -a _STATUS
 _STATUS=(`pmset -g batt | tail -n -1`)
 [[ "${_STATUS[3]}" =~ .*charging.* ]] || return
