@@ -19,35 +19,25 @@ $_MBP && periodic_functions+=(_battery_status)
 
 
 
-# git status notification
-_GIT_DIR=''
+### git status
 _GIT_STATUS=''
-_GIT_TMP=''
-
-function _git_dir {
-_GIT_TMP=$(git status -s -b 2>&1) && _GIT_DIR=$(basename `git rev-parse --show-toplevel`) || _GIT_DIR='' && _GIT_STATUS=''
-}
 
 function _git_status {
-[ -z $_GIT_DIR ] && return
+local _TMP _DIR
+_TMP=$(git status -s -b 2>&1) && _DIR=$(basename `git rev-parse --show-toplevel`) || _DIR='' && _GIT_STATUS=''
+[ -z $_DIR ] && return
 local _STASH=`git stash list | wc -l | tr -d ' '`
-[[ $_GIT_TMP =~ [MADRCU].\   ]] && _GIT_STATUS+="%F{green}#" # staged
-[[ $_GIT_TMP =~ .[MADU]\ [^\ ] ]] && _GIT_STATUS+="%F{yellow}#" # unstaged
-[[ $_GIT_TMP =~ \\?\\? ]] && _GIT_STATUS+="%F{red}#" # untracked
-[[ $_GIT_TMP =~ ahead ]] && _GIT_STATUS+="%F{green}@${${_GIT_TMP/*ahead }/[,\]]*}" # ahead of remote
+[[ $_TMP =~ [MADRCU].\   ]] && _GIT_STATUS+="%F{green}#" # staged
+[[ $_TMP =~ .[MADU]\ [^\ ] ]] && _GIT_STATUS+="%F{yellow}#" # unstaged
+[[ $_TMP =~ \\?\\? ]] && _GIT_STATUS+="%F{red}#" # untracked
+[[ $_TMP =~ ahead ]] && _GIT_STATUS+="%F{green}@${${_TMP/*ahead }/[,\]]*}" # ahead of remote
 [ $_STASH -ne 0 ] && _GIT_STATUS+="%F{yellow}@$_STASH" # stashed
-[[ $_GIT_TMP =~ behind ]] && _GIT_STATUS+="%F{red}@${${_GIT_TMP/*behind }/\]*}" # behind remote
-[ ! -z $_GIT_STATUS ] && _GIT_STATUS=" %F{cyan}$_GIT_DIR:${(R)${(fR)_GIT_TMP/\#\# }/( *|...*)}$_GIT_STATUS%f" # repo and branch
+[[ $_GIT_TMP =~ behind ]] && _GIT_STATUS+="%F{red}@${${_TMP/*behind }/\]*}" # behind remote
+[ ! -z $_GIT_STATUS ] && _GIT_STATUS=" %F{cyan}$_DIR:${(R)${(fR)_TMP/\#\# }/( *|...*)}$_GIT_STATUS%f" # repo and branch
 }
 
-function _git_update {
-_git_dir
-_git_status
-}
-
-chpwd_functions+=(_git_dir)
 function precmd {
-[ -n $_GIT_DIR ] && _git_update
+_git_status
 }
 
 
