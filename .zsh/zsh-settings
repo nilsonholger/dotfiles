@@ -30,7 +30,7 @@ unsetopt beep
 
 bindkey -v
 bindkey "^r" history-incremental-search-backward
-PERIOD=300
+PERIOD=60
 
 bindkey -M viins "$terminfo[cuu1]" up-line-or-history
 bindkey -M viins "$terminfo[kcuu1]" up-line-or-history
