@@ -6,7 +6,7 @@ _BATTERY_STATUS=''
 function _battery_status {
 _BATTERY_STATUS=''
 local -a _STATUS
-_STATUS=(`pmset -g batt | tail -n -1`)
+_STATUS=(`pmset -g batt | tail -n +2`)
 [[ "${_STATUS[3]}" =~ .*charging.* ]] || return
 local _CHARGE=${_STATUS[2]/;} _COLOR
 [[ ${_CHARGE/\%} -gt 0 ]] && _COLOR="%F{red}"
