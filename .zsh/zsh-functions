@@ -27,7 +27,7 @@ git stash &> /dev/null
 git pull
 git stash pop &> /dev/null
 vim index.wiki
-_STAT=(`git diff --numstat | awk '{print $3" +"$1"-"$2; }'`)
+_STAT=(`git diff --numstat | awk '{print $3":+"$1"-"$2; }'`)
 git add .
 git ci -m "$HOST: ${_STAT//\.wiki}"
 git push
