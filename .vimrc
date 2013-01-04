@@ -197,6 +197,8 @@ let g:SuperTabDefaultCompletionType = "context"
 
 " vimwiki
 let g:vimwiki_list = [{'path': '~/.org/'}]
+let g:vimwiki_folding = 1
+let g:vimwiki_fold_lists = 1
 
 "
 " FUNCTIONS
