@@ -22,6 +22,7 @@ setopt autopushd
 setopt extendedglob
 setopt pushdignoredups
 
+setopt brace_ccl
 setopt correct_all
 setopt nobgnice
 setopt notify
