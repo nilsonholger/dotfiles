@@ -110,7 +110,7 @@ vnoremap <leader>c :<c-u>call ToggleComment('true')<cr>
 nnoremap <leader>C :call ToggleColorColumn()<cr>
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 nnoremap <leader>h :call SwitchHS()<cr>
-nnoremap <leader>l :set list!<CR>
+nnoremap <leader>l :set list!<CR>:set list?<CR>
 nnoremap <leader>n :set number!<CR>
 nnoremap <leader>N :noh<CR>
 nnoremap <leader>s :set spell!<CR>
