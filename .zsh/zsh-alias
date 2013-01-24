@@ -1,15 +1,16 @@
 # alias
-alias dua='du -k -d1 | sort -nr | cut -f2 | sed "s/ /\\\ /g" | xargs du -sh'
-alias dud='du -ks */ | sort -nr | cut -f2 | sed "s/ /\\\ /g" | xargs du -sh'
 alias ls='ls -shkG'
 $_I14 && alias ls='ls -sh --color=auto'
+
 $_HYVE && alias logtty='tail -F /var/log/messages /var/log/maillog /usr/jails/*.hyve.*/var/log/messages /usr/jails/*.hyve.*/var/log/maillog > $TTY &'
-$_MBP && alias logtty='tail -F /var/log/system.log > $TTY &'
+
+$_I14 && alias ktmux='krenew -biL -- /usr/bin/zsh -c "tmux new -d && while tmux ls &>/dev/null; do sleep 60; done"; sleep 1; tmux a'
+$_I14 && alias wpool='for i in {184..190}; do echo "i14pc$i:"; ssh pc$i "w | tail -n+3; exit"; done'
+
+alias dua='du -k -d1 | sort -nr | cut -f2 | sed "s/ /\\\ /g" | xargs du -sh'
+alias dud='du -ks */ | sort -nr | cut -f2 | sed "s/ /\\\ /g" | xargs du -sh'
 alias gpg-enc='gpg --multifile -r hyve -e'
 alias gpg-dec='gpg --multifile -d'
-$_I14 && alias ktmux='krenew -biL -- /usr/bin/zsh -c "tmux new -d && while tmux ls &>/dev/null; do sleep 60; done"; sleep 1; tmux a'
-alias ps='ps faux'
-$_MBP && alias ps='ps aux'
+alias ps='ps aux'
 alias psg='ps | grep -i'
 alias scpr='rsync --partial --progress --rsh=ssh'
-$_I14 && alias wpool='for i in {184..190}; do echo "i14pc$i:"; ssh pc$i "w | tail -n+3; exit"; done'
