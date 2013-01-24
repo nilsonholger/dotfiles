@@ -113,7 +113,7 @@ nnoremap <leader>h :call SwitchHS()<cr>
 nnoremap <leader>l :set list!<CR>:set list?<CR>
 nnoremap <leader>n :set number!<CR>
 nnoremap <leader>N :noh<CR>
-nnoremap <leader>s :set spell!<CR>
+nnoremap <leader>s :set spell!<CR>:set spell?<CR>
 nnoremap <leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 nnoremap / /\v
