@@ -13,7 +13,7 @@ local _CHARGE=${_STATUS[2]/;} _COLOR
 [[ ${_CHARGE/\%} -gt 20 ]] && _COLOR="%F{yellow}"
 [[ ${_CHARGE/\%} -gt 40 ]] && _COLOR="%F{green}"
 [ "${_STATUS[3]}" = "charging;" ] && _COLOR="%F{cyan}"
-_BATTERY_STATUS="${_COLOR}${_STATUS[4]/\(no}@${_CHARGE}%%f"
+_BATTERY_STATUS="${_COLOR}${_STATUS[4]/\(no}@${_CHARGE}%%f "
 }
 
 $_MBP && periodic_functions+=(_battery_status)
@@ -48,6 +48,6 @@ _git_status
 
 # prompts
 PROMPT='%F{red}%m%(1j.%F{yellow}[%j].)$_GIT_STATUS %F{green}%.%(?..%F{red}%B[%?]%b)%F{yellow}%#%(2L.%B+%b.) %f'
-RPROMPT='$_BATTERY_STATUS %F{cyan}%T%f'
+RPROMPT='$_BATTERY_STATUS%F{cyan}%T%f'
 LISTPROMPT=''
 SPROMPT="%F{yellow}%R %F{white}%b-> %F{green}%r %F{white}%b? [aeNy]%f "
