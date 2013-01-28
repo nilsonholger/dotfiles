@@ -252,7 +252,7 @@ endfunction
 
 " ToggleComment
 function! ToggleComment(visual)
-	if (&ft=~'^c\(\|pp\)') | let l:c_sign='//'
+	if (&ft=~'^c\($\|pp\)') | let l:c_sign='//'
 	elseif (&ft=~'^\(\|plain\)tex') | let l:c_sign='%'
 	elseif (&ft=='vim') | let l:c_sign='"'
 	elseif (&ft=='haskell') | let l:c_sign='--'
