@@ -111,7 +111,7 @@ nnoremap <leader>C :call ToggleColorColumn()<cr>
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 nnoremap <leader>h :call SwitchHS()<cr>
 nnoremap <leader>l :set list!<CR>:set list?<CR>
-nnoremap <leader>n :set number!<CR>
+nnoremap <leader>n :if &nu \|\| &rnu \| set rnu! \| else \| set nu! \| endif<CR>
 nnoremap <leader>N :noh<CR>
 nnoremap <leader>s :set spell!<CR>:set spell?<CR>
 nnoremap <leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
