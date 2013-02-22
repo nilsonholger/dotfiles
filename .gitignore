@@ -28,6 +28,7 @@
 !.mailcap
 !.mplayer/
 !.muttrc
+!.stuff/
 !.tmux.conf
 
 !.vim
