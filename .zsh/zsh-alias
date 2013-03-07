@@ -7,8 +7,6 @@ $_HYVE && alias logtty='tail -F /var/log/messages /var/log/maillog /usr/jails/*.
 $_I14 && alias ktmux='krenew -biL -- /usr/bin/zsh -c "tmux new -d && while tmux ls &>/dev/null; do sleep 60; done"; sleep 1; tmux a'
 $_I14 && alias wpool='for i in {184..190}; do echo "i14pc$i:"; ssh pc$i "w | tail -n+3"; done'
 
-alias dua='du -k -d1 | sort -nr | cut -f2 | sed "s/ /\\\ /g" | xargs du -sh'
-alias dud='du -ks */ | sort -nr | cut -f2 | sed "s/ /\\\ /g" | xargs du -sh'
 alias gpg-enc='gpg --multifile -r hyve -e'
 alias gpg-dec='gpg --multifile -d'
 alias ps='ps aux'
