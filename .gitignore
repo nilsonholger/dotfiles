@@ -28,6 +28,7 @@
 !.mailcap
 !.mplayer/
 !.muttrc
+!.plan
 !.stuff/
 !.tmux.conf
 
@@ -41,7 +42,6 @@
 !.weechat/
 .weechat/*
 !.weechat/*.conf
-
 
 !.Xdefaults
 !.Xmodmap
