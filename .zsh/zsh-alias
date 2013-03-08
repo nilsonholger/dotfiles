@@ -3,7 +3,6 @@ alias ls='ls -shkG'
 alias gpg-enc='gpg --multifile -r hyve -e'
 alias gpg-dec='gpg --multifile -d'
 alias ps='ps aux'
-alias psg='ps | grep -i'
 alias scpr='rsync --partial --progress --rsh=ssh'
 
 $_HYVE && alias logtty='tail -F /var/log/messages /var/log/maillog /usr/jails/*.hyve.*/var/log/messages /usr/jails/*.hyve.*/var/log/maillog > $TTY &'
