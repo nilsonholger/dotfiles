@@ -63,7 +63,7 @@ set post_moderated=yes											# try posting anyway
 set pgp_good_sign="^gpg: Good signature from"
 set pgp_sign_as=0x3AFB7CCD
 #set crypt_autoencrypt
-#set crypt_autosign
+set crypt_autosign
 set crypt_replyencrypt
 set crypt_replysign
 set crypt_replysignencrypted
