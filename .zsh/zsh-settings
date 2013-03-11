@@ -30,7 +30,8 @@ setopt prompt_subst
 unsetopt beep
 
 bindkey -v
-bindkey "^r" history-incremental-search-backward
+bindkey '^r' history-incremental-pattern-search-backward
+bindkey '^f' history-incremental-pattern-search-forward
 PERIOD=60
 
 bindkey -M viins "$terminfo[cuu1]" up-line-or-history
