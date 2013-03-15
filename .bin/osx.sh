@@ -264,7 +264,7 @@ cat << EOF > ~/Library/LaunchAgents/org.hyve.tmutil.plist
 	<key>RunAtLoad</key>
 	<true/>
 	<key>StartInterval</key>
-	<integer>10800</integer>
+	<integer3600</integer>
 </dict>
 </plist>
 EOF
