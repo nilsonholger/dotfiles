@@ -74,10 +74,10 @@ myStartupHook = do
     setWMName "LG3D"
     spawn "display -window root ~/.xmonad/background.jpg"
     spawn "~/local/bin/urxvtd -q -f -o"
-    spawn "hash cpu_governor &>/dev/null && /usr/sbin/cpu_governor performance"
+    spawn "hash cpu-governor &>/dev/null && /usr/sbin/cpu-governor performance"
 
 shutdown = do
-    spawn "hash cpu_governor &>/dev/null && /usr/sbin/cpu_governor ondemand"
+    spawn "hash cpu-governor &>/dev/null && /usr/sbin/cpu-governor ondemand"
     io (exitWith ExitSuccess)
 
 main = xmonad defaultConfig
