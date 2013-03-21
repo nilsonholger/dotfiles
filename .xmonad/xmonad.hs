@@ -2,6 +2,10 @@ import XMonad
 import XMonad.Hooks.SetWMName
 import System.Exit
 
+import XMonad.Prompt
+import XMonad.Prompt.Shell
+import XMonad.Prompt.XMonad
+
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
@@ -12,9 +16,13 @@ myBorderWidth   = 1
 myNormalBorderColor  = "#002200"
 myFocusedBorderColor = "#005500"
 
+myXPConfig = defaultXPConfig { position = Top }
+
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
     , ((modMask,               xK_p     ), spawn "zsh -i -c dmenu_run")
+    , ((modMask .|. shiftMask, xK_p     ), shellPrompt myXPConfig )
+    , ((modMask .|. shiftMask, xK_x     ), xmonadPrompt myXPConfig )
     , ((modMask .|. shiftMask, xK_c     ), kill)
     , ((modMask,               xK_space ), sendMessage NextLayout)
     , ((modMask .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
