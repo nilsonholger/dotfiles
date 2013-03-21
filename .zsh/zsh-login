@@ -2,6 +2,7 @@
 $_HYVE && [ -z $TMUX ] && tmux a && exit
 $_I14 && [ -z "${DISPLAY:#:*}" ] && setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch && xmodmap -e 'pointer = 3 2 1 5 4' 2> /dev/null
 $_I14 && [ -n "$SSH_TTY" -a -z "$SSH_AUTH_SOCK" -a -z "$TMUX" ] && (ssh-agent tmux attach || ssh-agent tmux new) && exit
+$_I14 && (klist &> /dev/null || kinit -r7d -l7d dkoester)
 $_I14 && (ssh-add -l &> /dev/null; [ "$?" -eq 1 ] && ssh-add ~/.ssh/keys/*[^pub])
 $_I14 && ulimit -c unlimited
 
