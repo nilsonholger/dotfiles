@@ -5,6 +5,7 @@ gnome-screensaver &
 ~/local/bin/urxvtd -q -o -f
 xsetroot -name $HOST
 wmname LG3D
+display -window root .dwm/background.jpg
 
 # window manager
 ssh-agent zsh -i -c ~/local/bin/dwm
