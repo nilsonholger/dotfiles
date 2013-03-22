@@ -6,7 +6,3 @@ clear mod2
 clear control
 add mod2 = Meta_L
 add control = Control_L Control_R
-
-! left handed mouse and inverted scrolling
-!pointer = 3 2 1 5 4
-! use xmodmap -e ... instead
