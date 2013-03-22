@@ -12,6 +12,7 @@
 
 !.bin/
 !.caffrc
+!.dwm/
 
 !.gitconfig
 !.gitignore
@@ -50,6 +51,6 @@
 .xmonad/*
 !.xmonad/xmonad.hs
 
-!.xsession
+!.xsessionrc
 !.zshrc
 !.zsh/
