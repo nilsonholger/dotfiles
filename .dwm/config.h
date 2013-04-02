@@ -14,7 +14,7 @@ static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "main", "org", "net", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "main", "org", "net", "ext" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -84,11 +84,11 @@ static Key keys[] = {
 	TAGKEYS(                        XK_bracketleft,            1)
 	TAGKEYS(                        XK_braceleft,              2)
 	TAGKEYS(                        XK_braceright,             3)
-	TAGKEYS(                        XK_parenleft,              4)
-	TAGKEYS(                        XK_equal,                  5)
-	TAGKEYS(                        XK_asterisk,               6)
-	TAGKEYS(                        XK_parenright,             7)
-	TAGKEYS(                        XK_plus,                   8)
+	//TAGKEYS(                        XK_parenleft,              4)
+	//TAGKEYS(                        XK_equal,                  5)
+	//TAGKEYS(                        XK_asterisk,               6)
+	//TAGKEYS(                        XK_parenright,             7)
+	//TAGKEYS(                        XK_plus,                   8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
