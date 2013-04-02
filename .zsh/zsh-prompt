@@ -29,7 +29,7 @@ _TMP=$(git status -s -b 2>&1) && _DIR=$(basename "`git rev-parse --show-toplevel
 [ -z $_DIR ] && return
 local _STASH=`git stash list | wc -l | tr -d ' '`
 [[ $_TMP =~ [MADRCU].\ [^\(] ]] && _GIT_STATUS+="%F{green}#" # staged
-[[ $_TMP =~ .[MADU]\ [^\ \(] ]] && _GIT_STATUS+="%F{yellow}#" # unstaged
+[[ $_TMP =~ .[MADUT]\ [^\ \(] ]] && _GIT_STATUS+="%F{yellow}#" # unstaged
 [[ $_TMP =~ \\?\\? ]] && _GIT_STATUS+="%F{red}#" # untracked
 [[ $_TMP =~ ahead ]] && _GIT_STATUS+="%F{green}@${${_TMP/*ahead }/[,\]]*}" # ahead of remote
 [ $_STASH -ne 0 ] && _GIT_STATUS+="%F{yellow}@$_STASH" # stashed
