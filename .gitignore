@@ -12,6 +12,9 @@
 
 !.bin/
 !.caffrc
+
+!.dwm/
+.dwm/*
 !.dwm/config.h
 
 !.gitconfig
