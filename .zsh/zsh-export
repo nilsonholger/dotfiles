@@ -3,6 +3,8 @@ export PATH="$PATH:$HOME/.bin"
 $_MBP && export PATH="/usr/local/bin:$PATH:/usr/local/sbin:/usr/texbin"
 $_I14 && export PATH="$HOME/local/bin:$PATH:/sbin:/usr/sbin:/usr/local/sbin:$HOME/local/cuda/bin/"
 
+$_HYVE && export GPG_TTY=$(tty)
+
 $_MBP && export XLIB_SKIP_ARGB_VISUALS=1
 $_MBP && export MAKEFLAGS=" -j`sysctl -n hw.ncpu`"
 
