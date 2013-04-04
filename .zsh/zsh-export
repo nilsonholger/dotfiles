@@ -15,7 +15,6 @@ $_I14 && export LD_RUN_PATH="$_I14LIBS"
 $_I14 && export C_INCLUDE_PATH="$HOME/local/include:/usr/include/x86_64-linux-gnu"
 $_I14 && export CPLUS_INCLUDE_PATH="$HOME/local/include:/usr/include/x86_64-linux-gnu"
 $_I14 && export PKG_CONFIG_PATH="$HOME/local/lib/pkgconfig"
-$_I14 && export LC_ALL=C
 $_I14 && export MAKEFLAGS=" -j`grep -c '^processor' /proc/cpuinfo`"
 
 export EDITOR="vim"
