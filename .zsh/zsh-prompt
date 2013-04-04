@@ -24,7 +24,7 @@ $_MBP && periodic_functions+=(_battery_status)
 _GIT_STATUS=''
 
 function _git_status {
-local _TMP _DIR _BRANCH
+#local _TMP _DIR _BRANCH
 _TMP=$(git status -s -b 2>&1) && _DIR=$(basename "`git rev-parse --show-toplevel`") || _DIR='' && _GIT_STATUS=''
 [ -z $_DIR ] && return
 local _STASH=`git stash list | wc -l | tr -d ' '`
@@ -36,7 +36,8 @@ local _STASH=`git stash list | wc -l | tr -d ' '`
 [[ $_TMP =~ behind ]] && _GIT_STATUS+="%F{red}@${${_TMP/*behind }/\]*}" # behind remote
 _BRANCH="${(R)${(fR)_TMP/\#\# }/( *|...*)}" # branch
 [ $_BRANCH = "HEAD" ] && _BRANCH=$(git status 2>&1) # non regular branch
-[ -n $_BRANCH ] && [[ $_BRANCH =~ " rebas" ]] && _BRANCH="REBASE" # rebase
+[[ $_BRANCH =~ " rebas" ]] && _BRANCH="REBASE" # rebase
+[[ $_BRANCH =~ " detached" ]] && _BRANCH="DETACHED" # rebase
 [ ! -z $_GIT_STATUS ] && _GIT_STATUS=" %F{cyan}$_DIR:$_BRANCH$_GIT_STATUS%f" # directory
 }
 
