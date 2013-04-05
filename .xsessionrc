@@ -14,4 +14,6 @@ ssh-agent zsh -i -c ~/local/bin/dwm
 
 # shutdown
 hash cpu-governor &>/dev/null && cpu-governor ondemand
+unison cvhci &> /dev/null &
+disown %1
 exec echo
