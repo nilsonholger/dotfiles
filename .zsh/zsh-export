@@ -3,10 +3,10 @@ export PATH="$PATH:$HOME/.bin"
 $_MBP && export PATH="/usr/local/bin:$PATH:/usr/local/sbin:/usr/texbin"
 $_I14 && export PATH="$HOME/local/bin:$PATH:/sbin:/usr/sbin:/usr/local/sbin:$HOME/local/cuda/bin/"
 
-$_HYVE && export GPG_TTY=$(tty)
+$_HYVE && export GPG_TTY=$(tty) # announce tty to pinentry
 
-$_MBP && export XLIB_SKIP_ARGB_VISUALS=1
-$_MBP && export MAKEFLAGS="-j`sysctl -n hw.ncpu`"
+$_MBP && export XLIB_SKIP_ARGB_VISUALS=1 # fullscreen flash
+$_MBP && export MAKEFLAGS="-j`sysctl -n hw.ncpu`" # concurrent make
 
 $_I14 && local _I14LIBS="$HOME/local/lib64:$HOME/local/lib32:$HOME/local/lib:$HOME/local/cuda/lib64:$HOME/local/cuda/lib:/usr/lib/x86_64-linux-gnu"
 $_I14 && export LIBRARY_PATH="$_I14LIBS"
@@ -15,15 +15,15 @@ $_I14 && export LD_RUN_PATH="$_I14LIBS"
 $_I14 && export C_INCLUDE_PATH="$HOME/local/include:/usr/include/x86_64-linux-gnu"
 $_I14 && export CPLUS_INCLUDE_PATH="$HOME/local/include:/usr/include/x86_64-linux-gnu"
 $_I14 && export PKG_CONFIG_PATH="$HOME/local/lib/pkgconfig"
-$_I14 && export MAKEFLAGS=" -j`grep -c '^processor' /proc/cpuinfo`"
+$_I14 && export MAKEFLAGS="-j`grep -c '^processor' /proc/cpuinfo`" # concurrent make
 
 export EDITOR="vim"
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;33m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'
-export LSCOLORS=cxfxexdxCxegedabagacad
+export LESS_TERMCAP_mb=$'\E[01;31m'    # mode blink
+export LESS_TERMCAP_md=$'\E[01;31m'    # mode bold
+export LESS_TERMCAP_me=$'\E[0m'        # end mode
+export LESS_TERMCAP_se=$'\E[0m'        # stand-out end
+export LESS_TERMCAP_so=$'\E[01;44;33m' # stand-out
+export LESS_TERMCAP_ue=$'\E[0m'        # end underline
+export LESS_TERMCAP_us=$'\E[01;32m'    # begin underline
+export LSCOLORS=cxfxexdxCxegedabagacad # directory: green, sockets: blue, executable: bold green
 export LS_COLORS='di=32'
