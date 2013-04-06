@@ -6,7 +6,7 @@ $_I14 && export PATH="$HOME/local/bin:$PATH:/sbin:/usr/sbin:/usr/local/sbin:$HOM
 $_HYVE && export GPG_TTY=$(tty)
 
 $_MBP && export XLIB_SKIP_ARGB_VISUALS=1
-$_MBP && export MAKEFLAGS=" -j`sysctl -n hw.ncpu`"
+$_MBP && export MAKEFLAGS="-j`sysctl -n hw.ncpu`"
 
 $_I14 && local _I14LIBS="$HOME/local/lib64:$HOME/local/lib32:$HOME/local/lib:$HOME/local/cuda/lib64:$HOME/local/cuda/lib:/usr/lib/x86_64-linux-gnu"
 $_I14 && export LIBRARY_PATH="$_I14LIBS"
