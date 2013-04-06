@@ -35,9 +35,12 @@ local _STASH=`git stash list | wc -l | tr -d ' '`
 [ $_STASH -ne 0 ] && _GIT_STATUS+="%F{yellow}@$_STASH" # stashed
 [[ $_TMP =~ behind ]] && _GIT_STATUS+="%F{red}@${${_TMP/*behind }/\]*}" # behind remote
 _BRANCH="${(R)${(fR)_TMP/\#\# }/( *|...*)}" # branch
-[ $_BRANCH = "HEAD" ] && _BRANCH=$(git status 2>&1) # non regular branch
-[[ $_BRANCH =~ " rebas" ]] && _BRANCH="REBASE" # rebase
-[[ $_BRANCH =~ " detached" ]] && _BRANCH="DETACHED" # rebase
+if [ $_BRANCH = "HEAD" ]
+then
+	_BRANCH=$(git status 2>&1) # non regular branch
+	[[ $_BRANCH =~ " rebas" ]] && _BRANCH="REBASE" # rebase
+	[[ $_BRANCH =~ " detached" ]] && _BRANCH="DETACHED" # detached
+fi
 [ ! -z $_GIT_STATUS ] && _GIT_STATUS=" %F{cyan}$_DIR:$_BRANCH$_GIT_STATUS%f" # directory
 }
 
