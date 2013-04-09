@@ -12,3 +12,6 @@ urxvt*perl-ext-common: default,matcher
 urxvt*urllauncher:     chromium
 urxvt*matcher.button: 1
 urxvt*iso14755: false
+
+urxvt.font:xft:Inconsolata:medium:pixelsize=14
+urxvt*letterSpace: -1
