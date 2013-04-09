@@ -1,5 +1,5 @@
 stop-xscreensaver=true
-monitoraspect=16:10
+#monitoraspect=16:10
 fs=true
 
 slang=en
