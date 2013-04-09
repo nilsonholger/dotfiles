@@ -40,6 +40,7 @@
 	pager = less -FRSX
 
 [diff]
+	algorithm = patience
 	ignoreSubmodules = all
 
 [fetch]
