@@ -17,6 +17,7 @@ $_I14 && export CPLUS_INCLUDE_PATH="$HOME/local/include:/usr/include/x86_64-linu
 $_I14 && export PKG_CONFIG_PATH="$HOME/local/lib/pkgconfig"
 $_I14 && export MAKEFLAGS="-j`grep -c '^processor' /proc/cpuinfo`" # concurrent make
 $_I14 && export LC_ALL=en_GB.UTF-8
+$_I14 && export GIT_EXEC_PATH="$HOME/local/libexec/git-core"
 
 export EDITOR="vim"
 export LESS_TERMCAP_mb=$'\E[01;31m'    # mode blink
