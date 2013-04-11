@@ -24,7 +24,7 @@ $_MBP && periodic_functions+=(_battery_status)
 _GIT_STATUS=''
 
 function _git_status {
-local _TMP _DIR _BRANCH
+local _TMP _DIR _BRANCH _BRANCH_STATE
 _TMP=$(git status -s -b 2>&1) && _DIR=$(basename "`git rev-parse --show-toplevel`") || _DIR='' && _GIT_STATUS=''
 [ -z $_DIR ] && return
 local _STASH=`git stash list | wc -l | tr -d ' '`
@@ -40,8 +40,11 @@ then
 	_BRANCH=$(git status 2>&1) # non regular branch
 	[[ $_BRANCH =~ " rebas" ]] && _BRANCH="REBASE" # rebase
 	[[ $_BRANCH =~ " detached" ]] && _BRANCH="DETACHED" # detached
+	_BRANCH_STATE="HEAD"
+else
+	_BRANCH_STATE="OK"
 fi
-[ ! -z $_GIT_STATUS ] && _GIT_STATUS=" %F{cyan}$_DIR:$_BRANCH$_GIT_STATUS%f" # directory
+[ $_BRANCH_STATE = "HEAD" -o ! -z $_GIT_STATUS ] && _GIT_STATUS=" %F{cyan}$_DIR:$_BRANCH$_GIT_STATUS%f"
 }
 
 function precmd {
