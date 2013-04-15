@@ -54,7 +54,7 @@ static const Layout layouts[] = {
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[] = { "urxvtc", NULL };
-static const char *lockcmd[] = { "gnome-screensaver-command", "-l", NULL };
+static const char *lockcmd[] = { "gnome-screensaver-command", "--activate", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
