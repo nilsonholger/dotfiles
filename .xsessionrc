@@ -2,6 +2,7 @@
 hash cpu-governor &>/dev/null && cpu-governor performance
 
 #for MON in `xrandr | grep " connected" | cut -d' ' -f1`; do xrandr --output $MON --rotate left; done
+gnome-settings-daemon &
 gnome-screensaver &
 ~/local/bin/urxvtd -q -o -f
 xsetroot -name "`date \"+%A %B %d, %Y\"` -- $USER@`hostname`"
