@@ -1,5 +1,4 @@
-# basics
-$_MBP && fpath=($fpath ~/.zsh/fpath)
+# settings
 autoload -Uz compinit
 compinit
 autoload -U colors
@@ -46,3 +45,48 @@ zstyle ':completion:*' format "%U%F{green}[%d]%u%b%f"
 zstyle ':completion:*:descriptions' format $'%{\e[0;31m%}completing %B%d%b%{\e[0m%}'
 zstyle ':completion:*:messages' format "%B%U%F{red}%d%u%b%f"
 zstyle ':completion:*:warnings' format "%F{red}[%d]%f"
+
+alias dud='du -hd1 | sort -hr'
+hash krenew 2> /dev/null && alias ktmux='krenew -biL -- /usr/bin/zsh -c "tmux new -d && while tmux ls &>/dev/null; do sleep 60; done"; sleep 1; tmux a'
+alias scpr='rsync --partial --progress --rsh=ssh'
+
+export CLICOLOR="yes"
+export EDITOR="vim"
+export GPG_TTY=$(tty) # announce tty to pinentry
+export LESS_TERMCAP_mb=$'\E[01;31m'    # mode blink
+export LESS_TERMCAP_md=$'\E[01;31m'    # mode bold
+export LESS_TERMCAP_me=$'\E[0m'        # end mode
+export LESS_TERMCAP_se=$'\E[0m'        # stand-out end
+export LESS_TERMCAP_so=$'\E[01;44;33m' # stand-out
+export LESS_TERMCAP_ue=$'\E[0m'        # end underline
+export LESS_TERMCAP_us=$'\E[01;32m'    # begin underline
+export LSCOLORS=cxfxexdxCxegedabagacad # directory: green, sockets: blue, executable: bold green
+export LS_COLORS='di=32'
+export MAKEFLAGS="-j`sysctl -n hw.ncpu 2> /dev/null || grep -c '^processor' /proc/cpuinfo`"
+export XLIB_SKIP_ARGB_VISUALS=1
+
+[[ $PATH =~ .usr.local.bin ]] && export PATH="$PATH:/usr/local/bin"
+[[ $PATH =~ .usr.local.sbin ]] && export PATH="$PATH:/usr/local/sbin"
+[ -d /usr/texbin ] && export PATH="$PATH:/usr/texbin"
+export PATH="$PATH:$HOME/.bin"
+
+if [ -d $HOME/local ]
+then
+	PATH="$PATH:$HOME/local/bin"
+	local _LIBS="$HOME/local/lib64:$HOME/local/lib32:$HOME/local/lib"
+
+	[ -d $HOME/local/cuda ] && export PATH="$PATH:$HOME/local/cuda/bin"
+	[ -d $HOME/local/cuda ] && _LIBS="$LIBS:$HOME/local/cuda/lib64:$HOME/local/cuda/lib"
+	[ -d /usr/lib/x86_64-linux-gnu ] && _LIBS="$LIBS:/usr/lib/x86_64-linux-gnu"
+
+	export LIBRARY_PATH="$_LIBS"
+	export LD_LIBRARY_PATH="$_LIBS"
+	export LD_RUN_PATH="$_LIBS"
+	export C_INCLUDE_PATH="$HOME/local/include:/usr/include/x86_64-linux-gnu"
+	export CPLUS_INCLUDE_PATH="$HOME/local/include:/usr/include/x86_64-linux-gnu"
+	export PKG_CONFIG_PATH="$HOME/local/lib/pkgconfig"
+	[ -d $HOME/local/libexec/git-core/ ] && export GIT_EXEC_PATH="$HOME/local/libexec/git-core"
+fi
+
+ulimit -c unlimited
+umask 077

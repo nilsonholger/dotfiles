@@ -16,7 +16,8 @@ local _CHARGE=${_STATUS[2]/;} _COLOR
 _BATTERY_STATUS="${_COLOR}${_STATUS[4]/\(no}@${_CHARGE}%%f "
 }
 
-$_MBP && periodic_functions+=(_battery_status)
+# only activate if pmset available
+hash pmset 2> /dev/null && periodic_functions+=(_battery_status)
 
 
 
