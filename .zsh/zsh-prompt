@@ -26,7 +26,8 @@ _GIT_STATUS=''
 
 function _git_status {
 local _TMP _DIR _BRANCH _BRANCH_STATE
-_TMP=$(git status -s -b 2>&1) || return && _DIR=$(basename "`git rev-parse --show-toplevel`") && _GIT_STATUS=''
+_GIT_STATUS=''
+_TMP=$(git status -s -b 2>&1) || return && _DIR=$(basename "`git rev-parse --show-toplevel`")
 local _STASH=`git stash list | wc -l | tr -d ' '`
 [[ $_TMP =~ [MADRCU].\ [^\(] ]] && _GIT_STATUS+="%F{green}#" # staged
 [[ $_TMP =~ .[MADUT]\ [^\ \(] ]] && _GIT_STATUS+="%F{yellow}#" # unstaged
