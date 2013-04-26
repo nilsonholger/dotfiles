@@ -74,7 +74,7 @@ export PATH="$PATH:$HOME/.bin"
 
 if [ -d $HOME/local ]
 then
-	PATH="$PATH:$HOME/local/bin"
+	PATH="$HOME/local/bin:$PATH"
 	local _LIBS="$HOME/local/lib64:$HOME/local/lib32:$HOME/local/lib"
 
 	[ -d $HOME/local/cuda ] && export PATH="$PATH:$HOME/local/cuda/bin"
