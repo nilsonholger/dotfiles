@@ -1,10 +1,4 @@
 # gitignore file
-#
-# the syntax of:
-#   !$directory/
-#   $directory/*
-#   !$directory/...
-# allows using git add .directory to include everything below $directory
 
 /*
 *.swp
@@ -13,8 +7,7 @@
 !.bin/
 !.caffrc
 
-!.dwm/
-.dwm/*
+.dwm/
 !.dwm/config.h
 
 !.gitconfig
@@ -23,8 +16,7 @@
 
 !.gdbinit
 
-!.gnupg/
-.gnupg/*
+.gnupg/
 !.gnupg/gpg.conf
 
 !.irssi/
@@ -36,22 +28,17 @@
 !.stuff/
 !.tmux.conf
 
-!.vim
-.vim/*
-!.vim/bundle
-.vim/bundle/*
+.vim/
 !.vim/bundle/vundle
 !.vimrc
 
-!.weechat/
-.weechat/*
+.weechat/
 !.weechat/*.conf
 
 !.Xdefaults
 !.Xmodmap
 
-!.xmonad/
-.xmonad/*
+.xmonad/
 !.xmonad/xmonad.hs
 
 !.xsessionrc
