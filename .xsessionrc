@@ -1,19 +1,10 @@
 # startup
 hash cpu-governor &>/dev/null && cpu-governor performance
 
-#for MON in `xrandr | grep " connected" | cut -d' ' -f1`; do xrandr --output $MON --rotate left; done
-gnome-settings-daemon &
-gnome-screensaver &
-~/local/bin/urxvtd -q -o -f
-xsetroot -name "`date \"+%A %B %d, %Y\"` -- $USER@`hostname`"
-wmname LG3D
-display -window root .dwm/background.jpg
-
-# window manager
-ssh-agent zsh -i -c ~/local/bin/dwm
-
 # shutdown
-hash cpu-governor &>/dev/null && cpu-governor ondemand
-unison cvhci &> /dev/null &
+{
+	while $(pgrep ssh-agent > /dev/null); do sleep 60; done
+	[ -f ~/.unison/cvhci.prf ] && unison cvhci &> /dev/null
+	hash cpu-governor &>/dev/null && cpu-governor ondemand
+} &
 disown %1
-exec echo
