@@ -36,6 +36,13 @@ cd -
 
 
 
+# pdf compress
+function pdfcompress {
+ghostscript -dCompatibilityLevel=1.4 -sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH -sOutputFile=${1/.pdf/-small.pdf} $1
+}
+
+
+
 # scp two hop
 function scp2h {
 [[ ( -z $1 || -z $2 || -z $3 ) ]] && echo 'usage: scp2h $JUMP_HOST $PATH $(USER@TARGET:PATH)' && return
