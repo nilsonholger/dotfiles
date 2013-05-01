@@ -78,8 +78,8 @@ then
 	local _LIBS="$HOME/local/lib64:$HOME/local/lib32:$HOME/local/lib"
 
 	[ -d $HOME/local/cuda ] && export PATH="$PATH:$HOME/local/cuda/bin"
-	[ -d $HOME/local/cuda ] && _LIBS="$LIBS:$HOME/local/cuda/lib64:$HOME/local/cuda/lib"
-	[ -d /usr/lib/x86_64-linux-gnu ] && _LIBS="$LIBS:/usr/lib/x86_64-linux-gnu"
+	[ -d $HOME/local/cuda ] && _LIBS="$_LIBS:$HOME/local/cuda/lib64:$HOME/local/cuda/lib"
+	[ -d /usr/lib/x86_64-linux-gnu ] && _LIBS="$_LIBS:/usr/lib/x86_64-linux-gnu"
 
 	export LIBRARY_PATH="$_LIBS"
 	export LD_LIBRARY_PATH="$_LIBS"
