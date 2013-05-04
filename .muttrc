@@ -27,12 +27,8 @@ set query_command="/usr/local/bin/lbdbq '%s'"			# on os x, get list of contacts
 ### HOOKS
 folder-hook . "set record=^"									# send message -> current folder
 folder-hook news://news.gmane.org.* "set record=+gmane"			# send message -> gmane
-save-hook '~f @amazon.' +amazon									# match amazon -> amazon
-save-hook '~h cvhci | ~h iramx2 | ~t @kit | ~t @ira.uka' +cvhci	# match cvhci -> cvhci
-save-hook '~h ebay' +ebay										# match ebay -> ebay
-save-hook '~L freebsd' +freebsd									# match freebsd -> freebsd
+save-hook '~f .*' +Archive                                       # archive message
 save-hook '~h gmane' +gmane										# match gmane -> gmane
-save-hook '~f steampowered' +steam								# match steam -> steam
 
 
 
@@ -99,9 +95,8 @@ bind pager ] half-down
 
 ### MACROS
 macro pager                 \cb         |urlview\n "call urlview to extract URLs out of a message"
-macro generic,index,pager   <F1>        "!less /usr/doc/mutt/manual.txt\n" "Show Mutt documentation"
-macro index,pager           Gc          "<change-folder>=cvhci<enter>" "Go to cvhci"
-macro index,pager           Gf          "<change-folder>=feeds<enter>" "Go to friends"
+macro index,pager           A           "<save-message>=Archive<enter>" "Archive message"
+macro index,pager           Ga          "<change-folder>=Archive<enter>" "Go to Archive"
 macro index,pager           Gi          "<change-folder>=INBOX<enter>" "Go to INBOX"
 macro index,pager           Gs          "<change-folder>=Sent<enter>" "Go to Sent"
 macro index,pager           Gt          "<change-folder>=Trash<enter>" "Go to Trash"
