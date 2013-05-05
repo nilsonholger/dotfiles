@@ -15,9 +15,6 @@
 	s = status -s -b
 	sub = submodule foreach git
 
-[branch]
-	autosetuprebase = always
-
 [color]
 	branch = auto
 	diff = auto
