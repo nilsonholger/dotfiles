@@ -106,22 +106,6 @@ macro index,pager           S           "<save-message>=Spam<enter>" "Spam"
 
 
 
-### SIDEBAR
-set sidebar_width=17
-set sidebar_visible=yes
-set sidebar_delim='|'
-#set sidebar_sort=yes
-bind index,pager \CP sidebar-prev
-bind index,pager \CN sidebar-next
-bind index,pager \CO sidebar-open
-#bind index,pager sidebar-scroll-up
-#bind index,pager sidebar-scroll-down
-color sidebar_new yellow default
-macro index,pager b '<enter-command>toggle sidebar_visible<enter>'
-bind index B bounce-message
-
-
-
 ### COLORS
 color error      red             default
 color indicator  brightwhite     default
