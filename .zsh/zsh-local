@@ -4,14 +4,15 @@ if [ -d /boot/kernel ]
 then
 	alias vi='vim'
 	alias logtty='tail -F {/usr/jails/*.hyve.*,}/var/log/{messages,maillog} > $TTY'
-	export MAKEFLAGS="$MAKEFLAGS -B"
+	export MAKEFLAGS="$MAKEFLAGS -B" # fix for freebsd's ports' make
 	[ -z $TMUX ] && tmux a && exit
 fi
 
 if [ ${HOST/i14*/i14} = i14 ]
 then
 	alias cvhci='for i in s{20..27} s{29..31} pc{184..190}; do echo -n "$i: "; ssh $i "echo \"\`cat /proc/loadavg\` \`users\`\""; done'
-	[ -n "$SSH_TTY" -a -z "$SSH_AUTH_SOCK" -a -z "$TMUX" ] && (ssh-agent tmux attach || ssh-agent tmux new) && exit # create or reuse tmux session
+	[ -z "$SSH_AUTH_SOCK" ] && SSH_AGENT='ssh-agent' # check ssh-agent status
+	[ -n "$SSH_TTY" -a -z $TMUX ] && ($SSH_AGENT tmux attach || ktmux) && exit # create or reuse tmux session
 	klist &> /dev/null || kinit -r7d -l7d dkoester # kerberos credentials
 	ssh-add -l &> /dev/null; [ "$?" -eq 1 ] && ssh-add ~/.ssh/keys/*[^pub] || true # activate ssh keys
 fi
