@@ -90,5 +90,7 @@ then
 	[ -d $HOME/local/libexec/git-core/ ] && export GIT_EXEC_PATH="$HOME/local/libexec/git-core"
 fi
 
+[ -d $HOME/android ] && export PATH="$PATH:$HOME/android/tools:$HOME/android/platform-tools:$HOME/android/ndk"
+
 ulimit -c unlimited
 umask 077
