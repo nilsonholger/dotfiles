@@ -57,11 +57,12 @@ _git_status
 # prompts
 PROMPT=''
 [ -n "$SSH_TTY" ] && PROMPT+='%F{red}%m ' # host if not local
-PROMPT+='%(1j.%F{yellow}[%j].)' # background jobs
 PROMPT+='$_GIT_STATUS' # git prompt
 PROMPT+='%F{green}%.' # pwd
 PROMPT+='%(?..%F{red}%B[%?]%b)' # return code
-PROMPT+='%F{yellow}%#%(2L.%B+%b.) %f' # shell status
+PROMPT+='%F{yellow}%#%(2L.%B+%b.)' # shell status
+PROMPT+='%(1j.%F{yellow}[%j].)' # background jobs
+PROMPT+=' %f' # reset colors
 
 RPROMPT='$_BATTERY_STATUS%F{cyan}%T%f'
 LISTPROMPT=''
