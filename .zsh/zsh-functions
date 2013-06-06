@@ -23,7 +23,7 @@ done | sort -n | column -t -s"|"
 
 
 
-# gpg repair
+# gpg repair <FILE>
 function gpg-repair {
 [ -z $1 ] && echo 'usage: gpg-repair $FILE' && return
 mv "$1" "${1/.old}.old"
@@ -48,14 +48,14 @@ cd -
 
 
 
-# pdf compress
+# pdf compress <FILE>
 function pdfcompress {
 ghostscript -dCompatibilityLevel=1.4 -sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH -sOutputFile=${1/.pdf/-small.pdf} $1
 }
 
 
 
-# scp two hop
+# scp two hop <JUMP_HOST> <PATH> <USER@TARGET:PATH>
 function scp2h {
 [[ ( -z $1 || -z $2 || -z $3 ) ]] && echo 'usage: scp2h $JUMP_HOST $PATH $(USER@TARGET:PATH)' && return
 scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o ProxyCommand="ssh $1 nc %h %p" $2 $3
