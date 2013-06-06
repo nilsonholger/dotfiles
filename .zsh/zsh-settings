@@ -48,7 +48,6 @@ zstyle ':completion:*:warnings' format "%F{red}[%d]%f"
 
 alias dud='du -hd1 | sort -hr'
 alias dvorak='setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch'
-alias files='IFS=','; for DIR in $(find . -maxdepth 2 -type d -printf '%p,'); do echo `find $DIR -type f | wc -l`\|$DIR; done | sort -n | column -t -s "|"; unset IFS'
 hash krenew 2> /dev/null && alias ktmux='krenew -biL -- /usr/bin/zsh -c "tmux new -d && while tmux ls &>/dev/null; do sleep 60; done"; sleep 1; tmux a'
 ls --color &> /dev/null && alias ls='ls --color'
 alias scpr='rsync --partial --progress --rsh=ssh'
