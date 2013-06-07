@@ -44,7 +44,7 @@
 	recurseSubmodules = false
 
 [format]
-	pretty = format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+	pretty = format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
 
 [help]
 	autocorrect = 10
