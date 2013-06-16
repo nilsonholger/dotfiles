@@ -10,7 +10,7 @@ fi
 
 if [ ${HOST/i14*/i14} = i14 ]
 then
-	alias cvhci='for i in s{20..27} s{29..31} pc{184..190}; do echo -n "$i: "; ssh $i "echo \"\`cat /proc/loadavg\` \`users\`\""; done'
+	alias cvhci='for i in s{20..27} s{29..31} pc{184..190}; do echo -n "$i: "; ssh $i "echo \"\`cat /proc/loadavg\` \`users\` \`[ -f /var/run/reboot-required ] && cat /var/run/reboot-required\`\""; done'
 	[ -z "$SSH_AUTH_SOCK" ] && SSH_AGENT='ssh-agent' # check ssh-agent status
 	[ -n "$TMUX" ] && export LC_TMUX=$TMUX
 	[ -n "$SSH_TTY" -a -z $LC_TMUX ] && ($SSH_AGENT tmux attach || $SSH_AGENT tmux new) && exit # create or reuse tmux session
