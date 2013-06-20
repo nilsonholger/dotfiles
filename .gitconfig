@@ -3,9 +3,9 @@
 	b = branch -vv
 	ci = commit
 	co = checkout
-	d = diff
+	d = diff --color-words
 	devs = shortlog -nes
-	di = diff --cached
+	di = diff --cached --color-words
 	dis = diff --cached --stat
 	ds = diff --stat
 	l = log --graph --date-order
