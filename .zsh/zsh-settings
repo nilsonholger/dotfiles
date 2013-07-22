@@ -52,6 +52,9 @@ hash krenew 2> /dev/null && alias ktmux='krenew -biL -- /usr/bin/zsh -c "tmux ne
 ls --color &> /dev/null && alias ls='ls --color'
 alias scpr='rsync --partial --progress --rsh=ssh'
 
+[ -f ~/.org/index.wiki ] && alias org='wiki ~/.org'
+[ -f ~/mem/index.wiki ] && alias mem='wiki ~/mem'
+
 export CLICOLOR="yes"
 export EDITOR="vim"
 export GPG_TTY=$(tty) # announce tty to pinentry

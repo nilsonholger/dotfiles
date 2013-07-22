@@ -33,8 +33,9 @@ gpg -d $1.old | gpg -r hyve -e -o ${1/.old}
 
 
 # org stuff
-function org {
-[ -d ~/.org ] && cd ~/.org || return
+function wiki {
+[ -z $1 ] && echo 'usage: wiki $DIRECTORY' && return
+[ -d $1 ] && cd $1 || return
 git stash &> /dev/null
 git pull
 git stash pop &> /dev/null
