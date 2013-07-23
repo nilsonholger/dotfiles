@@ -32,7 +32,12 @@ gpg -d $1.old | gpg -r hyve -e -o ${1/.old}
 
 
 
-# org stuff
+# wiki stuff
+function wiki-commit {
+_STAT=`git diff --cached --numstat | awk '{print $3":+"$1"-"$2; }'`
+git ci -m "[$HOST] ${_STAT//\.wiki}"
+}
+
 function wiki {
 [ -z $1 ] && echo 'usage: wiki $DIRECTORY' && return
 [ -d $1 ] && cd $1 || return
@@ -41,8 +46,7 @@ git pull
 git stash pop &> /dev/null
 vim index.wiki
 git add .
-_STAT=(`git diff --cached --numstat | awk '{print $3":+"$1"-"$2; }'`)
-git ci -m "[$HOST] ${_STAT//\.wiki}"
+wiki-commit
 git push
 cd -
 }
