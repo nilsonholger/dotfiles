@@ -65,3 +65,22 @@ function scp2h {
 [[ ( -z $1 || -z $2 || -z $3 ) ]] && echo 'usage: scp2h $JUMP_HOST $PATH $(USER@TARGET:PATH)' && return
 scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o ProxyCommand="ssh $1 nc %h %p" $2 $3
 }
+
+
+
+# scp tar <SRC> [SRC2...] <DST>
+function scptar {
+local SRC="ssh ${1/:*} \"tar cf - ${${@#*:}% *}\""
+local DST="ssh \"${@[$#]/:*}\" \"tar xvf - -C ${@[$#]/*:}\""
+if [ ! -e "$1" ]
+then
+	if [ ! -e "$@[$#]" ]
+	then
+		eval "$SRC | $DST"
+	else
+		eval "$SRC | tar xvf - -C $@[$#]"
+	fi
+else
+	eval "tar cf - ${@:1:#-1} | $DST"
+fi
+}
