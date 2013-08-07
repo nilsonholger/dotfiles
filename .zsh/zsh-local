@@ -1,5 +1,10 @@
 # local stuff
 
+if [ ${HOST} = mbp ]
+then
+	alias droidmusync='rsync -rv --size-only --delete Music/iTunes/iTunes\ Media/Music/ /Volumes/DATA/Music'
+fi
+
 if [ -d /boot/kernel ]
 then
 	alias vi='vim'
