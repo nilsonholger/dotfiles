@@ -81,7 +81,7 @@ defaults write com.apple.dock showAppExposeGestureEnabled -bool true # trackpad:
 defaults write com.apple.menuextra.clock IsAnalog -bool true # analog clock
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName # more verbose clock icon
 sudo scutil --set ComputerName "mbp"
-sudo scutil --set HostName "mbp"
+sudo scutil --set HostName "mbp.hyve.org"
 sudo scutil --set LocalHostName "mbp"
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "mbp"
 defaults write NSGlobalDomain AppleLanguages -array "en" "de"
