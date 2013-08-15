@@ -1,6 +1,6 @@
 # local stuff
 
-if [ ${HOST} = mbp ]
+if [[ ${HOST} =~ mbp ]]
 then
 	alias droidmusync='rsync -rv --size-only --delete Music/iTunes/iTunes\ Media/Music/ /Volumes/DATA/Music'
 fi
