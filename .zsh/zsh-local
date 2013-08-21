@@ -16,4 +16,5 @@ then
 	[ -n "$SSH_TTY" -a -z $LC_TMUX ] && ($SSH_AGENT tmux attach || $SSH_AGENT tmux new) && exit # create or reuse tmux session
 	klist -s || krenew &> /dev/null || kinit -l7d -r31d dkoester # kerberos credentials
 	ssh-add -l &> /dev/null; [ "$?" -eq 1 ] && ssh-add ~/.ssh/keys/*[^pub] || true # activate ssh keys
+	export LC_PAPER=un_US.UTF-8@a4 # set a4 as default paper size for evince
 fi
