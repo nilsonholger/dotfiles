@@ -1,4 +1,5 @@
 # settings
+[ -d ~/.zsh/fpath ] && fpath=($fpath ~/.zsh/fpath)
 autoload -Uz compinit
 compinit
 autoload -U colors
