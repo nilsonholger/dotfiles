@@ -42,5 +42,7 @@
 !.xmonad/xmonad.hs
 
 !.xsessionrc
+
 !.zshrc
 !.zsh/
+.zsh/fpath
