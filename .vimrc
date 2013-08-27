@@ -48,11 +48,11 @@ set splitright			" even more latin style
 " format
 set autoindent		" indent current line -> indent new line
 set encoding=utf-8	" character encoding
-set shiftwidth=4	" # of (auto)indent spaces
+set shiftwidth=2	" # of (auto)indent spaces
 set smartindent		" smarter than cindent
 set smarttab		" use shiftwidth for ^line tabs
-set softtabstop=4	" while (editing) tab = width of # spaces
-set tabstop=4		" tab = width of # spaces
+set softtabstop=2	" while (editing) tab = width of # spaces
+set tabstop=2		" tab = width of # spaces
 
 " search/substitute
 set gdefault	" default to global substitution
