@@ -13,8 +13,8 @@ then
 	function cvhci
 	{
 		{
-			echo "SERVER CPU LOAD L_5 L_15 PROCS MEM(GB) USERS"
-			echo -n pc1{84..90} s1 s{20..27} s{29..31} | xargs -P 19 -n1 -d ' ' -I SERVER ssh SERVER 'echo SERVER `sysctl -n hw.ncpu 2> /dev/null || grep -c "^processor" /proc/cpuinfo` `cut -f1-4 -d" " /proc/loadavg` `free -g | awk "/buffers\/cache/ {print \\$3\"/\"\\$4}"` `users`'
+			echo "SERVER CPU LOAD L_5 L_15 PROCS MEM SWAP USERS"
+			echo -n pc1{84..90} s1 s{20..27} s{29..31} | xargs -P 19 -n1 -d ' ' -I SERVER ssh SERVER 'echo SERVER `sysctl -n hw.ncpu 2> /dev/null || grep -c "^processor" /proc/cpuinfo` `cut -f1-4 -d" " /proc/loadavg` `free -m | awk "/(buffers\/cache|Swap)/ {print \\$3\"/\"\\$4}" | tr "\n" " "` `users`'
 		} | sort -r | column -t
 	}
 
