@@ -19,7 +19,7 @@ then
 			_USERS='$(_TOP=$(top -bn1 | tail -n+8); for user in `ps haxo user,tty | awk "\\$1!=\"root\" && \\$2!=\"?\" {print \\$1}" | sort -u`; do echo $_TOP | awk "/$user/ {SUM+=\$9} END {if(SUM>0) printf \"$user:%d \",SUM}"; done)'
 			echo "SERVER CPU LOAD L_5 L_15 PROCS MEM SWAP USERS"
 			echo -n pc1{84..90} s1 s{20..27} s{29..31} | xargs -P 19 -n1 -d ' ' -I SERVER ssh SERVER "echo SERVER $_CPU $_LOAD $_FREE $_USERS"
-		} | sort -r | column -t
+		} | sort | column -t
 	}
 
 	[ -z "$SSH_AUTH_SOCK" ] && SSH_AGENT='ssh-agent' # check ssh-agent status
