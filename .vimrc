@@ -157,6 +157,7 @@ map <silent> <leader>aa :call Ack("ask")<CR>
 map <silent> <leader>mv :call Make("VERBOSE=1")<CR>
 
 " fugitive
+map <leader>gb :Gblame<CR>
 map <leader>gc :Gcommit<CR>
 map <leader>gd :Gdiff<CR>
 map <leader>ge :Gedit HEAD<CR>
