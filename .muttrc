@@ -27,7 +27,7 @@ set query_command="/usr/local/bin/lbdbq '%s'"			# on os x, get list of contacts
 ### HOOKS
 folder-hook . "set record=^"									# send message -> current folder
 folder-hook news://news.gmane.org.* "set record=+gmane"			# send message -> gmane
-save-hook '~f .*' +Archive                                       # archive message
+save-hook '~f .*' +Archive                                      # archive message
 save-hook '~h gmane' +gmane										# match gmane -> gmane
 
 
@@ -95,14 +95,14 @@ bind pager ] half-down
 
 ### MACROS
 #macro pager                 \cb         |urlview\n "call urlview to extract URLs out of a message"
-macro index,pager           A           "<save-message>=Archive<enter>" "Archive message"
+macro index,pager           A           "<save-message>=Archive<enter><sync-mailbox>" "Archive message"
 macro index,pager           Ga          "<change-folder>=Archive<enter>" "Go to Archive"
 macro index,pager           Gi          "<change-folder>=INBOX<enter>" "Go to INBOX"
 macro index,pager           Gs          "<change-folder>=Sent<enter>" "Go to Sent"
 macro index,pager           Gt          "<change-folder>=Trash<enter>" "Go to Trash"
-macro index,pager           d           "<save-message>=Trash<enter>" "trash message"
-macro index,pager           <Esc>\cD    "<delete-message>" "delete the current entry"
-macro index,pager           S           "<save-message>=Spam<enter>" "Spam"
+macro index,pager           d           "<save-message>=Trash<enter><sync-mailbox>" "trash message"
+macro index,pager           <Esc>\cD    "<delete-message><sync-mailbox>" "delete the current entry"
+macro index,pager           S           "<save-message>=Spam<enter><sync-mailbox>" "Spam"
 
 
 
