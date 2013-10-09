@@ -94,7 +94,7 @@ bind pager ] half-down
 
 
 ### MACROS
-macro pager                 \cb         |urlview\n "call urlview to extract URLs out of a message"
+#macro pager                 \cb         |urlview\n "call urlview to extract URLs out of a message"
 macro index,pager           A           "<save-message>=Archive<enter>" "Archive message"
 macro index,pager           Ga          "<change-folder>=Archive<enter>" "Go to Archive"
 macro index,pager           Gi          "<change-folder>=INBOX<enter>" "Go to INBOX"
@@ -125,8 +125,9 @@ color hdrdefault default         default
 color header     green           default "^x-bogosity: ham"
 color header     red             default "^x-bogosity: spam"
 color header     magenta         default "^x-bogosity: unsure"
-color header     default         default "^from:"
-color header     default         default "^subject:"
+color header     yellow          default "^date:"
+color header     brightyellow    default "^from:"
+color header     brightyellow    default "^subject:"
 color body       green           default "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
 color body       yellow          default "(finger|ftp|hg|http[s]*|news|tel)://[^ ]*"
 color body       green           default "gpg: Good signature from.*"
