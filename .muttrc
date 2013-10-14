@@ -102,7 +102,7 @@ macro index,pager           Gi          "<change-folder>=INBOX<enter>" "Go to IN
 macro index,pager           Gs          "<change-folder>=Sent<enter>" "Go to Sent"
 macro index,pager           Gt          "<change-folder>=Trash<enter>" "Go to Trash"
 macro index,pager           d           "<save-message>=Trash<enter><sync-mailbox>" "trash message"
-macro index,pager           <Esc>\cD    "<delete-message><sync-mailbox>" "delete the current entry"
+macro index,pager           <Esc>\cD    "<delete-message>" "delete the current entry"
 macro index,pager           S           "<save-message>=Spam<enter><sync-mailbox>" "Spam"
 
 
