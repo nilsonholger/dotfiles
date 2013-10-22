@@ -74,7 +74,6 @@ export XLIB_SKIP_ARGB_VISUALS=1
 export PATH="/usr/local/sbin:${PATH/:\/usr\/local\/sbin}"
 export PATH="/usr/local/bin:${PATH/:\/usr\/local\/bin}"
 [ -d /usr/texbin ] || export PATH="$PATH:/usr/texbin"
-export PATH="$PATH:$HOME/.bin"
 
 if [ -d $HOME/local ]
 then
