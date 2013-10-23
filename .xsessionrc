@@ -5,7 +5,7 @@ hash cpu-governor &>/dev/null && cpu-governor performance
 {
 	sleep 600;
 	while $(pgrep ssh-agent > /dev/null); do sleep 60; done
-	[ -f ~/.unison/cvhci.prf ] && unison cvhci &> /dev/null
+#	[ -f ~/.unison/cvhci.prf ] && unison cvhci &> /dev/null
 	hash cpu-governor &>/dev/null && cpu-governor ondemand
 } &
 disown %1
