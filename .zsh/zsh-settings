@@ -47,7 +47,7 @@ zstyle ':completion:*:descriptions' format $'%{\e[0;31m%}completing %B%d%b%{\e[0
 zstyle ':completion:*:messages' format "%B%U%F{red}%d%u%b%f"
 zstyle ':completion:*:warnings' format "%F{red}[%d]%f"
 
-alias dud="du -d1 | sort -n | awk '{print \$2}' | xargs du -hd0"
+alias dud='du -hd1 | sort -h'
 alias dvorak='setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch'
 hash krenew 2> /dev/null && alias ktmux='krenew -biL -- /usr/bin/zsh -c "tmux new -d && while tmux ls &>/dev/null; do sleep 60; done"; sleep 1; tmux a'
 ls --color &> /dev/null && alias ls='ls --color'

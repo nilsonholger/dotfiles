@@ -28,5 +28,4 @@ then
 	klist -s || krenew &> /dev/null || kinit -l7d -r31d dkoester # kerberos credentials
 	ssh-add -l &> /dev/null; [ "$?" -eq 1 ] && ssh-add ~/.ssh/keys/*[^pub] || true # activate ssh keys
 	export LC_PAPER=en_GB.utf8 # set a4 as default paper size for stubuntu
-	alias dud='du -hd1 | sort -h'
 fi
