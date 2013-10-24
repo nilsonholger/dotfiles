@@ -3,6 +3,7 @@
 ### battery status
 _BATTERY_STATUS=''
 
+# TODO: rewrite for linux
 function _battery_status {
 _BATTERY_STATUS=''
 local -a _STATUS
