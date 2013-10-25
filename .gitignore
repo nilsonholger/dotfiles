@@ -4,6 +4,7 @@
 *.swp
 *.DS_Store
 
+!.archive/
 !.bin/
 
 !.gitconfig
@@ -18,7 +19,6 @@
 !.mailcap
 !.mplayer/
 !.muttrc
-!.osx/
 !.plan
 !.tmux.conf
 
