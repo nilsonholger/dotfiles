@@ -1,11 +1,12 @@
 # startup
 hash cpu-governor &>/dev/null && cpu-governor performance
+sshfs hyve: hyve
 
 # shutdown
 {
-	sleep 600;
+	sleep 60
 	while $(pgrep ssh-agent > /dev/null); do sleep 60; done
-#	[ -f ~/.unison/cvhci.prf ] && unison cvhci &> /dev/null
+	fusermount -u hyve
 	hash cpu-governor &>/dev/null && cpu-governor ondemand
 } &
 disown %1
