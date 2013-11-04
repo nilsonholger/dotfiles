@@ -2,10 +2,9 @@
 
 if [ -d /boot/kernel ]
 then
-	alias vi='vim'
-	alias logtty='tail -F {/usr/jails/*.hyve.*,}/var/log/{messages,maillog} > $TTY'
+	alias vi='vim' # cause sometimes vi just ain't gonna cut it
 	export MAKEFLAGS="$MAKEFLAGS -B" # fix for freebsd's ports' make
-	[ -z $TMUX ] && tmux a && exit
+	[ -z $TMUX ] && tmux a && exit # auto attach
 fi
 
 if [ ${HOST/i14*/i14} = i14 ]
@@ -23,9 +22,8 @@ then
 	}
 
 	[ -z "$SSH_AUTH_SOCK" ] && SSH_AGENT='ssh-agent' # check ssh-agent status
-	[ -n "$TMUX" ] && export LC_TMUX=$TMUX
+	[ -n "$TMUX" ] && export LC_TMUX=$TMUX # export tmux sessions status over ssh
 	[ -n "$SSH_TTY" -a -z $LC_TMUX ] && ($SSH_AGENT tmux attach || $SSH_AGENT tmux new) && exit # create or reuse tmux session
-	klist -s || krenew &> /dev/null || kinit -l7d -r31d dkoester # kerberos credentials
 	ssh-add -l &> /dev/null; [ "$?" -eq 1 ] && ssh-add ~/.ssh/keys/*[^pub] || true # activate ssh keys
 	export LC_PAPER=en_GB.utf8 # set a4 as default paper size for stubuntu
 fi
