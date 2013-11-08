@@ -1,6 +1,7 @@
 # gitignore file
 
 /*
+*.nfs*
 *.swp
 *.DS_Store
 
