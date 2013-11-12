@@ -4,7 +4,7 @@ if [ -d /boot/kernel ]
 then
 	alias vi='vim' # cause sometimes vi just ain't gonna cut it
 	export MAKEFLAGS="$MAKEFLAGS -B" # fix for freebsd's ports' make
-	[ -z $TMUX ] && ssh-agent tmux a && exit # auto attach
+	[ -z $TMUX ] && tmux a && exit # auto attach
 fi
 
 if [ ${HOST/i14*/i14} = i14 ]
