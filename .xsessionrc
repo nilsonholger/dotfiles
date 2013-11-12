@@ -1,12 +1,10 @@
 # startup
 hash cpu-governor &>/dev/null && cpu-governor performance
-sshfs hyve: hyve
 
 # shutdown
 {
 	sleep 60
 	while $(pgrep ssh-agent > /dev/null); do sleep 60; done
-	fusermount -u hyve
 	hash cpu-governor &>/dev/null && cpu-governor ondemand
 } &
 disown %1
