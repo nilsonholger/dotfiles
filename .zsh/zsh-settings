@@ -56,6 +56,9 @@ alias scpr='rsync --partial --progress --rsh=ssh'
 [ -f ~/.org/index.wiki ] && alias org='wiki ~/.org'
 [ -f ~/cvhci/res/index.wiki ] && alias res='wiki ~/cvhci/res'
 
+alias -s pdf=xdg-open
+alias -s gz='gunzip -c'
+
 export CLICOLOR="yes"
 export EDITOR="vim"
 export GPG_TTY=$(tty) # announce tty to pinentry
