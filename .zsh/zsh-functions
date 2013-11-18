@@ -84,3 +84,14 @@ else
 	eval "tar cf - ${@:1:#-1} | $DST"
 fi
 }
+
+
+
+# hyve <on|off>
+function hyve
+{
+	case $1 in
+		on) mkdir -m 777 ~/hyve; sshfs hyve: hyve;;
+		off) fusermount -u hyve; rmdir ~/hyve;;
+	esac
+}

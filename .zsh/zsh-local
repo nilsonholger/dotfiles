@@ -20,14 +20,6 @@ then
 			echo -n pc1{84..90} s1 s{20..27} s{29..31} | xargs -P 19 -n1 -d ' ' -I SERVER ssh -o ConnectTimeout=3 SERVER "echo SERVER $_CPU $_LOAD $_FREE $_USERS" | sort
 		} | column -t
 	}
-	
-	function hyve
-	{
-		case $1 in
-			on) mkdir -m 777 ~/hyve; sshfs hyve: hyve;;
-			off) fusermount -u hyve; rmdir ~/hyve;;
-		esac
-	}
 
 	[ -z "$SSH_AUTH_SOCK" ] && SSH_AGENT='ssh-agent' # check ssh-agent status
 	[ -n "$TMUX" ] && export LC_TMUX=$TMUX # export tmux sessions status over ssh
