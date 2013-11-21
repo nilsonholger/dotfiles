@@ -25,4 +25,5 @@ then
 	[ -n "$TMUX" ] && export LC_TMUX=$TMUX # export tmux sessions status over ssh
 	[ -n "$SSH_TTY" -a -z $LC_TMUX ] && ($SSH_AGENT tmux attach || $SSH_AGENT tmux new) && exit # create or reuse tmux session
 	export LC_PAPER=en_GB.utf8 # set a4 as default paper size for stubuntu
+	dvorak
 fi
