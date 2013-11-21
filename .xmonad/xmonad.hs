@@ -31,7 +31,7 @@ main = xmonad $ gnomeConfig
 		, (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
 	`additionalKeys`
 	[((m .|. mod4Mask, k), screenWorkspace s >>= flip whenJust (windows . f))
-		 | (k, s) <- zip [xK_w, xK_e] [1,0]
+		 | (k, s) <- zip [xK_w, xK_e] [0,1]
 		, (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 	`additionalKeys` [
 	((mod4Mask              , xK_q     ), spawn "xmonad --recompile; xmonad --restart&"),
