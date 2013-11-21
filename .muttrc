@@ -6,21 +6,30 @@ source ~/.mutt/muttrc-server
 ### SETTINGS
 alternative_order text/enriched text/plain text/html	# prefer tetx to html
 set alias_file=~/.mutt/aliases							# alias file
-source ~/.mutt/aliases									# source it
-set beep=no												# SILENCIUM
+unset beep												# SILENCIUM
 set certificate_file=~/.mutt/certificates				# my trusted ones
-set confirmappend=no									# do NOT ask, just append to another mailbox
+unset confirmappend										# do NOT ask, just append to another mailbox
 set delete												# again, do NOT ask, just delete when leaving a mailbox
 set edit_headers										# full control when creating a message
 set editor=vim											# need i say more?
 set fast_reply											# do not ask about to: and subject:
+set fcc_attach											# forward attachments
+set forward_format="Fwd: %s"							# use 'Fwd: ' in subject
 set header_cache="~/.mutt/cache/headers"				# speed improvements
-set include													# add original to reply
-set mark_old=no											# do NOT make new unread messages with 'O'
+set include												# add original to reply
+unset mark_old											# do NOT make new unread messages with 'O'
 set message_cachedir="~/.mutt/cache/bodies"				# more speed improvements
-set sort = 'threads'									# show threads
-set sort_aux = 'last-date-received'						# sort threads by last message date
+set postpone=ask-no										# mostly discard messages
+unset reply_self										# remove own address from replies
+set reverse_alias										# use aliases to display names
+set sort='threads'										# show threads
+set sort_aux='last-date-received'						# sort threads by last message date
 set query_command="/usr/local/bin/lbdbq '%s'"			# on os x, get list of contacts
+
+
+
+### ALIASES
+source ~/.mutt/aliases
 
 
 
