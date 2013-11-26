@@ -50,8 +50,8 @@ fi
 [ $_BRANCH_STATE = "HEAD" -o ! -z $_GIT_STATUS ] && _GIT_STATUS="%F{cyan}$_DIR:$_BRANCH$_GIT_STATUS%f "
 }
 
-function preexec {
-[[ $1 =~ git ]] && _git_status
+function precmd {
+[[ $(fc -l -n -1) =~ git ]] && _git_status
 }
 
 function chpwd {
