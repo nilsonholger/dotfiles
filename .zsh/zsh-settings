@@ -49,9 +49,11 @@ zstyle ':completion:*:warnings' format "%F{red}[%d]%f"
 alias dud='du -hxd1 | sort -h'
 alias dvorak='setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch'
 hash krenew 2> /dev/null && alias ktmux='krenew -biL -- /usr/bin/zsh -c "tmux new -d && while tmux ls &>/dev/null; do sleep 60; done"; sleep 1; tmux a'
+alias ll='ls -l'
 ls --color &> /dev/null && alias ls='ls --color'
 hash apg &> /dev/null && alias pw-gen='apg -a1 -n10 -m 20'
 alias scpr='rsync --partial --progress --rsh=ssh'
+alias vi='vim'
 
 [ -f ~/.org/index.wiki ] && alias org='wiki ~/.org'
 [ -f ~/cvhci/res/index.wiki ] && alias res='wiki ~/cvhci/res'
@@ -73,30 +75,6 @@ export LSCOLORS=cxfxexdxCxegedabagacad # directory: green, sockets: blue, execut
 export LS_COLORS='di=32'
 export MAKEFLAGS="-j`sysctl -n hw.ncpu 2> /dev/null || grep -c '^processor' /proc/cpuinfo`"
 export XLIB_SKIP_ARGB_VISUALS=1
-
-export PATH="/usr/local/sbin:${PATH/:\/usr\/local\/sbin}"
-export PATH="/usr/local/bin:${PATH/:\/usr\/local\/bin}"
-[ -d /usr/texbin ] || export PATH="$PATH:/usr/texbin"
-
-if [ -d $HOME/local ]
-then
-	PATH="$HOME/local/bin:$PATH"
-	local _LIBS="$HOME/local/lib64:$HOME/local/lib32:$HOME/local/lib"
-
-	[ -d $HOME/local/cuda ] && export PATH="$PATH:$HOME/local/cuda/bin"
-	[ -d $HOME/local/cuda ] && _LIBS="$_LIBS:$HOME/local/cuda/lib64:$HOME/local/cuda/lib"
-	[ -d /usr/lib/x86_64-linux-gnu ] && _LIBS="$_LIBS:/usr/lib/x86_64-linux-gnu"
-	[ -d $HOME/local/android ] && export PATH="$PATH:$HOME/local/android/tools:$HOME/local/android/platform-tools:$HOME/local/android/ndk"
-
-	export LIBRARY_PATH="$_LIBS"
-	export LD_LIBRARY_PATH="$_LIBS"
-	export LD_RUN_PATH="$_LIBS"
-	export C_INCLUDE_PATH="$HOME/local/include:/usr/include/x86_64-linux-gnu"
-	export CPLUS_INCLUDE_PATH="$HOME/local/include:/usr/include/x86_64-linux-gnu"
-	export PKG_CONFIG_PATH="$HOME/local/lib/pkgconfig"
-	[ -d $HOME/local/libexec/git-core/ ] && export GIT_EXEC_PATH="$HOME/local/libexec/git-core"
-fi
-
 
 ulimit -c unlimited
 umask 077
