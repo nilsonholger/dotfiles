@@ -91,7 +91,7 @@ fi
 function hyve
 {
 	case $1 in
-		on) mkdir -m 777 ~/hyve; sshfs hyve: hyve;;
-		off) fusermount -u hyve; rmdir ~/hyve;;
+		on) mkdir -m 777 ~/hyve; sshfs hyve: ~/hyve;;
+		off) fusermount -u ~/hyve; rmdir ~/hyve;;
 	esac
 }
