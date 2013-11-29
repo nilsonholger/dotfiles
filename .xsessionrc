@@ -1,14 +1,14 @@
 {
 	# startup
 	hash cpu-governor &>/dev/null && cpu-governor performance
-	[ -f ~/.unison/cvhci.prf ] && unison cvhci -silent -repeat 3600 &> /dev/null &
+	[ -f ~/.unison/cvhci.prf ] && unison i14 -silent -repeat 3600 &> /dev/null &
 
 	# ...wait for it...
 	sleep 60
 	while $(pgrep ssh-agent > /dev/null); do sleep 60; done
 
 	# shutdown
-	killall unison
+	kill `pgrep -f 'unison i14'`
 	unison cvhci -silent
 	hash cpu-governor &>/dev/null && cpu-governor ondemand
 } &
