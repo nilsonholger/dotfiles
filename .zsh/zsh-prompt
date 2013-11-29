@@ -51,7 +51,7 @@ fi
 }
 
 function precmd {
-[[ $(fc -l -n -1) =~ git ]] && _git_status
+[[ $(fc -l -n -1) =~ (git|vi|fg) ]] && _git_status
 }
 
 function chpwd {
