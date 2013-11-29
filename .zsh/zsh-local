@@ -32,7 +32,9 @@ fi
 # i14
 if [ ${HOST/i14*/i14} = i14 ]
 then
-	function i14stats
+	alias i14sync='unison i14 -path ${PWD/$HOME/.}'
+
+	function i14load
 	{
 		{
 			_CPU='$(sysctl -n hw.ncpu 2> /dev/null || grep -c "^processor" /proc/cpuinfo)'
