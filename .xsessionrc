@@ -1,7 +1,7 @@
 {
 	# startup
 	hash cpu-governor &>/dev/null && cpu-governor performance
-	[ -f ~/.unison/cvhci.prf ] && unison i14 -silent -repeat 3600 &> /dev/null &
+	[ -f ~/.unison/i14.prf ] && unison i14 -silent -repeat 3600 &> /dev/null &
 
 	# ...wait for it...
 	sleep 60
@@ -9,7 +9,7 @@
 
 	# shutdown
 	kill `pgrep -f 'unison i14'`
-	unison cvhci -silent
+	unison i14 -silent
 	hash cpu-governor &>/dev/null && cpu-governor ondemand
 } &
 disown %1
