@@ -32,8 +32,7 @@ fi
 # i14
 if [ ${HOST/i14*/i14} = i14 ]
 then
-	alias i14sync='unison i14 -path ${PWD/$HOME/.}'
-
+	function i14sync { unison i14 -path ${${1:-$PWD}/$HOME/.} }
 	function i14load
 	{
 		{
