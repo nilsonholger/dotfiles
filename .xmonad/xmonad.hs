@@ -1,6 +1,7 @@
 import XMonad
 import XMonad.Config.Gnome
 import XMonad.Config.Desktop (desktopLayoutModifiers)
+import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
 import XMonad.Util.EZConfig (additionalKeys)
 
@@ -17,13 +18,14 @@ main = xmonad $ gnomeConfig
         normalBorderColor = "#002200",
         focusedBorderColor = "#005500",
         workspaces = spaces,
-        layoutHook = Full ||| Tall 1 (3/100) (1/2) ||| Mirror (Tall 1 (3/100) (1/2)),
+        layoutHook = avoidStruts (Full ||| Tall 1 (3/100) (1/2) ||| Mirror (Tall 1 (3/100) (1/2))),
         manageHook = composeAll
             [ manageHook gnomeConfig
             , className =? "MPlayer" --> doFloat
             , className =? "Gimp" --> doFloat
             , className =? "VirtualBox" --> doFloat
-            , resource  =? "desktop_window" --> doIgnore ],
+            , resource  =? "desktop_window" --> doIgnore ]
+            <+> manageDocks,
         startupHook = do
             setWMName "LG3D"
     }
