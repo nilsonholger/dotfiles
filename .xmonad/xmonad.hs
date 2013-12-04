@@ -22,6 +22,7 @@ main = xmonad $ gnomeConfig
             [ manageHook gnomeConfig
             , className =? "MPlayer" --> doFloat
             , className =? "Gimp" --> doFloat
+            , className =? "VirtualBox" --> doFloat
             , resource  =? "desktop_window" --> doIgnore ],
         startupHook = do
             setWMName "LG3D"
