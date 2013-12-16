@@ -58,6 +58,7 @@ alias vi='vim'
 [ -f ~/.org/index.wiki ] && alias org='wiki ~/.org'
 [ -f ~/cvhci/res/index.wiki ] && alias res='wiki ~/cvhci/res'
 
+alias -s doc=xdg-open
 alias -s pdf=xdg-open
 alias -s gz='gunzip -c'
 
