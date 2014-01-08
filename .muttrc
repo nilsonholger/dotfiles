@@ -1,5 +1,13 @@
-### SERVER/USERNAME SETTINGS
-source ~/.mutt/muttrc-server
+### SERVER/USERNAME SETTINGS (DEFINES THE FOLLOWING)
+source ~/.mutt/muttrc.local
+set imap_user=$imap_user
+set imap_pass=$imap_pass
+set folder=$folder
+set smtp_url=$smtp_url
+set smtp_pass=$smtp_pass
+set realname=$realname
+set from=$from
+alternates $alternates
 
 
 
@@ -16,14 +24,18 @@ set fast_reply											# do not ask about to: and subject:
 set fcc_attach											# forward attachments
 set forward_format="Fwd: %s"							# use 'Fwd: ' in subject
 set header_cache="~/.mutt/cache/headers"				# speed improvements
+set imap_check_subscribed								# fetch subscribed folders
 set include												# add original to reply
 unset mark_old											# do NOT make new unread messages with 'O'
 set message_cachedir="~/.mutt/cache/bodies"				# more speed improvements
 set postpone=ask-no										# mostly discard messages
+set postponed="=Drafts"									# use Drafts folder
 unset reply_self										# remove own address from replies
 set reverse_alias										# use aliases to display names
+set reverse_name										# use receiving address for replies
 set sort='threads'										# show threads
 set sort_aux='last-date-received'						# sort threads by last message date
+set spoolfile="=INBOX"									# use INBOX as spoolfile
 set query_command="/usr/local/bin/lbdbq '%s'"			# on os x, get list of contacts
 
 
