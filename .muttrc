@@ -117,15 +117,17 @@ bind pager ] half-down
 
 ### MACROS
 #macro pager                 \cb         |urlview\n "call urlview to extract URLs out of a message"
-macro index,pager           a           "<save-message>=Archive<enter><sync-mailbox>" "Archive message"
+macro index,pager           a           "<save-message>=Archive<enter><sync-mailbox>" "archive message"
 macro index,pager           A           "<create-alias>" "create an alias from a message sender"
-macro index,pager           Ga          "<change-folder>=Archive<enter>" "Go to Archive"
-macro index,pager           Gi          "<change-folder>=INBOX<enter>" "Go to INBOX"
-macro index,pager           Gs          "<change-folder>=Sent<enter>" "Go to Sent"
-macro index,pager           Gt          "<change-folder>=Trash<enter>" "Go to Trash"
+macro index,pager           Ga          "<change-folder>=Archive<enter>" "go to Archive folder"
+macro index,pager           Gd          "<change-folder>=Drafts<enter>" "go to Drafts folder"
+macro index,pager           Gi          "<change-folder>=INBOX<enter>" "go to INBOX folder"
+macro index,pager           Gs          "<change-folder>=Sent<enter>" "go to Sent folder"
+macro index,pager           GS          "<change-folder>=Spam<enter>" "go to Spam folder"
+macro index,pager           Gt          "<change-folder>=Trash<enter>" "go to Trash folder"
 macro index,pager           d           "<save-message>=Trash<enter><sync-mailbox>" "trash message"
 macro index,pager           <Esc>\cD    "<delete-message>" "delete the current entry"
-macro index,pager           S           "<save-message>=Spam<enter><sync-mailbox>" "Spam"
+macro index,pager           S           "<save-message>=Spam<enter><sync-mailbox>" "move to spam"
 
 
 
