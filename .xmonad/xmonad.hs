@@ -4,6 +4,7 @@ import XMonad.Config.Desktop (desktopLayoutModifiers)
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
 import XMonad.Util.EZConfig (additionalKeys)
+import System.Exit
 
 
 import qualified XMonad.StackSet as W
@@ -39,6 +40,7 @@ main = xmonad $ gnomeConfig
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
     `additionalKeys` [
         ((mod4Mask              , xK_q     ), spawn "xmonad --recompile && xmonad --restart&"),
+        ((mod4Mask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess)),
         ((mod4Mask              , xK_Escape), spawn "display ~/.xmonad/Xmbindings.png &"),
         ((mod4Mask .|. shiftMask, xK_i     ), spawn "firefox &"),
         ((mod4Mask .|. shiftMask, xK_m     ), spawn "thunderbird &"),
