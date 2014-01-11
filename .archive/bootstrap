@@ -1,0 +1,22 @@
+#! /bin/sh
+#
+# bootstrap
+
+# check location
+[ ! -f .archive/bootstrap ] && echo "NOT INSIDE CLONED DOTFILES DIRECTORY! ABORTING!" && exit
+
+# move to home directory if necessary
+if [ $PWD != $HOME ]
+then
+	_DIR=$PWD
+	mv $PWD/.* $HOME/
+	cd $HOME
+	rmdir $_DIR
+fi
+
+# git submodule
+git submodule init
+git submodule update
+
+# vim
+hash vim && vim +BundleInstall +qa
