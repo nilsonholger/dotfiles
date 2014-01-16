@@ -7,6 +7,7 @@
 	devs = shortlog -nes
 	di = diff --cached --color-words
 	dis = diff --cached --stat
+	dir = rev-parse --show-toplevel
 	ds = diff --stat
 	l = log --graph --date-order
 	la = log --graph --all --date-order
