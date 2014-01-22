@@ -75,7 +75,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'    # underline start
 export LSCOLORS=cxfxexdxCxegedabagacad # directory: green, sockets: blue, executable: bold green
 export LS_COLORS='di=32'
 export MAKEFLAGS="-j`/sbin/sysctl -n hw.ncpu 2> /dev/null || grep -c '^processor' /proc/cpuinfo`"
-[[ ! $PATH =~ sbin ]] && export PATH="/sbin:/usr/sbin:/usr/local/sbin:$PATH"
+[[ ! $PATH =~ sbin ]] && export PATH="/usr/local/sbin:/usr/sbin:/sbin:$PATH"
 export XLIB_SKIP_ARGB_VISUALS=1
 
 ulimit -c unlimited
