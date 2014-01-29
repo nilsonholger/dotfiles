@@ -33,6 +33,7 @@ set postponed="=Drafts"									# use Drafts folder
 unset reply_self										# remove own address from replies
 set reverse_alias										# use aliases to display names
 set reverse_name										# use receiving address for replies
+set sendmail_wait=-1									# fork message delivery
 set sort='threads'										# show threads
 set sort_aux='last-date-received'						# sort threads by last message date
 set spoolfile="=INBOX"									# use INBOX as spoolfile
