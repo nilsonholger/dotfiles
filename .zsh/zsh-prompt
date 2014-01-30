@@ -3,18 +3,17 @@
 ### battery status
 _BATTERY_STATUS=''
 
-# TODO: rewrite for linux
 function _battery_status {
 _BATTERY_STATUS=''
 local -a _STATUS
-_STATUS=(`pmset -g batt | tail -n +2`)
-[[ "${_STATUS[3]}" =~ .*charging.* ]] || return
-local _CHARGE=${_STATUS[2]/;} _COLOR
-[[ ${_CHARGE/\%} -gt 0 ]] && _COLOR="%F{red}"
-[[ ${_CHARGE/\%} -gt 20 ]] && _COLOR="%F{yellow}"
-[[ ${_CHARGE/\%} -gt 40 ]] && _COLOR="%F{green}"
-[ "${_STATUS[3]}" = "charging;" ] && _COLOR="%F{cyan}"
-_BATTERY_STATUS="${_COLOR}${_STATUS[4]/\(no}@${_CHARGE}%%f "
+_STATUS=(`sysctl hw.acpi.battery`)
+[ "${_STATUS[6]}" -eq "0" ] && return
+local _CHARGE=${_STATUS[2]} _COLOR
+[[ ${_CHARGE} -gt 0 ]] && _COLOR="%F{red}"
+[[ ${_CHARGE} -gt 20 ]] && _COLOR="%F{yellow}"
+[[ ${_CHARGE} -gt 40 ]] && _COLOR="%F{green}"
+[ "${_STATUS[6]}" -eq "0" ] && _COLOR="%F{cyan}"
+_BATTERY_STATUS="${_COLOR}`printf "%d:%.2d" $((_STATUS[4]/60)) $((_STATUS[4]%60))`@${_CHARGE}%%%f "
 }
 
 # only activate if pmset available
