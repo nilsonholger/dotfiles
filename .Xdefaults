@@ -1,0 +1,17 @@
+urxvt*termName:rxvt
+
+urxvt*depth:32
+urxvt*background:black
+urxvt*foreground:rgb:cccc/cccc/cccc
+urxvt*transparent:true
+urxvt*shading:10
+urxvt*fading:30
+urxvt*scrollBar:false
+
+urxvt*perl-ext-common: default,matcher
+urxvt*urllauncher: firefox
+urxvt*matcher.button: 1
+urxvt*iso14755: false
+
+urxvt.font:xft:Inconsolata:medium:pixelsize=14
+urxvt*letterSpace: -1
