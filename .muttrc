@@ -62,7 +62,7 @@ set date_format="!%d%b %H:%M"									# shorten date
 set folder_format="%2C %t %8s %d %N %f"							# more info
 set index_format="%4C %4c%Z %D %-25.25F %?M?(%M) &?%s"			# more info
 set pager_context=1												# show 1 common line when paging
-set pager_index_lines=25										# show some index lines when in pager
+set pager_index_lines=10										# show some index lines when in pager
 set status_format=" @%h:%f <%?n?N%n/?%?M?%M/?%m%?d?/D%d? %?L?%L/?%l>   %?b?NewBox: %b  ?%?F?Flag: %F  ?%?t?Tag: %t  ?%?V?Limit: %V?%> %r(%P)" # nicefy
 set status_on_top												# show status where it belongs
 
