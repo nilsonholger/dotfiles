@@ -14,7 +14,7 @@ import qualified Data.Map        as M
 spaces = ["T","W","M","V"]
 
 main = do
-    xmobar <- spawnPipe "xmobar"
+    xmobar <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
     xmonad $ defaultConfig
         {
             terminal = "/usr/local/bin/urxvt",
@@ -34,6 +34,7 @@ main = do
             logHook = dynamicLogWithPP $ xmobarPP
                 {
                     ppOutput = hPutStrLn xmobar
+                    , ppOrder = \(ws:l:t:_) -> [ws,t]
                     , ppTitle = xmobarColor "green" "" . shorten 50
                 },
             startupHook = do
