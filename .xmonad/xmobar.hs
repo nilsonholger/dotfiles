@@ -3,7 +3,7 @@ Config {
 	, lowerOnStart = True
 	, commands = [
 		Run StdinReader
-		, Run MultiCpu ["-L","20","-H","90","-n","green","-h","red","-t","<autobar>"] 10
+		, Run MultiCpu ["-L","60","-H","90","-n","yellow","-h","red","-t","<autobar>"] 10
 		, Run Com "/sbin/ifconfig" ["wlan0","|","awk","'/ssid/{print $2}'"] "ssid" 100
 		, Run Com "netstat" ["-h","-w1","-q1","|","awk","'NR>2 {print $4\\"B|\\" $7\\"B\\"}'"] "net" 10
 		, Run Com "vmstat" ["-h","|","awk","'NR>2 {print $5}'"] "mem" 50
@@ -13,5 +13,5 @@ Config {
 	]
 		, sepChar = "%"
 		, alignSep = "}{"
-		, template = "%StdinReader%}<action=urxvt -e htop>%multicpu%</action>{<%net%> <action=wifimgr>%ssid%</action> m:%mem% z:%zpool% %kbd% <fc=#ee3a00><action=xclock>%date%</action></fc>"
+		, template = "%StdinReader%}<fc=#333333><action=urxvt -e htop>%multicpu%</action></fc>{<fc=#765400><%net%></fc> <fc=#987600><action=wifimgr>%ssid%</action></fc> <fc=#ba9800>m:%mem% z:%zpool%</fc> <fc=#cb6500>%kbd%</fc> <fc=#fe3200><action=xclock>%date%</action></fc>"
 }
