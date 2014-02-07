@@ -51,7 +51,8 @@ main = do
         `additionalKeys` [
             ((mod4Mask              , xK_q     ), spawn "xmonad --recompile && xmonad --restart&"),
             ((mod4Mask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess)),
-            ((mod4Mask              , xK_Escape), spawn "display ~/.xmonad/Xmbindings.png &"),
+            ((mod4Mask              , xK_Escape), spawn "display ~/.xmonad/Xmbindings.svg &"),
             ((mod4Mask .|. shiftMask, xK_i     ), spawn "firefox &"),
             ((mod4Mask .|. shiftMask, xK_m     ), spawn "thunderbird &"),
-            ((mod4Mask .|. shiftMask, xK_l     ), spawn "if [ \"`setxkbmap -print | grep -o dvp`\" = \"dvp\" ]; then setxkbmap -layout us_intl -option 'grp:shifts_toggle'; else setxkbmap -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; fi; xmodmap ~/.Xmodmap &")]
+            ((mod4Mask .|. shiftMask, xK_l     ), spawn "xscreensaver-command -lock"),
+            ((mod4Mask .|. shiftMask, xK_d     ), spawn "if [ \"`setxkbmap -print | grep -o dvp`\" = \"dvp\" ]; then setxkbmap -layout us_intl -option 'grp:shifts_toggle'; else setxkbmap -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; fi; xmodmap ~/.Xmodmap &")]
