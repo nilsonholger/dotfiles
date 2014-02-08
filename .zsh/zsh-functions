@@ -23,11 +23,35 @@ done | sort -n | column -t -s"|"
 
 
 
-# gpg repair <FILE>
-function gpg-repair {
-[ -z $1 ] && echo 'usage: gpg-repair $FILE' && return
-mv "$1" "${1/.old}.old"
-gpg -d $1.old | gpg -r hyve -e -o ${1/.old}
+# gpg-tar <COMMAND> <FILE> [ARGS...]
+function gpg-tar {
+_AR=$2
+_DIR=${2/.txz.gpg}
+_GPGD="gpg --quiet --decrypt"
+_GPGE="gpg --encrypt --recipient hyve"
+_TAR="tar --create --verbose --xz --file -"
+_UNTAR="tar --extract --file -"
+
+case $1 in
+	encrypt)
+		eval "$_TAR --cd $_DIR . | $_GPGE --output $_AR.txz.gpg";;
+	decrypt)
+		eval "mkdir $_DIR && $_GPGD $_AR | $_UNTAR --cd $_DIR";;
+	add)
+		eval "$_GPGD $_AR | $_TAR @- \"./$3\" | $_GPGE --output $_AR.new";;
+	extract)
+		eval "$_GPGD $_AR | $_UNTAR \"$3\"";;
+	list)
+		eval $_GPGD $_AR | tar --list --file -;;
+	repair)
+		mv "$2"{,.old}; eval $_GPGD $_AR.old | eval $_GPGE --output ${_AR/.old};;
+	*)
+		echo "usage: $0 <command> <archive> [file]"
+		echo
+		echo "<commands>:"
+		echo "  [{en,de}crypt|list|repair] <archive>"
+		echo "  [add|extract] <archive> <file>"
+esac
 }
 
 
