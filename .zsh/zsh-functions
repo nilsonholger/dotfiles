@@ -38,7 +38,7 @@ case $1 in
 	decrypt)
 		eval "mkdir $_DIR && $_GPGD $_AR | $_UNTAR --cd $_DIR";;
 	add)
-		eval "$_GPGD $_AR | $_TAR @- \"./$3\" | $_GPGE --output $_AR.new";;
+		shift; shift; eval "$_GPGD $_AR | $_TAR @- $* | $_GPGE --output $_AR.new";;
 	extract)
 		eval "$_GPGD $_AR | $_UNTAR \"$3\"";;
 	list)
