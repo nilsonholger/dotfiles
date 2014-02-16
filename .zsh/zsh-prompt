@@ -8,12 +8,12 @@ _BATTERY_STATUS=''
 local -a _STATUS
 _STATUS=(`sysctl hw.acpi.battery`)
 [ "${_STATUS[6]}" -eq "0" ] && return
-local _CHARGE=${_STATUS[2]} _COLOR
+local _CHARGE=${_STATUS[2]} _COLOR _TIME="`printf "%d:%.2d" $((_STATUS[4]/60)) $((_STATUS[4]%60))`"
 [[ ${_CHARGE} -gt 0 ]] && _COLOR="%F{red}"
 [[ ${_CHARGE} -gt 20 ]] && _COLOR="%F{yellow}"
 [[ ${_CHARGE} -gt 40 ]] && _COLOR="%F{green}"
-[ "${_STATUS[6]}" -eq "0" ] && _COLOR="%F{cyan}"
-_BATTERY_STATUS="${_COLOR}`printf "%d:%.2d" $((_STATUS[4]/60)) $((_STATUS[4]%60))`@${_CHARGE}%%%f "
+[ "${_STATUS[6]}" -eq "2" ] && _COLOR="%F{cyan}"
+_BATTERY_STATUS+="${_COLOR}${_TIME/0:-01}@${_CHARGE}%%%f "
 }
 
 # only activate if sysctl available
