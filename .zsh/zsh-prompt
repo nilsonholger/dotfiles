@@ -16,8 +16,8 @@ local _CHARGE=${_STATUS[2]} _COLOR _TIME="`printf "%d:%.2d" $((_STATUS[4]/60)) $
 _BATTERY_STATUS+="${_COLOR}${_TIME/0:-01}@${_CHARGE}%%%f "
 }
 
-# only activate if sysctl available
-hash sysctl 2> /dev/null && periodic_functions+=(_battery_status)
+# only activate if 'sysctl hw.acpi.battery' available
+hash sysctl 2> /dev/null && sysctl -q hw.acpi.battery > /dev/null && periodic_functions+=(_battery_status)
 
 
 
