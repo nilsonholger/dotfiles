@@ -48,7 +48,7 @@ case $1 in
 	extract)
 		eval "$_GPGD $_AR | $_UNTAR \"$3\"";;
 	list)
-		eval $_GPGD $_AR | tar --list --file -;;
+		eval $_GPGD $_AR | tar --list --file - | sort;;
 	repair)
 		mv "$2"{,.old}; eval $_GPGD $_AR.old | eval $_GPGE --output ${_AR/.old};;
 	*)
