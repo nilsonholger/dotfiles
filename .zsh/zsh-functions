@@ -38,7 +38,13 @@ case $1 in
 	decrypt)
 		eval "mkdir $_DIR && $_GPGD $_AR | $_UNTAR --cd $_DIR";;
 	add)
-		shift; shift; eval "$_GPGD $_AR | $_TAR @- $* | $_GPGE --output $_AR.new";;
+		shift; shift
+		eval "$_GPGD $_AR | $_TAR @- $* | $_GPGE --output $_AR.new"
+		du -h $_AR $_AR.new
+		echo -n "Replace archive? [yN] "
+		read _COPY
+		[ "$_COPY" = "y" ] && mv $_AR.new $_AR
+		;;
 	extract)
 		eval "$_GPGD $_AR | $_UNTAR \"$3\"";;
 	list)
