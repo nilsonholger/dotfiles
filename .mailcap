@@ -1,5 +1,1 @@
 text/html;      lynx -dump -display_charset=UTF-8 -force_html %s; needsterminal; copiousoutput
-application/*;  NAME="/tmp/mutt-`basename %s`" && cp %s $NAME && open $NAME && sleep 1 && rm $NAME
-audio/*;        NAME="/tmp/mutt-`basename %s`" && cp %s $NAME && open $NAME && sleep 1 && rm $NAME
-image/*;        NAME="/tmp/mutt-`basename %s`" && cp %s $NAME && open $NAME && sleep 1 && rm $NAME
-text/*;         NAME="/tmp/mutt-`basename %s`" && cp %s $NAME && open $NAME && sleep 1 && rm $NAME
