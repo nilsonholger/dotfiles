@@ -36,21 +36,22 @@ case $1 in
 	encrypt)
 		eval "$_TAR --cd $_DIR . | $_GPGE --output $_AR.txz.gpg";;
 	decrypt)
-		eval "mkdir $_DIR && $_GPGD $_AR | $_UNTAR --cd $_DIR";;
+		eval "mkdir $_DIR && $_GPGD $_AR | $_UNTAR --cd $_DIR"; rmdir $_DIR &> /dev/null;;
 	add)
 		shift; shift
 		eval "$_GPGD $_AR | $_TAR @- $* | $_GPGE --output $_AR.new"
+		sleep 0.5
 		du -h $_AR $_AR.new
 		echo -n "Replace archive? [yN] "
 		read _COPY
 		[ "$_COPY" = "y" ] && mv $_AR.new $_AR
 		;;
 	extract)
-		eval "$_GPGD $_AR | $_UNTAR \"$3\"";;
+		[ $3 ] && eval "$_GPGD $_AR | $_UNTAR \"$3\"" || gpg-tar decrypt $_AR;;
 	list)
 		eval $_GPGD $_AR | tar --list --file - | sort;;
 	repair)
-		mv "$2"{,.old}; eval $_GPGD $_AR.old | eval $_GPGE --output ${_AR/.old};;
+		mv "$_AR"{,.old}; eval $_GPGD $_AR.old | eval $_GPGE --output ${_AR/.old};;
 	*)
 		echo "usage: $0 <command> <archive> [file]"
 		echo
