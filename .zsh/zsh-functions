@@ -51,7 +51,7 @@ case $1 in
 	list)
 		eval $_GPGD $_AR | tar --list --file - | sort;;
 	repair)
-		mv "$_AR"{,.old}; eval $_GPGD $_AR.old | eval $_GPGE --output ${_AR/.old};;
+		mv "$_AR"{,.old}; eval "$_GPGD $_AR.old | $_GPGE --output ${_AR/.old}";;
 	*)
 		echo "usage: $0 <command> <archive> [file]"
 		echo
