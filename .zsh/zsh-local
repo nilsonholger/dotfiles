@@ -36,14 +36,15 @@ then
 	function i14sync { unison i14 -path ${${1:-$PWD}/$HOME/.} }
 	function i14load
 	{
+		[ "$1" = "-d" ] && { _SORT="cat -"; _COL="cat -"; } || { _SORT="sort"; _COL="column -t"; }
 		{
 			_CPU='$(sysctl -n hw.ncpu 2> /dev/null || grep -c "^processor" /proc/cpuinfo)'
 			_LOAD='$(cut -f1-4 -d" " /proc/loadavg)'
 			_FREE='$(free -m | awk "/(buffers\/cache|Swap)/ {printf \"%.1f/%.1f\n\", \$3/1024, \$4/1024}" | tr "\n" " ")'
 			_USERS='$(top -bn1 | awk "NR>7{u[\$2]+=\$9}END {for(i in u) {if (u[i]>2) printf \" %s:%d\",i,u[i]}}")'
 			echo "SERVER CPU LOAD L_5 L_15 PROCS MEM SWAP USERS"
-			echo -n pc1{84..90} s1 s{20..27} s{29..31} | xargs -P 19 -n1 -d ' ' -I SERVER ssh -o ConnectTimeout=3 SERVER "echo SERVER $_CPU $_LOAD $_FREE $_USERS" | sort
-		} | column -t
+			echo -n pc1{84..90} s1 s{20..27} s{29..31} | xargs -P 19 -n1 -d ' ' -I SERVER ssh -o ConnectTimeout=3 SERVER "echo SERVER $_CPU $_LOAD $_FREE $_USERS" | eval $_SORT
+		} | eval $_COL
 	}
 
 	[ -z "$SSH_AUTH_SOCK" ] && SSH_AGENT='ssh-agent' # check ssh-agent status
