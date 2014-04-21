@@ -1,6 +1,7 @@
 stop-xscreensaver=true
 #monitoraspect=16:10
 fs=true
+zoom=true
 
 slang=en
 fontconfig=true
