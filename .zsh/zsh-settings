@@ -56,7 +56,7 @@ alias scpr='rsync --partial --progress --rsh=ssh'
 alias vi='vim'
 
 [ -f ~/.org/index.wiki ] && alias org='wiki ~/.org'
-[ -f ~/res/index.wiki ] && alias res='wiki ~/res'
+[ -f ~/papers/index.wiki ] && alias papers='wiki ~/papers'
 
 alias -s doc=xdg-open
 alias -s pdf=xdg-open
