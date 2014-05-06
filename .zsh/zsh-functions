@@ -13,9 +13,7 @@ done | (hexdump -e '"%08_ax  " 8/1 "%02x " "  " 8/1 "%02x " "  " 8/1 "%02x " "  
 
 # files [DIR] [DEPTH]
 function files {
-[ -z $1 ] && _DIR='.' || _DIR="$1"
-[ -z $2 ] && _DEPTH="2" || _DEPTH="$2"
-find $_DIR -maxdepth $_DEPTH -type d | while read _DIR
+find ${1:-.} -maxdepth ${2:-2} -type d | while read _DIR
 do
 	echo `find $_DIR -type f | wc -l`\|$_DIR
 done | sort -n | column -t -s"|"
