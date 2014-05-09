@@ -12,11 +12,11 @@ Bundle 'gmarik/vundle'
 
 " bundles
 Bundle 'bufexplorer.zip'
-Bundle 'Rip-Rip/clang_complete'
 Bundle 'gnupg'
 Bundle 'ervandew/supertab'
 Bundle 'tpope/vim-fugitive'
 Bundle 'vimwiki'
+Bundle 'Valloric/YouCompleteMe'
 
 "
 " SETTINGS
@@ -90,7 +90,6 @@ let g:changelog_username = "NilsonHolger <nilsonholger@hyve.org>"
 if has("autocmd")
 	filetype plugin indent on
 	au BufNew * set foldlevel=20
-	au BufNewFile,BufRead,BufEnter *.c,*.cc,*.cpp,*.c++,*.h,*.hh,*.hpp set omnifunc=ClangComplete
 	au BufReadPost fugitive://* set bufhidden=delete
 	au BufReadPost * silent! normal g;zz
 	au! BufWritePost $MYVIMRC windo source $MYVIMRC
@@ -184,14 +183,8 @@ hi PmenuThumb	ctermbg=yellow						cterm=none
 "
 " PLUGINS
 "
-" clang_complete
-let g:clang_complete_auto = 1
-let g:clang_complete_copen = 1
-let g:clang_user_options = '-std=c++11 -stdlib=libc++ -I/home.local/dk/local/include/c++/v1'
-if has("python")
-	let g:clang_library_path = '/usr/lib/llvm-3.2/lib/'
-	let g:clang_use_library = 1
-endif
+" ycm
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 
 " supertab
 let g:SuperTabDefaultCompletionType = "context"
