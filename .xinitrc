@@ -1,3 +1,3 @@
 export LANG="en_US.UTF-8"
 xscreensaver -nosplash &
-ssh-agent xmonad --replace
+gpg-agent --daemon --enable-ssh-support xmonad
