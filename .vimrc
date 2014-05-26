@@ -184,7 +184,7 @@ hi PmenuThumb	ctermbg=yellow						cterm=none
 " PLUGINS
 "
 " ycm
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 
 " supertab
 let g:SuperTabDefaultCompletionType = "context"
