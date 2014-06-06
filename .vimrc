@@ -274,21 +274,19 @@ function! ToggleComment(visual)
 	endfor
 endfunction
 
-" Switch between source/header (*.(h|hh|c|cc) or *.(h|c)(pp|xx|++|..))
+" Switch between source/header: *.((h|hh|c|cc)|(h|c)(pp|xx|++))
 function! SwitchHS()
 	let l:ext=expand('%:e')
 	let l:next=""
-	try
-		if l:ext=~'^c' | let l:next="h" | elseif l:ext=~'^h' | let l:next="c" | endif
-		if strlen(l:ext)<3
-			let v:errmsg = "" | silent! execute 'find **/%:t:r.'.l:next
-			if !empty(v:errmsg) | execute 'find **/%:t:r.'.l:next.l:next | endif
-		else
-			execute 'find **/%:t:r.'.l:next.strpart(l:ext, 1, 2)
-		endif
-	catch /.*/
-		echo v:exception
-	endtry
+	if l:ext=~'^c' | let l:next="h" | elseif l:ext=~'^h' | let l:next="c" | endif
+	for postfix in ['', l:next, 'pp', 'xx', '++']
+		try
+			execute 'find **/%:t:r.'.l:next.postfix
+		catch /.*/
+			continue
+		endtry
+		break
+	endfor
 endfunction
 
 " Toggle colorcolumn
