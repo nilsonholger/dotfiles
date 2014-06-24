@@ -274,14 +274,13 @@ function! ToggleComment(visual)
 	endfor
 endfunction
 
-" Switch between source/header: *.((h|hh|c|cc)|(h|c)(pp|xx|++))
+" Switch between header/source: *.((h|hh|c|cc)|(h|c)(pp|xx|++))
 function! SwitchHS()
-	let l:ext=expand('%:e')
-	let l:next=""
-	if l:ext=~'^c' | let l:next="h" | elseif l:ext=~'^h' | let l:next="c" | endif
-	for postfix in ['', l:next, 'pp', 'xx', '++']
+	let [l:e, l:n] = [expand('%:e'), ""]
+	if l:e=~'^c' | let l:n="h" | elseif l:e=~'^h' | let l:n="c" | endif
+	for postfix in ['', l:n, 'pp', 'xx', '++']
 		try
-			execute 'find **/%:t:r.'.l:next.postfix
+			execute 'find **/%:t:r.'.l:n.postfix
 		catch /.*/
 			continue
 		endtry
