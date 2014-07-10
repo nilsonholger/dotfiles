@@ -4,6 +4,7 @@ Config {
 	, commands = [
 		Run StdinReader
 		, Run MultiCpu ["-L","60","-H","90","-n","yellow","-h","red","-t","<autobar>"] 10
+		, Run Com "/sbin/ifconfig" ["wlan0","|","grep","-q","associated","&&","echo","@"] "carrier" 100
 		, Run Com "/sbin/ifconfig" ["wlan0","|","grep","ssid","|","sed","-e","'s/ channel.*//'","-e","'s/.*ssid //'"] "ssid" 100
 		, Run Com "netstat" ["-h","-w1","-q1","|","awk","'NR>2 {print $4\\"B|\\" $7\\"B\\"}'"] "net" 10
 		, Run Com "vmstat" ["-h","|","awk","'NR>2 {print $5}'"] "mem" 50
@@ -15,5 +16,5 @@ Config {
 	]
 		, sepChar = "$"
 		, alignSep = "}{"
-		, template = "$StdinReader$}<fc=#333333><action=urxvt -e htop>$multicpu$</action></fc>{<fc=#765400><action=urxvt -e systat -netstat><$net$></action></fc> <fc=#987600><action=wifimgr>$ssid$</action></fc> <fc=#ba9800><action=urxvt -e systat -vmstat>m:$mem$</action> <action=urxvt -e systat -iostat>z:$zpool$</action> $tz$ $bat$%</fc> <fc=#cb6500>$kbd$</fc> <fc=#fe3200><action=xclock>$date$</action></fc>"
+		, template = "$StdinReader$}<fc=#333333><action=urxvt -e htop>$multicpu$</action></fc>{<fc=#765400><action=urxvt -e systat -netstat><$net$></action></fc> <fc=#987600><action=wifimgr>$carrier$$ssid$</action></fc> <fc=#ba9800><action=urxvt -e systat -vmstat>m:$mem$</action> <action=urxvt -e systat -iostat>z:$zpool$</action> $tz$ $bat$%</fc> <fc=#cb6500>$kbd$</fc> <fc=#fe3200><action=xclock>$date$</action></fc>"
 }
