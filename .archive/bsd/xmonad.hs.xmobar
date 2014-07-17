@@ -1,0 +1,60 @@
+import XMonad
+import XMonad.Config.Desktop (desktopLayoutModifiers)
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.SetWMName
+import XMonad.Layout.NoBorders
+import XMonad.Util.EZConfig (additionalKeys)
+import XMonad.Util.Run (spawnPipe)
+import System.Exit
+import System.IO
+
+import qualified XMonad.StackSet as W
+import qualified Data.Map        as M
+
+spaces = ["T","W","M","V"]
+
+main = do
+    xmobar <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
+    xmonad $ defaultConfig
+        {
+            terminal = "/usr/local/bin/urxvt",
+            modMask = mod4Mask,
+            borderWidth = 1,
+            normalBorderColor = "#002200",
+            focusedBorderColor = "#005500",
+            workspaces = spaces,
+            layoutHook = smartBorders $ avoidStruts (Tall 1 (3/100) (1/2) ||| Mirror (Tall 1 (3/100) (1/2)) ||| Full),
+            manageHook = composeAll
+                [ manageHook defaultConfig
+                , className =? "MPlayer" --> doFloat
+                , className =? "Gimp" --> doFloat
+                , className =? "VirtualBox" --> doFloat
+                , resource  =? "desktop_window" --> doIgnore ]
+                <+> manageDocks,
+            logHook = dynamicLogWithPP $ xmobarPP
+                {
+                    ppOutput = hPutStrLn xmobar
+                    , ppOrder = \(ws:l:t:_) -> [ws,t]
+                    , ppTitle = xmobarColor "green" "" . shorten 50
+                },
+            startupHook = do
+                setWMName "LG3D"
+        }
+        `additionalKeys`
+        [((m .|. mod4Mask, k), windows $ f i)
+            | (i, k) <- zip (spaces) [xK_ampersand, xK_bracketleft, xK_braceleft, xK_braceright]
+            , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+        `additionalKeys`
+        [((m .|. mod4Mask, k), screenWorkspace s >>= flip whenJust (windows . f))
+            | (k, s) <- zip [xK_w, xK_e, xK_r] [1,2,0]
+            , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+        `additionalKeys` [
+            ((modMask                 , xK_p     ), spawn "zsh -i -c dmenu_run"),
+            ((mod4Mask                , xK_q     ), spawn "xmonad --recompile && xmonad --restart&"),
+            ((mod4Mask .|. shiftMask  , xK_q     ), io (exitWith ExitSuccess)),
+            ((mod4Mask                , xK_Escape), spawn "display ~/.xmonad/Xmbindings.svg &"),
+            ((mod4Mask .|. shiftMask  , xK_i     ), spawn "firefox &"),
+            ((mod4Mask .|. shiftMask  , xK_m     ), spawn "thunderbird &"),
+            ((mod1Mask .|. controlMask, xK_l   ), spawn "xscreensaver-command -lock"),
+            ((mod4Mask .|. shiftMask  , xK_l     ), spawn "if [ \"`setxkbmap -print | grep -o dvp`\" = \"dvp\" ]; then setxkbmap -layout us_intl -option 'grp:shifts_toggle'; else setxkbmap -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; fi; xmodmap ~/.Xmodmap &")]
