@@ -1,5 +1,6 @@
 Config {
-	font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+	  font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+	, position = TopW L 95
 	, lowerOnStart = True
 	, commands = [
 		Run StdinReader
