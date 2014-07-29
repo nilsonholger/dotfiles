@@ -1,6 +1,6 @@
 Config {
 	  font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
-	, position = TopW L 95
+	, position = TopW L 99
 	, lowerOnStart = True
 	, commands = [
 		Run StdinReader
@@ -15,5 +15,5 @@ Config {
 	]
 		, sepChar = "$"
 		, alignSep = "}{"
-		, template = "$StdinReader$}<fc=#333333><action=urxvt -e htop>$multicpu$</action></fc>{<fc=#765400><action=urxvt -e echo>$dynnetwork$</action></fc> <fc=#987600><action=nm-connection-editor>$wlan0wi$</action></fc> <fc=#ba9800><action=urxvt -e htop>$memory$M</action>|<action=urxvt -e echo>$disku$</action> $battery$%</fc> <fc=#cb6500>$kbd$</fc> <fc=#fe3200><action=xclock>$date$</action></fc>"
+		, template = "$StdinReader$}<fc=#333333><action=urxvt -e htop>  $multicpu$</action></fc>{<fc=#765400><action=urxvt -e echo>$dynnetwork$</action></fc> <fc=#987600><action=nm-connection-editor>$wlan0wi$</action></fc> <fc=#ba9800><action=urxvt -e htop>$memory$M</action>|<action=urxvt -e echo>$disku$</action> $battery$%</fc> <fc=#cb6500>$kbd$</fc> <fc=#fe3200><action=xclock>$date$</action></fc>"
 }
