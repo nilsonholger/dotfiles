@@ -85,9 +85,17 @@ cd -
 
 
 
-# pdf compress <FILE>
+# pdf compress <FILE> <IMAGE_DPI>
 function pdfcompress {
-ghostscript -dCompatibilityLevel=1.4 -sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH -sOutputFile=${1/.pdf/-small.pdf} $1
+DPI=${2:-720}
+ghostscript -dCompatibilityLevel=1.4 -sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH \
+	-dDownsampleColorImages=true \
+	-dDownsampleGrayImages=true \
+	-dDownsampleMonoImages=true \
+	-dColorImageResolution=$DPI \
+	-dGrayImageResolution=$DPI \
+	-dMonoImageResolution=$DPI \
+	-sOutputFile=${1/.pdf/-small.pdf} $1
 }
 
 
