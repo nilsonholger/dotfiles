@@ -15,10 +15,10 @@ import qualified Data.Map        as M
 spaces = ["T","W","M","V"]
 
 main = do
-    xmobar <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
+    xmobar <- spawnPipe "xmobar -x 2 ~/.xmonad/xmobar.hs"
     xmonad $ defaultConfig
         {
-            terminal = "/usr/bin/urxvt",
+            terminal = "/usr/bin/gnome-terminal",
             modMask = mod4Mask,
             borderWidth = 1,
             normalBorderColor = "#002200",
