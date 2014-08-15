@@ -34,19 +34,24 @@ fi
 # i14
 if [ ${HOST/i14*/i14} = i14 ]
 then
-	function i14sync { unison i14 -path ${${1:-$PWD}/$HOME/.} }
+	function i14run {
+		[ "$1" = "-d" ] && { shift; _SORT="cat -"; } || _SORT="sort"
+		[[ $* =~ '\$\(' ]] && _ARGS="$*" || _ARGS="\$($*)"
+		echo -n pc1{84..90} s1 s{20..26} s{29..31} | xargs -P 0 -n1 -d ' ' -I SERVER ssh -o ConnectTimeout=3 SERVER "echo SERVER $_ARGS" | eval $_SORT
+	}
 	function i14load
 	{
-		[ "$1" = "-d" ] && { _SORT="cat -"; _COL="cat -"; } || { _SORT="sort"; _COL="column -t"; }
+		[ "$1" = "-d" ] && { _COL="cat -"; } || _COL="column -t"
 		{
 			_CPU='$(sysctl -n hw.ncpu 2> /dev/null || grep -c "^processor" /proc/cpuinfo)'
 			_LOAD='$(cut -f1-4 -d" " /proc/loadavg)'
 			_FREE='$(free -m | awk "/(buffers\/cache|Swap)/ {printf \"%.1f/%.1f\n\", \$3/1024, \$4/1024}" | tr "\n" " ")'
 			_USERS='$(top -bn1 | awk "NR>7{u[\$2]+=\$9}END {for(i in u) {if (u[i]>2) printf \" %s:%d\",i,u[i]}}")'
 			echo "SERVER CPU LOAD L_5 L_15 PROCS MEM SWAP USERS"
-			echo -n pc1{84..90} s1 s{20..26} s{29..31} | xargs -P 0 -n1 -d ' ' -I SERVER ssh -o ConnectTimeout=3 SERVER "echo SERVER $_CPU $_LOAD $_FREE $_USERS" | eval $_SORT
+			i14run $1 "$_CPU $_LOAD $_FREE $_USERS"
 		} | eval $_COL
 	}
+	function i14sync { unison i14 -path ${${1:-$PWD}/$HOME/.} }
 
 	[ -z "$SSH_AUTH_SOCK" ] && SSH_AGENT='ssh-agent' # check ssh-agent status
 	[ -n "$TMUX" ] && export LC_TMUX=$TMUX # export tmux sessions status over ssh
