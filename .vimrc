@@ -112,7 +112,8 @@ nnoremap <leader>h :call SwitchHS()<cr>
 nnoremap <leader>l :set list!<CR>:set list?<CR>
 nnoremap <leader>n :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
 nnoremap <leader>N :noh<CR>
-nnoremap <leader>s :set spell!<CR>:set spell?<CR>
+nnoremap <leader>ss :set spell!<CR>:set spell?<CR>
+nnoremap <leader>sw :w !sudo tee %<CR>
 nnoremap <leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 nnoremap / /\v
