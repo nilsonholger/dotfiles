@@ -13,6 +13,7 @@
 	hash cpu-governor &>/dev/null && cpu-governor ondemand
 } &
 
+gnome-settings-daemon &
 pgrep xmobar &>/dev/null && trayer --edge top --align right --margin 1 --widthtype pixel --width 15 --height 14 --transparent true --tint 0x000000 &
 pgrep xmobar trayer &>/dev/null && nm-applet &
 ( sleep 0.5; pgrep ibus-ui-gtk3 && killall ibus-ui-gtk3 ) &
