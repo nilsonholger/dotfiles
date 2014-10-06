@@ -1,16 +1,3 @@
-{
-	# startup
-	[ -f ~/.unison/i14.prf ] && unison i14 -silent -repeat 10800 &> /dev/null &
-
-	# ...wait for it...
-	sleep 60
-	while $(pgrep ssh-agent > /dev/null); do sleep 60; done
-
-	# shutdown
-	kill `pgrep -f 'unison i14'`
-	unison i14 -silent
-} &
-
 gnome-settings-daemon &
 export `/usr/bin/gnome-keyring-daemon --start`
 
