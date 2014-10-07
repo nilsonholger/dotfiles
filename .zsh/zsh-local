@@ -8,8 +8,6 @@ then
 	_LIB="$_LOCAL/lib64:$_LOCAL/lib32:$_LOCAL/lib"
 
 	[ -d $_LOCAL/android ] && [[ ! $PATH =~ $_LOCAL/android/tools ]] && _PATH="$_PATH:$_LOCAL/android/tools:$_LOCAL/android/platform-tools:$_LOCAL/android/ndk"
-	[ -d $_LOCAL/cuda ] && [[ ! $PATH =~ $_LOCAL/cuda ]] && _PATH="$_PATH:$_LOCAL/cuda/bin"
-	[ -d $_LOCAL/cuda ] && [[ ! $PATH =~ $_LOCAL/cuda ]] && _LIB="$_LIB:$_LOCAL/cuda/lib64:$_LOCAL/cuda/lib"
 	[ -d $_LOCAL/libexec/git-core/ ] && export GIT_EXEC_PATH="$_LOCAL/libexec/git-core"
 
 	export PATH=$_PATH
