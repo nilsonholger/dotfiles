@@ -135,3 +135,14 @@ function hyve
 		"") [ -d ~/hyve ] && hyve off || hyve on;;
 	esac
 }
+
+
+
+# unisel <target> [path]
+function unisel
+{
+	_TARGET=${1:-$HOST}
+	_BASE=$(cat ~/.unison/${_TARGET}.prf | awk 'NR==1 {print $3}')
+	_DIR=${PWD}/$2
+	unison ${_TARGET} -ignore "Path {,.}*" -path ${_DIR/${_BASE}/.}
+}
