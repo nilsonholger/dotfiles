@@ -49,7 +49,6 @@ then
 			i14run $1 "$_CPU $_LOAD $_FREE $_USERS"
 		} | eval $_COL
 	}
-	function i14sync { unison i14 -path ${${1:-$PWD}/$HOME/.} }
 
 	[ -z "$SSH_AUTH_SOCK" ] && SSH_AGENT='ssh-agent' # check ssh-agent status
 	[ -n "$TMUX" ] && export LC_TMUX=$TMUX # export tmux sessions status over ssh
