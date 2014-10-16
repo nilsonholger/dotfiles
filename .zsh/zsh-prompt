@@ -20,7 +20,7 @@ _BATTERY_STATUS="${_COLOR}${_TIME/0:-01}@${_CHARGE}%%%f "
 }
 
 # activate if battery information directory exists
- [ -d /sys/class/power_supply/BAT1 ] && periodic_functions+=(_battery_status)
+[ -d /sys/class/power_supply/BAT1 ] && periodic_functions+=(_battery_status)
 
 
 
