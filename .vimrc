@@ -36,6 +36,7 @@ set showcmd										" display partial commands
 set whichwrap=<,>,[,],h,l						" can move to next/previous line
 
 " display
+set conceallevel=2		" simply because
 set fileformats+=mac	" cause we workin' on the fruity stuff
 set foldmethod=syntax	" yes, we like folds, especially intelligent ones
 set linebreak			" wrap looooooong lines
