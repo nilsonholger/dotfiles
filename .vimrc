@@ -107,7 +107,7 @@ endif
 let mapleader=' ' " normally mapped to <Right>, not really useful
 nnoremap <leader>c :<c-u>call ToggleComment('false')<cr>
 vnoremap <leader>c :<c-u>call ToggleComment('true')<cr>
-nnoremap <leader>C :call ToggleColorColumn()<cr>
+nnoremap <leader>C :let &colorcolumn = &colorcolumn>0 ? 0 : &textwidth==0 ? 80 : &textwidth<cr>
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 nnoremap <leader>h :call SwitchHS()<cr>
 nnoremap <leader>l :set list!<CR>:set list?<CR>
@@ -288,17 +288,4 @@ function! SwitchHS()
 		endtry
 		break
 	endfor
-endfunction
-
-" Toggle colorcolumn
-function! ToggleColorColumn()
-	if &colorcolumn>0
-		set colorcolumn=0
-	else
-		if !(&textwidth==0)
-			let &colorcolumn=&textwidth
-		else
-			set colorcolumn=80
-		endif
-	endif
 endfunction
