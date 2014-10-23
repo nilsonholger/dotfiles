@@ -280,12 +280,14 @@ endfunction
 function! SwitchHS()
 	let [l:e, l:n] = [expand('%:e'), ""]
 	if l:e=~'^c' | let l:n="h" | elseif l:e=~'^h' | let l:n="c" | endif
-	for postfix in ['', l:n, 'pp', 'xx', '++']
-		try
-			execute 'find **/%:t:r.'.l:n.postfix
-		catch /.*/
-			continue
-		endtry
-		break
+	for path in ['%:p:h', '**']
+		for postfix in ['', l:n, 'pp', 'xx', '++']
+			try
+				execute 'find '.path.'/%:t:r.'.l:n.postfix
+			catch /.*/
+				continue
+			endtry
+			break
+		endfor
 	endfor
 endfunction
