@@ -1,6 +1,6 @@
 # settings
 autoload -Uz compinit
-compinit
+compinit -d ~/.zcompdump
 autoload -U colors
 colors
 
