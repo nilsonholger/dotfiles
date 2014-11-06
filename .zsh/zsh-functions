@@ -151,5 +151,5 @@ function unisel
 
 # doi2bib <doi>
 function doi2bib() {
-	curl -s -L -H "Accept: text/bibliography; style=bibtex" http://dx.doi.org/"$*" | sed -e "s/, /,\n /g"
+	curl -s -L -H "Accept: text/bibliography; style=bibtex" http://dx.doi.org/"$*" | sed -e "s/\(\@\S*,\)/\1\n/" -e "s/\}, /\},\n /g"
 }
