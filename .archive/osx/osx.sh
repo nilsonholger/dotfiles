@@ -89,6 +89,7 @@ defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
+defaults write "Apple Global Domain" AppleInterfaceStyle -string Dark
 #TODO checkout systemsetup
 }
 
