@@ -146,3 +146,10 @@ function unisel
 	_DIR=${PWD}/$2
 	unison ${_TARGET} -ignore "Path {,.}*" -path ${_DIR/${_BASE}/.\/}
 }
+
+
+
+# doi2bib <doi>
+function doi2bib() {
+	curl -s -L -H "Accept: text/bibliography; style=bibtex" http://dx.doi.org/"$*" | sed -e "s/\(\@\S*,\)/\1\n/" -e "s/\}, /\},\n /g"
+}
