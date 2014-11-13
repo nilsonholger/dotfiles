@@ -3,7 +3,7 @@
 ### battery status
 _BATTERY_STATUS=''
 
-function _battery_status {
+function _unix_battery_status {
 _BATTERY_STATUS=''
 local _SYS='/sys/class/power_supply/BAT1/'
 local _STATUS=`cat $_SYS/status`
@@ -19,8 +19,26 @@ _TIME="`printf "%d:%.2d" $((_TIME/60)) $((_TIME%60))`"
 _BATTERY_STATUS="${_COLOR}${_TIME/0:-01}@${_CHARGE}%%%f "
 }
 
-# activate if battery information directory exists
-[ -d /sys/class/power_supply/BAT1 ] && periodic_functions+=(_battery_status)
+# activate if battery information directory exists (=> unix/linux)
+[ -d /sys/class/power_supply/BAT1 ] && periodic_functions+=(_unix_battery_status)
+
+
+
+function _osx_battery_status {
+_BATTERY_STATUS=''
+local -a _STATUS
+_STATUS=(`pmset -g batt | tail -n +2`) # get info from pmset
+[[ "${_STATUS[3]}" =~ .*charging.* ]] || return # only continue when (dis-)charging
+local _CHARGE=${_STATUS[2]/;} _COLOR
+[[ ${_CHARGE/\%} -gt 0 ]] && _COLOR="%F{red}" # critical
+[[ ${_CHARGE/\%} -gt 20 ]] && _COLOR="%F{yellow}" # warning
+[[ ${_CHARGE/\%} -gt 40 ]] && _COLOR="%F{green}" # ok
+[ "${_STATUS[3]}" = "charging;" ] && _COLOR="%F{cyan}" # charging
+_BATTERY_STATUS="${_COLOR}${_STATUS[4]/\(no}@${_CHARGE}%%f " # create prompt indicator
+}
+
+# update periodically (only if pmset available => apple platforms)
+hash pmset 2> /dev/null && periodic_functions+=(_osx_battery_status)
 
 
 
