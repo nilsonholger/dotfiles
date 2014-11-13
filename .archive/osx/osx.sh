@@ -6,7 +6,7 @@
 # http://www.nsa.gov/ia/_files/factsheets/macosx_10_6_hardeningtips.pdf
 # http://images.apple.com/support/security/guides/docs/SnowLjopard_Security_Config_v10.6.pdf
 #
-# Copyright (C) 2012 nilsonholger@hyve.org
+# Copyright (C) 2012-2014 nilsonholger@hyve.org
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -93,10 +93,11 @@ defaults write com.apple.screensaver askForPasswordDelay -int 0
 }
 
 function osx_homebrew {
-[ ! -r /usr/bin/clang ] && echo "Please download command line tools for Xcode (https://developer.apple.com/downloads/index.action) first!" && return
-ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
+[ ! -r /usr/bin/clang ] && echo "Please download command line tools for Xcode (https://developer.apple.com/downloads/index.action) first!" && git
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
-brew install git gnupg ddclient
+brew doctor
+brew install git gnupg ddclient pass
 cp /usr/local/share/doc/ddclient/sample-etc_ddclient.conf /usr/local/etc/ddclient/ddclient.conf
 cat << EOF > /tmp/org.ddclient.plist
 <?xml version="1.0" encoding="UTF-8"?>
@@ -149,10 +150,15 @@ defaults write com.apple.BezelServices kDimTime -int 300 # dim after 5 minutes
 }
 
 function osx_noatime {
+sudo mkdir -p /usr/local/bin
+sudo chmod -R g=rwX,o=rX /usr/local/
+sudo touch /usr/local/bin/remount_noatime
+sudo chmod g=rwX /usr/local/bin/remount_noatime
 sudo cat << EOF > /usr/local/bin/remount_noatime
 #!/bin/bash
-/sbin/mount -uwo noatime,nodev,nosuid,nobrowse /Users/$1
+/sbin/mount -uwo noatime,nodev,nobrowse /dev/disk1
 EOF
+sudo chmod g-w /usr/local/bin/remount_noatime
 sudo chown root:staff /usr/local/bin/remount_noatime
 sudo chmod a+rx /usr/local/bin/remount_noatime
 sudo defaults write com.apple.loginwindow LoginHook /usr/local/bin/remount_noatime
@@ -174,6 +180,7 @@ defaults write com.apple.Safari ProxiesInBookmarksBar "()"
 }
 
 function osx_security {
+# TODO update for yosemite
 # unneded daemons
 #sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.blued.plist							#bluetooth
 #sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.IIDCAssistant.plist					#iSight
@@ -236,7 +243,7 @@ sudo patch -d/System/Library/LaunchDaemons/ ssh.plist /tmp/ssh.plist.patch
 rm /tmp/ssh.plist.patch
 sudo launchctl stop com.openssh.sshd
 sudo launchctl unload /System/Library/LaunchDaemons/ssh.plist
-sudo launchctl load /System/Library/LaunchDaemons/ssh.plist
+sudo launchctl load -wF /System/Library/LaunchDaemons/ssh.plist
 }
 
 function osx_symlinks {
@@ -302,11 +309,12 @@ case $1 in
 	timemachine) osx_timemachine;;
 	user) osx_user;;
 	visuals) osx_visuals;;
+	user) osx_user;;
 	*) cat << EOF
 usage: $0 <command>
 
 commands:
-    debug disk dock finder general homebrew itunes keyboard noatime power reset safari security ssh symlinks timemachine visuals
+    debug disk dock finder general homebrew itunes keyboard noatime power reset safari security ssh symlinks timemachine visuals user
 EOF
 	;;
 esac
