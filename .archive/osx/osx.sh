@@ -60,7 +60,7 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true # n
 defaults write com.apple.finder AppleShowAllExtensions -bool true
 #defaults write com.apple.finder AppleShowAllFiles -bool true
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
-defaults write com.apple.finder NewWindowTargetPath -string "file://localhost/Users/dk/"
+defaults write com.apple.finder NewWindowTargetPath -string "file:///Users/dk/"
 defaults write com.apple.finder QLEnableTextSelection -bool true
 defaults write com.apple.finder WarnOnEmptyTrash -bool true
 defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool false
