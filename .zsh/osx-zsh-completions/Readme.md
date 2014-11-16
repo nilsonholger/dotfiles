@@ -5,6 +5,15 @@ purpose is to create quality auto completions, e.g. conditional flag aware
 presentation and selection of choices, as well as up to date and feature
 complete auto completions.
 
+INSTALLATION
+============
+Clone:
+	git clone git://github.com/nilsonholger/... .zsh/osx-zsh-completions
+Modify `.zshrc`:
+	fpath=(~/.zsh/osx-zsh-completions/ $fpath)
+	autoload -Uz compinit
+	compinit -d ~/.zcompdump
+
 CONTRIBUTE
 ==========
 Feel free to raise an issue. If you have already created a completion for a
