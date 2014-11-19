@@ -169,6 +169,7 @@ function osx_power {
 sudo pmset -b displaysleep 5
 sudo pmset -c displaysleep 20
 sudo pmset -c sleep 0
+sudo pmset autopoweroff 0
 }
 
 function osx_reset {
