@@ -3,45 +3,40 @@
 ### battery status
 _BATTERY_STATUS=''
 
+# battery status prompt
+function _battery_status {
+local _CHARGE=$1 _INDICATOR _STATE=$2 _TIME=$3
+[[ ${_CHARGE} -gt  0 ]] && _COLOR="%F{red}"    # critical
+[[ ${_CHARGE} -gt 20 ]] && _COLOR="%F{yellow}" # warning
+[[ ${_CHARGE} -gt 40 ]] && _COLOR="%F{green}"  # ok
+[ "${_STATE}" = "charging;" ] && _COLOR="%F{cyan}" # charging
+for ((i=0; i<_CHARGE/20; i++)); do _INDICATOR+='❚'; done # for every 20%
+[[ $((_CHARGE%20)) -ge 10 ]] && _INDICATOR+='❙' # for 10%-20% (after mod 20)
+for ((i=${#_INDICATOR}; i<5; i++)); do _INDICATOR+=' '; done # fill
+_BATTERY_STATUS="${_COLOR}${_TIME}⦗${_INDICATOR}⦘%f " # create prompt indicator
+}
+
+# architectures
 function _unix_battery_status {
 _BATTERY_STATUS=''
 local _SYS='/sys/class/power_supply/BAT1/'
-local _STATUS=`cat $_SYS/status`
+local _STATUS=`cat $_SYS/status` _TIME
 [[ ! $_STATUS =~ (Disc|C)harging ]] && return
-local _CHARGE _TIME _RATE _COLOR
-_CHARGE=`cat $_SYS/capacity`
 _TIME=$((`cat $_SYS/energy_now`*60/`cat $_SYS/power_now`))
-_TIME="`printf "%d:%.2d" $((_TIME/60)) $((_TIME%60))`"
-[[ ${_CHARGE} -gt 0 ]] && _COLOR="%F{red}"
-[[ ${_CHARGE} -gt 20 ]] && _COLOR="%F{yellow}"
-[[ ${_CHARGE} -gt 40 ]] && _COLOR="%F{green}"
-[ "$_STATUS" = "Charging" ] && _COLOR="%F{cyan}"
-_BATTERY_STATUS="${_COLOR}${_TIME/0:-01}@${_CHARGE}%%%f "
+_battery_status `cat $_SYS/capacity` $_STATUS $_TIME "`printf "%d:%.2d" $((_TIME/60)) $((_TIME%60))`"
 }
-
-# activate if battery information directory exists (=> unix/linux)
-[ -d /sys/class/power_supply/BAT1 ] && periodic_functions+=(_unix_battery_status)
-
-
 
 function _osx_battery_status {
 _BATTERY_STATUS=''
 local -a _STATUS
 _STATUS=(`pmset -g batt | tail -n +2`) # get info from pmset
 [[ "${_STATUS[3]}" =~ .*charging.* ]] || return # only continue when (dis-)charging
-local _CHARGE=${_STATUS[2]/\%;} _COLOR _INDICATOR
-[[ ${_CHARGE} -gt  0 ]] && _COLOR="%F{red}"    # critical
-[[ ${_CHARGE} -gt 20 ]] && _COLOR="%F{yellow}" # warning
-[[ ${_CHARGE} -gt 40 ]] && _COLOR="%F{green}"  # ok
-[ "${_STATUS[3]}" = "charging;" ] && _COLOR="%F{cyan}" # charging
-for ((i=0; i<_CHARGE/20; i++)); do _INDICATOR+='❚'; done # for every 20%
-[[ $((_CHARGE%20)) -ge 10 ]] && _INDICATOR+='❙' # for 10%-20% (after mod 20)
-for ((i=${#_INDICATOR}; i<5; i++)); do _INDICATOR+=' '; done # fill
-_BATTERY_STATUS="${_COLOR}${_STATUS[4]/\(no}⦗${_INDICATOR}⦘%f " # create prompt indicator
+_battery_status ${_STATUS[2]/\%;} ${_STATUS[3]} ${_STATUS[4]/\(no}
 }
 
-# update periodically (only if pmset available => apple platforms)
-hash pmset 2> /dev/null && periodic_functions+=(_osx_battery_status)
+# update periodically
+[ -d /sys/class/power_supply/BAT1 ] && periodic_functions+=(_unix_battery_status) # (=> unix/linux)
+hash pmset 2> /dev/null && periodic_functions+=(_osx_battery_status) # (=> apple/OSX)
 
 
 
@@ -83,7 +78,7 @@ _git_status
 
 
 
-# prompts
+### prompts
 PROMPT=''
 [ -n "$SSH_TTY" ] && PROMPT+='%F{red}%m ' # host if not local
 PROMPT+='$_GIT_STATUS' # git prompt
@@ -93,6 +88,6 @@ PROMPT+='%F{yellow}%#%(2L.%B+%b.)' # shell status
 PROMPT+='%(1j.%F{yellow}[%j].)' # background jobs
 PROMPT+=' %f' # reset colors
 
-RPROMPT='$_BATTERY_STATUS%F{cyan}%T%f'
+RPROMPT='$_BATTERY_STATUS%F{cyan}%T%f' # battery status and time
 LISTPROMPT=''
 SPROMPT="%F{yellow}%R %F{white}%b-> %F{green}%r %F{white}%b? [aeNy]%f "
