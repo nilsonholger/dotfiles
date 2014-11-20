@@ -1,5 +1,5 @@
 # settings
-fpath=(~/.zsh/osx-zsh-completions/ $fpath)
+[ -d ~/.zsh/osx-zsh-completions ] && fpath=(~/.zsh/osx-zsh-completions/ $fpath)
 autoload -Uz compinit
 compinit -d ~/.zcompdump
 autoload -U colors
