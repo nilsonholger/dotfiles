@@ -162,7 +162,7 @@ map <leader>gb :Gblame<CR>
 map <leader>gc :Gcommit<CR>
 map <leader>gd :Gdiff<CR>
 map <leader>ge :Gedit HEAD<CR>
-map <leader>gl :Glog<CR>
+map <leader>gl :Glog<CR><CR><CR>:QFix<CR>
 map <leader>gr :Gread<CR>
 map <leader>gs :Gstatus<CR>
 map <leader>gw :Gwrite<CR>
