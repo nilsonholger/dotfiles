@@ -34,13 +34,6 @@ defaults write com.apple.addressbook ABShowDebugMenu -bool true
 defaults write com.apple.iCal IncludeDebugMenu -bool true
 }
 
-function osx_disk {
-sudo pmset -a sms 0 # sudden motion sensor off for SSD
-sudo pmset -a hibernatemode 0 # no ram to disk backup for sleep
-sudo rm /var/vm/sleepimage
-sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist # swapoff
-}
-
 function osx_dock {
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock autohide-delay -float 0
@@ -166,10 +159,14 @@ sudo defaults write com.apple.loginwindow LoginHook /usr/local/bin/remount_noati
 }
 
 function osx_power {
-sudo pmset -b displaysleep 5
-sudo pmset -c displaysleep 20
-sudo pmset -c sleep 0
-sudo pmset autopoweroff 0
+sudo pmset -a autopoweroff 0 # disable lower power chipset sleep
+sudo pmset -a hibernatemode 0 # no ram to disk backup for sleep
+sudo pmset -a sms 0 # sudden motion sensor off for SSD
+sudo pmset -c displaysleep 20 sleep 0 # on ac sleep timers
+sudo pmset -b displaysleep 5 sleep 15 # on battery sleep timers
+
+sudo rm -f /var/vm/sleepimage # save some space
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist # swapoff
 }
 
 function osx_reset {
@@ -294,7 +291,6 @@ chsh -s /bin/zsh
 
 case $1 in
 	debug) osx_debug;;
-	disk) osx_disk;;
 	dock) osx_dock;;
 	finder) osx_finder;;
 	general) osx_general;;
@@ -316,7 +312,7 @@ case $1 in
 usage: $0 <command>
 
 commands:
-    debug disk dock finder general homebrew itunes keyboard noatime power reset safari security ssh symlinks timemachine visuals user
+    debug dock finder general homebrew itunes keyboard noatime power reset safari security ssh symlinks timemachine visuals user
 EOF
 	;;
 esac
