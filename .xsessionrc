@@ -1,4 +1,5 @@
 gnome-settings-daemon &
+gnome-screensaver &
 export `/usr/bin/gnome-keyring-daemon --start`
 
 #pgrep xmobar &>/dev/null && which trayer &>/dev/null && trayer --edge top --align right --margin 1 --widthtype pixel --width 15 --height 14 --transparent true --tint 0x000000 &
