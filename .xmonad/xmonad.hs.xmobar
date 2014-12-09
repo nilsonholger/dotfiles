@@ -41,7 +41,7 @@ main = do
             startupHook = do
                 setWMName "LG3D"
                 spawn "[ -f ~/.xmonad/background.jpg ] && display -window root ~/.xmonad/background.jpg"
-                spawn "gnome-settings-daemon"
+                spawn "unity-settings-daemon"
                 spawn "gnome-screensaver"
         }
         `additionalKeys`
