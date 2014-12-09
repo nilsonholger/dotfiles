@@ -12,7 +12,7 @@ import System.IO
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-spaces = ["T","W","M","V"]
+spaces = ["W","T","M","V"]
 
 main = do
     xmobar <- spawnPipe "xmobar -x 2 ~/.xmonad/xmobar.hs"
