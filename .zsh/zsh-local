@@ -12,6 +12,7 @@ then
 
 	export PATH=$_PATH
 	export LIBRARY_PATH="$_LIB"
+	[ $VENDOR = "apple" ] && export DYLD_LIBRARY_PATH="$_LIB"
 	export LD_LIBRARY_PATH="$_LIB"
 	export LD_RUN_PATH="$_LIB"
 	export C_INCLUDE_PATH="$_LOCAL/include"
