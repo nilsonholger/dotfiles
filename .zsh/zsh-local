@@ -49,6 +49,4 @@ then
 			i14run $1 "$_CPU $_LOAD $_FREE $_USERS"
 		} | eval $_COL
 	}
-	
-	export LC_ALL=en_US.UTF-8
 fi
