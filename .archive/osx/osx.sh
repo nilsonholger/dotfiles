@@ -40,6 +40,8 @@ defaults write com.apple.dock autohide-delay -float 0
 defaults write com.apple.dock autohide-time-modifier -float 0.25
 defaults write com.apple.dock dashboard-in-overlay -bool true
 defaults write com.apple.dock expose-animation-duration -float 0.1
+defaults write com.apple.dock magnification -int 0
+defaults write com.apple.dock mineffect -string scale
 defaults write com.apple.dock minimize-to-application -bool true
 defaults write com.apple.dock orientation -string left
 defaults write com.apple.dock show-process-indicators -bool false
