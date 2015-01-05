@@ -5,6 +5,7 @@
 # https://github.com/mathiasbynens/dotfiles
 # http://www.nsa.gov/ia/_files/factsheets/macosx_10_6_hardeningtips.pdf
 # http://images.apple.com/support/security/guides/docs/SnowLjopard_Security_Config_v10.6.pdf
+# http://www.johnkastler.net/2011/12/25/os-x-defaults/
 #
 # Copyright (C) 2012-2014 nilsonholger@hyve.org
 #
@@ -46,6 +47,7 @@ defaults write com.apple.dock orientation -string left
 defaults write com.apple.dock show-process-indicators -bool false
 defaults write com.apple.dock showhidden -bool true
 defaults write com.apple.dock tilesize -int 30
+killall Dock
 }
 
 function osx_finder {
@@ -57,11 +59,35 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 defaults write com.apple.finder NewWindowTargetPath -string "file:///Users/dk/"
 defaults write com.apple.finder QLEnableTextSelection -bool true
 defaults write com.apple.finder WarnOnEmptyTrash -bool true
+cat << EOF | /usr/libexec/PlistBuddy ~/Library/Preferences/com.apple.finder.plist
+Delete :DesktopViewSettings:IconViewSettings:labelOnBottom
+Add :DesktopViewSettings:IconViewSettings:labelOnBottom bool false
+Delete :DesktopViewSettings:IconViewSettings:gridSpacing
+Add :DesktopViewSettings:IconViewSettings:gridSpacing real 100
+Delete :DesktopViewSettings:IconViewSettings:iconSize
+Add :DesktopViewSettings:IconViewSettings:iconSize integer 32
+Delete :DesktopViewSettings:IconViewSettings:showIconPreview
+Add :DesktopViewSettings:IconViewSettings:showIconPreview bool true
+Delete :DesktopViewSettings:IconViewSettings:showItemInfo
+Add :DesktopViewSettings:IconViewSettings:showItemInfo bool true
+Delete :DesktopViewSettings:IconViewSettings:textSize
+Add :DesktopViewSettings:IconViewSettings:textSize integer 10
+Delete :DesktopViewSettings:IconViewSettings:viewOptionsVersion
+Add :DesktopViewSettings:IconViewSettings:viewOptionsVersion bool none
+Delete :DesktopViewSettings:IconViewSettings:arrangeBy
+Add :DesktopViewSettings:IconViewSettings:arrangeBy string grid
+Delete :ShowHardDrivesOnDesktop
+Add :ShowHardDrivesOnDesktop bool false
+Save
+Exit
+EOF
 defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool false
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool false
+killall Finder
 }
 
 function osx_general {
+defaults write -g AppleMiniaturizeOnDoubleClick -bool true
 defaults write -g AppleScrollerPagingBehavior -int 1 # scroll bar: jump to clicked spot
 defaults write -g NSTableViewDefaultSizeMode -int 1 # sidebar icon size: small
 defaults write -g NSQuitAlwaysKeepsWindows -bool true # resume windows
@@ -73,6 +99,7 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -int 
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -int 1
 defaults write com.apple.dock showAppExposeGestureEnabled -bool true # trackpad: enable app expose
 defaults write com.apple.menuextra.clock IsAnalog -bool true # analog clock
+defaults write com.apple.menuextra.battery ShowPercent -bool false # no percentage display
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName # more verbose clock icon
 sudo scutil --set ComputerName "mbp"
 sudo scutil --set HostName "mbp.hyve.org"
@@ -142,6 +169,8 @@ defaults write -g AppleKeyboardUIMode -int 3 # full keyboard access
 defaults write -g ApplePressAndHoldEnabled -bool false # favor key repeat
 defaults write com.apple.BezelServices kDim -bool true # keyboard illumination
 defaults write com.apple.BezelServices kDimTime -int 300 # dim after 5 minutes
+defaults write -g KeyRepeat -integer 2 # faster key repeat
+defaults write -g InitialKeyRepeat -integer 15 # faster key repeat start
 }
 
 function osx_noatime {
