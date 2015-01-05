@@ -29,7 +29,6 @@
 function osx_debug {
 defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
 defaults write com.apple.DiskUtility advanced-image-options -bool true
-defaults write com.apple.Safari IncludeDebugMenu -bool true
 defaults write com.apple.addressbook ABShowDebugMenu -bool true
 defaults write com.apple.iCal IncludeDebugMenu -bool true
 }
@@ -175,11 +174,6 @@ function osx_reset {
 find ~/Library/Application\ Support/Dock -name "*.db" -maxdepth 1 -delete
 }
 
-function osx_safari {
-defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2 # thumbnails off
-defaults write com.apple.Safari ProxiesInBookmarksBar "()"
-}
-
 function osx_security {
 # TODO update for yosemite
 # unneded daemons
@@ -302,7 +296,6 @@ case $1 in
 	noatime) osx_noatime;;
 	power) osx_power;;
 	reset) osx_reset;;
-	safari) osx_safari;;
 	security) osx_security;;
 	ssh) osx_ssh;;
 	symlinks) osx_symlinks;;
@@ -314,7 +307,7 @@ case $1 in
 usage: $0 <command>
 
 commands:
-    debug dock finder general homebrew itunes keyboard noatime power reset safari security ssh symlinks timemachine visuals user
+    debug dock finder general homebrew itunes keyboard noatime power reset security ssh symlinks timemachine visuals user
 EOF
 	;;
 esac
