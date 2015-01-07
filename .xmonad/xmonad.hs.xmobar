@@ -15,7 +15,7 @@ import qualified Data.Map        as M
 spaces = ["M","W","T","V"]
 
 main = do
-    xmobar <- spawnPipe "xmobar -x 2 ~/.xmonad/xmobar.hs"
+    xmobar <- spawnPipe "xmobar -x 1 ~/.xmonad/xmobar.hs"
     xmonad $ defaultConfig
         {
             terminal = "/usr/bin/gnome-terminal",
@@ -50,7 +50,7 @@ main = do
             , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
         `additionalKeys`
         [((m .|. mod4Mask, k), screenWorkspace s >>= flip whenJust (windows . f))
-            | (k, s) <- zip [xK_w, xK_e, xK_r] [1,2,0]
+            | (k, s) <- zip [xK_w, xK_e, xK_r] [0,1,2]
             , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
         `additionalKeys` [
             ((mod4Mask                , xK_q     ), spawn "xmonad --recompile && xmonad --restart&"),
