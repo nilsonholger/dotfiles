@@ -144,7 +144,7 @@ function unisel
 	_TARGET=${1:-${HOST/.*}}
 	_BASE=$(cat ~/.unison/${_TARGET}.prf | awk 'NR==1 {print $3}')
 	_DIR=${PWD}/$2
-	unison ${_TARGET} -ignore "Path {,.}*" -ignorenot "Path ${_DIR/${_BASE}/.\/}"
+	unison ${_TARGET} -ignore "Path {,.}*" -ignorenot "Path ${_DIR/${_BASE}\//}"
 }
 
 
