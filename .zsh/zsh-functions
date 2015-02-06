@@ -59,10 +59,11 @@ case $1 in
 	repair)
 		mv "$_AR"{,.old}; eval "$_GPGD $_AR.old | $_GPGE --output ${_AR/.old}";;
 	*)
-		echo "usage: $0 <command> <archive> [file]"
+		echo "usage: $0 <command> <archive|folder> [file]"
 		echo
 		echo "<commands>:"
-		echo "  [{en,de}crypt|list|repair] <archive>"
+		echo "  encrypt <folder>"
+		echo "  [decrypt|list|repair] <archive>"
 		echo "  [add|extract] <archive> <file>"
 esac
 }
