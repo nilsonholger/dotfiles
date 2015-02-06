@@ -31,11 +31,12 @@ git ci -m "[`hostname -s`] ${_STAT//\.wiki}"
 
 # gpg-tar <COMMAND> <FILE> [ARGS...]
 function gpg-tar {
+export COPYFILE_DISABLE=true # undocumented tar environment variable to prevent storing extended attributes
 _AR=$2
 _DIR=${2/.txz.gpg}
 _GPGD="gpg --quiet --decrypt"
 _GPGE="gpg --encrypt --recipient hyve"
-_TAR="tar --create --verbose --xz --file -"
+_TAR="tar --create --verbose --xz --exclude='._*' --file -"
 _UNTAR="tar --extract --file -"
 
 case $1 in
