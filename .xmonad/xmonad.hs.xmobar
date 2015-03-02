@@ -6,6 +6,7 @@ import XMonad.Hooks.SetWMName
 import XMonad.Layout.NoBorders
 import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.Run (spawnPipe)
+import Graphics.X11.ExtraTypes.XF86
 import System.Exit
 import System.IO
 
@@ -60,3 +61,7 @@ main = do
             ((mod4Mask .|. shiftMask  , xK_m     ), spawn "thunderbird &"),
             ((mod4Mask .|. shiftMask  , xK_l     ), spawn "gnome-screensaver-command --lock"),
             ((mod4Mask .|. mod1Mask   , xK_l     ), spawn "if [ \"`setxkbmap -print | grep -o dvp`\" = \"dvp\" ]; then setxkbmap -layout us_intl -option 'grp:shifts_toggle'; else setxkbmap -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; fi; xmodmap ~/.Xmodmap &")]
+        `additionalKeys` [
+            ((0, xF86XK_AudioMute       ), spawn "amixer -q -D pulse set Master toggle"),
+            ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 2-"),
+            ((0, xF86XK_AudioRaiseVolume), spawn "amixer -q set Master 2+")]
