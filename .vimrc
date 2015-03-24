@@ -96,6 +96,7 @@ if has("autocmd")
 	au! BufWritePost $MYVIMRC windo source $MYVIMRC
 	au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 	au FileType conf set ft=config
+	au FileType matlab set expandtab| set ts=2| set sw=2
 	au VimEnter * silent if filereadable("Session.vim") | source Session.vim | endif
 	au VimLeave * silent if filereadable("Session.vim") | mksession!  Session.vim | endif
 	au VimResized * exe "normal! \<c-w>="
