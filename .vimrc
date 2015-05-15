@@ -165,8 +165,10 @@ map <leader>gc :Gcommit<CR>
 map <leader>gd :Gdiff<CR>
 map <leader>ge :Gedit HEAD<CR>
 map <leader>gl :Glog<CR><CR><CR>:QFix<CR>
+map <leader>gp :Gpull<CR>
 map <leader>gr :Gread<CR>
 map <leader>gs :Gstatus<CR>
+map <leader>gu :Gpush<CR>
 map <leader>gw :Gwrite<CR>
 
 " bvsd-fifo control
