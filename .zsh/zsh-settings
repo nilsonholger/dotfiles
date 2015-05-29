@@ -2,7 +2,7 @@
 [ -d ~/.zsh/osx-zsh-completions ] && fpath=(~/.zsh/osx-zsh-completions/ $fpath)
 [ -d /usr/local/share/zsh/site-functions ] && fpath=(/usr/local/share/zsh/site-functions $fpath)
 autoload -Uz compinit
-compinit -d ~/.zcompdump.$HOST
+compinit -d ~/.zsh/compdump/$HOST
 autoload -U colors
 colors
 
