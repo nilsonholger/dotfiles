@@ -33,9 +33,9 @@ fi
 if [ ${HOST/i14*/i14} = i14 ]
 then
 	function i14run {
-		[ "$1" = "-d" ] && { shift; _SORT="cat -"; } || _SORT="sort"
+		[ "$1" = "-d" ] && { shift; _SORT="cat -"; _PROCS="1"; } || { _SORT="sort"; _PROCS="0"; }
 		[[ $* =~ '\$\(' ]] && _ARGS="$*" || _ARGS="\$($*)"
-		echo -n pc1{84..90} s1 s{20..26} s{29..31} | xargs -P 0 -n1 -d ' ' -I SERVER ssh -o ConnectTimeout=3 SERVER "echo SERVER $_ARGS" | eval $_SORT
+		echo -n pc1{84..90} s1 s{20..26} s{29..31} | xargs -P $_PROCS -n1 -d ' ' -I SERVER ssh -o ConnectTimeout=3 SERVER "echo SERVER $_ARGS" | eval $_SORT
 	}
 	function i14load
 	{
