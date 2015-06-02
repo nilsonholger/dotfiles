@@ -55,6 +55,7 @@ main = do
             | (k, s) <- zip [xK_w, xK_e, xK_r] [0,1,2]
             , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
         `additionalKeys` [
+            ((mod4Mask                , xK_p     ), spawn "PATH=\"$HOME/local/bin:$PATH\" dmenu_run"  ),
             ((mod4Mask                , xK_q     ), spawn "xmonad --recompile && xmonad --restart&"),
             ((mod4Mask .|. shiftMask  , xK_q     ), io (exitWith ExitSuccess)),
             ((mod4Mask                , xK_Escape), spawn "display ~/.xmonad/Xmbindings.svg &"),
