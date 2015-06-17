@@ -49,8 +49,8 @@ if autoload -Uz vcs_info; then
 	local _info="%c%u%m %F{cyan}%b:%r"
 	zstyle ":vcs_info:*" stagedstr "%F{green}#"
 	zstyle ":vcs_info:*" unstagedstr "%F{yellow}#"
-	zstyle ":vcs_info:git*" formats "$_info "
-	zstyle ":vcs_info:git*" actionformats "$_info%F{red}[%a] "
+	zstyle ":vcs_info:git*" formats "$_info"
+	zstyle ":vcs_info:git*" actionformats "$_info%F{red}[%a]"
 	zstyle ':vcs_info:git*+set-message:*' hooks git-misc
 
 	function +vi-git-misc() {
