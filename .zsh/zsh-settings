@@ -1,10 +1,8 @@
 # settings
 [ -d ~/.zsh/osx-zsh-completions ] && fpath=(~/.zsh/osx-zsh-completions/ $fpath)
 [ -d /usr/local/share/zsh/site-functions ] && fpath=(/usr/local/share/zsh/site-functions $fpath)
-autoload -Uz compinit
-compinit -d ~/.zsh/compdump/$HOST
-autoload -U colors
-colors
+autoload -Uz compinit && compinit -d ~/.zsh/compdump/$HOST
+autoload -U colors && colors
 
 HISTFILE=~/.histfile
 HISTSIZE=32676
@@ -40,10 +38,12 @@ bindkey -M viins "$terminfo[kcuu1]" up-line-or-history
 bindkey -M viins "$terminfo[kcud1]" down-line-or-history
 
 zstyle :compinstall filename '~/.zshrc'
+zstyle ":completion:*" auto-description "<%d>"
+zstyle ":completion:*" completer _expand _complete _correct _approximate
+zstyle ':completion:*' format "%U%F{green}[%d]%u%b%f"
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select
 zstyle ':completion:*' special-dirs true
-zstyle ':completion:*' format "%U%F{green}[%d]%u%b%f"
 zstyle ':completion:*:descriptions' format $'%{\e[0;31m%}completing %B%d%b%{\e[0m%}'
 zstyle ':completion:*:messages' format "%B%U%F{red}%d%u%b%f"
 zstyle ':completion:*:warnings' format "%F{red}[%d]%f"
