@@ -41,53 +41,43 @@ hash pmset 2> /dev/null && periodic_functions+=(_osx_battery_status) # (=> apple
 
 
 ### git status
-_GIT_STATUS=''
+if autoload -Uz vcs_info; then
+	#zstyle ':vcs_info:*+*:*' debug true
+	zstyle ":vcs_info:*" enable git
+	zstyle ":vcs_info:(git*):*" check-for-changes true
 
-function _git_status {
-local _TMP _DIR _BRANCH _BRANCH_STATE
-_GIT_STATUS=''
-[[ $(df -T $PWD | awk 'NR>1 {if ($1 ~ ":") print $2}') =~ sshfs ]] && return
-_TMP=$(git status -s -b 2>&1) || return && _DIR=$(basename "`git rev-parse --show-toplevel`")
-local _STASH=`git stash list | wc -l | tr -d ' '`
-[[ $_TMP =~ [MADRCU].\ [^\(] ]] && _GIT_STATUS+="%F{green}#" # staged
-[[ $_TMP =~ .[MADUT]\ [^\ \(] ]] && _GIT_STATUS+="%F{yellow}#" # unstaged
-[[ $_TMP =~ \\?\\? ]] && _GIT_STATUS+="%F{red}#" # untracked
-[[ $_TMP =~ ahead ]] && _GIT_STATUS+="%F{green}@${${_TMP/*ahead }/[,\]]*}" # ahead of remote
-[ $_STASH -ne 0 ] && _GIT_STATUS+="%F{yellow}@$_STASH" # stashed
-[[ $_TMP =~ behind ]] && _GIT_STATUS+="%F{red}@${${_TMP/*behind }/\]*}" # behind remote
-_BRANCH="${(R)${(fR)_TMP/\#\# }/( *|...*)}" # branch
-if [ $_BRANCH = "HEAD" ]
-then
-	_BRANCH=$(git status 2>&1) # non regular branch
-	[[ $_BRANCH =~ " rebas" ]] && _BRANCH="REBASE" # rebase
-	[[ $_BRANCH =~ " detached" ]] && _BRANCH="DETACHED" # detached
-	_BRANCH_STATE="HEAD"
-else
-	_BRANCH_STATE="OK"
+	local _info="%c%u%m %F{cyan}%b:%r"
+	zstyle ":vcs_info:*" stagedstr "%F{green}#"
+	zstyle ":vcs_info:*" unstagedstr "%F{yellow}#"
+	zstyle ":vcs_info:git*" formats "$_info "
+	zstyle ":vcs_info:git*" actionformats "$_info%F{red}[%a] "
+	zstyle ':vcs_info:git*+set-message:*' hooks git-misc
+
+	function +vi-git-misc() {
+		local _TMP _MISC
+		_TMP=$(git status -s -b)
+		[[ $_TMP =~ \\?\\? ]] && _MISC+="%F{red}#"
+		[[ $_TMP =~ ahead ]] && _MISC+="%F{green}@${${_TMP/*ahead }/[,\]]*}"
+		[[ $_TMP =~ behind ]] && _MISC+="%F{red}@${${_TMP/*behind }/\]*}"
+		[[ -s "${hook_com[base]}/.git/refs/stash" ]] && hook_com[misc]+="%F{magenta}%}±"
+		hook_com[misc]+="$_MISC"
+	}
+
+	function precmd() {
+		vcs_info
+	}
 fi
-[ $_BRANCH_STATE = "HEAD" -o ! -z $_GIT_STATUS ] && _GIT_STATUS="%F{cyan}$_DIR:$_BRANCH$_GIT_STATUS%f "
-}
-
-function precmd {
-[[ $(fc -l -n -1) =~ (git|vi|fg) ]] && _git_status
-}
-
-function chpwd {
-_git_status
-}
-
-
 
 ### prompts
 PROMPT=''
 [ -n "$SSH_TTY" ] && PROMPT+='%F{red}%m ' # host if not local
-PROMPT+='$_GIT_STATUS' # git prompt
 PROMPT+='%F{green}%.' # pwd
 PROMPT+='%(?..%F{red}%B[%?]%b)' # return code
 PROMPT+='%F{yellow}%#%(2L.%B+%b.)' # shell status
 PROMPT+='%(1j.%F{yellow}[%j].)' # background jobs
 PROMPT+=' %f' # reset colors
 
-RPROMPT='$_BATTERY_STATUS%F{cyan}%T%f' # battery status and time
+RPROMPT='${vcs_info_msg_0_} ' # git status
+RPROMPT+='$_BATTERY_STATUS%F{cyan}%T%f' # battery status and time
 LISTPROMPT=''
 SPROMPT="%F{yellow}%R %F{white}%b-> %F{green}%r %F{white}%b? [aeNy]%f "
