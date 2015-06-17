@@ -1,0 +1,37 @@
+### git status
+_GIT_STATUS=''
+
+function _git_status {
+local _TMP _DIR _BRANCH _BRANCH_STATE
+_GIT_STATUS=''
+[[ $(df -T $PWD | awk 'NR>1 {if ($1 ~ ":") print $2}') =~ sshfs ]] && return
+_TMP=$(git status -s -b 2>&1) || return && _DIR=$(basename "`git rev-parse --show-toplevel`")
+local _STASH=`git stash list | wc -l | tr -d ' '`
+[[ $_TMP =~ [MADRCU].\ [^\(] ]] && _GIT_STATUS+="%F{green}#" # staged
+[[ $_TMP =~ .[MADUT]\ [^\ \(] ]] && _GIT_STATUS+="%F{yellow}#" # unstaged
+[[ $_TMP =~ \\?\\? ]] && _GIT_STATUS+="%F{red}#" # untracked
+[[ $_TMP =~ ahead ]] && _GIT_STATUS+="%F{green}@${${_TMP/*ahead }/[,\]]*}" # ahead of remote
+[ $_STASH -ne 0 ] && _GIT_STATUS+="%F{yellow}@$_STASH" # stashed
+[[ $_TMP =~ behind ]] && _GIT_STATUS+="%F{red}@${${_TMP/*behind }/\]*}" # behind remote
+_BRANCH="${(R)${(fR)_TMP/\#\# }/( *|...*)}" # branch
+if [ $_BRANCH = "HEAD" ]
+then
+	_BRANCH=$(git status 2>&1) # non regular branch
+	[[ $_BRANCH =~ " rebas" ]] && _BRANCH="REBASE" # rebase
+	[[ $_BRANCH =~ " detached" ]] && _BRANCH="DETACHED" # detached
+	_BRANCH_STATE="HEAD"
+else
+	_BRANCH_STATE="OK"
+fi
+[ $_BRANCH_STATE = "HEAD" -o ! -z $_GIT_STATUS ] && _GIT_STATUS="%F{cyan}$_DIR:$_BRANCH$_GIT_STATUS%f "
+}
+
+function precmd {
+[[ $(fc -l -n -1) =~ (git|vi|fg) ]] && _git_status
+}
+
+function chpwd {
+_git_status
+}
+
+PROMPT+='$_GIT_STATUS' # git prompt
