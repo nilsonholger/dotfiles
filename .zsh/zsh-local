@@ -34,9 +34,9 @@ if [ ${HOST/i14*/i14} = i14 ]
 then
 	ls --color &> /dev/null && alias ls='ls --color'
 	function i14run {
-		[ "$1" = "-d" ] && { shift; _SORT=""; _PROCS="1"; } || { _SORT="| eval sort"; _PROCS="0"; }
+		[ "$1" = "-d" ] && { shift; _PROCS="1"; } || { _PROCS="0"; }
 		[[ $* =~ '\$\(' ]] && _ARGS="$*" || _ARGS="\$($*)"
-		eval "echo -n pc1{84..90} s1 s{20..26} s{29..31} | xargs -P $_PROCS -n1 -d ' ' -I SERVER ssh -o ConnectTimeout=3 SERVER \"echo SERVER $_ARGS\" $_SORT"
+		eval "echo -n pc1{84..90} s1 s{20..26} s{29..31} | xargs -P $_PROCS -n1 -d ' ' -I SERVER ssh -o ConnectTimeout=3 SERVER \"echo SERVER $_ARGS\""
 	}
 	function i14load
 	{
