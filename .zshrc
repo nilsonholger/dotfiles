@@ -120,8 +120,8 @@ if autoload -Uz vcs_info; then
 	zstyle ":vcs_info:(git*):*" check-for-changes true
 
 	local _info="%c%u%m %F{cyan}%b:%r"
-	zstyle ":vcs_info:*" stagedstr "%F{green}#"
-	zstyle ":vcs_info:*" unstagedstr "%F{yellow}#"
+	zstyle ":vcs_info:*" stagedstr "%F{green}±"
+	zstyle ":vcs_info:*" unstagedstr "%F{yellow}±"
 	zstyle ":vcs_info:git*" formats "$_info"
 	zstyle ":vcs_info:git*" actionformats "$_info%F{red}[%a]"
 	zstyle ':vcs_info:git*+set-message:*' hooks git-misc
@@ -129,7 +129,7 @@ if autoload -Uz vcs_info; then
 	function +vi-git-misc() {
 		local _TMP _MISC
 		_TMP=$(git status -s -b)
-		[[ $_TMP =~ \\?\\? ]] && _MISC+="%F{red}#"
+		[[ $_TMP =~ \\?\\? ]] && _MISC+="%F{red}±"
 		[[ $_TMP =~ ahead ]] && _MISC+="%F{green}@${${_TMP/*ahead }/[,\]]*}"
 		[[ $_TMP =~ behind ]] && _MISC+="%F{red}@${${_TMP/*behind }/\]*}"
 		[[ -s "${hook_com[base]}/.git/refs/stash" ]] && hook_com[misc]+="%F{magenta}%}±"
