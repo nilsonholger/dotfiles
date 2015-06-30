@@ -335,12 +335,14 @@ if [ ${HOST/i14*/i14} = i14 ]
 then
 	ls --color &> /dev/null && alias ls='ls --color'
 	function i14run {
-		[ "$1" = "-d" ] && { shift; _PROCS="1"; } || { _PROCS="0"; }
+		local _ARGS _PROCS
 		[[ $* =~ '\$\(' ]] && _ARGS="$*" || _ARGS="\$($*)"
-		eval "echo -n pc1{84..90} s1 s{20..26} s{29..31} | xargs -P $_PROCS -n1 -d ' ' -I SERVER ssh -o ConnectTimeout=3 SERVER \"echo SERVER $_ARGS\""
+		[ "$1" = "-d" ] && { shift; _PROCS="1"; } || { _PROCS="0"; }
+		eval "echo -n pc1{84..90} s1 s{20..26} s{29..31} | xargs -P $_PROCS -n1 -d ' ' -I SERVER ssh -o ConnectTimeout=3 -o PasswordAuthentication=no SERVER \"echo SERVER $_ARGS\""
 	}
 	function i14load
 	{
+		local _COL
 		[ "$1" = "-d" ] && { _COL="cat -"; } || _COL="column -t"
 		{
 			_CPU='$(sysctl -n hw.ncpu 2> /dev/null || grep -c "^processor" /proc/cpuinfo)'
