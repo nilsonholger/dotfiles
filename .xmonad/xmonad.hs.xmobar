@@ -30,6 +30,7 @@ main = do
                 [ manageHook defaultConfig
                 , className =? "MPlayer" --> doFloat
                 , className =? "Gimp" --> doFloat
+                , className =? "Blender" --> doFloat
                 , className =? "VirtualBox" --> doFloat
                 , resource  =? "desktop_window" --> doIgnore ]
                 <+> manageDocks,
