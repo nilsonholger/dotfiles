@@ -45,7 +45,6 @@ bindkey -M viins "$terminfo[kcud1]" down-line-or-history
 ### alias
 alias dud='du -hxd1 | sort -h'
 alias dvorak='setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch'
-hash krenew 2> /dev/null && alias ktmux='krenew -biL -- /usr/bin/zsh -c "cd $HOME; tmux new -d && while tmux ls &>/dev/null; do sleep 60; done"; sleep 1; tmux a'
 [ -f ~/papers/index.wiki ] && alias papers='wiki ~/papers'
 alias scpr='rsync --partial --progress --rsh=ssh'
 alias vi='vim'
@@ -334,6 +333,7 @@ fi
 if [ ${HOST/i14*/i14} = i14 ]
 then
 	ls --color &> /dev/null && alias ls='ls --color'
+	hash krenew 2> /dev/null && alias tmux='krenew -biL -- /usr/bin/zsh -c "cd $HOME; tmux new -d && while tmux ls &>/dev/null; do sleep 60; done"; sleep 1; tmux a'
 	function i14run {
 		local _ARGS _PROCS
 		[ "$1" = "-d" ] && { shift; _PROCS="1"; } || { _PROCS="0"; }
