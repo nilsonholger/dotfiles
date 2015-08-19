@@ -244,6 +244,7 @@ sudo chmod ug-s /usr/sbin/traceroute6																	#Trace Network
 
 sudo pmset -a destroyfvkeyonstandby 1 # clear file vault key on sleep
 security set-keychain-settings -l # lock keychain on sleep
+sudo echo "Defaults	tty_tickets" >> /etc/sudoers # disable privilege sharing
 }
 
 function osx_ssh {
