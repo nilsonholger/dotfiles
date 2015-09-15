@@ -335,17 +335,18 @@ if [ -z "${HOST/i14*}" ]; then
 		[[ $* =~ '\$\(' ]] && _ARGS="$*" || _ARGS="\$($*)"
 		echo -n pc1{84..90} s1 s{20..26} s{29..31} s34 | xargs -P $_PROCS -n1 -d ' ' -I SERVER ssh -o ConnectTimeout=3 -o PasswordAuthentication=no SERVER "echo SERVER $_ARGS"
 	}
-	function i14load
-	{
-		local _COL
-		[ "$1" = "-d" ] && { _COL="cat -"; } || _COL="column -t"
+	function i14load {
+		local _COL _SORT
+		[ "$1" = "-d" ] && { _COL="cat -"; _SORT="cat -"; } || { _COL="column -t"; _SORT="sort -f"; }
 		{
-			_CPU='$(sysctl -n hw.ncpu 2> /dev/null || grep -c "^processor" /proc/cpuinfo)'
-			_LOAD='$(cut -f1-4 -d" " /proc/loadavg)'
-			_FREE='$(free -m | awk "/(buffers\/cache|Swap)/ {printf \"%.1f/%.1f\n\", \$3/1024, \$4/1024}" | tr "\n" " ")'
-			_USERS='$(top -bn1 | awk "NR>7{u[\$2]+=\$9}END {for(i in u) {if (u[i]>2) printf \" %s:%d\",i,u[i]}}")'
 			echo "SERVER CPU LOAD L_5 L_15 PROCS MEM SWAP USERS"
-			i14run $1 "$_CPU $_LOAD $_FREE $_USERS"
+			{
+				_CPU='$(sysctl -n hw.ncpu 2> /dev/null || grep -c "^processor" /proc/cpuinfo)'
+				_LOAD='$(cut -f1-4 -d" " /proc/loadavg)'
+				_FREE='$(free -m | awk "/(buffers\/cache|Swap)/ {printf \"%.1f/%.1f\n\", \$3/1024, \$4/1024}" | tr "\n" " ")'
+				_USERS='$(top -bn1 | awk "NR>7{u[\$2]+=\$9}END {for(i in u) {if (u[i]>2) printf \" %s:%d\",i,u[i]}}")'
+				i14run $1 "$_CPU $_LOAD $_FREE $_USERS"
+			} | eval $_SORT
 		} | eval $_COL
 	}
 fi
