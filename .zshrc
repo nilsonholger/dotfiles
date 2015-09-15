@@ -257,10 +257,8 @@ scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o ProxyCommand=
 function scptar {
 local SRC="ssh ${1/:*} \"tar cf - ${${@#*:}% *}\""
 local DST="ssh \"${@[$#]/:*}\" \"tar xvf - -C ./${@[$#]/*:}\""
-if [ ! -e "$1" ]
-then
-	if [ ! -e "$@[$#]" ]
-	then
+if [ ! -e "$1" ]; then
+	if [ ! -e "$@[$#]" ]; then
 		eval "$SRC | $DST"
 	else
 		eval "$SRC | tar xvf - -C ./$@[$#]"
@@ -299,8 +297,7 @@ function doi2bib() {
 #########
 
 # local dir
-if [ -d $HOME/local ]
-then
+if [ -d $HOME/local ]; then
 	_LOCAL="$HOME/local"
 	_PATH="$PATH"
 
@@ -323,15 +320,13 @@ then
 fi
 
 # freebsd
-if [ -d /boot/kernel ]
-then
+if [ -d /boot/kernel ]; then
 	hash xhost &> /dev/null && xhost +local: > /dev/null # fix for ssh with X forwarding
 	[[ $HOST =~ $USER ]] && [ -z $TMUX ] && tmux a && exit # auto attach
 fi
 
 # i14
-if [ ${HOST/i14*/i14} = i14 ]
-then
+if [ -z "${HOST/i14*}" ]; then
 	ls --color &> /dev/null && alias ls='ls --color'
 	hash krenew 2> /dev/null && alias tmux='krenew -biL -- /usr/bin/zsh -c "cd $HOME; tmux new -d && while tmux ls &>/dev/null; do sleep 60; done"; sleep 1; tmux a'
 	function i14run {
