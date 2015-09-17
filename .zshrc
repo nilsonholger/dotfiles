@@ -328,7 +328,16 @@ fi
 # i14
 if [ -z "${HOST/i14*}" ]; then
 	ls --color &> /dev/null && alias ls='ls --color'
-	hash krenew 2> /dev/null && alias tmux='krenew -biL -- /usr/bin/zsh -c "cd $HOME; tmux new -d && while tmux ls &>/dev/null; do sleep 60; done"; sleep 1; tmux a'
+	hash krenew 2> /dev/null && function tmux {
+		local _tmux=$(which -a tmux | awk '/^\//')
+		if [ -z $* ]; then
+			krenew -biL -- /usr/bin/zsh -c "cd $HOME; $_tmux new -d && while tmux ls &>/dev/null; do sleep 60; done";
+			sleep 1;
+			tmux attach
+		else
+			$_tmux $*
+		fi
+	}
 	function i14run {
 		local _ARGS _PROCS
 		[ "$1" = "-d" ] && { shift; _PROCS="1"; } || { _PROCS="0"; }
