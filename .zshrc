@@ -330,7 +330,7 @@ if [ -z "${HOST/i14*}" ]; then
 	ls --color &> /dev/null && alias ls='ls --color'
 	hash krenew 2> /dev/null && function tmux {
 		local _tmux=$(which -a tmux | awk '/^\//')
-		if [ -z $* ]; then
+		if [ -z "$*" ]; then
 			krenew -biL -- /usr/bin/zsh -c "cd $HOME; $_tmux new -d && while tmux ls &>/dev/null; do sleep 60; done";
 			sleep 1;
 			tmux attach
