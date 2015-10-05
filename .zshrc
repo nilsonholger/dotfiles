@@ -160,11 +160,12 @@ SPROMPT="%F{yellow}%R %F{white}%b-> %F{green}%r %F{white}%b? [aeNy]%f "
 
 ### coffee/cafe break
 function cafe {
+local _COLS=$[(COLUMNS-14)/4]
 while true
 do
-	dd if=/dev/urandom bs=1024 count=128 2>/dev/null
-	sleep 0.3
-done | (hexdump -e '"%08_ax  " 8/1 "%02x " "  " 8/1 "%02x " "  " 8/1 "%02x " "  " 8/1 "%02x " "  " 8/1 "%02x " "  " 8/1 "%02x " "  |" 48/1 "%_p" "|\n"' | grep --color=always -E "ca f(f e)?e")
+	dd if=/dev/urandom bs=$[_COLS*2048] count=1 2>/dev/null
+	sleep 0.25
+done | (hexdump -e "\"%08_ax  \" $_COLS/1 \"%02x \" \"  |\" $_COLS/1 \"%_p\" \"|\\n\" " | grep --color=always -E "ca f(f e)?e")
 }
 
 ### files [DIR] [DEPTH]
