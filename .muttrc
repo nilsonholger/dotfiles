@@ -128,6 +128,7 @@ macro index,pager           A           "<create-alias>" "create an alias from a
 macro index,pager           Ga          "<change-folder>=Archive<enter>" "go to Archive folder"
 macro index,pager           Gd          "<change-folder>=Drafts<enter>" "go to Drafts folder"
 macro index,pager           Gi          "<change-folder>=INBOX<enter>" "go to INBOX folder"
+macro index,pager           Gp          "<change-folder>=postmaster<enter>" "go to postmaster folder"
 macro index,pager           Gs          "<change-folder>=Sent<enter>" "go to Sent folder"
 macro index,pager           GS          "<change-folder>=Spam<enter>" "go to Spam folder"
 macro index,pager           Gt          "<change-folder>=Trash<enter>" "go to Trash folder"
