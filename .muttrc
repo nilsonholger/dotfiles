@@ -55,16 +55,17 @@ save-hook '~h gmane' +gmane										# match gmane -> gmane
 
 
 ### LOOK AND FEEL
-ignore *														# ignore all header lines
-unignore Subject X-Bogosity												# but show these
-hdr_order Subject X-Bogosity											# in this order
+ignore *														# ignore all header lines...
+unignore X-Bogosity												# ...but these...
+hdr_order X-Bogosity											# ...in this order
 set date_format="!%d%b %H:%M"									# shorten date
-set folder_format="%2C %t %8s %d %N %f"							# more info
-set index_format="%4C %4c%Z %D %-25.25F %?M?(%M) &?%s"			# more info
+set folder_format="%2C %t %8s %d %N %f"							# interesting stuff only...
+set index_format="%4C %4c%Z %D %-25.25F %?M?(%M) &?%s"			# ...especially here
 set pager_context=1												# show 1 common line when paging
+set pager_format="- %F - %s %*- (%P)"							# less is more
 set pager_index_lines=10										# show some index lines when in pager
-set status_format=" @%h:%f <%?n?N%n/?%?M?%M/?%m%?d?/D%d? %?L?%L/?%l>   %?b?NewBox: %b  ?%?F?Flag: %F  ?%?t?Tag: %t  ?%?V?Limit: %V?%> %r(%P)" # nicefy
-set status_on_top												# show status where it belongs
+set status_format=" @%h:%f <%?n?N%n/?%?M?%M/?%m%?d?/D%d? %?L?%L/?%l>   %?b?NewBox: %b  ?%?F?Flag: %F  ?%?t?Tag: %t  ?%?V?Limit: %V?%> %r(%P)" # nicefy...
+set status_on_top												# ...and put on top
 
 
 
@@ -157,7 +158,7 @@ color hdrdefault blue            default
 color header     green           default "^x-bogosity: ham"
 color header     red             default "^x-bogosity: spam"
 color header     magenta         default "^x-bogosity: unsure"
-color header     cyan            default "^subject:"
+color header     brightblue      default "^(date:|from:|subject:)"
 color body       green           default "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
 color body       yellow          default "(finger|ftp|hg|http[s]*|news|tel)://[^ ]*"
 color body       green           default "gpg: Good signature from.*"
