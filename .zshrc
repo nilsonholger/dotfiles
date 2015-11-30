@@ -179,7 +179,7 @@ done | sort -n | column -t -s"|"
 ### git-generate-commit
 function git-generate-commit {
 _STAT=`git diff --cached --numstat | awk '{print $3$4$5":+"$1"-"$2; }'`
-git ci -m "[`hostname -s`] ${_STAT//\.wiki}"
+git ci --allow-empty -m "[`hostname -s`] ${_STAT//\.wiki}"
 }
 
 ### gpg-tar <COMMAND> <FILE> [ARGS...]
