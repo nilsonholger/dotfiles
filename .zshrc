@@ -328,35 +328,12 @@ fi
 
 # i14
 if [ -z "${HOST/i14*}" ]; then
+	[ -r /cvhci/software/cvhci-profile.sh ] && {
+		_CVHCI_DISTLIBS="OFF"
+		_CVHCI_CAFFE="OFF"
+		_CVHCI_TORCH="OFF"
+		_CVHCI_CUDNN="OFF"
+		source /cvhci/software/cvhci-profile.sh
+	}
 	ls --color &> /dev/null && alias ls='ls --color'
-	hash krenew 2> /dev/null && function tmux {
-		local _tmux=$(which -a tmux | awk '/^\//')
-		if [ -z "$*" ]; then
-			krenew -biL -- /usr/bin/zsh -c "cd $HOME; $_tmux new -d && while tmux ls &>/dev/null; do sleep 60; done";
-			sleep 1;
-			tmux attach
-		else
-			$_tmux $*
-		fi
-	}
-	function i14run {
-		local _ARGS _PROCS
-		[ "$1" = "-d" ] && { shift; _PROCS="1"; } || { _PROCS="0"; }
-		[[ $* =~ '\$\(' ]] && _ARGS="$*" || _ARGS="\$($*)"
-		echo -n pc1{84..90} s{1,{20..27},{29..31},34} | xargs -P $_PROCS -n1 -d ' ' -I SERVER ssh -o ConnectTimeout=3 -o PasswordAuthentication=no SERVER "echo SERVER $_ARGS"
-	}
-	function i14load {
-		local _COL _SORT
-		[ "$1" = "-d" ] && { _COL="cat -"; _SORT="cat -"; } || { _COL="column -t"; _SORT="sort -f"; }
-		{
-			echo "SERVER CPU LOAD L_5 L_15 PROCS MEM SWAP USERS"
-			{
-				_CPU='$(sysctl -n hw.ncpu 2> /dev/null || grep -c "^processor" /proc/cpuinfo)'
-				_LOAD='$(cut -f1-4 -d" " /proc/loadavg)'
-				_FREE='$(free -m | awk "/(buffers\/cache|Swap)/ {printf \"%.1f/%.1f\n\", \$3/1024, \$4/1024}" | tr "\n" " ")'
-				_USERS='$(top -bn1 | awk "NR>7{u[\$2]+=\$9}END {for(i in u) {if (u[i]>2) printf \" %s:%d\",i,u[i]}}")'
-				i14run $1 "$_CPU $_LOAD $_FREE $_USERS"
-			} | eval $_SORT
-		} | eval $_COL
-	}
 fi
