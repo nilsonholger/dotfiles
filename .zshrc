@@ -47,7 +47,7 @@ alias dud='du -hxd1 | sort -h'
 alias dvorak='setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch'
 [ -f ~/papers/index.wiki ] && alias papers='wiki ~/papers'
 alias scpr='rsync --partial --progress --rsh=ssh'
-alias ssh-kill-masters='for i in $HOME/.ssh/master/*; do ssh -O exit -p ${i//*:} ${${i##*/}/:*}; done'
+alias ssh-kill-masters='for i in $HOME/.ssh/master/*; do echo -n "${i##*/}: "; ssh -O exit -p ${i//*:} ${${i##*/}/:*}; done'
 alias vi='vim'
 
 ### exports
