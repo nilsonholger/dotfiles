@@ -80,7 +80,7 @@ _BATTERY_STATUS=''
 
 ### battery status prompt
 function _battery_status {
-local _CHARGE=$1 _INDICATOR _STATE=$2 _TIME=$3
+local _CHARGE=$1 _INDICATOR _STATE=$2 _TIME=$3 i
 [[ ${_CHARGE} -gt  0 ]] && _COLOR="%F{red}"    # critical
 [[ ${_CHARGE} -gt 20 ]] && _COLOR="%F{yellow}" # warning
 [[ ${_CHARGE} -gt 40 ]] && _COLOR="%F{green}"  # ok
