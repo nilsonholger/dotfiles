@@ -126,7 +126,7 @@ nnoremap zO zCzO
 vnoremap < <gv
 vnoremap > >gv
 
-" arrow keys
+" arrow keys (disabled -> hjkl)
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -137,12 +137,6 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
-
-" windows
-noremap <C-h>  <C-w>h
-noremap <C-j>  <C-w>j
-noremap <C-k>  <C-w>k
-noremap <C-l>  <C-w>l
 
 " quickfix
 map <silent> <leader><space> :QFix<CR>
@@ -155,9 +149,11 @@ map <silent> <leader>ma :call Make("all")<CR>
 map <silent> <leader>mc :call Make("clean")<CR>
 map <silent> <leader>mm :call Make(" ")<CR>
 map <silent> <leader>mr :call Make("run")<CR>
+map <silent> <leader>mv :call Make("VERBOSE=1")<CR>
+
+" search
 map <silent> <leader>at :call Ack("TODO")<CR>
 map <silent> <leader>aa :call Ack("ask")<CR>
-map <silent> <leader>mv :call Make("VERBOSE=1")<CR>
 
 " fugitive
 map <leader>gb :Gblame<CR>
