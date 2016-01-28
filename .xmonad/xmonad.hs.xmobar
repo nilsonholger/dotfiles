@@ -56,15 +56,14 @@ main = do
             | (k, s) <- zip [xK_w, xK_e, xK_r] [0,1,2]
             , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
         `additionalKeys` [
-            ((mod4Mask                , xK_p     ), spawn "PATH=\"$HOME/local/bin:$PATH\" dmenu_run"  ),
-            ((mod4Mask                , xK_q     ), spawn "xmonad --recompile && xmonad --restart&"),
-            ((mod4Mask .|. shiftMask  , xK_q     ), io (exitWith ExitSuccess)),
-            ((mod4Mask                , xK_Escape), spawn "display ~/.xmonad/Xmbindings.svg &"),
-            ((mod4Mask .|. shiftMask  , xK_i     ), spawn "firefox &"),
-            ((mod4Mask .|. shiftMask  , xK_m     ), spawn "thunderbird &"),
-            --((mod4Mask .|. shiftMask  , xK_l     ), spawn "gnome-screensaver-command --lock; sleep 10; xset +dpms dpms force standby"),
-            ((mod4Mask .|. shiftMask  , xK_l     ), spawn "dm-tool lock"),
-            ((mod4Mask .|. mod1Mask   , xK_l     ), spawn "if [ ! \"`setxkbmap -query | grep -o dvp,,nodeadkeys`\" = \"dvp,,nodeadkeys\" ]; then setxkbmap -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; else setxkbmap -layout us_intl -option grp:shifts_toggle; fi; xmodmap ~/.Xmodmap &")]
+            ((mod4Mask               , xK_p        ), spawn "PATH=\"$HOME/local/bin:$PATH\" dmenu_run"  ),
+            ((mod4Mask               , xK_q        ), spawn "xmonad --recompile && xmonad --restart&"),
+            ((mod4Mask.|.shiftMask   , xK_q        ), io (exitWith ExitSuccess)),
+            ((mod4Mask               , xK_Escape   ), spawn "display ~/.xmonad/Xmbindings.svg &"),
+            ((mod4Mask.|.shiftMask   , xK_i        ), spawn "firefox &"),
+            ((mod4Mask.|.shiftMask   , xK_m        ), spawn "thunderbird &"),
+            ((controlMask.|.shiftMask, xF86XK_Eject), spawn "dm-tool lock"),
+            ((controlMask.|.shiftMask, xK_l        ), spawn "if [ ! \"`setxkbmap -query | grep -o dvp,,nodeadkeys`\" = \"dvp,,nodeadkeys\" ]; then setxkbmap -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; else setxkbmap -layout us_intl -option grp:shifts_toggle; fi; xmodmap ~/.Xmodmap &")]
         `additionalKeys` [
             ((0, xF86XK_AudioMute       ), spawn "amixer -q -D pulse set Master toggle"),
             ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 2-"),
