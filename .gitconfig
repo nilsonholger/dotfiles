@@ -2,6 +2,7 @@
 	a = add
 	b = branch -vv
 	ci = commit
+	ca = commit --amend --no-edit
 	co = checkout
 	d = diff --color-words --unified=0
 	devs = shortlog -nes
