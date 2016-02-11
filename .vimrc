@@ -181,6 +181,7 @@ hi Pmenu		ctermbg=black		ctermfg=brown	cterm=none
 hi PmenuSel		ctermbg=red			ctermfg=black	cterm=none
 hi PmenuSbar	ctermbg=darkgrey					cterm=none
 hi PmenuThumb	ctermbg=yellow						cterm=none
+hi Search		ctermbg=black		ctermfg=red
 
 "
 " PLUGINS
