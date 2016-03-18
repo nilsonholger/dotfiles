@@ -14,9 +14,10 @@
 	la = log --graph --all --date-order
 	lr = log --walk-reflogs
 	ll = log --graph -n 1
-	new = ls-files --others
+	new = !git log --graph --all --date-order $(git rev-parse --abbrev-ref HEAD)..$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}')
 	s = status -s -b
 	sub = submodule foreach git
+	untracked = ls-files --others
 
 [color]
 	branch = auto
