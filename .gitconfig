@@ -59,7 +59,7 @@
 	date = relative
 
 [merge]
-	ff = only
+	ff = true
 	log = true
 	stat = true
 	tool = vimdiff
