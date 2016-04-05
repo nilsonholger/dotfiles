@@ -26,6 +26,7 @@ set forward_format="Fwd: %s"							# use 'Fwd: ' in subject
 set header_cache="~/.mutt/cache/headers"				# speed improvements
 set history_file="~/.mutt/history"						# history file
 set imap_check_subscribed								# fetch subscribed folders
+set imap_idle											# use IMAP IDLE extension to check for new mail
 set include												# add original to reply
 unset mark_old											# do NOT make new unread messages with 'O'
 set message_cachedir="~/.mutt/cache/bodies"				# more speed improvements
@@ -63,6 +64,7 @@ hdr_order X-Bogosity											# ...in this order
 set date_format="!%d%b %H:%M"									# shorten date
 set folder_format="%2C %t %8s %d %N %f"							# interesting stuff only...
 set index_format="%4C %4c%Z %D %-25.25F %?M?(%M) &?%s"			# ...especially here
+set narrow_tree													# narrow thread trees
 set pager_context=1												# show 1 common line when paging
 set pager_format="- %F - %s %*- (%P)"							# less is more
 set pager_index_lines=10										# show some index lines when in pager
