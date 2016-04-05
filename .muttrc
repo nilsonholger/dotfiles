@@ -24,6 +24,7 @@ set fast_reply											# do not ask about to: and subject:
 set fcc_attach											# forward attachments
 set forward_format="Fwd: %s"							# use 'Fwd: ' in subject
 set header_cache="~/.mutt/cache/headers"				# speed improvements
+set history_file="~/.mutt/history"						# history file
 set imap_check_subscribed								# fetch subscribed folders
 set include												# add original to reply
 unset mark_old											# do NOT make new unread messages with 'O'
@@ -33,6 +34,7 @@ set postponed="=Drafts"									# use Drafts folder
 unset reply_self										# remove own address from replies
 set reverse_alias										# use aliases to display names
 set reverse_name										# use receiving address for replies
+set save_history=1024									# keep some
 set sendmail_wait=-1									# fork message delivery
 set sort='threads'										# show threads
 set sort_aux='last-date-received'						# sort threads by last message date
