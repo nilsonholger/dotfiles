@@ -87,10 +87,13 @@ set pgp_good_sign="^gpg: Good signature from"
 set pgp_sign_as=0x3AFB7CCD
 #set crypt_autoencrypt
 set crypt_autosign
+set crypt_opportunistic_encrypt
 set crypt_replyencrypt
 set crypt_replysign
 set crypt_replysignencrypted
 set crypt_verify_sig
+set postpone_encrypt
+set postpone_encrypt_as=0x3AFB7CCD
 set pgp_auto_decode
 set pgp_use_gpg_agent
 set my_gpg_base="--batch --quiet --no-verbose --status-fd 2 --output -"
@@ -109,6 +112,10 @@ set pgp_export_command="gpg --no-verbose --export --armor %r"
 set pgp_verify_key_command="gpg $my_gpg_base --fingerprint --check-sigs %r"
 set pgp_list_secring_command="gpg $my_gpg_base --with-colons --list-secret-keys %r"
 set pgp_list_pubring_command="gpg $my_gpg_base --with-colons --list-keys %r"
+
+
+
+### S/MIME <- TODO
 
 
 
