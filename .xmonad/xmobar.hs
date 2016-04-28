@@ -1,6 +1,7 @@
 Config {
 	  font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
 	, lowerOnStart = True
+	, overrideRedirect = False
 	, commands = [
 		Run StdinReader
 		, Run MultiCpu ["-L","60","-H","90","-n","yellow","-h","red","-t","<autobar>"] 10
