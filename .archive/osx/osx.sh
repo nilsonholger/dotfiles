@@ -273,7 +273,7 @@ sudo launchctl load -wF /System/Library/LaunchDaemons/ssh.plist
 }
 
 function osx_symlinks {
-sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/sbin/airport
+ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport $HOME/local/bin/airport
 }
 
 function osx_timemachine {
