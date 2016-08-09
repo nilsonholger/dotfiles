@@ -48,7 +48,7 @@ alias dvorak='setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -
 alias gen-pass='dd if=/dev/random bs=1024 count=1 2>/dev/null| strings | LC_CTYPE=C tr -d "\n"'
 [ -f ~/papers/index.wiki ] && alias papers='wiki ~/papers'
 alias scpr='rsync --partial --progress --rsh=ssh'
-alias ssh-kill-masters='for master in $HOME/.ssh/master/*; do echo -n "${master##*/}: "; ssh -O exit -p ${master//*:} ${${master##*/}%:*}; done'
+alias ssh-kill-masters='for master in $HOME/.ssh/master/*(N); do echo -n "${master##*/}: "; ssh -O exit -p ${master//*:} ${${master##*/}%:*}; done'
 alias vi='vim'
 
 ### exports
