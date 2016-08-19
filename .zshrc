@@ -175,7 +175,7 @@ function files {
 find ${1:-.} -maxdepth ${2:-2} -type d | while read _DIR
 do
 	echo `find $_DIR -type f | wc -l`\|$_DIR
-done | sort -n | column -t -s"|"
+done | sort -nr | column -t -s"|"
 }
 
 ### git-generate-commit
