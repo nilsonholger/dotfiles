@@ -28,9 +28,11 @@ main = do
             layoutHook = smartBorders $ avoidStruts (Tall 1 (3/100) (1/2) ||| Mirror (Tall 1 (3/100) (1/2)) ||| Full),
             manageHook = composeAll
                 [ manageHook defaultConfig
-                , className =? "MPlayer" --> doFloat
-                , className =? "Gimp" --> doFloat
                 , className =? "Blender" --> doFloat
+                , className =? "Gimp" --> doFloat
+                , className =? "Firefox" --> doShift "L"
+                , className =? "MPlayer" --> doFloat
+                , className =? "Thunderbird" --> doShift "R"
                 , className =? "VirtualBox" --> doFloat
                 , resource  =? "desktop_window" --> doIgnore ]
                 <+> manageDocks,
