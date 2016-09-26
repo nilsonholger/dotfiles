@@ -325,7 +325,7 @@ fi
 # freebsd
 if [ -d /boot/kernel ]; then
 	hash xhost &> /dev/null && xhost +local: > /dev/null # fix for ssh with X forwarding
-	[[ $HOST =~ $USER ]] && [ -z $TMUX ] && tmux a && exit # auto attach
+	[[ $HOST =~ hyve ]] && [ -z $TMUX ] && tmux a && exit # auto attach
 fi
 
 # i14
