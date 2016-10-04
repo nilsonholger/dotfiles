@@ -1,0 +1,9 @@
+hardstatus alwayslastline
+hardstatus string '%{= b}%H %=%{w}%?%-Lw%?%{r}%n*%f %t%?(%u)%?%{w}%?%+Lw%= %{b}%c %Y-%m-%d'
+
+defscrollback 5000
+logtstamp on
+logtstamp after 1
+
+startup_message off
+vbell off
