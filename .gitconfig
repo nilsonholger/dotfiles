@@ -74,7 +74,10 @@
 	default = tracking
 
 [rebase]
-	stat = true
+	stat = true                # show nice diffstat
+	autoSquash = true          # ... for fixup operations
+	autoStash = true           # stash before starting
+	missingCommitsCheck = warn # show warning when removing commit
 
 [rerere]
 	enabled = 1
