@@ -105,8 +105,8 @@ function _osx_battery_status {
 _BATTERY_STATUS=''
 local -a _STATUS
 _STATUS=(`pmset -g batt | tail -n +2`) # get info from pmset
-[[ "${_STATUS[3]}" =~ .*charging.* ]] || return # only continue when (dis-)charging
-_battery_status ${_STATUS[2]/\%;} ${_STATUS[3]} ${_STATUS[4]/\(no}
+[[ "${_STATUS[4]}" =~ .*charging.* ]] || return # only continue when (dis-)charging
+_battery_status ${_STATUS[3]/\%;} ${_STATUS[4]} ${_STATUS[5]/\(no}
 }
 
 ### update periodically
