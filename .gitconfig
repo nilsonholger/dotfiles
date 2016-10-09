@@ -15,6 +15,11 @@
 	lr = log --walk-reflogs
 	ll = log --graph -n 1
 	new = !git log --graph --date-order $(git rev-parse --abbrev-ref --symbolic-full-name '@{u}')..$(git rev-parse --abbrev-ref HEAD)
+	ra = rebase --abort
+	rc = rebase --continue
+	re = rebase --edit-todo
+	ri = rebase --interactive
+	rs = rebase --skip
 	s = status -s -b
 	sub = submodule foreach git
 	untracked = ls-files --others
