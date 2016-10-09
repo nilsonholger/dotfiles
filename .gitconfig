@@ -71,7 +71,7 @@
 	tool = vimdiff
 
 [push]
-	default = tracking
+	default = simple
 
 [rebase]
 	stat = true                # show nice diffstat
