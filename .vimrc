@@ -251,8 +251,9 @@ endfunction
 function! ToggleComment(visual)
 	if (&ft=~'^c\($\|pp\)') | let l:c_sign='//'
 	elseif (&ft=~'^\(\|plain\)tex\|^bib') | let l:c_sign='%'
-	elseif (&ft=='matlab') | let l:c_sign='%'
 	elseif (&ft=='haskell') | let l:c_sign='--'
+	elseif (&ft=='html') | let l:c_begin='<!--' | let l:c_end='-->'
+	elseif (&ft=='matlab') | let l:c_sign='%'
 	elseif (&ft=='vim') | let l:c_sign='"'
 	else | let l:c_sign='#'
 	endif
@@ -269,13 +270,23 @@ function! ToggleComment(visual)
 		let l:lines=[line('.'), line('.')]
 	endif
 
-	for l:line in reverse(range(l:lines[0], l:lines[1]))
-		if getline(l:lines[0])=~ '^\s*'.l:c_sign
-			call setline(l:line, substitute(getline(l:line), '\(^\s*\)'.l:c_sign, '\1', "g"))
+	if exists('l:c_sign')
+		for l:line in reverse(range(l:lines[0], l:lines[1]))
+			if getline(l:lines[0])=~ '^\s*'.l:c_sign
+				call setline(l:line, substitute(getline(l:line), '\(^\s*\)'.l:c_sign, '\1', "g"))
+			else
+				call setline(l:line, substitute(getline(l:line), '\(^\s*\)\([^$]\)', '\1'.l:c_sign.'\2', "g"))
+			endif
+		endfor
+	else
+		if getline(l:lines[0])=~ '^\s*'.l:c_begin
+			call setline(l:lines[0], substitute(getline(l:lines[0]), '\(^\s*\)'.l:c_begin, '\1', "g"))
+			call setline(l:lines[1], substitute(getline(l:lines[1]), '\(^.\{-}\)'.l:c_end, '\1', "g"))
 		else
-			call setline(l:line, substitute(getline(l:line), '\(^\s*\)\([^$]\)', '\1'.l:c_sign.'\2', "g"))
+			call setline(l:lines[0], substitute(getline(l:lines[0]), '\(^\s*\)\([^$]\)', '\1'.l:c_begin.'\2', "g"))
+			call setline(l:lines[1], substitute(getline(l:lines[1]), '$', l:c_end, "g"))
 		endif
-	endfor
+	endif
 endfunction
 
 " Switch between header/source: *.((h|hh|c|cc)|(h|c)(pp|xx|++))
