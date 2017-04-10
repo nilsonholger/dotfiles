@@ -15,76 +15,74 @@
 	lr = log --walk-reflogs
 	ll = log --graph -n 1
 	new = !git log --graph --date-order $(git rev-parse --abbrev-ref --symbolic-full-name '@{u}')..$(git rev-parse --abbrev-ref HEAD)
+	push = push --force-with-lease
 	ra = rebase --abort
 	rc = rebase --continue
 	re = rebase --edit-todo
 	ri = rebase --interactive
 	rs = rebase --skip
-	s = status -s -b
+	s = status
 	sub = submodule foreach git
 	untracked = ls-files --others
 	upstream = !git log --graph --date-order $(git rev-parse --abbrev-ref HEAD)..$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}')
 
-[color]
-	branch = auto
-	diff = auto
-	interactive = auto
-	pager = true
-	status = auto
-	ui = auto
-
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+	meta = yellow      # white not nice
+	old = red bold     # bold ist better
+	new = green bold   # bold ist better
 
 [color "status"]
-	added = green bold
-	changed = yellow bold
+	added = green bold      # easier to spot
+	changed = yellow bold   # easire to spot
 
 [core]
-	pager = less -FRSX
+	pager = less -FRSX   # less --quit-if-one-screen --RAW-CONTROL-CHARS --chop-long-lines --no-init
 
 [diff]
-	algorithm = patience
-	ignoreSubmodules = all
-	renames = copy
+	algorithm = histogram    # better diffing
+	ignoreSubmodules = all   # don't diff into dependencies
+	renames = copy           # {renames,copies}
 
 [fetch]
-	recurseSubmodules = false
+	prune = true                # prune local branches (if deleted on remote)
+	recurseSubmodules = false   # avoid downloading dependencies
 
 [format]
-	pretty = format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
+	pretty = format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'   # pretty says it all
 
 [help]
-	autocorrect = 10
+	autocorrect = 10   # fix those pesky typos (in a second)
 
 [log]
-	abbrevCommit = true
-	date = relative
+	abbrevCommit = true   # shorten SHA hashes
+	date = relative       # forgot about it "5 seconds ago"
 
 [merge]
-	ff = true
-	log = true
-	stat = true
-	tool = vimdiff
+	ff = only        # prevent accidential merge commits
+	log = true       # list (20...) commit messages in merge
+	tool = vimdiff   # vim all the way
 
 [push]
-	default = simple
+	followTags = true   # automagically update tags remotely
 
 [rebase]
-	stat = true                # show nice diffstat
-	autoSquash = true          # ... for fixup operations
-	autoStash = true           # stash before starting
-	missingCommitsCheck = warn # show warning when removing commit
+	stat = true                  # show nice diffstat
+	autoSquash = true            # ... for fixup operations
+	autoStash = true             # stash before starting
+	missingCommitsCheck = warn   # show warning when removing commit
 
 [rerere]
-	enabled = 1
+	autoUpdate = true   # apply automagic
+	enabled = true      # pure automagic
+
+[stash]
+	showPatch = true   # no need to type '--patch'
 
 [status]
-	submodulesummary = true
+	branch = true             # inform us, where we are
+	short = true              # away with that pesky verbose help text
+	submodulesummary = true   # show submodule changes
 
 [user]
-	name = nilsonholger
-	email = nilsonholger@hyve.org
+	name = nilsonholger             # `whoami`
+	email = nilsonholger@hyve.org   # finger `whoami`
