@@ -4,12 +4,13 @@
 	ci = commit
 	ca = commit --amend --no-edit
 	co = checkout
-	d = diff --color-words --unified=0
+	d =   diff --minimal --unified=0 --word-diff=color
+	di =  diff --minimal --unified=0 --word-diff=color --cached
+	dp =  diff --minimal --unified=0 --word-diff=plain
+	ds =  diff --stat
+	dis = diff --stat --cached
 	devs = shortlog -nes
-	di = diff --cached --color-words --unified=0
-	dis = diff --cached --stat
 	dir = rev-parse --show-toplevel
-	ds = diff --stat
 	l = log --graph --date-order
 	la = log --graph --all --date-order
 	lr = log --walk-reflogs
