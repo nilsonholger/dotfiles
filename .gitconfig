@@ -9,7 +9,7 @@
 	dp =  diff --minimal --unified=0 --word-diff=plain
 	ds =  diff --stat
 	dis = diff --stat --cached
-	devs = shortlog -nes
+	devs = shortlog --numbered --email --summary
 	dir = rev-parse --show-toplevel
 	l = log --graph --date-order
 	la = log --graph --all --date-order
