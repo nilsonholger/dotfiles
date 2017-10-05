@@ -84,6 +84,9 @@
 	short = true              # away with that pesky verbose help text
 	submodulesummary = true   # show submodule changes
 
+[transfer]
+	fsckObjects = true   # always check object's hashes
+
 [user]
 	name = nilsonholger             # `whoami`
 	email = nilsonholger@hyve.org   # finger `whoami`
