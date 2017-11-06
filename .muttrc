@@ -154,7 +154,7 @@ macro index,pager           S           "<save-message>=Spam<enter><sync-mailbox
 
 ### COLORS
 color error      red             default
-color indicator  brightwhite     default
+color indicator  blue            default
 color markers    yellow          default
 color message    red             default
 color normal     default         default
