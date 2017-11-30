@@ -23,6 +23,7 @@
 	ri = rebase --interactive
 	rs = rebase --skip
 	s = status
+	ss = status --long
 	sub = submodule foreach git
 	untracked = ls-files --others
 	upstream = !git log --graph --date-order $(git rev-parse --abbrev-ref HEAD)..$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}')
