@@ -251,6 +251,7 @@ endfunction
 " ToggleComment
 function! ToggleComment(visual)
 	if (&ft=~'^c\($\|pp\)') | let l:c_sign='//'
+	elseif (&ft=='css') | let l:c_begin='/\*' | let l:c_end='\*/'
 	elseif (&ft=~'^\(\|plain\)tex\|^bib') | let l:c_sign='%'
 	elseif (&ft=='haskell') | let l:c_sign='--'
 	elseif (&ft=='html') | let l:c_begin='<!--' | let l:c_end='-->'
@@ -281,6 +282,7 @@ function! ToggleComment(visual)
 		endfor
 	else
 		if getline(l:lines[0])=~ '^\s*'.l:c_begin
+			echo l:c_begin
 			call setline(l:lines[0], substitute(getline(l:lines[0]), '\(^\s*\)'.l:c_begin, '\1', "g"))
 			call setline(l:lines[1], substitute(getline(l:lines[1]), '\(^.\{-}\)'.l:c_end, '\1', "g"))
 		else
