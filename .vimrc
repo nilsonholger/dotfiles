@@ -282,7 +282,6 @@ function! ToggleComment(visual)
 		endfor
 	else
 		if getline(l:lines[0])=~ '^\s*'.l:c_begin
-			echo l:c_begin
 			call setline(l:lines[0], substitute(getline(l:lines[0]), '\(^\s*\)'.l:c_begin, '\1', "g"))
 			call setline(l:lines[1], substitute(getline(l:lines[1]), '\(^.\{-}\)'.l:c_end, '\1', "g"))
 		else
