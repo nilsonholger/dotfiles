@@ -82,15 +82,14 @@ _BATTERY_STATUS=''
 
 ### battery status prompt
 function _battery_status {
-local _CHARGE=$1 _INDICATOR _STATE=$2 _TIME=$3 i
-[[ ${_CHARGE} -gt  0 ]] && _COLOR="%F{red}"    # critical
-[[ ${_CHARGE} -gt 20 ]] && _COLOR="%F{yellow}" # warning
-[[ ${_CHARGE} -gt 40 ]] && _COLOR="%F{green}"  # ok
+local _CHARGE=$1 _INDICATOR _STATE=$2 _TIME=$3 _COLOR="%F{green}" i
+[[ ${_CHARGE} -le 40 ]] && _COLOR="%F{yellow}" # warning
+[[ ${_CHARGE} -le 20 ]] && _COLOR="%F{red}"  # critical
 [ "${_STATE}" = "charging;" ] && _COLOR="%F{cyan}" # charging
-for ((i=0; i<_CHARGE/20; i++)); do _INDICATOR+='❚'; done # for every 20%
-[[ $((_CHARGE%20)) -ge 10 ]] && _INDICATOR+='❙' # for 10%-20% (after mod 20)
+for ((i=0; i<(_CHARGE+9)/20; i++)); do _INDICATOR+='❚'; done # per 20% charge (starts at ...-9, e.g. 11%, 31%, ...)
+[[ $((_CHARGE%20)) -le 10 && $((_CHARGE%20)) -gt 0 ]] && _INDICATOR+='❙' # for ...+1% -- ...+10% (e.g. 1%-10%, 21%-30%, ...)
 for ((i=${#_INDICATOR}; i<5; i++)); do _INDICATOR+=' '; done # fill
-_BATTERY_STATUS="${_COLOR}${_TIME}⦗${_INDICATOR}⦘%f " # create prompt indicator
+_BATTERY_STATUS="${_COLOR}${_TIME}【${_INDICATOR}】%f" # update prompt indicator
 }
 
 ### architectures
