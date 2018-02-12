@@ -180,7 +180,7 @@ done | sort -nr | column -t -s"|"
 ### git-generate-commit
 function git-generate-commit {
 _STAT=`git diff --cached --numstat | awk '{print $3$4$5":+"$1"-"$2; }'`
-git ci --allow-empty -m "[`hostname -s`] ${_STAT//\.wiki}"
+git ci --allow-empty -m "[`hostname -s`] ${_STAT}"
 }
 
 ### gpg-tar <COMMAND> <FILE> [ARGS...]
@@ -220,20 +220,6 @@ case $1 in
 		echo "  [decrypt|list|repair] <archive>"
 		echo "  [add|extract] <archive> <file>"
 esac
-}
-
-### wiki stuff
-function wiki {
-[ -z $1 ] && echo 'usage: wiki $DIRECTORY' && return
-[ -d $1 ] && cd $1 || return
-git stash &> /dev/null
-git pull
-git stash pop &> /dev/null
-vim index.wiki
-git add --all .
-git-generate-commit
-git push
-cd -
 }
 
 ### pdf compress <FILE> <IMAGE_DPI>
