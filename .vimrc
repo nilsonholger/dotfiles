@@ -15,7 +15,6 @@ Bundle 'bufexplorer.zip'
 Bundle 'gnupg'
 Bundle 'ervandew/supertab'
 Bundle 'tpope/vim-fugitive'
-Bundle 'vimwiki'
 Bundle 'Valloric/YouCompleteMe'
 
 "
