@@ -323,4 +323,9 @@ if [ -z "${HOST/i14*}" ]; then
 		source /cvhci/software/cvhci-profile.sh
 	}
 	ls --color &> /dev/null && alias ls='ls --color'
+	function xsudo() { # or use gksudo
+		xhost +si:localuser:root
+		sudo $*
+		xhost -si:localuser:root
+	}
 fi
