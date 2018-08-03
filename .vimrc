@@ -218,12 +218,8 @@ function! Make(target)
 		let &makeprg="make " . a:target
 	elseif filereadable('build/Makefile')
 		let &makeprg="(cd build && make " . a:target . ")"
-	elseif filereadable('SConstruct')
-		set makeprg=scons
-	elseif expand('%:e') == 'csd'
-		set makeprg=csound\ %
-	elseif expand('%:e') == 'orc' || expand('%:e') == 'sco'
-		set makeprg=csound\ '%:r.'orc\ '%:r.'sco
+	elseif &ft == 'tex' || ft == 'plaintex'
+		set makeprg=pdflatex\ %
 	endif
 	silent w
 	silent make!
