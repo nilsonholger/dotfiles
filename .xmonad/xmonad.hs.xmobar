@@ -17,7 +17,7 @@ spaces = ["L","M","R","X"]
 
 main = do
     xmobar <- spawnPipe "xmobar -x 1 ~/.xmonad/xmobar.hs"
-    xmonad $ defaultConfig
+    xmonad $ docks defaultConfig
         {
             terminal = "/usr/bin/gnome-terminal",
             modMask = mod4Mask,
