@@ -48,7 +48,6 @@ alias duh='du -hxd1 | sort -h'
 alias dvorak='setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch'
 alias gen-pass='dd if=/dev/random bs=1024 count=1 2>/dev/null| strings | LC_CTYPE=C tr -d "\n"'
 alias scpr='rsync --partial --progress --rsh=ssh'
-alias ssh-kill-masters='for master in $HOME/.ssh/master/*(N); do echo -n "${master##*/}: "; ssh -O exit -p ${master//*:} ${${master##*/}%:*}; done'
 alias vi='vim'
 
 ### exports
@@ -254,6 +253,19 @@ if [ ! -e "$1" ]; then
 else
 	eval "tar cf - ${@:1:#-1} | $DST"
 fi
+}
+
+### ssh-kill-masters
+function ssh-kill-masters {
+	for master in $HOME/.ssh/master/*(N); do
+		if ssh -O check -p ${master//*:} ${${master##*/}%:*} >& /dev/null; then
+			echo -n "${master##*/}: "
+			ssh -O exit -p ${master//*:} ${${master##*/}%:*}
+		else
+			echo "${master##*/}: Remove stale master."
+			rm -f ${master}
+		fi
+	done
 }
 
 ### hyve <on|off>
