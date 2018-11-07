@@ -259,10 +259,10 @@ fi
 function ssh-kill-masters {
 	for master in $HOME/.ssh/master/*(N); do
 		if ssh -O check -p ${master//*:} ${${master##*/}%:*} >& /dev/null; then
-			echo -n "${master##*/}: "
-			ssh -O exit -p ${master//*:} ${${master##*/}%:*}
+			echo "EXIT  -> ${${master##*/}%%\.*}"
+			ssh -O exit -p ${master//*:} ${${master##*/}%:*} >& /dev/null
 		else
-			echo "${master##*/}: Remove stale master."
+			echo "PURGE -> ${master##*/}"
 			rm -f ${master}
 		fi
 	done
