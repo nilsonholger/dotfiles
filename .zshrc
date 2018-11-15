@@ -340,4 +340,5 @@ if [ -z "${HOST/i14*}" ]; then
 		sudo $*
 		xhost -si:localuser:root
 	}
+	alias gnome-control-center="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 fi
