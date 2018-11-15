@@ -269,8 +269,7 @@ function ssh-kill-masters {
 }
 
 ### hyve <on|off>
-function hyve
-{
+function hyve {
 	case $1 in
 		on) mkdir -m 777 ~/hyve; sshfs hyve: ~/hyve;;
 		off) fusermount -u ~/hyve &> /dev/null || umount ~/hyve; rmdir ~/hyve;;
@@ -279,8 +278,7 @@ function hyve
 }
 
 ### unisel <target> [path]
-function unisel
-{
+function unisel {
 	_TARGET=${1:-${HOST/.*}}
 	_BASE=$(cat ~/.unison/${_TARGET}.prf | awk 'NR==1 {print $3}')
 	_DIR=${PWD}/$2
@@ -288,7 +286,7 @@ function unisel
 }
 
 ### doi2bib <doi>
-function doi2bib() {
+function doi2bib {
 	curl -s -L -H "Accept: text/bibliography; style=bibtex" http://dx.doi.org/"$*" | sed -e "s/\(\@\S*,\)/\1\n/" -e "s/\}, /\},\n /g"
 }
 
