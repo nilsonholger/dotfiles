@@ -70,6 +70,10 @@ set statusline+=%=(%{&ft},%{strlen(&fenc)?&fenc:&enc},%{&ff})	" (filetype,encodi
 set statusline+=\ 												" space
 set statusline+=%-14.(%L,%l-%c%V%)\ %P							" numberOfLines,line-column-virtualColumn ruler
 
+" undofile
+set undofile
+set undodir=~/.vim/undo
+
 " wildmenu
 set wildmenu
 "set wildmode=list:longest

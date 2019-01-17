@@ -20,3 +20,4 @@ git submodule update
 
 # vim
 hash vim && vim +BundleInstall +qa
+mkdir ~/.vim/undo
