@@ -28,7 +28,7 @@ set backspace=indent,eol,start					" allow backspacing over #args
 set completeopt=menuone,menu,longest			" completion menu settings
 set hidden										" if (hidden) do not unload abandoned buffer
 set laststatus=2								" always display status line
-set nomodeline									" allow vim modelines
+set nomodeline									" dis-allow vim modelines
 set modelines=0									" process #lines of modeline commands
 "set scrolloff=3									" always display #lines context
 set showcmd										" display partial commands
