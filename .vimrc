@@ -151,6 +151,7 @@ map <silent> <leader>qp :cprev<CR>
 " make
 map <silent> <leader>ma :call Make("all")<CR>
 map <silent> <leader>mc :call Make("clean")<CR>
+map <silent> <leader>md :call Make("debug")<CR>
 map <silent> <leader>mi :call Make("install")<CR>
 map <silent> <leader>mm :call Make(" ")<CR>
 map <silent> <leader>mr :call Make("run")<CR>
