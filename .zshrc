@@ -158,6 +158,17 @@ SPROMPT="%F{yellow}%R %F{white}%b-> %F{green}%r %F{white}%b? [aeNy]%f "
 # functions #
 #############
 
+### brew orphans
+function brew {
+case $1 in
+	orphans)
+		local _LEAVES=$(brew leaves)
+		comm -2 -3 <(brew list) <((echo ${_LEAVES}; brew deps --union ${=_LEAVES}) | sort -u);;
+	*)
+		command brew $*;;
+esac
+}
+
 ### coffee/cafe break
 function cafe {
 local _COLS=$[(COLUMNS-14)/4]
