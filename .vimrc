@@ -95,7 +95,9 @@ if has("autocmd")
 	filetype plugin indent on
 	au BufNew * set foldlevel=20
 	au BufReadPost fugitive://* set bufhidden=delete
-	au BufReadPost * silent! normal g;zz
+	au BufReadPost * silent! normal '"
+	au BufLeave * let b:winview = winsaveview()
+	au BufEnter * if(exists('b:winview')&&!&diff)|call winrestview(b:winview)|endif
 	au! BufWritePost $MYVIMRC windo source $MYVIMRC
 	au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 	au FileType conf set ft=config
