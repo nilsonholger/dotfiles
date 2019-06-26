@@ -235,7 +235,7 @@ esac
 ### pdf compress <FILE> <IMAGE_DPI>
 function pdfcompress {
 DPI=${2:-720}
-ghostscript -dCompatibilityLevel=1.4 -sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH \
+gs -dCompatibilityLevel=1.4 -sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH \
 	-dDownsampleColorImages=true \
 	-dDownsampleGrayImages=true \
 	-dDownsampleMonoImages=true \
