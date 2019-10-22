@@ -175,13 +175,6 @@ map <leader>gs :Gstatus<CR>
 map <leader>gu :Gpush<CR>
 map <leader>gw :Gwrite<CR>
 
-" bvsd-fifo control
-map <leader>ui :execute "! echo r > build/bin/bvsd-fifo"<cr><cr>
-map <leader>uu :execute "! echo s > build/bin/bvsd-fifo"<cr><cr>
-map <leader>ud :execute "! echo p > build/bin/bvsd-fifo"<cr><cr>
-map <leader>ue :execute "! echo q > build/bin/bvsd-fifo"<cr><cr>
-map <leader>uh :execute "! echo hs " . expand('%:t:r') . " > build/bin/bvsd-fifo"<cr><cr>
-
 "
 " COLOR
 "
