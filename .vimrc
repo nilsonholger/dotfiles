@@ -88,6 +88,10 @@ set wildignore+=*.DS_Store                       " OSX bullshit
 
 " various
 let g:changelog_username = "NilsonHolger <nilsonholger@hyve.org>"
+let g:netrw_banner = 0			" remove superfluous banner (show with 'I')
+let g:netrw_liststyle = 3		" use tree view
+let g:netrw_winsize = -40		" use fixed split width
+let g:netrw_browse_split = 4	" open in prev window
 
 "
 " AUTOCOMMAND
@@ -116,6 +120,7 @@ let mapleader=' ' " normally mapped to <Right>, not really useful
 nnoremap <leader>c :<c-u>call ToggleComment('false')<cr>
 vnoremap <leader>c :<c-u>call ToggleComment('true')<cr>
 nnoremap <leader>C :let &colorcolumn = &colorcolumn>0 ? 0 : &textwidth==0 ? 80 : &textwidth<cr>
+nnoremap <leader>D :call NetrwToggle($PWD)<CR>
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 nnoremap <leader>h :call SwitchHS()<cr>
 nnoremap <leader>l :set list!<CR>:set list?<CR>
@@ -202,6 +207,22 @@ let g:vimwiki_fold_lists = 1
 "
 " FUNCTIONS
 "
+" toggle netrw window
+let g:netrw_open=0
+function! NetrwToggle(directory)
+	if g:netrw_open
+		let l:buf = bufnr("$")
+		while (l:buf >= 1)
+			if (getbufvar(l:buf, "&filetype") == "netrw") | silent exe "bwipeout " . l:buf | endif
+			let l:buf-=1
+		endwhile
+		let g:netrw_open=0
+	else
+		silent exe "Lexplore " . a:directory
+		let g:netrw_open=1
+	endif
+endfunction
+
 " toggle quickfix window
 command! -bang -nargs=? QFix call QFixToggle(<bang>0)
 function! QFixToggle(forced)
