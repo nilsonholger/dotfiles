@@ -52,7 +52,7 @@
 	#fsckobjects = false         # ignore 'badTimezone: invalid author/committer line - bad time zone', use with caution!
 
 [format]
-	pretty = format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'   # pretty says it all
+	pretty = format:'%C(yellow)%h%Creset -%C(bold cyan)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'   # pretty says it all
 
 [help]
 	autocorrect = 10   # fix those pesky typos (in a second)
