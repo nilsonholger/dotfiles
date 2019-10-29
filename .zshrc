@@ -94,11 +94,11 @@ _BATTERY_STATUS="${_COLOR}${_TIME}【${_INDICATOR}】%f" # update prompt indicat
 ### architectures
 function _unix_battery_status {
 _BATTERY_STATUS=''
-local _SYS='/sys/class/power_supply/BAT1/'
+local _SYS='/sys/class/power_supply/BAT0/'
 local _STATUS=`cat $_SYS/status` _TIME
 [[ ! $_STATUS =~ (Disc|C)harging ]] && return
-_TIME=$((`cat $_SYS/energy_now`*60/`cat $_SYS/power_now`))
-_battery_status `cat $_SYS/capacity` $_STATUS $_TIME "`printf "%d:%.2d" $((_TIME/60)) $((_TIME%60))`"
+_TIME=$((`cat $_SYS/power_now`*60.0/`cat $_SYS/energy_now`))
+_battery_status `cat $_SYS/capacity` $_STATUS "`printf "%d:%.2d" $((_TIME)) $((_TIME%1))`"
 }
 function _osx_battery_status {
 _BATTERY_STATUS=''
@@ -110,7 +110,7 @@ _battery_status ${_STATUS[3]/\%;} ${_STATUS[4]} ${_STATUS[5]/\(no}
 
 ### update periodically
 PERIOD=60
-[ -d /sys/class/power_supply/BAT1 ] && periodic_functions+=(_unix_battery_status) # (=> unix/linux)
+[ -d /sys/class/power_supply/BAT0 ] && periodic_functions+=(_unix_battery_status) # (=> unix/linux)
 hash pmset 2> /dev/null && periodic_functions+=(_osx_battery_status) # (=> apple/OSX)
 
 ### git status
