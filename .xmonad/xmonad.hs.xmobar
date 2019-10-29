@@ -30,6 +30,7 @@ main = do
                 [ manageHook defaultConfig
                 , className =? "Blender" --> doFloat
                 , className =? "Gimp" --> doFloat
+                , className =? "Gnome-control-center" --> doFloat
                 , className =? "Firefox" --> doShift "L"
                 , className =? "MPlayer" --> doFloat
                 , className =? "Thunderbird" --> doShift "R"
@@ -64,9 +65,17 @@ main = do
             ((mod4Mask               , xK_Escape   ), spawn "display ~/.xmonad/Xmbindings.svg &"),
             ((mod4Mask.|.shiftMask   , xK_i        ), spawn "firefox &"),
             ((mod4Mask.|.shiftMask   , xK_m        ), spawn "thunderbird &"),
+            ((mod4Mask.|.shiftMask   , xK_l        ), spawn "dm-tool lock"),
             ((controlMask.|.shiftMask, xF86XK_Eject), spawn "dm-tool lock"),
             ((controlMask.|.shiftMask, xK_l        ), spawn "if [ ! \"`setxkbmap -query | grep -o dvp,,nodeadkeys`\" = \"dvp,,nodeadkeys\" ]; then setxkbmap -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; else setxkbmap -layout us_intl -option grp:shifts_toggle; fi; xmodmap ~/.Xmodmap &")]
         `additionalKeys` [
-            ((0, xF86XK_AudioMute       ), spawn "amixer -q -D pulse set Master toggle"),
-            ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 2-"),
-            ((0, xF86XK_AudioRaiseVolume), spawn "amixer -q set Master 2+")]
+            ((0, xF86XK_AudioMute        ), spawn "amixer -q -D pulse set Master toggle"),
+            ((0, xF86XK_AudioLowerVolume ), spawn "amixer -q set Master 2-"),
+            ((0, xF86XK_AudioRaiseVolume ), spawn "amixer -q set Master 2+"),
+            ((0, xF86XK_AudioMicMute     ), spawn "amixer -q -D pulse set Capture toggle"),
+            ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -time 0.1 -5"),
+            ((0, xF86XK_MonBrightnessUp  ), spawn "xbacklight -time 0.1 +5"),
+            ((0, xF86XK_Display          ), spawn ""),
+            ((0, xF86XK_WLAN             ), spawn "STATE=\"un`rfkill -no soft list wlan`\"; rkill ${STATE#unun} wlan"),
+            ((0, xF86XK_Tools            ), spawn "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"),
+            ((0, xF86XK_Bluetooth        ), spawn "STATE=\"un`rfkill -no soft list bluetooth`\"; rkill ${STATE#unun} bluetooth")]
