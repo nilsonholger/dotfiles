@@ -48,6 +48,7 @@ main = do
                 spawn "[ -f ~/.xmonad/background.jpg ] && display -window root ~/.xmonad/background.jpg"
                 spawn "unity-settings-daemon"
                 spawn "gnome-screensaver"
+                spawn "xautolock -time 31 -locker 'dm-tool lock'"
                 spawn "xset +dpms dpms 1800 1800 1800"
         }
         `additionalKeys`
