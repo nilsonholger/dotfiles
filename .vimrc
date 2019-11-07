@@ -78,21 +78,21 @@ set undodir=~/.vim/undo
 " wildmenu
 set wildmenu
 "set wildmode=list:longest
-set wildignore+=.hg,.git,.svn                    " Version control
-set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-set wildignore+=*.spl                            " compiled spelling word lists
-set wildignore+=*.sw?                            " Vim swap files
-set wildignore+=*.DS_Store                       " OSX bullshit
+set wildignore+=.hg,.git,.svn						" Version control
+set wildignore+=*.aux,*.out,*.toc					" LaTeX intermediate files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg		" binary images
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest	" compiled object files
+set wildignore+=*.spl								" compiled spelling word lists
+set wildignore+=*.sw?								" Vim swap files
+set wildignore+=*.DS_Store							" OSX bullshit
 
 " various
 let g:changelog_username = "NilsonHolger <nilsonholger@hyve.org>"
-let g:netrw_banner = 0			" remove superfluous banner (show with 'I')
-let g:netrw_liststyle = 3		" use tree view
-let g:netrw_winsize = -40		" use fixed split width
-let g:netrw_browse_split = 4	" open in prev window
-let g:netrw_list_hide= '.*\.swp$,.*\.swo$'
+let g:netrw_banner = 0						" remove superfluous banner (show with 'I')
+let g:netrw_liststyle = 3					" use tree view
+let g:netrw_winsize = -40					" use fixed split width
+let g:netrw_browse_split = 4				" open in prev window
+let g:netrw_list_hide= '.*\.swp$,.*\.swo$'	" hide vim temp files
 
 "
 " AUTOCOMMAND
@@ -109,7 +109,7 @@ if has("autocmd")
 	au FileType conf set ft=config
 	au FileType matlab set expandtab| set ts=2| set sw=2
 	au VimEnter * silent if filereadable("Session.vim") | source Session.vim | endif
-	au VimLeave * silent if filereadable("Session.vim") | mksession!  Session.vim | endif
+	au VimLeave * silent if filereadable("Session.vim") | mksession! Session.vim | endif
 	au VimResized * exe "normal! \<c-w>="
 endif
 
