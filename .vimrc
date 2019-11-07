@@ -92,6 +92,7 @@ let g:netrw_banner = 0			" remove superfluous banner (show with 'I')
 let g:netrw_liststyle = 3		" use tree view
 let g:netrw_winsize = -40		" use fixed split width
 let g:netrw_browse_split = 4	" open in prev window
+let g:netrw_list_hide= '.*\.swp$,.*\.swo$'
 
 "
 " AUTOCOMMAND
