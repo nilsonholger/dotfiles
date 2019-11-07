@@ -35,6 +35,7 @@ main = do
                 , className =? "MPlayer" --> doFloat
                 , className =? "Thunderbird" --> doShift "R"
                 , className =? "VirtualBox" --> doFloat
+                , className =? "Wfica" --> doShift "X"
                 , resource  =? "desktop_window" --> doIgnore ]
                 <+> manageDocks,
             logHook = dynamicLogWithPP $ xmobarPP
@@ -68,7 +69,7 @@ main = do
             ((mod4Mask.|.shiftMask   , xK_m        ), spawn "thunderbird &"),
             ((mod4Mask.|.shiftMask   , xK_l        ), spawn "dm-tool lock"),
             ((controlMask.|.shiftMask, xF86XK_Eject), spawn "dm-tool lock"),
-            ((controlMask.|.shiftMask, xK_l        ), spawn "if [ ! \"`setxkbmap -query | grep -o dvp,,nodeadkeys`\" = \"dvp,,nodeadkeys\" ]; then setxkbmap -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; else setxkbmap -layout us_intl -option grp:shifts_toggle; fi; xmodmap ~/.Xmodmap &")]
+            ((controlMask.|.shiftMask, xK_l        ), spawn "if [ ! \"`setxkbmap -query | grep -o dvp,,nodeadkeys`\" = \"dvp,,nodeadkeys\" ]; then setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; else setxkbmap -layout us_intl -option grp:shifts_toggle; fi; xmodmap ~/.Xmodmap &")]
         `additionalKeys` [
             ((0, xF86XK_AudioMute        ), spawn "amixer -q -D pulse set Master toggle"),
             ((0, xF86XK_AudioLowerVolume ), spawn "amixer -q set Master 2-"),
