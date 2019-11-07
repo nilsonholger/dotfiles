@@ -131,6 +131,7 @@ nnoremap <leader>ss :set spell!<CR>:set spell?<CR>
 nnoremap <leader>S :if exists("g:syntax_on")<Bar>syntax off<Bar>else<Bar>syntax enable<Bar>endif<CR>
 nnoremap <leader>sw :w !sudo tee %<CR>
 nnoremap <leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
+nnoremap <leader>wo :call ToggleSplitZoom()<cr>
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 nnoremap / /\v
 vnoremap / /\v
@@ -221,6 +222,18 @@ function! NetrwToggle(directory)
 	else
 		silent exe "Lexplore " . a:directory
 		let g:netrw_open=1
+	endif
+endfunction
+
+" topple splits
+function! ToggleSplitZoom()
+	let l:session = "/tmp/session.".getpid().".vim"
+	if filereadable(l:session)
+		silent exe "source" l:session
+		exe "call delete('".l:session."')"
+	else
+		exe "mksession!" l:session
+		exe "normal \<C-W>o"
 	endif
 endfunction
 
