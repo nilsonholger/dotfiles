@@ -228,6 +228,8 @@ endfunction
 " topple splits
 function! ToggleSplitZoom()
 	let l:session = "/tmp/session.".getpid().".vim"
+	let l:sessionoptions=&sessionoptions
+	set sessionoptions="blank,folds,help,winsize"
 	if filereadable(l:session)
 		silent exe "source" l:session
 		exe "call delete('".l:session."')"
@@ -235,6 +237,7 @@ function! ToggleSplitZoom()
 		exe "mksession!" l:session
 		exe "normal \<C-W>o"
 	endif
+	exe 'set' 'sessionoptions='.l:sessionoptions
 endfunction
 
 " toggle quickfix window
