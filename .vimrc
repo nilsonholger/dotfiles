@@ -225,7 +225,7 @@ function! NetrwToggle(directory)
 	endif
 endfunction
 
-" topple splits
+" toggle splits
 function! ToggleSplitZoom()
 	let l:session = "/tmp/session.".getpid().".vim"
 	let l:sessionoptions=&sessionoptions
