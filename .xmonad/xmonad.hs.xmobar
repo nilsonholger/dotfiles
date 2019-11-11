@@ -71,10 +71,10 @@ main = do
             ((controlMask.|.shiftMask, xF86XK_Eject), spawn "dm-tool lock"),
             ((controlMask.|.shiftMask, xK_l        ), spawn "if [ ! \"`setxkbmap -query | grep -o dvp,,nodeadkeys`\" = \"dvp,,nodeadkeys\" ]; then setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; else setxkbmap -layout us_intl -option grp:shifts_toggle; fi; xmodmap ~/.Xmodmap &")]
         `additionalKeys` [
-            ((0, xF86XK_AudioMute        ), spawn "amixer -q -D pulse set Master toggle"),
+            ((0, xF86XK_AudioMute        ), spawn "amixer -q set Master toggle"),
             ((0, xF86XK_AudioLowerVolume ), spawn "amixer -q set Master 2-"),
             ((0, xF86XK_AudioRaiseVolume ), spawn "amixer -q set Master 2+"),
-            ((0, xF86XK_AudioMicMute     ), spawn "amixer -q -D pulse set Capture toggle"),
+            ((0, xF86XK_AudioMicMute     ), spawn "amixer -q set Capture toggle"),
             ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -time 0.1 -5"),
             ((0, xF86XK_MonBrightnessUp  ), spawn "xbacklight -time 0.1 +5"),
             ((0, xF86XK_Display          ), spawn ""),
