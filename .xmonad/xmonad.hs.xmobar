@@ -16,7 +16,7 @@ import qualified Data.Map        as M
 spaces = ["L","M","R","X"]
 
 main = do
-    xmobar <- spawnPipe "xmobar -x 1 ~/.xmonad/xmobar.hs"
+    xmobar <- spawnPipe "xmobar -x 0 ~/.xmonad/xmobar.hs"
     xmonad $ docks defaultConfig
         {
             terminal = "/usr/bin/gnome-terminal",
