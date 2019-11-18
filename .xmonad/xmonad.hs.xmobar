@@ -14,6 +14,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 spaces = ["L","M","R","X"]
+xlock_command = "gnome-screensaver-command --lock"
 
 main = do
     xmobar <- spawnPipe "xmobar -x 0 ~/.xmonad/xmobar.hs"
@@ -49,7 +50,7 @@ main = do
                 spawn "[ -f ~/.xmonad/background.jpg ] && display -window root ~/.xmonad/background.jpg"
                 spawn "unity-settings-daemon"
                 spawn "gnome-screensaver"
-                spawn "xautolock -time 31 -locker 'gnome-screensaver-command --lock'"
+                spawn ("xautolock -time 31 -locker '" ++ xlock_command ++ "'")
                 spawn "xset +dpms dpms 1800 1800 1800"
         }
         `additionalKeys`
@@ -67,8 +68,8 @@ main = do
             ((mod4Mask               , xK_Escape   ), spawn "display ~/.xmonad/Xmbindings.svg &"),
             ((mod4Mask.|.shiftMask   , xK_i        ), spawn "firefox &"),
             ((mod4Mask.|.shiftMask   , xK_m        ), spawn "thunderbird &"),
-            ((mod4Mask.|.shiftMask   , xK_l        ), spawn "dm-tool lock"),
-            ((controlMask.|.shiftMask, xF86XK_Eject), spawn "dm-tool lock"),
+            ((mod4Mask.|.shiftMask   , xK_l        ), spawn xlock_command),
+            ((controlMask.|.shiftMask, xF86XK_Eject), spawn xlock_command),
             ((controlMask.|.shiftMask, xK_l        ), spawn "if [ ! \"`setxkbmap -query | grep -o dvp,,nodeadkeys`\" = \"dvp,,nodeadkeys\" ]; then setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; else setxkbmap -layout us_intl -option grp:shifts_toggle; fi; xmodmap ~/.Xmodmap &")]
         `additionalKeys` [
             ((0, xF86XK_AudioMute        ), spawn "amixer -q set Master toggle"),
