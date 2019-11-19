@@ -335,15 +335,8 @@ if [ -d /boot/kernel ]; then
 	[[ $HOST =~ hyve ]] && [ -z $TMUX ] && tmux a && exit # auto attach
 fi
 
-# i14
-if [ -z "${HOST/i14*}" ]; then
-	[ -r /cvhci/software/cvhci-profile.sh ] && {
-		_CVHCI_DISTLIBS="OFF"
-		_CVHCI_CAFFE="OFF"
-		_CVHCI_TORCH="OFF"
-		_CVHCI_CUDNN="OFF"
-		source /cvhci/software/cvhci-profile.sh
-	}
+# ubuntu
+if [ -z "${OSTYPE/linux*}" ]; then
 	ls --color &> /dev/null && alias ls='ls --color'
 	function xsudo() { # or use gksudo
 		xhost +si:localuser:root
