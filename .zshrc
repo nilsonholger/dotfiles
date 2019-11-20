@@ -129,10 +129,11 @@ if autoload -Uz vcs_info; then
 	function +vi-git-misc() {
 		local _TMP _MISC
 		_TMP=$(git status -s -b)
+		[[ $_TMP =~ UU ]] && _MISC+="%F{red}ø"
+		[[ -s "${hook_com[base]}/.git/refs/stash" ]] && _MISC+="%F{magenta}%}±"
 		[[ $_TMP =~ \\?\\? ]] && _MISC+="%F{red}±"
 		[[ $_TMP =~ ahead ]] && _MISC+="%F{green}@${${_TMP/*ahead }/[,\]]*}"
 		[[ $_TMP =~ behind ]] && _MISC+="%F{red}@${${_TMP/*behind }/\]*}"
-		[[ -s "${hook_com[base]}/.git/refs/stash" ]] && hook_com[misc]+="%F{magenta}%}±"
 		hook_com[misc]+="$_MISC"
 	}
 
