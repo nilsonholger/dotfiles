@@ -128,7 +128,7 @@ if autoload -Uz vcs_info; then
 
 	function +vi-git-misc() {
 		local _TMP _MISC
-		_TMP=$(git status -s -b)
+		_TMP=$(git status --porcelain --branch)
 		[[ $_TMP =~ UU ]] && _MISC+="%F{red}ø"
 		[[ -s "${hook_com[base]}/.git/refs/stash" ]] && _MISC+="%F{magenta}%}±"
 		[[ $_TMP =~ \\?\\? ]] && _MISC+="%F{red}±"
