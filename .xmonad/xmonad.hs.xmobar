@@ -51,7 +51,7 @@ main = do
                 spawn "unity-settings-daemon"
                 spawn "gnome-screensaver"
                 spawn ("xautolock -time 31 -locker '" ++ xlock_command ++ "'")
-                spawn "xset +dpms dpms 1800 1800 1800"
+                spawn "sleep 1; xset +dpms dpms 1800 1800 1800"
         }
         `additionalKeys`
         [((m .|. mod4Mask, k), windows $ f i)
