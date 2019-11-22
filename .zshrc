@@ -117,7 +117,8 @@ hash pmset 2> /dev/null && periodic_functions+=(_osx_battery_status) # (=> apple
 if autoload -Uz vcs_info; then
 	#zstyle ':vcs_info:*+*:*' debug true
 	zstyle ":vcs_info:*" enable git
-	zstyle ":vcs_info:(git*):*" check-for-changes true
+	#zstyle ":vcs_info:(git*):*" check-for-staged-changes true # faster, but only shows staged changes
+	zstyle ":vcs_info:(git*):*" check-for-changes true # slower, but shows un-/staged changes
 
 	local _info="%c%u%m %F{cyan}%b:%r"
 	zstyle ":vcs_info:*" stagedstr "%F{green}±"
