@@ -13,7 +13,7 @@ import System.IO
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-spaces = ["L","M","R","X"]
+spaces = ["1","2","3","4"]
 xlock_command = "gnome-screensaver-command --lock"
 
 main = do
@@ -32,11 +32,10 @@ main = do
                 , className =? "Blender" --> doFloat
                 , className =? "Gimp" --> doFloat
                 , className =? "Gnome-control-center" --> doFloat
-                , className =? "Firefox" --> doShift "L"
+                , className =? "Firefox" --> doShift "1"
                 , className =? "MPlayer" --> doFloat
-                , className =? "Thunderbird" --> doShift "R"
                 , className =? "VirtualBox" --> doFloat
-                , className =? "Wfica" --> doShift "X"
+                , className =? "Wfica" --> doShift "4"
                 , resource  =? "desktop_window" --> doIgnore ]
                 <+> manageDocks,
             logHook = dynamicLogWithPP $ xmobarPP
@@ -67,7 +66,6 @@ main = do
             ((mod4Mask.|.shiftMask   , xK_q        ), io (exitWith ExitSuccess)),
             ((mod4Mask               , xK_Escape   ), spawn "display ~/.xmonad/Xmbindings.svg &"),
             ((mod4Mask.|.shiftMask   , xK_i        ), spawn "firefox &"),
-            ((mod4Mask.|.shiftMask   , xK_m        ), spawn "thunderbird &"),
             ((mod4Mask.|.shiftMask   , xK_l        ), spawn xlock_command),
             ((controlMask.|.shiftMask, xF86XK_Eject), spawn xlock_command),
             ((controlMask.|.shiftMask, xK_l        ), spawn "if [ ! \"`setxkbmap -query | grep -o dvp,,nodeadkeys`\" = \"dvp,,nodeadkeys\" ]; then setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; else setxkbmap -layout us_intl -option grp:shifts_toggle; fi; xmodmap ~/.Xmodmap &")]
