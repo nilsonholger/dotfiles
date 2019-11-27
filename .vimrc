@@ -125,7 +125,7 @@ nnoremap <leader>D :call NetrwToggle($PWD)<CR>
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 nnoremap <leader>h :call SwitchHS()<cr>
 nnoremap <leader>l :set list!<CR>:set list?<CR>
-nnoremap <leader>n :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
+nnoremap <leader>n :let [&number, &relativenumber] = [!&relativenumber, &number+&relativenumber==1]<CR>
 nnoremap <leader>N :nohlsearch<CR>
 nnoremap <leader>ss :set spell!<CR>:set spell?<CR>
 nnoremap <leader>S :if exists("g:syntax_on")<Bar>syntax off<Bar>else<Bar>syntax enable<Bar>endif<CR>
