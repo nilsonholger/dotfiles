@@ -290,7 +290,7 @@ function! ToggleComment(visual)
 	elseif (&ft=='css') | let l:c_begin='/\*' | let l:c_end='\*/'
 	elseif (&ft=~'^\(\|plain\)tex\|^bib') | let l:c_sign='%'
 	elseif (&ft=='haskell') | let l:c_sign='--'
-	elseif (&ft=='html') | let l:c_begin='<!--' | let l:c_end='-->'
+	elseif (&ft=='html|xml') | let l:c_begin='<!--' | let l:c_end='-->'
 	elseif (&ft=='matlab') | let l:c_sign='%'
 	elseif (&ft=='vim') | let l:c_sign='"'
 	else | let l:c_sign='#'
