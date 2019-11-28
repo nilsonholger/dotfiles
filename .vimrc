@@ -42,6 +42,7 @@ set foldmethod=syntax	" yes, we like folds, especially intelligent ones
 set linebreak			" wrap looooooong lines
 set list				" show listchars (see below)
 set listchars=tab:\.\ ,trail:_,extends:>,precedes:<
+set number				" show line numbers as default
 set showbreak=_			" if (linebreaks) prepend to wrapped line
 set splitbelow			" do it latin style
 set splitright			" even more latin style
