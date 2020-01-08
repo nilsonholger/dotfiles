@@ -15,7 +15,8 @@ Bundle 'bufexplorer.zip'
 Bundle 'gnupg'
 Bundle 'ervandew/supertab'
 Bundle 'tpope/vim-fugitive'
-Bundle 'Valloric/YouCompleteMe'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'valloric/youcompleteme'
 
 "
 " SETTINGS
@@ -55,6 +56,7 @@ set smartindent		" smarter than cindent
 set smarttab		" use shiftwidth for ^line tabs
 set softtabstop=4	" while (editing) tab = width of # spaces
 set tabstop=4		" tab = width of # spaces
+set updatetime=100  " update window (and swap)
 
 " search/substitute
 set gdefault	" default to global substitution
@@ -184,6 +186,9 @@ map <leader>gs :Gstatus<CR>
 map <leader>gu :Gpush<CR>
 map <leader>gw :Gwrite<CR>
 
+" git-gutter
+map <silent> <leader>gg :GitGutterQuickFix<CR><CR><CR>:QFix<CR>
+
 "
 " COLOR
 "
@@ -196,6 +201,10 @@ hi Search		ctermbg=black		ctermfg=red
 "
 " PLUGINS
 "
+" git-gutter
+let g:gitgutter_realtime = 1
+let g:gitgutter_max_signs = 500 " default, might need to increase
+
 " ycm
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 
