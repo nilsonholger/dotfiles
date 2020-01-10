@@ -17,6 +17,8 @@ Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'valloric/youcompleteme'
+Plugin 'junegunn/fzf', {'do': './install --all'}
+Plugin 'junegunn/fzf.vim'
 
 "
 " SETTINGS
@@ -126,6 +128,7 @@ vnoremap <leader>c :<c-u>call ToggleComment('true')<cr>
 nnoremap <leader>C :let &colorcolumn = &colorcolumn>0 ? 0 : &textwidth==0 ? 80 : &textwidth<cr>
 nnoremap <leader>D :call NetrwToggle($PWD)<CR>
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
+nnoremap <leader>f :FZF<CR>
 nnoremap <leader>h :call SwitchHS()<cr>
 nnoremap <leader>l :set list!<CR>:set list?<CR>
 nnoremap <leader>n :let [&number, &relativenumber] = [!&relativenumber, &number+&relativenumber==1]<CR>
