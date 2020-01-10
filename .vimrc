@@ -8,15 +8,15 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " manage self
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " bundles
-Bundle 'bufexplorer.zip'
-Bundle 'gnupg'
-Bundle 'ervandew/supertab'
-Bundle 'tpope/vim-fugitive'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'valloric/youcompleteme'
+Plugin 'bufexplorer.zip'
+Plugin 'gnupg'
+Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'valloric/youcompleteme'
 
 "
 " SETTINGS
