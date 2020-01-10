@@ -1,6 +1,7 @@
 [alias]
 	a = add
 	b = branch
+	bc = !git checkout master --quiet && git branch --verbose | awk '/\\[gone\\]/ {print $1}' | xargs --no-run-if-empty git branch --delete && git checkout --quiet -
 	bv = branch -vv
 	ci = commit
 	ca = commit --amend --no-edit
