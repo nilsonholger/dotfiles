@@ -210,6 +210,9 @@ let g:gitgutter_realtime = 1
 let g:gitgutter_max_signs = 500 " default, might need to increase
 
 " ycm
+let g:ycm_always_popule_location_list = 1
+let g:ycm_auto_trigger = 1
+let g:ycm_clangd_uses_ycmd_caching = 0
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 
 " supertab
