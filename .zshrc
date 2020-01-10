@@ -308,6 +308,9 @@ function doi2bib {
 # local #
 #########
 
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # local dir
 if [ -d $HOME/local ]; then
 	_LOCAL="$HOME/local"
