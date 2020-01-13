@@ -137,6 +137,7 @@ nnoremap <leader>ss :set spell!<CR>:set spell?<CR>
 nnoremap <leader>S :if exists("g:syntax_on")<Bar>syntax off<Bar>else<Bar>syntax enable<Bar>endif<CR>
 nnoremap <leader>sw :w !sudo tee %<CR>
 nnoremap <leader>t :terminal<CR>
+nnoremap <leader>tg :!ctags --recurse --exclude=.git -f `git dir`/.git/tags &>/dev/null `git dir` &
 nnoremap <leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
 nnoremap <leader>wo :call ToggleSplitZoom()<cr>
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
