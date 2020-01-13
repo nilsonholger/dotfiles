@@ -123,32 +123,15 @@ endif
 "
 " general
 let mapleader=' ' " normally mapped to <Right>, not really useful
-nnoremap <leader>c :<c-u>call ToggleComment('false')<cr>
-vnoremap <leader>c :<c-u>call ToggleComment('true')<cr>
-nnoremap <leader>C :let &colorcolumn = &colorcolumn>0 ? 0 : &textwidth==0 ? 80 : &textwidth<cr>
-nnoremap <leader>D :call NetrwToggle($PWD)<CR>
-nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
-nnoremap <leader>f :FZF<CR>
-nnoremap <leader>h :call SwitchHS()<cr>
-nnoremap <leader>l :set list!<CR>:set list?<CR>
-nnoremap <leader>n :let [&number, &relativenumber] = [!&relativenumber, &number+&relativenumber==1]<CR>
-nnoremap <leader>N :nohlsearch<CR>
-nnoremap <leader>ss :set spell!<CR>:set spell?<CR>
-nnoremap <leader>S :if exists("g:syntax_on")<Bar>syntax off<Bar>else<Bar>syntax enable<Bar>endif<CR>
-nnoremap <leader>sw :w !sudo tee %<CR>
-nnoremap <leader>t :terminal<CR>
-nnoremap <leader>tg :!ctags --recurse --exclude=.git -f `git dir`/.git/tags &>/dev/null `git dir` &
-nnoremap <leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
-nnoremap <leader>wo :call ToggleSplitZoom()<cr>
-nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
-nnoremap / /\v
-vnoremap / /\v
-nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
-nnoremap zO zCzO
 vnoremap < <gv
 vnoremap > >gv
+nnoremap / /\v
+vnoremap / /\v
+nnoremap zO zCzO
 
 " arrow keys (disabled -> hjkl)
+nnoremap j gj
+nnoremap k gk
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -157,42 +140,67 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
-nnoremap j gj
-nnoremap k gk
 
-" quickfix
-map <silent> <leader><space> :QFix<CR>
-map <silent> <leader>qc :cc<CR>
-map <silent> <leader>qn :cnext<CR>
-map <silent> <leader>qp :cprev<CR>
+" leader...
+nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<cr>:copen<cr>
+nnoremap <silent> <leader>at :call Ack("TODO")<cr>
+nnoremap <silent> <leader>aa :call Ack("ask")<cr>
+nnoremap <leader>c :<c-u>call ToggleComment('false')<cr>
+vnoremap <leader>c :<c-u>call ToggleComment('true')<cr>
+nnoremap <leader>C :let &colorcolumn = &colorcolumn>0 ? 0 : &textwidth==0 ? 80 : &textwidth<cr>
+nnoremap <leader>D :call NetrwToggle($PWD)<cr>
+nnoremap <leader>ev <c-w><c-v><c-l>:e $MYVIMRC<cr>
+nnoremap <leader>f :FZF<cr>
+
+" fugitive & git-gutter
+map <leader>gb :Gblame<cr>
+map <leader>gc :Gcommit<cr>
+map <leader>gd :Gdiff<cr>
+map <leader>ge :Gedit HEAD<cr>
+map <silent> <leader>gg :GitGutterQuickFix<cr><cr><cr>:QFix<cr>
+map <leader>gl :Glog<cr><cr><cr>:QFix<cr>
+map <leader>gp :Gpull<cr>
+map <leader>gr :Gread<cr>
+map <leader>gs :Gstatus<cr>
+map <leader>gu :Gpush<cr>
+map <leader>gw :Gwrite<cr>
+
+nnoremap <leader>h :call SwitchHS()<cr>
 
 " make
-map <silent> <leader>ma :call Make("all")<CR>
-map <silent> <leader>mc :call Make("clean")<CR>
-map <silent> <leader>md :call Make("debug")<CR>
-map <silent> <leader>mi :call Make("install")<CR>
-map <silent> <leader>mm :call Make(" ")<CR>
-map <silent> <leader>mr :call Make("run")<CR>
-map <silent> <leader>mv :call Make("VERBOSE=1")<CR>
+map <silent> <leader>ma :call Make("all")<cr>
+map <silent> <leader>mc :call Make("clean")<cr>
+map <silent> <leader>md :call Make("debug")<cr>
+map <silent> <leader>mi :call Make("install")<cr>
+map <silent> <leader>mm :call Make(" ")<cr>
+map <silent> <leader>mr :call Make("run")<cr>
+map <silent> <leader>mv :call Make("VERBOSE=1")<cr>
 
-" search
-map <silent> <leader>at :call Ack("TODO")<CR>
-map <silent> <leader>aa :call Ack("ask")<CR>
+nnoremap <leader>l :set list!<cr>:set list?<cr>
+nnoremap <leader>n :let [&number, &relativenumber] = [!&relativenumber, &number+&relativenumber==1]<cr>
+nnoremap <leader>N :nohlsearch<cr>
 
-" fugitive
-map <leader>gb :Gblame<CR>
-map <leader>gc :Gcommit<CR>
-map <leader>gd :Gdiff<CR>
-map <leader>ge :Gedit HEAD<CR>
-map <leader>gl :Glog<CR><CR><CR>:QFix<CR>
-map <leader>gp :Gpull<CR>
-map <leader>gr :Gread<CR>
-map <leader>gs :Gstatus<CR>
-map <leader>gu :Gpush<CR>
-map <leader>gw :Gwrite<CR>
+nnoremap <leader>ss :set spell!<cr>:set spell?<cr>
+nnoremap <leader>sw :w !sudo tee %<cr>
+nnoremap <leader>S :if exists("g:syntax_on")<Bar>syntax off<Bar>else<Bar>syntax enable<Bar>endif<cr>
 
-" git-gutter
-map <silent> <leader>gg :GitGutterQuickFix<CR><CR><CR>:QFix<CR>
+" quickfix
+map <silent> <leader><space> :QFix<cr>
+map <silent> <leader>qc :cc<cr>
+map <silent> <leader>qn :cnext<cr>
+map <silent> <leader>qp :cprev<cr>
+
+" (c)tags & terminal
+nnoremap <leader>tg :!ctags --recurse --exclude=.git -f `git dir`/.git/tags &>/dev/null `git dir` &<cr>
+nnoremap <leader>tl :tselect<cr>
+nnoremap <leader>tn :tnext<cr>
+nnoremap <leader>tp :tprev<cr>
+nnoremap <leader>ts :tags<cr.
+nnoremap <leader>tt :terminal<cr>
+
+nnoremap <leader>v  <c-O>:set paste<cr><c-r>*<c-O>:set nopaste<cr>
+nnoremap <leader>wo :call ToggleSplitZoom()<cr>
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<cr>
 
 "
 " COLOR
