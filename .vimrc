@@ -214,6 +214,9 @@ hi Search		ctermbg=black		ctermfg=red
 "
 " PLUGINS
 "
+" fugitive
+set tags^=.git/tags;~ " prevent fugitive to complain about tag file
+
 " git-gutter
 let g:gitgutter_realtime = 1
 let g:gitgutter_max_signs = 500 " default, might need to increase
