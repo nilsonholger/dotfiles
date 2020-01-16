@@ -10,6 +10,7 @@
 [ -d ~/.zsh/osx-zsh-completions ] && fpath=(~/.zsh/osx-zsh-completions/ $fpath)
 [ -d /usr/share/zsh/site-functions ] && fpath=(/usr/share/zsh/site-functions $fpath)
 [ -d /usr/local/share/zsh/site-functions ] && fpath=(/usr/local/share/zsh/site-functions $fpath)
+[ ! -d ~/.zsh/compdump ] && mkdir -p ~/.zsh/compdump
 autoload -Uz compinit && compinit -d ~/.zsh/compdump/$HOST
 zstyle :compinstall filename '~/.zshrc'
 zstyle ":completion:*" auto-description "<%d>"
