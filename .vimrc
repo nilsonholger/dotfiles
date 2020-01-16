@@ -69,9 +69,9 @@ set magic		" magic chars in search pattern
 set smartcase	" if (pattern has upper case char) ignore ignorecase
 
 " statusline
-set statusline=%<%f\ %h%m%r%w									" file [help][modify][readonly][preview]
+set statusline=%<%{FugitiveStatusline()}						" git status from fugitive
 set statusline+=\ 												" space
-set statusline+=%{fugitive#statusline()}						" git status from fugitive
+set statusline+=%f\ %h%m%r%w									" file [help][modify][readonly][preview]
 set statusline+=%=(%{&ft},%{strlen(&fenc)?&fenc:&enc},%{&ff})	" (filetype,encoding,fileformat)
 set statusline+=\ 												" space
 set statusline+=%-14.(%L,%l-%c%V%)\ %P							" numberOfLines,line-column-virtualColumn ruler
