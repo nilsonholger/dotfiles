@@ -305,6 +305,24 @@ function doi2bib {
 	curl -s -L -H "Accept: text/bibliography; style=bibtex" http://dx.doi.org/"$*" | sed -e "s/\(\@\S*,\)/\1\n/" -e "s/\}, /\},\n /g"
 }
 
+########################
+# completion functions #
+########################
+
+### fzf based git branch search
+function fzf-git-local-branch() {
+	local _BRANCH
+	_BRANCH=$(git --no-pager branch -vv | fzf | awk '!/*/ {printf "%s ", $1}')
+	LBUFFER+="${_BRANCH}"
+	bindkey '^I' fzf-completion
+}
+zle -N fzf-git-local-branch
+
+# auto-complete for 'git co '
+function _git-co() {
+	bindkey '^I' fzf-git-local-branch
+}
+
 #########
 # local #
 #########
