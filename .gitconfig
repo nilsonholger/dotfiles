@@ -7,11 +7,12 @@
 	ca = commit --amend --no-edit
 	co = checkout
 	d =   diff --minimal --unified=0 --word-diff=color
-	dm =  diff --minimal --unified=0 --color-moved=dimmed_zebra
 	di =  diff --minimal --unified=0 --word-diff=color --cached
-	dp =  diff --minimal --unified=0 --word-diff=plain
-	ds =  diff --stat
 	dis = diff --stat --cached
+	dl =  diff --minimal --unified=0 --word-diff=plain
+	dm =  diff --minimal --unified=0 --color-moved=dimmed_zebra
+	dp =  diff --minimal --unified=0 --word-diff=porcelain
+	ds =  diff --stat
 	devs = shortlog --numbered --email --summary
 	dir = rev-parse --show-toplevel
 	l = log --graph --date-order
