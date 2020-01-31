@@ -220,6 +220,15 @@ set tags^=.git/tags;~ " prevent fugitive to complain about tag file
 " git-gutter
 let g:gitgutter_realtime = 1
 let g:gitgutter_max_signs = 500 " default, might need to increase
+let g:gitgutter_sign_added = '±'
+let g:gitgutter_sign_modified = '±'
+let g:gitgutter_sign_removed = '±'
+let g:gitgutter_sign_removed_first_line = '±‾'
+let g:gitgutter_sign_modified_removed = '±_'
+hi GitGutterAdd				ctermfg=green	cterm=bold
+hi GitGutterChange			ctermfg=yellow	cterm=bold
+hi GitGutterDelete			ctermfg=red		cterm=bold
+hi GitGutterChangeDelete	ctermfg=red		cterm=bold
 
 " ycm
 let g:ycm_always_popule_location_list = 1
