@@ -202,6 +202,20 @@ nnoremap <leader>v  <c-O>:set paste<cr><c-r>*<c-O>:set nopaste<cr>
 nnoremap <leader>wo :call ToggleSplitZoom()<cr>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<cr>
 
+" ycm
+nnoremap <leader>yd :YcmCompleter GoToDefinition<cr>
+nnoremap <leader>yD :YcmCompleter GoToDeclaration<cr>
+nnoremap <leader>yi :YcmCompleter GoToInclude<cr>
+nnoremap <leader>yg :YcmCompleter GoTo<cr>
+nnoremap <leader>yG :YcmCompleter GoToImprecise<cr>
+nnoremap <leader>yh :YcmCompleter GetDoc<cr>
+nnoremap <leader>yH :YcmCompleter GetDocImprecise<cr>
+nnoremap <leader>yf :YcmCompleter FixIt<cr>
+nnoremap <leader>yr :YcmCompleter GoToReferences<cr>
+nnoremap <leader>yR :YcmCompleter RefactorRename 
+nnoremap <leader>yt :YcmCompleter GetType<cr>
+nnoremap <leader>yT :YcmCompleter GetTypeImprecise<cr>
+
 "
 " COLOR
 "
