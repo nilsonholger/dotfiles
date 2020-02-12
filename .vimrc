@@ -150,7 +150,16 @@ vnoremap <leader>c :<c-u>call ToggleComment('true')<cr>
 nnoremap <leader>C :let &colorcolumn = &colorcolumn>0 ? 0 : &textwidth==0 ? 80 : &textwidth<cr>
 nnoremap <leader>D :call NetrwToggle($PWD)<cr>
 nnoremap <leader>ev <c-w><c-v><c-l>:e $MYVIMRC<cr>
-nnoremap <leader>f :FZF<cr>
+
+" fzf
+nnoremap <leader>bb :Buffers<cr>
+nnoremap <leader>fc :BCommits<cr>
+nnoremap <leader>fC :Commits<cr>
+nnoremap <leader>ff :FZF<cr>
+nnoremap <leader>fg :GFiles?<cr>
+nnoremap <leader>fh :History:<cr>
+nnoremap <leader>fm :Maps<cr>
+nnoremap <leader>fw :Windows<cr>
 
 " fugitive & git-gutter
 map <leader>gb :Gblame<cr>
