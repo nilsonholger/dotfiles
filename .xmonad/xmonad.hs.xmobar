@@ -14,7 +14,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 spaces = ["1","2","3","4"]
-xlock_command = "gnome-screensaver-command --lock"
+xlock_command = "gnome-screensaver-command --lock; xset +dpms dpms 1800 1800 1800"
 
 main = do
     xmobar <- spawnPipe "xmobar -x 0 ~/.xmonad/xmobar.hs"
