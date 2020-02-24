@@ -17,5 +17,5 @@ Config {
 	]
 		, sepChar = "$"
 		, alignSep = "}{"
-		, template = "$StdinReader$}<fc=#333333><action=gnome-terminal -- htop>$multicpu$</action></fc>{<fc=#543200><action=gnome-terminal -- nload>$dynnetwork$</action></fc> <fc=#765400><action=nm-connection-editor>$wlan0wi$</action></fc> <fc=#987600><action=gnome-terminal -- atop>$memory$M|$disku$</action></fc> <fc=#ba9800>$battery$</fc> <fc=#cb6500>$kbd$</fc> <fc=#fe3200><action=xclock>$date$</action></fc>"
+		, template = "$StdinReader$}<fc=#333333><action=gnome-terminal -- htop>$multicpu$</action></fc>{<fc=#543200><action=gnome-terminal -- nload>$dynnetwork$</action></fc> <fc=#765400><action=nm-connection-editor>$wlan0wi$</action></fc> <fc=#987600><action=gnome-terminal -- atop>$memory$M|$disku$</action></fc> <fc=#ba9800>$battery$</fc> <fc=#cb6500>$kbd$</fc> <fc=#fe3200><action=gnome-terminal -- alsamixer>$date$</action></fc>"
 }
