@@ -330,6 +330,11 @@ function _git-co() {
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# .local dir
+if [ -d $HOME/.local ]; then
+	[[ ! $PATH =~ $HOME/.local/bin ]] && export PATH="$HOME/.local/bin:$PATH"
+fi
+
 # local dir
 if [ -d $HOME/local ]; then
 	_LOCAL="$HOME/local"
