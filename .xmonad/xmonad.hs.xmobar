@@ -68,7 +68,7 @@ main = do
             ((mod4Mask.|.shiftMask   , xK_i        ), spawn "firefox &"),
             ((mod4Mask.|.shiftMask   , xK_l        ), spawn xlock_command),
             ((controlMask.|.shiftMask, xF86XK_Eject), spawn xlock_command),
-            ((controlMask.|.shiftMask, xK_l        ), spawn "if [ ! \"`setxkbmap -query | grep -o dvp,,nodeadkeys`\" = \"dvp,,nodeadkeys\" ]; then setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; else setxkbmap -layout us_intl -option grp:shifts_toggle; fi; xmodmap ~/.Xmodmap &")]
+            ((controlMask.|.shiftMask, xK_l        ), spawn "if [ ! \"`setxkbmap -query | grep -o dvp`\" = \"dvp\" ]; then setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; else setxkbmap -layout us_intl -option grp:shifts_toggle; fi; xmodmap ~/.Xmodmap &")]
         `additionalKeys` [
             ((0, xF86XK_AudioMute        ), spawn "amixer -q set Master toggle"),
             ((0, xF86XK_AudioLowerVolume ), spawn "amixer -q set Master 2-"),
