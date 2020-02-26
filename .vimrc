@@ -247,11 +247,11 @@ let g:gitgutter_sign_added = '±'
 let g:gitgutter_sign_modified = '±'
 let g:gitgutter_sign_removed = '±'
 let g:gitgutter_sign_removed_first_line = '±‾'
-let g:gitgutter_sign_modified_removed = '±_'
+let g:gitgutter_sign_modified_removed = '±‾'
 hi GitGutterAdd				ctermfg=green	cterm=bold
 hi GitGutterChange			ctermfg=yellow	cterm=bold
 hi GitGutterDelete			ctermfg=red		cterm=bold
-hi GitGutterChangeDelete	ctermfg=red		cterm=bold
+hi GitGutterChangeDelete	ctermfg=yellow	cterm=bold
 
 " ycm
 let g:ycm_always_popule_location_list = 1
