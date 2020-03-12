@@ -15,6 +15,7 @@
 	ds =  diff --stat
 	devs = shortlog --numbered --email --summary
 	dir = rev-parse --show-toplevel
+	fm = !sh -c 'git show $(git rev-list $0...${1:-master} --ancestry-path --merges --reverse |& head -n1)'
 	l = log --graph --date-order
 	la = log --graph --all --date-order
 	lr = log --graph --all --date-order --reflog
