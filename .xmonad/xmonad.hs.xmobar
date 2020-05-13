@@ -72,6 +72,7 @@ main = do
             ((mod4Mask               , xK_Escape   ), spawn "display ~/.xmonad/Xmbindings.svg &"),
             ((mod4Mask.|.shiftMask   , xK_i        ), spawn "firefox &"),
             ((mod4Mask.|.shiftMask   , xK_l        ), spawn xlock_command),
+            ((mod4Mask.|.shiftMask   , xF86XK_Eject), spawn "systemctl suspend"),
             ((controlMask.|.shiftMask, xF86XK_Eject), spawn xlock_command),
             ((controlMask.|.shiftMask, xK_l        ), spawn "if [ ! \"`setxkbmap -query | grep -o dvp`\" = \"dvp\" ]; then setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch; else setxkbmap -layout us_intl -option grp:shifts_toggle; fi; xmodmap ~/.Xmodmap &")]
         `additionalKeys` [
