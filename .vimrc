@@ -222,6 +222,7 @@ nnoremap <leader>yH :YcmCompleter GetDocImprecise<cr>
 nnoremap <leader>yf :YcmCompleter FixIt<cr>
 nnoremap <leader>yr :YcmCompleter GoToReferences<cr>
 nnoremap <leader>yR :YcmCompleter RefactorRename 
+nnoremap <leader>ys :YcmShowDetailedDiagnostic<cr>
 nnoremap <leader>yt :YcmCompleter GetType<cr>
 nnoremap <leader>yT :YcmCompleter GetTypeImprecise<cr>
 
