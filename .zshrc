@@ -236,6 +236,22 @@ case $1 in
 esac
 }
 
+# kerberos aware tmux
+which krenew &> /dev/null && function tmux {
+local _tmux=$(which -a tmux | awk '/^\//')
+if [ -z "$*" ]; then
+	if klist -s; then
+		krenew -biL -- /usr/bin/zsh -c "cd $HOME; $_tmux new -d && while tmux ls &>/dev/null; do sleep 60; done";
+		sleep 1;
+		tmux attach
+	else
+		echo -e "\e[1;31mNO VALID KERBEROS TICKET!"
+	fi
+else
+	$_tmux $*
+fi
+}
+
 ### pdf compress <FILE> <IMAGE_DPI>
 function pdfcompress {
 DPI=${2:-720}
