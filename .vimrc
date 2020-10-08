@@ -153,12 +153,14 @@ nnoremap <leader>ev <c-w><c-v><c-l>:e $MYVIMRC<cr>
 
 " fzf
 nnoremap <leader>bb :Buffers<cr>
+nnoremap <leader>fa :Ag<cr>
 nnoremap <leader>fc :BCommits<cr>
 nnoremap <leader>fC :Commits<cr>
 nnoremap <leader>ff :FZF<cr>
 nnoremap <leader>fg :GFiles?<cr>
 nnoremap <leader>fh :History:<cr>
 nnoremap <leader>fm :Maps<cr>
+nnoremap <leader>fr :Rg<cr>
 nnoremap <leader>fw :Windows<cr>
 
 " fugitive & git-gutter
