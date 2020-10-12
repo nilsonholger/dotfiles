@@ -73,15 +73,6 @@ set status_on_top												# ...and put on top
 
 
 
-### GMANE
-set group_index_format="%5C %M%N %6s %-45.45f %d"				# more info
-set catchup_newsgroup=yes										# quit -> mark all as read
-set followup_to_poster=yes										# include submitter
-set news_server=news.gmane.org									# use this
-set post_moderated=yes											# try posting anyway
-
-
-
 ### GPG
 set pgp_good_sign="^gpg: Good signature from"
 set pgp_sign_as=0x3AFB7CCD
