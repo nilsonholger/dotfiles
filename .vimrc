@@ -350,7 +350,7 @@ endfunction
 
 " ToggleComment
 function! ToggleComment(visual)
-	if (&ft=~'^c\($\|pp\)') | let l:c_sign='//'
+	if (&ft=~'^c\($\|pp\|uda\)') | let l:c_sign='//'
 	elseif (&ft=='css') | let l:c_begin='/\*' | let l:c_end='\*/'
 	elseif (&ft=~'^\(\|plain\)tex\|^bib') | let l:c_sign='%'
 	elseif (&ft=='haskell') | let l:c_sign='--'
