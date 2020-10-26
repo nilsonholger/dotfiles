@@ -37,6 +37,7 @@ main = do
                 , className =? "Gimp" --> doFloat
                 , className =? "Gnome-control-center" --> doFloat
                 , className =? "Firefox" --> doShift "3"
+                , (className =? "Firefox" <&&> appName =? "Toolkit" ) --> doFloat
                 , className =? "MPlayer" --> doFloat
                 , className =? "Pidgin" --> doShift "4"
                 , className =? "VirtualBox" --> doFloat
