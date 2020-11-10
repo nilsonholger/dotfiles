@@ -20,6 +20,10 @@
 	la = log --graph --all --date-order
 	lr = log --graph --all --date-order --reflog
 	ll = log --graph -n 1
+	ma = merge --abort
+	mc = merge --continue
+	mf = merge --no-ff
+	mq = merge --quit
 	new = !git log --graph --date-order $(git rev-parse --abbrev-ref --symbolic-full-name '@{u}')..$(git rev-parse --abbrev-ref HEAD)
 	push = push --force-with-lease
 	ra = rebase --abort
