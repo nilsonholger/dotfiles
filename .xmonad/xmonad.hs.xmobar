@@ -13,7 +13,7 @@ import System.IO
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-spaces = ["1","2","3","4"]
+spaces = ["M","T","W","C"]
 dvorak_command = "setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch"
 xlock_command = "gnome-screensaver-command --lock; xset +dpms dpms 1800 1800 1800"
 osd_cat_command = "osd_cat --pos=top --offset=2 --align=center --font='-misc-fixed-*-*-*-*-10-*-*-*-c-*-*-*' --colour=green --shadow=5 --barmode=percentage "
@@ -37,12 +37,13 @@ main = do
                 , className =? "Blender" --> doFloat
                 , className =? "Gimp" --> doFloat
                 , className =? "Gnome-control-center" --> doFloat
-                , className =? "Firefox" --> doShift "3"
+                , className =? "Firefox" --> doShift "W"
                 , (className =? "Firefox" <&&> appName =? "Toolkit" ) --> doFloat
                 , className =? "MPlayer" --> doFloat
-                , className =? "Pidgin" --> doShift "4"
+                , className =? "Microsoft Teams - Preview" --> doShift "T"
+                , (className =? "Microsoft Teams - Preview" <&&> stringProperty "WM_NAME" =? "Teams Notification") --> doFloat
                 , className =? "VirtualBox" --> doFloat
-                , className =? "Wfica" --> doShift "4"
+                , className =? "Wfica" --> doShift "C"
                 , resource  =? "desktop_window" --> doIgnore ]
                 <+> manageDocks,
             logHook = dynamicLogWithPP $ xmobarPP
