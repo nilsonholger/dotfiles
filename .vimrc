@@ -112,6 +112,7 @@ if has("autocmd")
 	au! BufWritePost $MYVIMRC windo source $MYVIMRC
 	au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 	au FileType conf setfiletype config
+	au FileType dox setfiletype doxygen
 	au FileType matlab set expandtab| set ts=2| set sw=2
 	au VimEnter * silent if filereadable("Session.vim") | source Session.vim | endif
 	au VimLeave * silent if filereadable("Session.vim") | mksession! Session.vim | endif
@@ -352,10 +353,10 @@ endfunction
 function! ToggleComment(visual)
 	if (&ft=~'^c\($\|pp\|uda\)') | let l:c_sign='//'
 	elseif (&ft=='css') | let l:c_begin='/\*' | let l:c_end='\*/'
-	elseif (&ft=~'^\(\|plain\)tex\|^bib') | let l:c_sign='%'
+	elseif (&ft=~'doxygen\|html\|markdown\|roslaunch\|xml') | let l:c_begin='<!--' | let l:c_end='-->'
 	elseif (&ft=='haskell') | let l:c_sign='--'
-	elseif (&ft=='html|xml') | let l:c_begin='<!--' | let l:c_end='-->'
 	elseif (&ft=='matlab') | let l:c_sign='%'
+	elseif (&ft=~'^\(\|plain\)tex\|^bib') | let l:c_sign='%'
 	elseif (&ft=='vim') | let l:c_sign='"'
 	else | let l:c_sign='#'
 	endif
