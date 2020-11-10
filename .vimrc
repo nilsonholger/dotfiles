@@ -233,6 +233,7 @@ nnoremap <leader>yT :YcmCompleter GetTypeImprecise<cr>
 "
 " COLOR
 "
+hi ColorColumn	ctermbg=black
 hi Pmenu		ctermbg=black		ctermfg=brown	cterm=none
 hi PmenuSel		ctermbg=red			ctermfg=black	cterm=none
 hi PmenuSbar	ctermbg=darkgrey					cterm=none
