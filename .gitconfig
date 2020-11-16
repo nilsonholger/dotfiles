@@ -22,7 +22,6 @@
 	ll = log --graph -n 1
 	ma = merge --abort
 	mc = merge --continue
-	mf = merge --no-ff
 	mq = merge --quit
 	new = !git log --graph --date-order $(git rev-parse --abbrev-ref --symbolic-full-name '@{u}')..$(git rev-parse --abbrev-ref HEAD)
 	push = push --force-with-lease
@@ -70,7 +69,6 @@
 	date = relative       # forgot about it "5 seconds ago"
 
 [merge]
-	ff = only        # prevent accidential merge commits
 	log = true       # list (20...) commit messages in merge
 	tool = vimdiff   # vim all the way
 
