@@ -109,11 +109,6 @@ _STATUS=(`pmset -g batt | tail -n +2`) # get info from pmset
 _battery_status ${_STATUS[3]/\%;} ${_STATUS[4]} ${_STATUS[5]/\(no}
 }
 
-### update periodically
-PERIOD=60
-[ -d /sys/class/power_supply/BAT0 ] && periodic_functions+=(_unix_battery_status) # (=> unix/linux)
-hash pmset 2> /dev/null && periodic_functions+=(_osx_battery_status) # (=> apple/OSX)
-
 ### git status
 if autoload -Uz vcs_info; then
 	#zstyle ':vcs_info:*+*:*' debug true
@@ -144,8 +139,66 @@ if autoload -Uz vcs_info; then
 	}
 fi
 
+# kerberos ticket/credentials state
+_KRB_STATE=''
+[ ${KRB5CCNAME} ] && unset KRB5CCNAME
+
+# kerberos state prompt
+function _kerberos_state {
+	# TODO call `date +%s` once, do arithmetics in zsh, use zsh to parse klist output?
+	# TODO separate krenew/kinit and state output
+	# TODO call this (limited to krenew) periodically in background
+	# TODO improve time limits
+	# TODO instead of [KRB...] show remaining minutes until expiration
+	_KRB_STATE=''
+	local _KLIST=`klist 2>&1` _LIFETIME='0' _RENEWABLE='0' _KRB_RETURN='' _KRB_REALM=''
+	_LIFETIME=`echo "${_KLIST}" | awk '
+				/krbtgt\/.*@/ {
+					date="date +%s --date=\""$3" "$4"\""
+					date | getline lifetime
+					"date +%s" | getline current
+					print lifetime-current
+					exit
+				}'`
+	_RENEWABLE=`echo "${_KLIST}" | awk '
+				/renew until/ {
+					date="date +%s --date=\""$3" "$4"\""
+					date | getline lifetime
+					"date +%s" | getline current
+					print lifetime-current
+					exit
+				}'`
+
+	# possible TICKET issues
+	if [[ "${_KLIST}" =~ 'No credentials cache found' ]]; then # TICKET: no credentials cache found
+		_KRB_STATE="%F{red}%B[~KRB"
+	elif [ "${_LIFETIME}" -lt 0 ]; then # TICKET: expired
+		{ _KRB_RETURN=$(kinit 2>&1 1>&3); } 3>&1; exec 3>&- # capture only stderr
+		[ $? -eq 0 ] && _KRB_STATE='' || _KRB_STATE="%F{red}%B[!KRB"
+	elif [ "${_LIFETIME}" -lt 10800 ]; then # TICKET: lifetime < 3h
+		_KRB_RETURN=$(krenew 2>&1)
+		[ $? -eq 0 ] && _KRB_STATE='' || _KRB_STATE="%F{yellow}%B[KRB"
+	fi
+	if [ "${_RENEWABLE}" -lt 86400 ]; then # TICKET: renewable lifetime < 24h
+		{ _KRB_RETURN=$(kinit 2>&1 1>&3); } 3>&1; exec 3>&- # capture only stderr
+		[ $? -eq 0 ] && _KRB_STATE='' || _KRB_STATE="%F{red}%B[~KRB"
+		# TODO edge case: kinit failed but ticket still valid
+	fi
+
+	# kinit/krenew issues
+	if [[ "${_KRB_RETURN}" =~ 'Cannot contact any KDC for realm ' ]]; then
+		_KRB_REALM=$(echo ${_KRB_RETURN} | cut -d\' -f2)
+		_KRB_STATE+="%F{red}%B~KDC:${_KRB_REALM}"
+	fi
+
+	# close _KRB_STATE
+	[ "${_KRB_STATE}" ] && _KRB_STATE+="]%b"
+
+	: # always return 0
+}
+
 ### prompts
-PROMPT=''
+PROMPT='${_KRB_STATE}'
 [ -n "$SSH_TTY" ] && PROMPT+='%F{red}%m ' # host if not local
 PROMPT+='%F{green}%.' # pwd
 PROMPT+='%(?..%F{red}%B[%?]%b)' # return code
@@ -157,6 +210,14 @@ RPROMPT='${vcs_info_msg_0_} ' # git status
 RPROMPT+='$_BATTERY_STATUS%F{cyan}%T%f' # battery status and time
 LISTPROMPT=''
 SPROMPT="%F{yellow}%R %F{white}%b-> %F{green}%r %F{white}%b? [aeNy]%f "
+
+############
+# periodic #
+############
+PERIOD=60
+[ -d /sys/class/power_supply/BAT0 ] && periodic_functions+=(_unix_battery_status) # (=> unix/linux)
+hash pmset 2> /dev/null && periodic_functions+=(_osx_battery_status) # (=> apple/OSX)
+hash kinit 2> /dev/null && periodic_functions+=(_kerberos_state)
 
 #############
 # functions #
