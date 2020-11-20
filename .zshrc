@@ -199,7 +199,7 @@ function _kerberos_state {
 
 ### prompts
 PROMPT='${_KRB_STATE}'
-[ -n "$SSH_TTY" ] && PROMPT+='%F{red}%m ' # host if not local
+[ -n "$SSH_CONNECTION" ] && PROMPT+='%F{red}%m ' # host if not local
 PROMPT+='%F{green}%.' # pwd
 PROMPT+='%(?..%F{red}%B[%?]%b)' # return code
 PROMPT+='%F{yellow}%#%(2L.%B+%b.)' # shell status
