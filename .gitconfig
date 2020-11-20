@@ -19,7 +19,7 @@
 	l = log --graph --date-order
 	la = log --graph --all --date-order
 	lr = log --graph --all --date-order --reflog
-	ll = log --graph -n 1
+	ll = log --graph -n 1 --pretty=medium
 	ma = merge --abort
 	mc = merge --continue
 	mq = merge --quit
