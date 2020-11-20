@@ -178,7 +178,7 @@ map <leader>gs :Gstatus<cr>
 map <leader>gu :Gpush<cr>
 map <leader>gw :Gwrite<cr>
 
-nnoremap <leader>h :call SwitchHS()<cr>
+nnoremap <leader>hh :call SwitchHS()<cr>
 
 " make
 map <silent> <leader>ma :call Make("all")<cr>
