@@ -3,6 +3,9 @@
 # set extended-prompt \[\e[0;31m\]\t@\f\[\e[0m\] 
 set extended-prompt \t@\f\ 
 
+# index cache
+set index-cache on
+
 # history
 set history save on
 set history filename ~/.gdb_history
