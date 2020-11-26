@@ -6,6 +6,8 @@
 	ci = commit
 	ca = commit --amend --no-edit
 	co = checkout
+	col = checkout
+	cor = checkout
 	d =   diff --minimal --unified=0 --word-diff=color
 	di =  diff --minimal --unified=0 --word-diff=color --cached
 	dis = diff --stat --cached
