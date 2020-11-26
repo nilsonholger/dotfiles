@@ -399,7 +399,7 @@ function! SwitchHS()
 	let [l:e, l:n] = [expand('%:e'), ""]
 	if l:e=~'^c' | let l:n="h" | elseif l:e=~'^h' | let l:n="c" | endif
 	for path in ['%:p:h', '**']
-		for suffix in ['', l:n, 'pp', 'xx', '++']
+		for suffix in ['', l:n, 'pp', 'xx', '++', 'u']
 			try
 				execute 'find '.path.'/%:t:r.'.l:n.suffix
 			catch /.*/
