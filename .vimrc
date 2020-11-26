@@ -402,7 +402,14 @@ function! SwitchHS()
 		for suffix in ['', l:n, 'pp', 'xx', '++', 'u']
 			try
 				execute 'find '.path.'/%:t:r.'.l:n.suffix
+			catch /^Vim(find):E345:/
+				continue
+			catch /^Vim(find):E77/
+				" handle multiple matches, use first (path up/down) match
+				execute 'edit '.findfile(expand('%:t:r').'.'.l:n.suffix, '**,./**', 0)
+				break
 			catch /.*/
+				"echo v:exception
 				continue
 			endtry
 			break
