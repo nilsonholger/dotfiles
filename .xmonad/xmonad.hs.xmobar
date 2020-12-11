@@ -43,7 +43,7 @@ main = do
                 , (className =? "Firefox" <&&> appName =? "Toolkit" ) --> doFloat
                 , className =? "MPlayer" --> doFloat
                 , className =? "Microsoft Teams - Preview" --> doShift "T"
-                , (className =? "Microsoft Teams - Preview" <&&> stringProperty "WM_NAME" =? "Teams Notification") --> doFloat
+                , (className =? "Microsoft Teams - Preview" <&&> stringProperty "WM_NAME" =? "Microsoft Teams Notification") --> doFloat
                 , className =? "VirtualBox" --> doFloat
                 , className =? "Wfica" --> doShift "C"
                 , resource  =? "desktop_window" --> doIgnore ]
