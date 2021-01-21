@@ -65,7 +65,7 @@ export LESS_TERMCAP_ue=$'\E[0m'        # underline end
 export LESS_TERMCAP_us=$'\E[01;32m'    # underline start
 export LSCOLORS=cxfxexdxCxegedabagacad # directory: green, sockets: blue, executable: bold green
 export LS_COLORS='di=32'
-export MAKEFLAGS="-j`sysctl -n hw.ncpu 2> /dev/null || grep -c '^processor' /proc/cpuinfo`"
+export MAKEFLAGS="-j`sysctl -n hw.ncpu 2> /dev/null || nproc --all || grep -c '^processor' /proc/cpuinfo`"
 [[ ! $PATH =~ /usr/local/sbin ]] && export PATH="/usr/local/sbin:$PATH"
 export XLIB_SKIP_ARGB_VISUALS=1
 
