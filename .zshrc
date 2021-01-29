@@ -141,14 +141,13 @@ fi
 
 # kerberos ticket/credentials state
 _KRB_STATE=''
-#[ ${KRB5CCNAME} ] && unset KRB5CCNAME
 
 # kerberos state prompt
 function _kerberos_state {
 	# TODO call `date +%s` once, do arithmetics in zsh, use zsh to parse klist output?
 	# TODO separate krenew/kinit and state output
 	# TODO call this (limited to krenew) periodically in background
-	# TODO improve time limits
+	# TODO improve time limits and make configurable
 	# TODO instead of [KRB...] show remaining minutes until expiration
 	_KRB_STATE=''
 	local _KLIST=`klist 2>&1` _LIFETIME='0' _RENEWABLE='0' _KRB_RETURN='' _KRB_REALM=''
@@ -175,11 +174,11 @@ function _kerberos_state {
 	elif [ "${_LIFETIME}" -lt 0 ]; then # TICKET: expired
 		{ _KRB_RETURN=$(kinit 2>&1 1>&3); } 3>&1; exec 3>&- # capture only stderr
 		[ $? -eq 0 ] && _KRB_STATE='' || _KRB_STATE="%F{red}%B[!KRB"
-	elif [ "${_LIFETIME}" -lt 10800 ]; then # TICKET: lifetime < 3h
+	elif [ "${_LIFETIME}" -lt 3600 ]; then # TICKET: lifetime < 1h
 		_KRB_RETURN=$(krenew 2>&1)
 		[ $? -eq 0 ] && _KRB_STATE='' || _KRB_STATE="%F{yellow}%B[KRB"
 	fi
-	if [ "${_RENEWABLE}" -lt 86400 ]; then # TICKET: renewable lifetime < 24h
+	if [ "${_RENEWABLE}" -lt 10800 ]; then # TICKET: renewable lifetime < 3h
 		{ _KRB_RETURN=$(kinit 2>&1 1>&3); } 3>&1; exec 3>&- # capture only stderr
 		[ $? -eq 0 ] && _KRB_STATE='' || _KRB_STATE="%F{red}%B[~KRB"
 		# TODO edge case: kinit failed but ticket still valid
