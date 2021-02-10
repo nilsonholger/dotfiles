@@ -198,6 +198,7 @@ map <silent> <leader>mv :call Make("VERBOSE=1")<cr>
 nnoremap <leader>l :set list!<cr>:set list?<cr>
 nnoremap <leader>n :let [&number, &relativenumber] = [!&relativenumber, &number+&relativenumber==1]<cr>
 nnoremap <leader>N :nohlsearch<cr>
+nnoremap <leader>p :pclose<cr>
 
 nnoremap <leader>ss :set spell!<cr>:set spell?<cr>
 nnoremap <leader>sw :w !sudo tee %<cr>
