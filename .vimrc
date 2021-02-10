@@ -50,6 +50,12 @@ set showbreak=_			" if (linebreaks) prepend to wrapped line
 set splitbelow			" do it latin style
 set splitright			" even more latin style
 
+" fixes
+ "disable 'raw'-mode (check 'terminal-options' and 'modifyOtherKeys') for no
+ "fully xterm compliant terminals (i.e., gnome-terminal), otherwise raw
+ "characters will be printed to terminal a lot
+set t_TE= t_TI=
+
 " format
 set autoindent		" indent current line -> indent new line
 set encoding=utf-8	" character encoding
