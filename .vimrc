@@ -387,7 +387,7 @@ function! ToggleComment(visual)
 			if getline(l:lines[0])=~ '^\s*'.l:c_sign
 				call setline(l:line, substitute(getline(l:line), '\(^\s*\)'.l:c_sign, '\1', "g"))
 			else
-				call setline(l:line, substitute(getline(l:line), '\(^\s*\)\([^$]\)', '\1'.l:c_sign.'\2', "g"))
+				call setline(l:line, substitute(getline(l:line), '\(^\s*\)\([^\n]\)', '\1'.l:c_sign.'\2', "g"))
 			endif
 		endfor
 	else
