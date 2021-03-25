@@ -381,6 +381,11 @@ function doi2bib {
 	curl -s -L -H "Accept: text/bibliography; style=bibtex" http://dx.doi.org/"$*" | sed -e "s/\(\@\S*,\)/\1\n/" -e "s/\}, /\},\n /g"
 }
 
+### lookup <host|ip>
+function lookup {
+	curl -s https://ipgeolocation.io/ip-location/${1} | grep 'code style' | html2text
+}
+
 ########################
 # completion functions #
 ########################
