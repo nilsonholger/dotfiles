@@ -38,6 +38,7 @@
 	# log display
 	l = log --graph --date-order
 	la = log --graph --all --date-order
+	lb = !git log --graph --date-order `git bb`..
 	lr = log --graph --all --date-order --reflog
 	ll = log --graph -n 1 --pretty=medium
 
