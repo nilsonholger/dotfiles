@@ -40,7 +40,7 @@
 	la = log --graph --all --date-order
 	lb = !git log --graph --date-order `git bb`..
 	lr = log --graph --all --date-order --reflog
-	ll = log --graph -n 1 --pretty=medium
+	ll = log --graph -n 1 --pretty=medium --date=iso
 
 	# custom commands
 	bb = !sh -c '[ $0 = sh ] && HEAD=HEAD ";" git rev-parse $(git rev-list --reverse ${1:-master}..${HEAD:-$0} -- | head -n1)^' # get SHA of branch ($1 or HEAD) towards base branch ($2 or master), i.e., where given branch was forked from given base branch
