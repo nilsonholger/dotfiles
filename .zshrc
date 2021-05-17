@@ -216,7 +216,7 @@ SPROMPT="%F{yellow}%R %F{white}%b-> %F{green}%r %F{white}%b? [aeNy]%f "
 PERIOD=60
 [ -d /sys/class/power_supply/BAT0 ] && periodic_functions+=(_unix_battery_status) # (=> unix/linux)
 hash pmset 2> /dev/null && periodic_functions+=(_osx_battery_status) # (=> apple/OSX)
-hash kinit 2> /dev/null && periodic_functions+=(_kerberos_state)
+[ -f /etc/krb5.conf ] && periodic_functions+=(_kerberos_state)
 
 #############
 # functions #
