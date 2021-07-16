@@ -172,16 +172,16 @@ nnoremap <leader>fr :Rg<cr>
 nnoremap <leader>fw :Windows<cr>
 
 " fugitive & git-gutter
-map <leader>gb :Gblame<cr>
-map <leader>gc :Gcommit<cr>
-map <leader>gd :Gdiff<cr>
+map <leader>gb :Git blame<cr>
+map <leader>gc :Git commit<cr>
+map <leader>gd :Gdiffsplit<cr>
 map <leader>ge :Gedit HEAD<cr>
+map <leader>gf :Git fetch<cr>
 map <silent> <leader>gg :GitGutterQuickFix<cr><cr><cr>:QFix<cr>
-map <leader>gl :Glog<cr><cr><cr>:QFix<cr>
-map <leader>gp :Gpull<cr>
+map <leader>gl :Gclog<cr><cr><cr>:QFix<cr>
+map <leader>gp :Git push<cr>
 map <leader>gr :Gread<cr>
-map <leader>gs :Gstatus<cr>
-map <leader>gu :Gpush<cr>
+map <leader>gs :Git<cr>
 map <leader>gw :Gwrite<cr>
 
 nnoremap <leader>hh :call SwitchHS()<cr>
