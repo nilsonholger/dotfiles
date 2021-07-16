@@ -98,7 +98,7 @@ _BATTERY_STATUS=''
 local _SYS='/sys/class/power_supply/BAT0/'
 local _STATUS=`cat $_SYS/status` _TIME
 [[ ! $_STATUS =~ (Disc|C)harging ]] && return
-_TIME=$((`cat $_SYS/energy_now`*60.0/`cat $_SYS/power_now`))
+_TIME=$((`cat $_SYS/charge_now`*60.0/`cat $_SYS/voltage_now`))
 _battery_status `cat $_SYS/capacity` $_STATUS "`printf "%d:%.2d" $((_TIME/60)) $((_TIME%60))`"
 }
 function _osx_battery_status {
@@ -298,7 +298,7 @@ esac
 
 # kerberos aware tmux
 which krenew &> /dev/null && function tmux {
-local _tmux=$(which -a tmux | awk '/^\//')
+local _tmux=$(which -a tmux | awk '/^\// { print; exit; }')
 if [ -z "$*" ]; then
 	if klist -s; then
 		krenew -biL -- /usr/bin/zsh -c "cd $HOME; $_tmux new -d && while tmux ls &>/dev/null; do sleep 60; done";
