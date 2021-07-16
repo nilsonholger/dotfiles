@@ -18,10 +18,8 @@ import qualified Data.Map        as M
 spaces = ["M","T","W","C"]
 dvorak_command = "setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch"
 xlock_command = "gnome-screensaver-command --lock; xset +dpms dpms 1800 1800 1800"
-osd_cat_command = "osd_cat --pos=top --offset=2 --align=center --font='-misc-fixed-*-*-*-*-10-*-*-*-c-*-*-*' --colour=green --shadow=5 --barmode=percentage "
-audio_mute_command = "[[ $(amixer get Master) =~ off ]]\
-                      \ && (for c in Master Headphone Speaker; do amixer -q set ${c} unmute; done)\
-                      \ || (for c in Master Headphone Speaker; do amixer -q set ${c} mute; done)"
+osd_cat_command = "osd_cat --pos=top --offset=2 --align=center --font='-misc-fixed-*-*-*-*-10-*-*-*-c-*-*-*' --colour=green --shadow=5 "
+osd_cat_bar_command = "pkill -u $USER osd_cat;" ++ osd_cat_command ++ "--barmode=percentage --percentage="
 
 main = do
     xmobar <- spawnPipe "xmobar -x 0 ~/.xmonad/xmobar.hs"
@@ -59,12 +57,13 @@ main = do
                 },
             startupHook = do
                 setWMName "LG3D"
-                spawn "[ -f ~/.xmonad/background.jpg ] && display -window root ~/.xmonad/background.jpg"
+                spawn "[ -f ~/.xmonad/background.png ] && display -window root ~/.xmonad/background.png" -- requires ImageMagick
                 spawn "unity-settings-daemon"
                 spawn "gnome-screensaver"
                 spawn ("xautolock -time 31 -locker '" ++ xlock_command ++ "'")
                 spawn "sleep 1; xset +dpms dpms 1800 1800 1800"
                 spawn dvorak_command
+                spawn "xmodmap -e \"pointer = 3 2 1\""
         }
         `additionalKeys`
         [((m .|. mod4Mask, k), windows $ f i)
@@ -85,12 +84,12 @@ main = do
             ((controlMask.|.shiftMask, xF86XK_Eject), spawn xlock_command),
             ((controlMask.|.shiftMask, xK_l        ), spawn ("if [ ! \"`setxkbmap -query | grep -o dvp`\" = \"dvp\" ]; then setxkbmap -layout de; " ++ dvorak_command ++ "; else setxkbmap -layout us_intl -option grp:shifts_toggle; fi; xmodmap ~/.Xmodmap &"))]
         `additionalKeys` [
-            ((0, xF86XK_AudioMute        ), spawn audio_mute_command),
-            ((0, xF86XK_AudioLowerVolume ), spawn ("amixer -q set Master 2-; pkill -u $USER osd_cat;" ++ osd_cat_command ++ "--percentage=`amixer get Master | awk -F'[' '/Mono:/ { print $2;}'`")),
-            ((0, xF86XK_AudioRaiseVolume ), spawn ("amixer -q set Master 2+; pkill -u $USER osd_cat;" ++ osd_cat_command ++ "--percentage=`amixer get Master | awk -F'[' '/Mono:/ { print $2;}'`")),
-            ((0, xF86XK_AudioMicMute     ), spawn "amixer -q set Capture toggle"),
-            ((0, xF86XK_MonBrightnessDown), spawn ("xbacklight -5; pkill -u $USER osd_cat;" ++ osd_cat_command ++ "--percentage=`xbacklight`")),
-            ((0, xF86XK_MonBrightnessUp  ), spawn ("xbacklight +5; pkill -u $USER osd_cat;" ++ osd_cat_command ++ "--percentage=`xbacklight`")),
+            ((0, xF86XK_AudioMute        ), spawn ("pkill -u $USER osd_cat; amixer -D pulse set Master toggle | awk '/Front Right:/ { print $6; }' | " ++ osd_cat_command )),
+            ((0, xF86XK_AudioLowerVolume ), spawn ("amixer -D pulse -q set Master 2%-; " ++ osd_cat_bar_command ++ "`amixer -D pulse get Master | awk '/Front Right:/ { print $5;}' | tr -d '[]'`")),
+            ((0, xF86XK_AudioRaiseVolume ), spawn ("amixer -D pulse -q set Master 2%+; " ++ osd_cat_bar_command ++ "`amixer -D pulse get Master | awk '/Front Right:/ { print $5;}' | tr -d '[]'`")),
+            ((0, xF86XK_AudioMicMute     ), spawn "amixer -D pulse -q set Capture toggle"),
+            ((0, xF86XK_MonBrightnessDown), spawn ("xbacklight -5; " ++ osd_cat_bar_command ++ "`xbacklight`")),
+            ((0, xF86XK_MonBrightnessUp  ), spawn ("xbacklight +5; " ++ osd_cat_bar_command ++ "`xbacklight`")),
             ((0, xF86XK_Display          ), spawn ""),
             ((0, xF86XK_WLAN             ), spawn "STATE=\"un`rfkill -no soft list wlan`\"; rkill ${STATE#unun} wlan"),
             ((0, xF86XK_Tools            ), spawn "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"),
