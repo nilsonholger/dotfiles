@@ -335,6 +335,17 @@ function! Make(target)
 		let &makeprg="(cd build && make " . a:target . ")"
 	elseif &ft == 'tex' || &ft == 'plaintex'
 		set makeprg=pdflatex\ %
+	elseif expand('%:p')=~'/workspace/'
+		let l:path=expand('%:h')
+		let l:base=system('catkin config | awk "/Build Space:/ { printf \"%s\",\$4 }"')
+		while l:path!='.'
+			let l:build=fnamemodify(l:base, ":p").fnamemodify(l:path, ":t")
+			if isdirectory(l:build)
+				let &makeprg="(cd ".l:build." && make " . a:target . ")"
+				break
+			endif
+			let l:path=fnamemodify(l:path, ':h')
+		endwhile
 	endif
 	silent w
 	silent make!
