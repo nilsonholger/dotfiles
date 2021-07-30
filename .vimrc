@@ -333,7 +333,7 @@ function! Make(target)
 		let &makeprg="make " . a:target
 	elseif filereadable('build/Makefile')
 		let &makeprg="(cd build && make " . a:target . ")"
-	elseif &ft == 'tex' || ft == 'plaintex'
+	elseif &ft == 'tex' || &ft == 'plaintex'
 		set makeprg=pdflatex\ %
 	endif
 	silent w
