@@ -328,7 +328,7 @@ gs -dCompatibilityLevel=1.4 -sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH \
 ### scp two hop <FILE|USER@ORIGIN:PATH> <USER@JUMP_HOST> <FILE|USER@TARGET:PATH>
 function scp2h {
 [[ ( -z $1 || -z $2 || -z $3 ) ]] && echo 'usage: scp2h <FILE|USER@ORIGIN:PATH> <USER@JUMP_HOST> <FILE|USER@TARGET:PATH>' && return
-scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o ProxyCommand="ssh $2 nc %h %p" $1 $3
+scp -r -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o ProxyCommand="ssh $2 nc %h %p" $1 $3
 }
 
 ### scp tar <SRC> [SRC2...] <DST>
