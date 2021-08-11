@@ -203,7 +203,7 @@ PROMPT+='%F{green}%.' # pwd
 PROMPT+='%(?..%F{red}%B[%?]%b)' # return code
 PROMPT+='%F{yellow}%#%(2L.%B+%b.)' # shell status
 PROMPT+='%(1j.%F{yellow}[%j].)' # background jobs
-PROMPT+=' %f' # reset colors
+PROMPT+=' %f%b' # reset colors
 
 RPROMPT='${vcs_info_msg_0_} ' # git status
 RPROMPT+='$_BATTERY_STATUS%F{cyan}%T%f' # battery status and time
