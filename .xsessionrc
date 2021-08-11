@@ -1,1 +1,1 @@
-export `/usr/bin/gnome-keyring-daemon --start`
+export `/usr/bin/gnome-keyring-daemon --start --replace`
