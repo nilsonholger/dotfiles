@@ -393,7 +393,7 @@ function lookup {
 ### fzf based git branch local search
 function fzf-git-local-branch() {
 	local _BRANCH
-	_BRANCH=$(git --no-pager branch --list -vv | fzf | awk '!/*/ {printf "%s ", $1}')
+	_BRANCH=$(git --no-pager branch --list -vv | fzf | awk '!/\*/ {printf "%s ", $1}')
 	LBUFFER+="${_BRANCH}"
 	bindkey '^I' fzf-completion
 }
@@ -402,7 +402,7 @@ zle -N fzf-git-local-branch
 ### fzf based git branch remote search
 function fzf-git-remote-branch() {
 	local _BRANCH
-	_BRANCH=$(git --no-pager branch --list --remote -vv | fzf | awk '!/*/ {sub("^[^/]*/", "", $1); printf "%s ", $1}')
+	_BRANCH=$(git --no-pager branch --list --remote -vv | fzf | awk '!/\*/ {sub("^[^/]*/", "", $1); printf "%s ", $1}')
 	LBUFFER+="${_BRANCH}"
 	bindkey '^I' fzf-completion
 }
