@@ -153,9 +153,18 @@ inoremap <right> <nop>
 nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<cr>:copen<cr>
 nnoremap <silent> <leader>at :call Ack("TODO")<cr>
 nnoremap <silent> <leader>aa :call Ack("ask")<cr>
+
+" comments
 nnoremap <leader>c :<c-u>call ToggleComment('false')<cr>
 vnoremap <leader>c :<c-u>call ToggleComment('true')<cr>
-nnoremap <leader>C :let &colorcolumn = &colorcolumn>0 ? 0 : &textwidth==0 ? 80 : &textwidth<cr>
+
+nnoremap <leader>C :let &colorcolumn = &colorcolumn>0 ? 0 : &textwidth==0 ? 100 : &textwidth<cr>
+
+" git mergetool
+nnoremap <leader>dr :diffget REMOTE<cr>
+nnoremap <leader>db :diffget BASE<cr>
+nnoremap <leader>dl :diffget LOCAL<cr>
+
 nnoremap <leader>D :call NetrwToggle($PWD)<cr>
 nnoremap <leader>ev <c-w><c-v><c-l>:e $MYVIMRC<cr>
 
