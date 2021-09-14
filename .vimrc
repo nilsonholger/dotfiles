@@ -383,6 +383,7 @@ function! ToggleComment(visual)
 	if (&ft=~'^c\($\|pp\|uda\)') | let l:c_sign='//'
 	elseif (&ft=='css') | let l:c_begin='/\*' | let l:c_end='\*/'
 	elseif (&ft=~'doxygen\|html\|markdown\|roslaunch\|xml') | let l:c_begin='<!--' | let l:c_end='-->'
+	elseif (&ft=='groovy') | let l:c_sign='//'
 	elseif (&ft=='haskell') | let l:c_sign='--'
 	elseif (&ft=='matlab') | let l:c_sign='%'
 	elseif (&ft=~'^\(\|plain\)tex\|^bib') | let l:c_sign='%'
