@@ -86,6 +86,9 @@
 	log = true       # list (20...) commit messages in merge
 	tool = vimdiff   # vim all the way
 
+[pull]
+	ff = true
+
 [push]
 	followTags = true   # automagically update tags remotely
 
