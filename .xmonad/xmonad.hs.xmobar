@@ -16,7 +16,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 spaces = ["M","T","W","C"]
-dvorak_command = "setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch"
+dvorak_command = "setxkbmap -layout us; setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch"
 xlock_command = "gnome-screensaver-command --lock; xset +dpms dpms 1800 1800 1800"
 osd_cat_command = "osd_cat --pos=top --offset=2 --align=center --font='-misc-fixed-*-*-*-*-10-*-*-*-c-*-*-*' --colour=green --shadow=5 "
 osd_cat_bar_command = "pkill -u $USER osd_cat;" ++ osd_cat_command ++ "--barmode=percentage --percentage="
@@ -82,7 +82,7 @@ main = do
             ((mod4Mask.|.shiftMask   , xK_l        ), spawn xlock_command),
             ((mod4Mask.|.shiftMask   , xF86XK_Eject), spawn "systemctl suspend"),
             ((controlMask.|.shiftMask, xF86XK_Eject), spawn xlock_command),
-            ((controlMask.|.shiftMask, xK_l        ), spawn ("if [ ! \"`setxkbmap -query | grep -o dvp`\" = \"dvp\" ]; then setxkbmap -layout de; " ++ dvorak_command ++ "; else setxkbmap -layout us_intl -option grp:shifts_toggle; fi; xmodmap ~/.Xmodmap &"))]
+            ((controlMask.|.shiftMask, xK_l        ), spawn ("if [ ! \"`setxkbmap -query | grep -o dvp`\" = \"dvp\" ]; then " ++ dvorak_command ++ "; else setxkbmap -layout us_intl -option grp:shifts_toggle; fi; xmodmap ~/.Xmodmap &"))]
         `additionalKeys` [
             ((0, xF86XK_AudioMute        ), spawn ("pkill -u $USER osd_cat; amixer -D pulse set Master toggle | awk '/Front Right:/ { print $6; }' | " ++ osd_cat_command )),
             ((0, xF86XK_AudioLowerVolume ), spawn ("amixer -D pulse -q set Master 2%-; " ++ osd_cat_bar_command ++ "`amixer -D pulse get Master | awk '/Front Right:/ { print $5;}' | tr -d '[]'`")),
