@@ -457,16 +457,16 @@ function! LogBook(mode)
 	" TODO index links to other files found in .logbook/?
 	" TODO move git_dir check to outer logic
 	" TODO handle no network and other pull/commit/push issues
-	let l:base = expand("~/.logbook/")
+	let l:base = expand("~/.logbook")
 	silent! system('cd '.l:base.'; git pull origin')
 	if isdirectory(l:base)
 		if empty(a:mode)
 			execute "FZF ".l:base
 		elseif a:mode == "close"
-			let l:git_dir = system('cd '.l:base.'; git rev-parse --show-toplevel --sq')
+			let l:git_dir = system('cd '.l:base.'; git rev-parse --show-toplevel --sq | tr -d "\n"')
 			if l:git_dir =~ l:base
 				let l:stat = system('cd '.l:base.'; git diff --numstat | awk "{print \$3\$4\$5\":+\"\$1\"-\"\$2; }"')
-				let l:host = system('hostname -s')
+				let l:host = system('hostname -s | tr -d "\n"')
 				echo system('cd '.l:base.'; git commit --all --message "['.l:host.'] '.l:stat.'"')
 				echo system('cd '.l:base.'; git push origin')
 			else
@@ -474,7 +474,7 @@ function! LogBook(mode)
 			endif
 			quit
 		else
-			execute 'vsplit '.l:base.a:mode.'.md'
+			execute 'vsplit '.l:base.'/'.a:mode.'.md'
 		endif
 
 	else
