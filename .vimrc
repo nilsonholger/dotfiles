@@ -110,6 +110,7 @@ let g:netrw_list_hide= '.*\.swp$,.*\.swo$'	" hide vim temp files
 "
 if has("autocmd")
 	filetype plugin indent on
+	au BufDelete,ExitPre */.logbook/* call LogBook("close")
 	au BufNew * set foldlevel=20
 	au BufReadPost fugitive://* set bufhidden=delete
 	au BufReadPost * silent! normal '"
@@ -204,7 +205,12 @@ map <silent> <leader>mm :call Make(" ")<cr>
 map <silent> <leader>mr :call Make("run")<cr>
 map <silent> <leader>mv :call Make("VERBOSE=1")<cr>
 
-nnoremap <leader>l :set list!<cr>:set list?<cr>
+" logbook
+nnoremap <leader>lb :call LogBook("logbook")<cr>
+nnoremap <leader>lc :call LogBook("close")<cr>
+nnoremap <leader>lo :call LogBook("")<cr>
+
+nnoremap <leader>ll :set list!<cr>:set list?<cr>
 nnoremap <leader>n :let [&number, &relativenumber] = [!&relativenumber, &number+&relativenumber==1]<cr>
 nnoremap <leader>N :nohlsearch<cr>
 nnoremap <leader>p :pclose<cr>
@@ -443,4 +449,35 @@ function! SwitchHS()
 			break
 		endfor
 	endfor
+endfunction
+
+function! LogBook(mode)
+	" TODO register hooks for open/closing files within ~/.logbook
+	" TODO default action: open .logbook/log.md and jump to bottom?
+	" TODO index links to other files found in .logbook/?
+	" TODO move git_dir check to outer logic
+	" TODO handle no network and other pull/commit/push issues
+	let l:base = expand("~/.logbook/")
+	silent! system('cd '.l:base.'; git pull origin')
+	if isdirectory(l:base)
+		if empty(a:mode)
+			execute "FZF ".l:base
+		elseif a:mode == "close"
+			let l:git_dir = system('cd '.l:base.'; git rev-parse --show-toplevel --sq')
+			if l:git_dir =~ l:base
+				let l:stat = system('cd '.l:base.'; git diff --numstat | awk "{print \$3\$4\$5\":+\"\$1\"-\"\$2; }"')
+				let l:host = system('hostname -s')
+				echo system('cd '.l:base.'; git commit --all --message "['.l:host.'] '.l:stat.'"')
+				echo system('cd '.l:base.'; git push origin')
+			else
+				echo "No git directory in ".l:base." found!"
+			endif
+			quit
+		else
+			execute 'vsplit '.l:base.a:mode.'.md'
+		endif
+
+	else
+		echo "Cannot find ".l:base."!"
+	endif
 endfunction
