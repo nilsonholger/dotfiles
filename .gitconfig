@@ -90,7 +90,8 @@
 	ff = true
 
 [push]
-	followTags = true   # automagically update tags remotely
+	default = upstream   # always push to set tracking branch
+	followTags = true    # automagically update tags remotely
 
 [rebase]
 	stat = true                  # show nice diffstat
