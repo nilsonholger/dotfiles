@@ -14,6 +14,7 @@
 	s = status
 	ss = status --long
 	sub = submodule foreach git
+	unstage = restore --staged
 	untracked = ls-files --others
 
 	# merge&rebase
