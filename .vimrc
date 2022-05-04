@@ -59,6 +59,7 @@ set t_TE= t_TI=
 " format
 set autoindent		" indent current line -> indent new line
 set encoding=utf-8	" character encoding
+set fixendofline	" add newline to end of file(s)
 set shiftwidth=4	" # of (auto)indent spaces
 set smartindent		" smarter than cindent
 set smarttab		" use shiftwidth for ^line tabs
