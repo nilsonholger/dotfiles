@@ -37,8 +37,8 @@ main = do
                 , className =? "Blender" --> doFloat
                 , className =? "Gimp" --> doFloat
                 , className =? "Gnome-control-center" --> doFloat
-                , className =? "Firefox" --> doShift "W"
-                , (className =? "Firefox" <&&> appName =? "Toolkit" ) --> doFloat
+                , className =? "firefox" --> doShift "W"
+                , (className =? "firefox" <&&> appName =? "Toolkit" ) --> doFloat
                 , className =? "MPlayer" --> doFloat
                 , className =? "Microsoft Teams - Preview" --> doShift "T"
                 , (className =? "Microsoft Teams - Preview" <&&> stringProperty "WM_NAME" =? "Microsoft Teams Notification") --> doFloat
