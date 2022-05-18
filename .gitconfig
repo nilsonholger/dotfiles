@@ -39,7 +39,7 @@
 	# log display
 	l = log --graph --date-order
 	la = log --graph --all --date-order
-	lb = !sh -c '[ $0 = sh ] && BASE=master ";" git log --graph --date-order `git bb HEAD ${BASE:-$0}`..'
+	lb = !sh -c '[ $0 = sh ] && BASE=master ";" git log --graph --date-order HEAD ^${BASE:-$0}'
 	lf = log --graph --date-order --full-history --simplify-merges
 	lr = log --graph --all --date-order --reflog
 	ll = log --graph -n 1 --pretty=medium --date=iso
