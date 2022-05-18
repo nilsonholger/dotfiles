@@ -469,5 +469,5 @@ if [ -z "${OSTYPE/linux*}" ]; then
 		sudo $*
 		xhost -si:localuser:root
 	}
-	alias gnome-control-center="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
+	alias gnome-control-center="env XDG_CURRENT_DESKTOP=ubuntu:GNOME gnome-control-center"
 fi
