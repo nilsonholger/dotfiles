@@ -47,6 +47,7 @@
 	# custom commands
 	bb = !sh -c '[ $0 = sh ] && HEAD=HEAD ";" git rev-parse $(git rev-list --reverse ${1:-master}..${HEAD:-$0} -- | head -n1)^' # get SHA of branch ($1 or HEAD) towards base branch ($2 or master), i.e., where given branch was forked from given base branch
 	bc = !git checkout master --quiet && git branch --verbose | awk '/\\[gone\\]/ {print $1}' | xargs --no-run-if-empty git branch --delete && git checkout --quiet - # remove '[gone]' (fully merged) local branches
+	bisect-first-merges-only = !bash -c 'awk \"NR==FNR { m[\\$1]=1";"next } m[\\$1]!=1\" <(git rev-list --first-parent ${0:-HEAD..master}) <(git rev-list ${0:-HEAD..master}) | xargs git bisect skip'
 	descend = !git rev-list --first-parent --topo-order --reverse ${1:-HEAD}..${2:-master} # find ancestry chain descendant commits from ($1 or HEAD) towards other commit ($2 or master), use '...| awk NR==<X>' to get the Xth descendant commit
 	fm = !bash -c 'git show $(git rev-list $0...${1:-master} --ancestry-path --merges --reverse |& head -n1)' # find merge for given commit ($0) into given branch ($1 or master)
 	new = !git log --graph --date-order $(git rev-parse --abbrev-ref --symbolic-full-name '@{u}')..$(git rev-parse --abbrev-ref HEAD) # what's new on local branch (compared to upstream)
