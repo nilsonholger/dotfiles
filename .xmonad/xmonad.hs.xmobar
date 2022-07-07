@@ -80,7 +80,7 @@ main = do
             ((mod4Mask.|.shiftMask   , xK_q        ), io (exitWith ExitSuccess)),
             ((mod4Mask               , xK_Escape   ), spawn "display ~/.xmonad/Xmbindings.svg &"),
             ((mod4Mask.|.shiftMask   , xK_Escape   ), spawn "setxkbmap -query | awk '/layout/ { layout=$2; } /variant/ { variant=$2; } END { system(sprintf(\"gkbd-keyboard-display -l  \\\"%s %s\\\"\",layout, variant)); }'"),
-            ((mod4Mask.|.shiftMask   , xK_a        ), spawn "gnome-screenshot --area"),
+            ((mod4Mask.|.shiftMask   , xK_a        ), spawn "gnome-screenshot --area &"),
             ((mod4Mask.|.shiftMask   , xK_l        ), spawn xlock_command),
             ((mod4Mask.|.shiftMask   , xK_s        ), spawn "gnome-screenshot --window"),
             ((mod4Mask.|.shiftMask   , xF86XK_Eject), spawn "systemctl suspend"),
