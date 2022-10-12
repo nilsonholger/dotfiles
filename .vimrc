@@ -24,7 +24,7 @@ Plugin 'junegunn/fzf.vim'
 " SETTINGS
 "
 " basic
-colorscheme desert								" so our eyes won't hurt
+colorscheme industry							" so our eyes won't hurt
 syntax on										" psychedelic rainbow
 set background=dark								" so our eyes won't explode
 set backspace=indent,eol,start					" allow backspacing over #args
