@@ -431,25 +431,13 @@ endfunction
 
 " Switch between header/source: *.((h|hh|c|cc)|(h|c)(pp|xx|++))
 function! SwitchHS()
-	let [l:e, l:n] = [expand('%:e'), ""]
-	if l:e=~'^c' | let l:n="h" | elseif l:e=~'^h' | let l:n="c" | endif
-	for path in ['%:p:h', '**']
-		for suffix in ['', l:n, 'pp', 'xx', '++', 'u']
-			try
-				execute 'find '.path.'/%:t:r.'.l:n.suffix
-			catch /^Vim(find):E345:/
-				continue
-			catch /^Vim(find):E77/
-				" handle multiple matches, use first (path up/down) match
-				execute 'edit '.findfile(expand('%:t:r').'.'.l:n.suffix, '**,./**', 0)
-				break
-			catch /.*/
-				"echo v:exception
-				continue
-			endtry
-			break
-		endfor
-	endfor
+	let l:e = expand('%:e')
+	if l:e=~'^c'
+		setlocal suffixesadd=.h,.hpp,.cc,.cxx,.c++
+	elseif l:e=~'^h'
+		setlocal suffixesadd=.c,.cpp,.cc,.cxx,.c++,cu
+	endif
+	execute 'edit '.findfile(expand('%:t:r'), expand('%:p:h').'**;'.getcwd())
 endfunction
 
 function! LogBook(mode)
