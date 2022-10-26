@@ -34,6 +34,7 @@ set laststatus=2								" always display status line
 set nomodeline									" dis-allow vim modelines
 set modelines=0									" process #lines of modeline commands
 set mouse=n										" clicketyclick
+let &path = &path .. ",**;" .. getcwd()			" fallback search up/down all the way to current working directory
 "set scrolloff=3									" always display #lines context
 set showcmd										" display partial commands
 set whichwrap=<,>,[,],h,l						" can move to next/previous line
