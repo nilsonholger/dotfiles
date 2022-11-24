@@ -15,7 +15,7 @@ import System.IO
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-spaces = ["M","T","W","C"]
+spaces = ["M","W","T","C"]
 dvorak_command = "setxkbmap -layout us; sleep 0.1; setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch"
 xlock_command = "gnome-screensaver-command --lock; xset +dpms dpms 1800 1800 1800"
 osd_cat_command = "osd_cat --pos=top --offset=2 --align=center --font='-misc-fixed-*-*-*-*-10-*-*-*-c-*-*-*' --colour=green --shadow=5 "
