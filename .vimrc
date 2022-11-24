@@ -168,7 +168,7 @@ nnoremap <leader>dr :diffget REMOTE<cr>
 nnoremap <leader>db :diffget BASE<cr>
 nnoremap <leader>dl :diffget LOCAL<cr>
 
-nnoremap <leader>D :call NetrwToggle($PWD)<cr>
+nnoremap <leader>D :call NetrwToggle(expand('%:p:h'))<cr>
 nnoremap <leader>ev <c-w><c-v><c-l>:e $MYVIMRC<cr>
 
 " fzf
