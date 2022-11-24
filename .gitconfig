@@ -22,6 +22,7 @@
 	mc = merge --continue
 	mq = merge --quit
 	ra = rebase --abort
+	rb = !git rebase -i `git bb`
 	rc = rebase --continue
 	re = rebase --edit-todo
 	ri = rebase --interactive
@@ -29,6 +30,7 @@
 
 	# diffing
 	d =   diff --minimal --unified=0 --word-diff=color
+	db =  !git d $(git merge-base HEAD master)
 	di =  diff --minimal --unified=0 --word-diff=color --cached
 	dis = diff --stat --cached
 	dl =  diff --minimal --unified=0 --word-diff=plain
