@@ -186,7 +186,8 @@ nnoremap <leader>fw :Windows<cr>
 " fugitive & git-gutter
 map <leader>gb :Git blame<cr>
 map <leader>gc :Git commit<cr>
-map <leader>gd :Gdiffsplit<cr>
+map <leader>gds :Gdiffsplit<cr>
+map <leader>gdi :term git di<cr>
 map <leader>ge :Gedit HEAD<cr>
 map <leader>gf :Git fetch<cr>
 map <silent> <leader>gg :GitGutterQuickFix<cr><cr><cr>:QFix<cr>
