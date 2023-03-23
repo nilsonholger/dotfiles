@@ -64,7 +64,7 @@ main = do
                 spawn "sleep 1; xset +dpms dpms 1800 1800 1800"
                 spawn dvorak_command
                 spawn "xmodmap -e \"pointer = 3 2 1\""
-                spawn "xrandr | grep -q 'DVI-I-2-1 connected' && { xrandr --output DVI-I-3-2 --primary --auto --left-of eDP-1-1; xrandr --output DVI-I-2-1 --noprimary --auto --right-of DVI-I-3-2 ; xrandr --output eDP-1-1 --noprimary --right-of DVI-I-2-1; } || { xrandr --output DVI-I-2-1 --off --output DVI-I-3-2 --off; }"
+                spawn "xrandr | grep -q 'DVI-I-2-2 connected' && { xrandr --output DVI-I-2-2 --primary --auto --left-of DP-1; xrandr --output DVI-I-1-1 --noprimary --auto --right-of DVI-I-2-2 ; xrandr --output DP-1 --noprimary --right-of DVI-I-1-1; } || { xrandr --output DVI-I-1-1 --off --output DVI-I-2-2 --off; }"
                 spawn "xrandr | grep -q 'DP-2.3 connected' && { xrandr --output DP-2.3 --primary --auto --left-of DP-1; } || { xrandr --output DP-1 --primary --pos 0x0; xrandr --output DP-2.3 --off; }"
         }
         `additionalKeys`
