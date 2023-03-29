@@ -37,7 +37,11 @@ bindkey '^f' history-incremental-pattern-search-forward
 
 ### dirs and expansion
 setopt autopushd extendedglob pushdignoredups
-setopt brace_ccl correct_all nobgnice notify prompt_subst nobeep
+setopt brace_ccl nobgnice notify prompt_subst nobeep
+
+### spelling correction
+setopt correct_all
+CORRECT_IGNORE_FILE="BUILD|.." # bazel build //...
 
 ### arrow key behaviour
 bindkey -M viins "$terminfo[cuu1]" up-line-or-history
