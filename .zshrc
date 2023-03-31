@@ -53,7 +53,7 @@ alias dud="du -d1 | sort -n | awk '{print \$2}' | xargs du -hd0"
 alias duh='du -hxd1 | sort -h'
 alias dvorak='setxkbmap -layout us; sleep 0.1; setxkbmap -model pc104 -layout us,us,de -variant dvp,,nodeadkeys -option lv3:ralt_switch'
 alias gen-pass='dd if=/dev/random bs=1024 count=1 2>/dev/null| strings | LC_CTYPE=C tr -d "\n"'
-alias lb='vi -c "call LogBook(\"logbook\")"'
+alias lb="vi -c 'call LogBook(\"logbook\")'"
 alias scpr='rsync --partial --progress --rsh=ssh'
 alias vi='vim'
 
