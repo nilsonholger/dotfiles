@@ -22,7 +22,7 @@
 	mc = merge --continue
 	mq = merge --quit
 	ra = rebase --abort
-	rb = !git rebase -i `git bb`
+	rb = !git rebase -i $(git mb ${1} ${2})
 	rc = rebase --continue
 	re = rebase --edit-todo
 	ri = rebase --interactive
@@ -30,7 +30,7 @@
 
 	# diffing
 	d =   diff --minimal --unified=0 --word-diff=color
-	db =  !git d $(git merge-base HEAD master)
+	db =  !git d $(git mb ${1} ${2})
 	di =  diff --minimal --unified=0 --word-diff=color --cached
 	dis = diff --stat --cached
 	dl =  diff --minimal --unified=0 --word-diff=plain
@@ -41,17 +41,17 @@
 	# log display
 	l = log --graph --date-order
 	la = log --graph --all --date-order
-	lb = !sh -c '[ $0 = sh ] && BASE=master ";" git log --graph --date-order HEAD ^${BASE:-$0}'
+	lb = !sh -c '[ $0 = sh ] && BASE=origin/HEAD ";" git log --graph --date-order ${BASE:-$0}..HEAD ${1}'
 	lf = log --graph --date-order --full-history --simplify-merges
 	lr = log --graph --all --date-order --reflog
 	ll = log --graph -n 1 --pretty=medium --date=iso
 
 	# custom commands
-	bb = !sh -c '[ $0 = sh ] && HEAD=HEAD ";" git rev-parse $(git rev-list --reverse ${1:-master}..${HEAD:-$0} -- | head -n1)^' # get SHA of branch ($1 or HEAD) towards base branch ($2 or master), i.e., where given branch was forked from given base branch
-	bc = !git checkout master --quiet && git branch --verbose | awk '/\\[gone\\]/ {print $1}' | xargs --no-run-if-empty git branch --delete && git checkout --quiet - # remove '[gone]' (fully merged) local branches
-	bisect-first-merges-only = !bash -c 'awk \"NR==FNR { m[\\$1]=1";"next } m[\\$1]!=1\" <(git rev-list --first-parent ${0:-HEAD..master}) <(git rev-list ${0:-HEAD..master}) | xargs git bisect skip'
-	descend = !git rev-list --first-parent --topo-order --reverse ${1:-HEAD}..${2:-master} # find ancestry chain descendant commits from ($1 or HEAD) towards other commit ($2 or master), use '...| awk NR==<X>' to get the Xth descendant commit
-	fm = !bash -c 'git show $(git rev-list $0...${1:-master} --ancestry-path --merges --reverse |& head -n1)' # find merge for given commit ($0) into given branch ($1 or master)
+	bc = !git checkout origin/HEAD --quiet && git branch --verbose | awk '/\\[gone\\]/ {print $1}' | xargs --no-run-if-empty git branch --delete && git checkout --quiet - # remove '[gone]' (fully merged) local branches
+	bisect-first-parent-merges-only = !bash -c 'awk \"NR==FNR { m[\\$1]=1";"next } m[\\$1]!=1\" <(git rev-list --first-parent ${0:-HEAD..origin/HEAD}) <(git rev-list ${0:-HEAD..origin/HEAD}) | xargs git bisect skip'
+	descend = !git rev-list --first-parent --topo-order --reverse ${1:-HEAD}..${2:-origin/HEAD} # find ancestry chain descendant commits from ($1 or HEAD) towards other commit ($2 or origin/HEAD), use '...| awk NR==<X>' to get the Xth descendant commit
+	fm = !bash -c 'git show $(git rev-list $0...${1:-origin/HEAD} --ancestry-path --merges --reverse |& head -n1)' # find merge for given commit ($0) into given branch ($1 or origin/HEAD)
+	mb = !sh -c '[ $0 = sh ] && HEAD=HEAD";" git merge-base ${HEAD:-$0} ${1:-origin/HEAD}' # get merge-base's SHA of branch (HEAD) towards base branch (origin/HEAD), i.e., where current branch was forked from given base branch
 	new = !git log --graph --date-order $(git rev-parse --abbrev-ref --symbolic-full-name '@{u}')..$(git rev-parse --abbrev-ref HEAD) # what's new on local branch (compared to upstream)
 	upstream = !git log --graph --date-order $(git rev-parse --abbrev-ref HEAD)..$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}') # what's new on upstream branch (compared to local)
 
@@ -85,7 +85,7 @@
 
 [log]
 	abbrevCommit = true   # shorten SHA hashes
-	date = relative       # forgot about it "5 seconds ago"
+	date = human          # make dates readable
 
 [merge]
 	log = true       # list (20...) commit messages in merge
