@@ -448,7 +448,7 @@ function! LogBook(mode)
 			if l:git_dir =~ l:base
 				let l:stat = system('cd '.l:base.'; git diff --numstat | awk "{print \$3\$4\$5\":+\"\$1\"-\"\$2; }"')
 				let l:host = system('hostname -s | tr -d "\n"')
-				caddexpr system('cd '.l:base.'; git commit --all --message "['.l:host.'] '.l:stat.'"&& git push origin')
+				caddexpr system('cd '.l:base.'; git commit --all --message "['.l:host.'] '.l:stat.'"; git push origin')
 			else
 				echo "No git directory in ".l:base." found!"
 			endif
