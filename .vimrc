@@ -112,7 +112,7 @@ let g:netrw_list_hide= '.*\.swp$,.*\.swo$'	" hide vim temp files
 "
 if has("autocmd")
 	filetype plugin indent on
-	au BufDelete,ExitPre */.logbook/* call LogBook("close")
+	au BufDelete,ExitPre */.logbook/* call LogBook("quit")
 	au BufNew * set foldlevel=20
 	au BufReadPost fugitive://* set bufhidden=delete
 	au BufReadPost * silent! normal '"
@@ -210,8 +210,9 @@ map <silent> <leader>mv :call Make("VERBOSE=1")<cr>
 
 " logbook
 nnoremap <leader>lb :call LogBook("logbook")<cr>
-nnoremap <leader>lc :call LogBook("close")<cr>
+nnoremap <leader>lc :call LogBook("commit")<cr>
 nnoremap <leader>lo :call LogBook("")<cr>
+nnoremap <leader>lq :call LogBook("quit")<cr>
 
 nnoremap <leader>ll :set list!<cr>:set list?<cr>
 nnoremap <leader>n :let [&number, &relativenumber] = [!&relativenumber, &number+&relativenumber==1]<cr>
@@ -443,7 +444,7 @@ function! LogBook(mode)
 	if isdirectory(l:base)
 		if empty(a:mode)
 			execute "FZF ".l:base
-		elseif a:mode == "close"
+		elseif a:mode == "commit" || a:mode == "quit"
 			let l:git_dir = system('cd '.l:base.'; git rev-parse --show-toplevel --sq | tr -d "\n"')
 			if l:git_dir =~ l:base
 				let l:stat = system('cd '.l:base.'; git diff --numstat | awk "{print \$3\$4\$5\":+\"\$1\"-\"\$2; }"')
@@ -452,7 +453,9 @@ function! LogBook(mode)
 			else
 				echo "No git directory in ".l:base." found!"
 			endif
-			quit
+			if a:mode == "quit"
+				quit
+			endif
 		else
 			if len(expand('%')) | let l:o = 'vsplit' | else | let l:o = 'edit' | endif
 			execute l:o.' '.l:base.'/'.a:mode.'.md'
