@@ -440,7 +440,7 @@ function! LogBook(mode)
 	" TODO move git_dir check to outer logic
 	" TODO handle no network and other pull/commit/push issues
 	let l:base = expand("~/.logbook")
-	cexpr system('cd '.l:base.'; git pull origin')
+	cexpr system('cd '.l:base.'; git pull --quiet origin')
 	if isdirectory(l:base)
 		if empty(a:mode)
 			execute "FZF ".l:base
@@ -449,7 +449,7 @@ function! LogBook(mode)
 			if l:git_dir =~ l:base
 				let l:stat = system('cd '.l:base.'; git diff --numstat | awk "{print \$3\$4\$5\":+\"\$1\"-\"\$2; }"')
 				let l:host = system('hostname -s | tr -d "\n"')
-				caddexpr system('cd '.l:base.'; git commit --all --message "['.l:host.'] '.l:stat.'"; git push origin')
+				caddexpr system('cd '.l:base.'; git commit --all --message "['.l:host.'] '.l:stat.'"; git push --quiet origin')
 			else
 				echo "No git directory in ".l:base." found!"
 			endif
