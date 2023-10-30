@@ -425,10 +425,10 @@ endfunction
 " Switch between header/source: *.((h|hh|c|cc)|(h|c)(pp|xx|++))
 function! SwitchHS()
 	let l:e = expand('%:e')
-	if l:e=~'^c'
+	if l:e=~'^c' || l:e=~'inl'
 		setlocal suffixesadd=.h,.hpp,.cc,.cxx,.c++
 	elseif l:e=~'^h'
-		setlocal suffixesadd=.c,.cpp,.cc,.cxx,.c++,cu
+		setlocal suffixesadd=.c,.cpp,.cc,.cxx,.c++,.inl,.cu
 	endif
 	execute 'edit '.findfile(expand('%:t:r'), expand('%:p:h').'**;'.getcwd())
 endfunction
