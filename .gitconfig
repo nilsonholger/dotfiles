@@ -74,6 +74,7 @@
 
 [fetch]
 	prune = true                # prune local branches (if deleted on remote)
+	pruneTags = true            # prune local tags (if deleted on remote)
 	recurseSubmodules = false   # avoid downloading dependencies
 	#fsckobjects = false         # ignore 'badTimezone: invalid author/committer line - bad time zone', use with caution!
 
