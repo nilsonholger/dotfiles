@@ -246,9 +246,9 @@ function cafe {
 local _COLS=$[(COLUMNS-14)/4]
 while true
 do
-	dd if=/dev/urandom bs=$[_COLS*2048] count=1 2>/dev/null
+	dd if=/dev/urandom bs=$[_COLS*256] count=1 2>/dev/null
 	sleep 0.25
-done | (hexdump -e "\"%08_ax  \" $_COLS/1 \"%02x \" \"  |\" $_COLS/1 \"%_p\" \"|\\n\" " | grep --color=always -E "ca f(f e)?e")
+done | (hexdump -e "\"%08_ax  \" $_COLS/1 \"%02x \" \"  |\" $_COLS/1 \"%_p\" \"|\\n\" " | grep --color=always -E "(c ?a ?f(f ?e)? ?e|d ?e ?a ?d|b ?e ?e ?f)")
 }
 
 ### files [DIR] [DEPTH]
