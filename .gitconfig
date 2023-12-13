@@ -31,7 +31,7 @@
 	# diffing
 	d =   !git diff --minimal --unified=0 --word-diff=color --color --no-prefix | sed -e '/^.\\[..mdiff --git /,/^.\\[..m---/d'
 	db =  !git diff --minimal --unified=0 --word-diff=color $(git mb ${1} ${2})
-	di =  !git diff --minimal --unified=0 --word-diff=color --cached --color --no-prefix ${@} | sed -e '/^.\\[..mdiff --git /,/^.\\[..m---/d'
+	di =  !git diff --minimal --unified=0 --word-diff=color --cached --color --no-prefix | sed -e '/^.\\[..mdiff --git /,/^.\\[..m---/d'
 	dis = diff --stat --cached
 	dl =  diff --minimal --unified=0 --word-diff=plain
 	dm =  diff --minimal --unified=0 --color-moved=dimmed_zebra
