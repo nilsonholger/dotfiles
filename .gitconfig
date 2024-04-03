@@ -46,10 +46,10 @@
 	ll = log --graph -n 1 --pretty=medium --date=iso
 
 	# feature branch helpers
-	db =  "!f() { git diff --minimal --unified=0 --word-diff=color $(git mb ${1} ${2}) ${3} ${4}; }; f"
-	fm = !bash -c 'git show $(git rev-list $0...${1:-origin/HEAD} --ancestry-path --merges --reverse |& head -n1)' # find merge for given commit ($0) into given branch ($1 or origin/HEAD)
-	lb = !sh -c '[ $0 = sh ] && BASE=origin/HEAD ";" git log --graph --date-order ${BASE:-$0}..HEAD ${1}'
-	mb = "!f(){ git merge-base ${1:-HEAD} ${2:-origin/HEAD}; }; f" # get merge-base's SHA of branch (HEAD) towards base branch (origin/HEAD), i.e., where current branch was forked from given base branch
+	db = "!f(){ git dc $(git mb ${1} ${2}) ${3} ${4}; };f"        # feature branch diff
+	fm = "!f(){ git rev-list ${1}...${2:-origin/HEAD} --ancestry-path --merges --reverse 2>&1 | head -n1; };f" # find merge for given commit ($1) into given branch ($2 or origin/HEAD)
+	lb = "!f(){ git l ${2:-origin/HEAD}..${1:-HEAD}; };f"         # feature branch commits
+	mb = "!f(){ git merge-base ${1:-HEAD} ${2:-origin/HEAD}; };f" # get merge-base's SHA of branch ($1 or HEAD) towards base branch ($2 or origin/HEAD)
 
 	# custom commands
 	bc = !B=$(git branch --show-current) && git checkout origin/HEAD --quiet && git branch --verbose | awk '/\\[gone\\]/ {print $1}' | xargs --no-run-if-empty git branch --delete && git checkout --quiet ${B} # remove '[gone]' (fully merged) local branches
