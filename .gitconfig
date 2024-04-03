@@ -40,10 +40,10 @@
 
 	# log display
 	l = log --graph --date-order
-	la = log --graph --all --date-order
 	lb = !sh -c '[ $0 = sh ] && BASE=origin/HEAD ";" git log --graph --date-order ${BASE:-$0}..HEAD ${1}'
-	lf = log --graph --date-order --full-history --simplify-merges
-	lr = log --graph --all --date-order --reflog
+	la = !git l --all
+	lf = !git l --full-history --simplify-merges
+	lr = !git la --reflog
 	ll = log --graph -n 1 --pretty=medium --date=iso
 
 	# custom commands
