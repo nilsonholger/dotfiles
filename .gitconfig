@@ -55,6 +55,7 @@
 	bc = !B=$(git branch --show-current) && git checkout origin/HEAD --quiet && git branch --verbose | awk '/\\[gone\\]/ {print $1}' | xargs --no-run-if-empty git branch --delete && git checkout --quiet ${B} # remove '[gone]' (fully merged) local branches
 	bisect-first-parent-merges-only = !bash -c 'awk \"NR==FNR { m[\\$1]=1";"next } m[\\$1]!=1\" <(git rev-list --first-parent ${0:-HEAD..origin/HEAD}) <(git rev-list ${0:-HEAD..origin/HEAD}) | xargs git bisect skip'
 	descend = !git rev-list --first-parent --topo-order --reverse ${1:-HEAD}..${2:-origin/HEAD} # find ancestry chain descendant commits from ($1 or HEAD) towards other commit ($2 or origin/HEAD), use '...| awk NR==<X>' to get the Xth descendant commit
+	lfs-purge = "!{ git read-tree HEAD && GIT_LFS_SKIP_SMUDGE=1 git checkout --force HEAD; }" # purge all LFS files from worktree
 	new = !git log --graph --date-order $(git rev-parse --abbrev-ref --symbolic-full-name '@{u}')..$(git rev-parse --abbrev-ref HEAD) # what's new on local branch (compared to upstream)
 	upstream = !git log --graph --date-order $(git rev-parse --abbrev-ref HEAD)..$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}') # what's new on upstream branch (compared to local)
 
