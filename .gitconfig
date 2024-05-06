@@ -29,14 +29,14 @@
 	rs = rebase --skip
 
 	# diffing
-	d =   !git dc --no-prefix | sed -e '/^.\\[..mdiff --git /,/^.\\[..m---/d'               # shortest possible diff
-	dc =  diff --minimal --unified=0 --word-diff=color                                      # common short diff base
-	di =  !git dc --cached --no-prefix ${@} | sed -e '/^.\\[..mdiff --git /,/^.\\[..m---/d' # shortest possible staged diff
-	dis = diff --stat --cached                                                              # staged stats
-	dl =  !git dc --word-diff=plain                                                         # emphasize word diffs inline
-	dm =  !git dc --color-moved=dimmed_zebra                                                # emphasize moves
-	dp =  !git dc --word-diff=porcelain                                                     # emphasize word diffs
-	ds =  diff --stat                                                                       # stats
+	d =   "!f(){ git dc --no-prefix ${@} | sed -e '/^.\\[..mdiff --git /,/^.\\[..m---/d' | less -FRSX; };f"  # shortest possible diff
+	dc =  diff --minimal --unified=0 --word-diff=color  # common short diff base
+	di =  "!f(){ git dc --cached --no-prefix ${@} | sed -e '/^.\\[..mdiff --git /,/^.\\[..m---/d' | less -FRSX; };f"  # shortest possible staged diff
+	dis = diff --stat --cached                          # staged stats
+	dl =  !git dc --word-diff=plain                     # emphasize word diffs inline
+	dm =  !git dc --color-moved=dimmed_zebra            # emphasize moves
+	dp =  !git dc --word-diff=porcelain                 # emphasize word diffs
+	ds =  diff --stat                                   # stats
 
 	# log display
 	l = log --graph --date-order
