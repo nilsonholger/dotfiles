@@ -19,6 +19,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'valloric/youcompleteme'
 Plugin 'junegunn/fzf', {'do': './install --all'}
 Plugin 'junegunn/fzf.vim'
+Plugin 'yasuhiroki/github-actions-yaml.vim'
 
 "
 " SETTINGS
