@@ -125,8 +125,8 @@ if has("autocmd")
 	au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 	au FileType conf setfiletype config
 	au FileType matlab set expandtab| set ts=2| set sw=2
-	au VimEnter * silent if filereadable("Session.vim") | source Session.vim | endif
-	au VimLeave * silent if filereadable("Session.vim") | mksession! Session.vim | endif
+	au VimEnter * silent if filereadable(".session.vim") && len(argv())==0 | source .session.vim | endif
+	au VimLeave,BufNew,BufDelete * silent if filereadable(".session.vim") && len(argv())==0 | mksession! .session.vim | endif
 	au VimResized * exe "normal! \<c-w>="
 endif
 
@@ -220,7 +220,9 @@ nnoremap <leader>n :let [&number, &relativenumber] = [!&relativenumber, &number+
 nnoremap <leader>N :nohlsearch<cr>
 nnoremap <leader>p :pclose<cr>
 
-nnoremap <leader>ss :set spell!<cr>:set spell?<cr>
+nnoremap <leader>sd :call delete(".session.vim")<cr>
+nnoremap <leader>ss :mksession! .session.vim<cr>
+nnoremap <leader>sp :set spell!<cr>:set spell?<cr>
 nnoremap <leader>sw :w !sudo tee %<cr>
 nnoremap <leader>S :if exists("g:syntax_on")<Bar>syntax off<Bar>else<Bar>syntax enable<Bar>endif<cr>
 
