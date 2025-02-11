@@ -104,9 +104,9 @@ _BATTERY_STATUS=''
 local _SYS='/sys/class/power_supply/BAT0/'
 local _STATUS=`cat $_SYS/status` _TIME
 [[ ! $_STATUS =~ (Disc|C)harging ]] && return
-local _CURRENT=`cat $_SYS/current_now &>/dev/null`
-_TIME=$((`cat $_SYS/charge_now`*60.0/${_CURRENT:-1000000000}))
-if [ "${_CURRENT}" ]; then _TIME="`printf "%d:%.2d" $((_TIME/60)) $((_TIME%60))`"
+local _POWER=`cat $_SYS/power_now`
+_TIME=$((`cat $_SYS/energy_now`*60.0/${_POWER:-1000000000}))
+if [ "${_POWER}" ]; then _TIME="`printf "%d:%.2d" $((_TIME/60)) $((_TIME%60))`"
 else _TIME="`cat $_SYS/capacity`⧗"; fi
 _battery_status `cat $_SYS/capacity` $_STATUS "${_TIME}"
 }
