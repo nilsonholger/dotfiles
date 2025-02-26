@@ -59,6 +59,8 @@
 	new = !git log --graph --date-order $(git rev-parse --abbrev-ref --symbolic-full-name '@{u}')..$(git rev-parse --abbrev-ref HEAD) # what's new on local branch (compared to upstream)
 	upstream = !git log --graph --date-order $(git rev-parse --abbrev-ref HEAD)..$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}') # what's new on upstream branch (compared to local)
 
+	# Note: using origin/HEAD may require to run once: 'git remote set-head origin -a'
+
 [color "diff"]
 	meta = yellow      # white not nice
 	old = red bold     # bold ist better
