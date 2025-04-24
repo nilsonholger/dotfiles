@@ -123,10 +123,12 @@ if has("autocmd")
 	au BufRead,BufNewFile *.launch setfiletype roslaunch
 	au! BufWritePost $MYVIMRC windo source $MYVIMRC
 	au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+	au FileType bzl set expandtab
 	au FileType conf setfiletype config
+	au FileType cpp,cmake,matlab,markdown,roslaunch,xml set expandtab | set tabstop=2 | set shiftwidth=2 | set softtabstop=2
 	au FileType matlab set expandtab| set ts=2| set sw=2
-	au VimEnter * silent if filereadable(".session.vim") && len(argv())==0 | source .session.vim | endif
-	au VimLeave,BufNew,BufDelete * silent if filereadable(".session.vim") && len(argv())==0 | mksession! .session.vim | endif
+	au VimEnter * silent if filereadable(".session.vim") && len(v:argv)==1 | source .session.vim | endif
+	au VimLeave,BufNew,BufDelete * silent if filereadable(".session.vim") && len(v:argv)==1 | mksession! .session.vim | endif
 	au VimResized * exe "normal! \<c-w>="
 endif
 
